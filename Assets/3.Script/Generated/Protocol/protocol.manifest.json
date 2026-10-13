@@ -1,0 +1,16 @@
+{
+  "owner": "escape-protocol-tool",
+  "target": "client",
+  "contractHash": "12820fc305c8167c749be5f67736dd8c39b8a7bbcff41d0e0405d6e5bdd88b45",
+  "fingerprint": "4b68f868c948e105de18380fbfe18b42a7a4dcd307c6507e50056359c396f04d",
+  "tools": {
+    "tsProto": "2.15.0",
+    "grpcTools": "2.76.0",
+    "csharpRuntime": "3.33.0"
+  },
+  "files": {
+    "Common.cs": "567daddfae0238a61cfeb8c6f7c032fcb2e95b8cd29097e0193487721e38bb1a",
+    "Session.cs": "71532c5a7f48fb8a8861e4d793bd79b9af855b73d02a35e3c80372e0e79b7d41",
+    "EscapeGame.Protocol.Generated.asmdef": "25447f0d4a4120c107ca4dfc2ac186287ab43fda9c25b5d4fa67367e070336c6"
+  }
+}
