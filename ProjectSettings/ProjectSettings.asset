@@ -926,11 +926,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: b39f134b-d830-4202-b228-2f26f8fa315a
+  cloudProjectId: 593a88a8-855c-4c10-acfc-0be51dc68d7e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: listen
-  organizationId: hollowinday
+  organizationId: hyunho9228
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
