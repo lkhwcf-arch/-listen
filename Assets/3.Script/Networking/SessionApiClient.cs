@@ -21,16 +21,16 @@ namespace EscapeGame.Networking
             this.baseUrl = baseUrl.TrimEnd('/');
         }
 
-        public async Task<JoinSessionResponse> JoinAsync(CancellationToken cancellationToken)
+        public async Task<JoinSessionResponseDto> JoinAsync(CancellationToken cancellationToken)
         {
             using var request = new UnityWebRequest(
                 $"{baseUrl}/sessions/join", UnityWebRequest.kHttpVerbPOST);
-            var response = await SendAndReadAsync<JoinSessionResponse>(request, cancellationToken);
+            var response = await SendAndReadAsync<JoinSessionResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateJoin(request.responseCode, response);
             return response;
         }
 
-        public async Task<ReadySessionResponse> ReportSceneLoadedAsync(
+        public async Task<SceneLoadedResponseDto> ReportSceneLoadedAsync(
             string sessionId, string participantToken, CancellationToken cancellationToken)
         {
             ValidateParticipant(sessionId, participantToken);
@@ -38,12 +38,12 @@ namespace EscapeGame.Networking
                 $"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/ready",
                 UnityWebRequest.kHttpVerbPOST);
             request.SetRequestHeader("x-participant-token", participantToken);
-            var response = await SendAndReadAsync<ReadySessionResponse>(request, cancellationToken);
+            var response = await SendAndReadAsync<SceneLoadedResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateSceneLoaded(request.responseCode, response);
             return response;
         }
 
-        public async Task<QuerySessionResponse> QuerySessionAsync(
+        public async Task<QuerySessionResponseDto> QuerySessionAsync(
             string sessionId, string participantToken, CancellationToken cancellationToken)
         {
             ValidateParticipant(sessionId, participantToken);
@@ -51,7 +51,7 @@ namespace EscapeGame.Networking
                 $"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}",
                 UnityWebRequest.kHttpVerbGET);
             request.SetRequestHeader("x-participant-token", participantToken);
-            var response = await SendAndReadAsync<QuerySessionResponse>(request, cancellationToken);
+            var response = await SendAndReadAsync<QuerySessionResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateQuery(request.responseCode, response);
             return response;
         }

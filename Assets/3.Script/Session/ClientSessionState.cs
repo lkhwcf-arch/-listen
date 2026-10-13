@@ -16,7 +16,7 @@ namespace EscapeGame.Session
         public int ParticipantCount { get; private set; }
         public event Action SnapshotApplied;
         public event Action Joined;
-        public void ApplyJoin(JoinSessionResponse response)
+        public void ApplyJoin(JoinSessionResponseDto response)
         {
             if (IsJoined)
                 throw new InvalidOperationException("이미 세션에 입장했습니다.");

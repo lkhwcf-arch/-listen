@@ -5,7 +5,7 @@ namespace EscapeGame.Session
 {
     public static class SessionResultValidator
     {
-        public static void ValidateJoin(long status, JoinSessionResponse response)
+        public static void ValidateJoin(long status, JoinSessionResponseDto response)
         {
             if (status != 201 && status != 409)
                 throw new InvalidOperationException($"예상하지 못한 HTTP 응답: {status}");
@@ -18,14 +18,14 @@ namespace EscapeGame.Session
                 throw new InvalidOperationException("입장 실패 응답이 일치하지 않습니다.");
         }
 
-        public static void ValidateSceneLoaded(long status, ReadySessionResponse response)
+        public static void ValidateSceneLoaded(long status, SceneLoadedResponseDto response)
         {
             if (response == null)
                 throw new InvalidOperationException("로딩 완료 응답이 없습니다.");
             ValidateSnapshotResponse(status, response.success, response.snapshot, response.code);
         }
 
-        public static void ValidateQuery(long status, QuerySessionResponse response)
+        public static void ValidateQuery(long status, QuerySessionResponseDto response)
         {
             if (response == null)
                 throw new InvalidOperationException("세션 조회 응답이 없습니다.");

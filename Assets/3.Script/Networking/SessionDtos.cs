@@ -10,7 +10,7 @@ namespace EscapeGame.Networking
     }
 
     [Serializable]
-    public sealed class JoinSessionResponse
+    public sealed class JoinSessionResponseDto
     {
         public bool success;
         public string sessionId;
@@ -26,7 +26,7 @@ namespace EscapeGame.Networking
         public PlayerDto[] players;
     }
     [Serializable]
-    public sealed class ReadySessionResponse
+    public sealed class SceneLoadedResponseDto
     {
         public bool success;
         public SessionSnapshotDto snapshot;
@@ -34,7 +34,7 @@ namespace EscapeGame.Networking
     }
 
     [Serializable]
-    public sealed class QuerySessionResponse
+    public sealed class QuerySessionResponseDto
     {
         public bool success;
         public SessionSnapshotDto snapshot;
