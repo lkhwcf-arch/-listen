@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using EscapeGame.Networking;
+using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Session
 {
-    public sealed class ClientSessionState
+    internal sealed class ClientSessionState
     {
         public string SessionId { get; private set; }
         public string PlayerId { get; private set; }
@@ -16,73 +16,76 @@ namespace EscapeGame.Session
         public int ParticipantCount { get; private set; }
         public event Action SnapshotApplied;
         public event Action Joined;
-        public void ApplyJoin(JoinSessionResponseDto response)
+        // 이전 단계와 현재 단계를 전달합니다.
+        // 첫 상태 반영은 이전 단계가 null입니다.
+        public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
+        public void ApplyJoin(SessionJoinData response)
         {
             if (IsJoined)
                 throw new InvalidOperationException("이미 세션에 입장했습니다.");
 
-            if (response == null || !response.success ||
-            string.IsNullOrWhiteSpace(response.sessionId) ||
-            response.player == null ||
-            string.IsNullOrWhiteSpace(response.player.id) ||
-            string.IsNullOrWhiteSpace(response.participantToken) ||
-            (response.player.role != "A" && response.player.role != "B"))
+            if (response == null ||
+            string.IsNullOrWhiteSpace(response.SessionId) ||
+            response.Player == null ||
+            string.IsNullOrWhiteSpace(response.Player.Id) ||
+            string.IsNullOrWhiteSpace(response.ParticipantToken) ||
+            (response.Player.Role != "A" && response.Player.Role != "B"))
             {
                 throw new ArgumentException("유요하지 않은 입장응답 입니다. ");
             }
 
-            SessionId = response.sessionId;
-            PlayerId = response.player.id;
-            Role = response.player.role;
-            ParticipantToken = response.participantToken;
+            SessionId = response.SessionId;
+            PlayerId = response.Player.Id;
+            Role = response.Player.Role;
+            ParticipantToken = response.ParticipantToken;
 
             Joined?.Invoke();
         }
-        public void ApplySnapshot(SessionSnapshotDto snapshot)
+        public void ApplySnapshot(SessionSnapshotData snapshot)
         {
             if (!IsJoined)
                 throw new InvalidOperationException("먼저 세션에 입장해야 합니다.");
 
             if (snapshot == null ||
-                snapshot.sessionId != SessionId ||
-                snapshot.players == null ||
-                snapshot.players.Length < 1 ||
-                snapshot.players.Length > 2)
+                snapshot.SessionId != SessionId ||
+                snapshot.Players == null ||
+                snapshot.Players.Count < 1 ||
+                snapshot.Players.Count > 2)
             {
                 throw new ArgumentException("유효하지 않은 세션 스냅샷입니다.");
             }
 
-            ClientSessionPhase nextPhase = SessionPhaseParser.Parse(snapshot.phase);
+            ClientSessionPhase nextPhase = snapshot.Phase;
 
             var playerIds = new HashSet<string>();
             var roles = new HashSet<string>();
 
-            PlayerDto localPlayer = null;
+            SessionPlayerData localPlayer = null;
             bool allLoaded = true;
 
-            foreach (var player in snapshot.players)
+            foreach (var player in snapshot.Players)
             {
                 if (player == null ||
-                    string.IsNullOrWhiteSpace(player.id) ||
-                    (player.role != "A" && player.role != "B") ||
-                    !playerIds.Add(player.id) ||
-                    !roles.Add(player.role))
+                    string.IsNullOrWhiteSpace(player.Id) ||
+                    (player.Role != "A" && player.Role != "B") ||
+                    !playerIds.Add(player.Id) ||
+                    !roles.Add(player.Role))
                 {
                     throw new ArgumentException("유효하지 않은 참가자 목록입니다.");
                 }
 
-                allLoaded &= player.ready;
+                allLoaded &= player.SceneLoaded;
 
-                if (player.id == PlayerId)
+                if (player.Id == PlayerId)
                     localPlayer = player;
             }
 
-            if (localPlayer == null || localPlayer.role != Role)
+            if (localPlayer == null || localPlayer.Role != Role)
                 throw new ArgumentException("본인의 참가 정보가 일치하지 않습니다.");
 
             // 현재 서버의 두 명 정원 규칙과 응답이 일치하는지 확인합니다.
             ClientSessionPhase expectedPhase =
-                snapshot.players.Length < 2
+                snapshot.Players.Count < 2
                     ? ClientSessionPhase.Waiting
                     : allLoaded
                         ? ClientSessionPhase.Playing
@@ -91,11 +94,17 @@ namespace EscapeGame.Session
             if (nextPhase != expectedPhase)
                 throw new ArgumentException("참가 상태와 세션 단계가 일치하지 않습니다.");
 
+            var prevPhase = Phase;
             Phase = nextPhase;
-            IsSceneLoaded = localPlayer.ready;
-            ParticipantCount = snapshot.players.Length;
+            IsSceneLoaded = localPlayer.SceneLoaded;
+            ParticipantCount = snapshot.Players.Count;
 
             SnapshotApplied?.Invoke();
+
+            if(prevPhase != nextPhase)
+            {
+                PhaseChanged?.Invoke(prevPhase, nextPhase);
+            }
         }
     }
 }

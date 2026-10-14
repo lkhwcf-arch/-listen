@@ -1,9 +1,9 @@
 using System;
 using EscapeGame.Networking;
 
-namespace EscapeGame.Session
+namespace EscapeGame.Networking
 {
-    public static class SessionResultValidator
+    internal static class SessionResultValidator
     {
         public static void ValidateJoin(long status, JoinSessionResponseDto response)
         {

@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
-using EscapeGame.Session;
+
 
 namespace EscapeGame.Networking
 {
-    public sealed class SessionApiClient
+    internal sealed class SessionApiClient
     {
         private readonly string baseUrl;
 
@@ -23,10 +23,11 @@ namespace EscapeGame.Networking
 
         public async Task<JoinSessionResponseDto> JoinAsync(CancellationToken cancellationToken)
         {
-            using var request = new UnityWebRequest(
-                $"{baseUrl}/sessions/join", UnityWebRequest.kHttpVerbPOST);
+            using var request = new UnityWebRequest($"{baseUrl}/sessions/join", UnityWebRequest.kHttpVerbPOST);
+
             var response = await SendAndReadAsync<JoinSessionResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateJoin(request.responseCode, response);
+
             return response;
         }
 
@@ -34,12 +35,13 @@ namespace EscapeGame.Networking
             string sessionId, string participantToken, CancellationToken cancellationToken)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = new UnityWebRequest(
-                $"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/ready",
-                UnityWebRequest.kHttpVerbPOST);
+            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/ready", UnityWebRequest.kHttpVerbPOST);
+            
             request.SetRequestHeader("x-participant-token", participantToken);
+            
             var response = await SendAndReadAsync<SceneLoadedResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateSceneLoaded(request.responseCode, response);
+            
             return response;
         }
 
@@ -47,12 +49,16 @@ namespace EscapeGame.Networking
             string sessionId, string participantToken, CancellationToken cancellationToken)
         {
             ValidateParticipant(sessionId, participantToken);
+            
             using var request = new UnityWebRequest(
                 $"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}",
                 UnityWebRequest.kHttpVerbGET);
+            
             request.SetRequestHeader("x-participant-token", participantToken);
+            
             var response = await SendAndReadAsync<QuerySessionResponseDto>(request, cancellationToken);
             SessionResultValidator.ValidateQuery(request.responseCode, response);
+            
             return response;
         }
 
@@ -60,6 +66,7 @@ namespace EscapeGame.Networking
         {
             if (string.IsNullOrWhiteSpace(sessionId))
                 throw new ArgumentException("세션 ID가 필요합니다.");
+            
             if (string.IsNullOrWhiteSpace(participantToken))
                 throw new ArgumentException("참가 토큰이 필요합니다.");
         }
@@ -69,9 +76,11 @@ namespace EscapeGame.Networking
             UnityWebRequest request, CancellationToken cancellationToken) where T : class
         {
             cancellationToken.ThrowIfCancellationRequested();
+            
             request.downloadHandler = new DownloadHandlerBuffer();
             request.timeout = 10;
             var operation = request.SendWebRequest();
+            
             while (!operation.isDone)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -81,10 +90,14 @@ namespace EscapeGame.Networking
                 }
                 await Task.Yield();
             }
+            
             cancellationToken.ThrowIfCancellationRequested();
-            if (request.result == UnityWebRequest.Result.ConnectionError ||
-                request.result == UnityWebRequest.Result.DataProcessingError)
-                throw new InvalidOperationException($"서버 통신 실패: {request.error}");
+            
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+                throw new SessionTransportException($"서버 연결 실패: {request.error}");
+
+            if (request.result == UnityWebRequest.Result.DataProcessingError)
+                throw new InvalidOperationException($"서버 응답 처리 실패: {request.error}");
 
             return JsonUtility.FromJson<T>(request.downloadHandler.text);
         }

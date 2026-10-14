@@ -1,10 +1,11 @@
+using EscapeGame.Session.Contracts;
 using System;
 
-namespace EscapeGame.Session
+namespace EscapeGame.Networking
 {
     // 서버의 단계 문자열을 클라이언트 상태값으로 해석합니다.
     // 게임 시작 조건이나 상태 전환을 결정하지 않습니다.
-    public static class SessionPhaseParser
+    internal static class SessionPhaseParser
     {
         public static ClientSessionPhase Parse(string phase)
         {

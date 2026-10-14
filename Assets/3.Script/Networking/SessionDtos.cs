@@ -2,7 +2,7 @@ using System;
 namespace EscapeGame.Networking
 {
     [Serializable]
-    public sealed class PlayerDto
+    internal sealed class PlayerDto
     {
         public string id;
         public string role;
@@ -10,7 +10,7 @@ namespace EscapeGame.Networking
     }
 
     [Serializable]
-    public sealed class JoinSessionResponseDto
+    internal sealed class JoinSessionResponseDto
     {
         public bool success;
         public string sessionId;
@@ -19,14 +19,14 @@ namespace EscapeGame.Networking
         public string code;
     }
     [Serializable]
-    public sealed class SessionSnapshotDto
+    internal sealed class SessionSnapshotDto
     {
         public string sessionId;
         public string phase;
         public PlayerDto[] players;
     }
     [Serializable]
-    public sealed class SceneLoadedResponseDto
+    internal sealed class SceneLoadedResponseDto
     {
         public bool success;
         public SessionSnapshotDto snapshot;
@@ -34,7 +34,7 @@ namespace EscapeGame.Networking
     }
 
     [Serializable]
-    public sealed class QuerySessionResponseDto
+    internal sealed class QuerySessionResponseDto
     {
         public bool success;
         public SessionSnapshotDto snapshot;

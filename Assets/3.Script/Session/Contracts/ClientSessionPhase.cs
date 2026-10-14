@@ -1,4 +1,4 @@
-namespace EscapeGame.Session
+namespace EscapeGame.Session.Contracts
 {
     public enum ClientSessionPhase
     {
