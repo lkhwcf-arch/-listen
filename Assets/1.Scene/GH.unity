@@ -119708,7 +119708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2899038090737094254}
   m_Layer: 0
-  m_Name: R2_MAP_TEST
+  m_Name: R2_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167871,7 +167871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4219607163553968236}
   m_Layer: 0
-  m_Name: R4_MAP_TEST
+  m_Name: R4_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171468,7 +171468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4145891979371829011}
   m_Layer: 0
-  m_Name: R3_MAP_TEST
+  m_Name: R3_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222484,7 +222484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5361747074034293773}
   m_Layer: 0
-  m_Name: R1_MAP_TEST
+  m_Name: R1_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246623,7 +246623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5536777626917182369}
   m_Layer: 0
-  m_Name: R5_MAP_TEST
+  m_Name: R5_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274438,7 +274438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964727916575347871}
   m_Layer: 0
-  m_Name: R6_MAP_TEST
+  m_Name: R6_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429907,7 +429907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8460228004243761516}
   m_Layer: 0
-  m_Name: R7_MAP_TEST
+  m_Name: R7_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
