@@ -8,11 +8,12 @@ using UnityEngine;
 
 namespace EscapeGame.Session
 {
-    [RequireComponent(typeof(SessionPollingDriver), typeof(SessionSceneLoadedDriver))]
+    [RequireComponent(typeof(SessionPollingDriver), typeof(SessionSceneLoadedDriver), typeof(SessionHeartbeatDriver))]
     public sealed class SessionBootstrapper : MonoBehaviour
     {
         [SerializeField] private SessionPollingDriver pollingDriver;
         [SerializeField] private SessionSceneLoadedDriver sceneLoadedDriver;
+        private SessionHeartbeatDriver heartbeatDriver;
         private SessionClient client;
 
         public ISessionConnectionService Service { get { EnsureInitialized(); return client; } }
@@ -29,12 +30,16 @@ namespace EscapeGame.Session
             if (sceneLoadedDriver == null) sceneLoadedDriver = GetComponent<SessionSceneLoadedDriver>();
             if (pollingDriver == null || sceneLoadedDriver == null)
                 throw new InvalidOperationException("자동 조회와 준비 보고 컴포넌트를 연결하세요.");
+            heartbeatDriver = GetComponent<SessionHeartbeatDriver>();
+            if (heartbeatDriver == null) throw new InvalidOperationException("SessionHeartbeatDriver를 연결하세요.");
+            var heartbeatSettings = heartbeatDriver.Settings;
             pollingDriver.ValidateConfiguration();
             sceneLoadedDriver.ValidateConfiguration();
 
-            client = new SessionClient(new HttpSessionGatewayFactory(), destroyCancellationToken,
+            client = new SessionClient(new HttpSessionGatewayFactory(heartbeatSettings.RequestTimeoutMs), destroyCancellationToken,
                 exception => Debug.LogWarning($"세션 내부 진단: {exception.GetType().Name}: {exception.Message}"));
             var clock = new StopwatchMillisecondClock();
+            heartbeatDriver.Initialize(client, clock, destroyCancellationToken);
             sceneLoadedDriver.Initialize(client, clock, destroyCancellationToken);
             pollingDriver.Initialize(client, clock, destroyCancellationToken);
         }

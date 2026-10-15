@@ -7,6 +7,8 @@ namespace EscapeGame.Session.Presentation
     {
         public static string Describe(SessionFailureCode code) => code switch
         {
+            SessionFailureCode.LeaveUnconfirmed => "내 연결은 종료했습니다. 서버에서 퇴장 확인을 받지 못한 자리는 생존 확인 만료 후 정리됩니다.",
+            SessionFailureCode.ConnectionTimedOut => "서버와 연결이 끊겼습니다. 제한 시간 동안 생존 확인 응답을 받지 못했습니다. 다시 입장해 주세요.",
             SessionFailureCode.ConnectionFailed => "서버에 연결할 수 없습니다. 서버 주소와 실행 상태를 확인해 주세요.",
             SessionFailureCode.SessionFull => "참가 인원이 가득 찼습니다. 서버의 참가 상태를 확인해 주세요.",
             SessionFailureCode.SessionNotFound => "참가한 세션이 없습니다. 접속 상태를 확인해 주세요.",

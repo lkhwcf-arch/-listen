@@ -8,7 +8,10 @@ namespace EscapeGame.Networking
 {
     internal sealed class HttpSessionGatewayFactory : ISessionGatewayFactory
     {
-        public ISessionGateway Create(string serverAddress) => new HttpSessionGateway(new SessionApiClient(serverAddress));
+        private readonly int heartbeatRequestTimeoutMs;
+        internal HttpSessionGatewayFactory(int heartbeatRequestTimeoutMs = 2000)
+        { this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs; }
+        public ISessionGateway Create(string serverAddress) => new HttpSessionGateway(new SessionApiClient(serverAddress, heartbeatRequestTimeoutMs));
     }
 
     // Wire DTO와 HTTP 오류를 세션 처리용 데이터/오류로 변환하는 어댑터입니다.
@@ -37,6 +40,26 @@ namespace EscapeGame.Networking
             EnsureSuccess(response.success, response.code);
             return MapSnapshot(response.snapshot);
         });
+
+        public async Task LeaveAsync(string sessionId, string participantToken, CancellationToken token)
+        {
+            await ExecuteAsync(async () =>
+            {
+                var response = await api.LeaveAsync(sessionId, participantToken, token);
+                EnsureSuccess(response.success, response.code);
+                return true;
+            });
+        }
+
+        public async Task HeartbeatAsync(string sessionId, string participantToken, CancellationToken token)
+        {
+            await ExecuteAsync(async () =>
+            {
+                var response = await api.HeartbeatAsync(sessionId, participantToken, token);
+                EnsureSuccess(response.success, response.code);
+                return true;
+            });
+        }
 
         private static async Task<T> ExecuteAsync<T>(Func<Task<T>> operation)
         {

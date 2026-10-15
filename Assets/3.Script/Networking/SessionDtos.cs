@@ -2,6 +2,20 @@ using System;
 namespace EscapeGame.Networking
 {
     [Serializable]
+    internal sealed class LeaveResponseDto
+    {
+        public bool success;
+        public string code;
+    }
+
+    [Serializable]
+    internal sealed class HeartbeatResponseDto
+    {
+        public bool success;
+        public string code;
+    }
+
+    [Serializable]
     internal sealed class PlayerDto
     {
         public string id;
@@ -41,4 +55,3 @@ namespace EscapeGame.Networking
         public string code;
     }
 }
-

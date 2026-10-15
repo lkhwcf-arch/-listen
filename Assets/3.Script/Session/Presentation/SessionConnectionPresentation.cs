@@ -7,11 +7,15 @@ namespace EscapeGame.Session.Presentation
         public string Participants { get; }
         public string Message { get; }
         public bool CanJoin { get; }
+        public bool CanLeave { get; }
+        public bool IsLeaving { get; }
         public bool CanEditAddress { get; }
 
         public SessionConnectionPresentation(string status, string role, string participants,
-            string message, bool canJoin, bool canEditAddress)
+            string message, bool canJoin, bool canEditAddress, bool canLeave = false, bool isLeaving = false)
         {
+            CanLeave = canLeave;
+            IsLeaving = isLeaving;
             Status = status;
             Role = role;
             Participants = participants;

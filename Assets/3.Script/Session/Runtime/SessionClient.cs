@@ -5,7 +5,6 @@ using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Session
 {
-    // 외부는 공개 계약으로만 사용합니다. 내부 상태, 인증, 통신 포트를 이곳에 모읍니다.
     internal sealed class SessionClient : ISessionConnectionService, IDisposable
     {
         private readonly ISessionGatewayFactory gatewayFactory;
@@ -13,16 +12,22 @@ namespace EscapeGame.Session
         private readonly SessionRequestRunner runner = new SessionRequestRunner();
         private readonly CancellationTokenSource lifetime;
         private readonly Action<Exception> diagnostic;
+        private CancellationTokenSource connectionLifetime;
         private SessionCoordinator coordinator;
         private SessionFailureCode lastBackgroundFailure;
+        private SessionFailureCode disconnectReason;
+        private bool disconnected;
+        private bool leaving;
         private bool disposed;
+        private int connectionVersion;
 
         public SessionInfo State { get; private set; }
-        public bool IsBusy => runner.IsBusy;
+        public bool IsBusy => runner.IsBusy || runner.IsHeartbeatRunning;
         public string ServerBaseUrl { get; private set; }
         public event Action<SessionInfo> StateChanged;
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
         public event Action<SessionFailureCode> BackgroundFailed;
+        public event Action<SessionFailureCode> Disconnected;
 
         internal SessionClient(ISessionGatewayFactory gatewayFactory, CancellationToken ownerLifetime,
             Action<Exception> diagnostic = null)
@@ -38,10 +43,16 @@ namespace EscapeGame.Session
 
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token) => ExecuteAsync(async ct =>
         {
-            if (state.IsJoined) throw new InvalidOperationException("이미 입장했습니다.");
-            if (runner.IsBusy) throw new SessionResultException(SessionFailureCode.Busy);
+            if (state.IsJoined || leaving) throw new InvalidOperationException("이미 입장했습니다.");
+            if (IsBusy) throw new SessionResultException(SessionFailureCode.Busy);
             var normalized = address?.Trim();
             var gateway = gatewayFactory.Create(normalized);
+            connectionLifetime?.Dispose();
+            connectionLifetime = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token);
+            connectionVersion++;
+            disconnected = false;
+            disconnectReason = lastBackgroundFailure = SessionFailureCode.None;
+            PublishState();
             coordinator = new SessionCoordinator(gateway, state, runner);
             await coordinator.JoinAsync(ct);
             ServerBaseUrl = normalized.TrimEnd('/');
@@ -49,9 +60,50 @@ namespace EscapeGame.Session
 
         public Task<SessionCommandResult> ReportSceneLoadedAsync(CancellationToken token) => ExecuteAsync(
             ct => RequireCoordinator().ReportSceneLoadedAsync(ct), token, true);
-
         public Task<SessionCommandResult> QueryAsync(CancellationToken token) => ExecuteAsync(
             ct => RequireCoordinator().QueryAsync(ct), token, true);
+        public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => ExecuteAsync(
+            ct => RequireCoordinator().HeartbeatAsync(ct), token, true);
+
+        public async Task<SessionCommandResult> LeaveAsync(CancellationToken token)
+        {
+            if (disposed) return SessionCommandResult.Cancelled();
+            if (leaving) return SessionCommandResult.Failed(SessionFailureCode.Busy);
+            if (!state.IsJoined) return SessionCommandResult.Failed(SessionFailureCode.InvalidState);
+            var current = coordinator;
+            leaving = true;
+            connectionVersion++;
+            PublishState();
+            connectionLifetime?.Cancel();
+            using var linked = CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token);
+            var result = await SessionCommandExecutor.ExecuteAsync(current.LeaveAsync, linked.Token, diagnostic);
+            // 응답을 못 받아도 로컬은 종료하고 서버 만료가 남은 자리를 정리합니다.
+            state.Clear();
+            coordinator = null;
+            leaving = disconnected = false;
+            disconnectReason = lastBackgroundFailure = SessionFailureCode.None;
+            if (!disposed) PublishState();
+            if (result.Code == SessionFailureCode.InvalidParticipant || result.Code == SessionFailureCode.SessionNotFound)
+                return SessionCommandResult.Completed();
+            if (result.Outcome == SessionCommandOutcome.Failed)
+                return SessionCommandResult.Failed(SessionFailureCode.LeaveUnconfirmed);
+            return result;
+        }
+
+        public void Disconnect(SessionFailureCode reason)
+        {
+            if (reason == SessionFailureCode.None || !Enum.IsDefined(typeof(SessionFailureCode), reason))
+                throw new ArgumentOutOfRangeException(nameof(reason));
+            if (disposed || disconnected || leaving || !state.IsJoined) return;
+            disconnected = true;
+            disconnectReason = reason;
+            connectionVersion++;
+            state.Clear();
+            coordinator = null;
+            PublishState();
+            connectionLifetime?.Cancel();
+            Disconnected?.Invoke(reason);
+        }
 
         private SessionCoordinator RequireCoordinator()
         {
@@ -61,43 +113,56 @@ namespace EscapeGame.Session
         }
 
         private async Task<SessionCommandResult> ExecuteAsync(Func<CancellationToken, Task> command,
-            CancellationToken token, bool background)
+            CancellationToken token, bool authenticated)
         {
             if (disposed) return SessionCommandResult.Cancelled();
-            using var linked = CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token);
+            int version = connectionVersion;
+            using var linked = authenticated && connectionLifetime != null
+                ? CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token, connectionLifetime.Token)
+                : CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token);
             Exception detail = null;
             var result = await SessionCommandExecutor.ExecuteAsync(command, linked.Token, error => detail = error);
+            // 이전 연결의 늦은 결과는 현재 상태나 알림을 덮어쓰지 않습니다.
+            if (authenticated && version != connectionVersion)
+            {
+                if (!disposed && disconnected) PublishState();
+                return SessionCommandResult.Cancelled();
+            }
             if (result.Outcome == SessionCommandOutcome.Failed && result.Code != SessionFailureCode.Busy)
             {
-                if (!background || lastBackgroundFailure != result.Code)
+                if (!authenticated || lastBackgroundFailure != result.Code)
                 {
                     if (detail != null) diagnostic?.Invoke(detail);
-                    if (background) BackgroundFailed?.Invoke(result.Code);
+                    if (authenticated && IsTerminalParticipantFailure(result.Code)) Disconnect(result.Code);
+                    else if (authenticated) BackgroundFailed?.Invoke(result.Code);
                 }
-                if (background) lastBackgroundFailure = result.Code;
+                if (authenticated) lastBackgroundFailure = result.Code;
             }
-            else if (background && result.Outcome == SessionCommandOutcome.Completed)
+            else if (authenticated && result.Outcome == SessionCommandOutcome.Completed)
                 lastBackgroundFailure = SessionFailureCode.None;
+            if (!disposed && disconnected) PublishState();
             return result;
         }
 
+        private static bool IsTerminalParticipantFailure(SessionFailureCode code) =>
+            code == SessionFailureCode.InvalidParticipant || code == SessionFailureCode.SessionNotFound ||
+            code == SessionFailureCode.ParticipantTokenRequired;
+
         private SessionInfo CaptureState() => new SessionInfo(state.SessionId, state.PlayerId, state.Role,
-            state.Phase, state.ParticipantCount, state.IsSceneLoaded);
+            state.Phase, state.ParticipantCount, state.IsSceneLoaded,
+            leaving ? SessionConnectionStatus.Leaving : disconnected ? SessionConnectionStatus.Disconnected : state.IsJoined
+                ? SessionConnectionStatus.Connected : SessionConnectionStatus.NotConnected,
+            disconnectReason);
 
-        private void PublishState()
-        {
-            State = CaptureState();
-            StateChanged?.Invoke(State);
-        }
-
-        private void PublishPhase(ClientSessionPhase? previous, ClientSessionPhase current) =>
-            PhaseChanged?.Invoke(previous, current);
+        private void PublishState() { State = CaptureState(); StateChanged?.Invoke(State); }
+        private void PublishPhase(ClientSessionPhase? previous, ClientSessionPhase current) => PhaseChanged?.Invoke(previous, current);
 
         public void Dispose()
         {
             if (disposed) return;
             disposed = true;
             lifetime.Cancel();
+            connectionLifetime?.Dispose();
             state.Joined -= PublishState;
             state.SnapshotApplied -= PublishState;
             state.PhaseChanged -= PublishPhase;

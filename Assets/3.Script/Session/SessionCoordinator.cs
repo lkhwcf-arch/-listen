@@ -43,6 +43,21 @@ namespace EscapeGame.Session
             ApplyReceived(() => session.ApplySnapshot(response));
         }, token);
 
+        internal Task LeaveAsync(CancellationToken token)
+        {
+            EnsureJoined();
+            string sessionId = session.SessionId;
+            string participantToken = session.ParticipantToken;
+            return runner.RunExclusiveAsync(ct => gateway.LeaveAsync(sessionId, participantToken, ct), token);
+        }
+
+        internal Task HeartbeatAsync(CancellationToken token) => runner.RunHeartbeatAsync(async ct =>
+        {
+            EnsureJoined();
+            await gateway.HeartbeatAsync(session.SessionId, session.ParticipantToken, ct);
+            ct.ThrowIfCancellationRequested();
+        }, token);
+
         private void EnsureJoined()
         {
             if (!session.IsJoined) throw new InvalidOperationException("먼저 서버 세션에 입장하세요.");

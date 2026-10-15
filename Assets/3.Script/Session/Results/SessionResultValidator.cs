@@ -32,15 +32,34 @@ namespace EscapeGame.Networking
             ValidateSnapshotResponse(status, response.success, response.snapshot, response.code);
         }
 
-        // 두 작업은 같은 HTTP 성공/실패 계약을 사용하지만 공개 진입점은 구분합니다.
+        public static void ValidateLeave(long status, LeaveResponseDto response)
+        {
+            if (response == null) throw new InvalidOperationException("퇴장 응답이 없습니다.");
+            ValidateParticipantResponse(status, response.success, response.code);
+        }
+
+        public static void ValidateHeartbeat(long status, HeartbeatResponseDto response)
+        {
+            if (response == null) throw new InvalidOperationException("생존 확인 응답이 없습니다.");
+            ValidateParticipantResponse(status, response.success, response.code);
+        }
+
+        // 세 작업은 같은 인증 계약을 공유하고 스냅샷 여부만 따로 확인합니다.
         private static void ValidateSnapshotResponse(
             long status, bool success, SessionSnapshotDto snapshot, string code)
+        {
+            ValidateParticipantResponse(status, success, code);
+            if (status == 200 && snapshot == null)
+                throw new InvalidOperationException("스냅샷 성공 응답이 일치하지 않습니다.");
+        }
+
+        private static void ValidateParticipantResponse(long status, bool success, string code)
         {
             if (status != 200 && status != 400 && status != 403 && status != 404)
                 throw new InvalidOperationException($"예상하지 못한 HTTP 응답: {status}");
             if (status == 200)
             {
-                if (!success || snapshot == null)
+                if (!success)
                     throw new InvalidOperationException("스냅샷 성공 응답이 일치하지 않습니다.");
                 return;
             }

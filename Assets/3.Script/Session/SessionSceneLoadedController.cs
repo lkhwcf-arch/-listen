@@ -14,6 +14,7 @@ namespace EscapeGame.Session
         private readonly ISessionConnectionService service;
         private readonly IReadinessCheck readiness;
         private readonly MillisecondInterval retryInterval;
+        private string playerId;
         private bool prepared;
         private bool transportFailed;
         public SceneLoadedReportPhase Phase { get; private set; }
@@ -31,7 +32,15 @@ namespace EscapeGame.Session
         }
         public void Tick(CancellationToken token)
         {
-            if (token.IsCancellationRequested || !service.State.IsJoined ||
+            if (token.IsCancellationRequested || !service.State.IsJoined) return;
+            if (playerId != service.State.PlayerId)
+            {
+                playerId = service.State.PlayerId;
+                prepared = transportFailed = false;
+                Phase = SceneLoadedReportPhase.WaitingForPreparation;
+                retryInterval.Restart();
+            }
+            if (
                 Phase == SceneLoadedReportPhase.Completed || Phase == SceneLoadedReportPhase.Failed ||
                 Phase == SceneLoadedReportPhase.Reporting || !readiness.IsReady) return;
             if (!prepared)
@@ -48,8 +57,9 @@ namespace EscapeGame.Session
         private async Task ReportAsync(CancellationToken token)
         {
             // 요청 대기 정책은 서비스 내부에 있습니다. 자동화는 Busy 결과만 이해합니다.
+            string requestedPlayer = service.State.PlayerId;
             var result = await service.ReportSceneLoadedAsync(token);
-            if (token.IsCancellationRequested) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer) return;
             if (result.Outcome == SessionCommandOutcome.Completed) { Complete(); return; }
             if (result.Outcome == SessionCommandOutcome.Cancelled || result.Code == SessionFailureCode.Busy)
             {

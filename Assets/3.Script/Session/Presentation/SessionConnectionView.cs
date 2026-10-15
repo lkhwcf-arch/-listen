@@ -14,8 +14,12 @@ namespace EscapeGame.Session.Presentation
         [SerializeField] private TMP_Text participantText;
         [SerializeField] private TMP_Text messageText;
 
+        private SessionDisconnectDialog disconnectDialog;
+        private bool canLeave;
+
         public string ServerAddress => serverAddressInput.text;
         public event Action JoinRequested;
+        public event Action LeaveRequested;
 
         public void ValidateConfiguration()
         {
@@ -33,7 +37,18 @@ namespace EscapeGame.Session.Presentation
         {
             if (joinButton != null) joinButton.onClick.RemoveListener(OnJoinClicked);
         }
-        private void OnJoinClicked() => JoinRequested?.Invoke();
+        private void OnJoinClicked() { if (canLeave) LeaveRequested?.Invoke(); else JoinRequested?.Invoke(); }
+
+        public void ShowDisconnected(string message)
+        {
+            if (disconnectDialog == null)
+            {
+                var canvas = GetComponentInParent<Canvas>();
+                if (canvas == null) throw new InvalidOperationException("알림창을 표시할 Canvas가 필요합니다.");
+                disconnectDialog = SessionDisconnectDialog.Create(canvas.rootCanvas.transform, messageText.font);
+            }
+            disconnectDialog.Show(message);
+        }
 
         public void Render(SessionConnectionPresentation presentation)
         {
@@ -41,7 +56,10 @@ namespace EscapeGame.Session.Presentation
             roleText.text = "역할: " + presentation.Role;
             participantText.text = "참가자: " + presentation.Participants;
             messageText.text = presentation.Message;
-            joinButton.interactable = presentation.CanJoin;
+            canLeave = presentation.CanLeave;
+            joinButton.interactable = presentation.CanJoin || presentation.CanLeave;
+            var buttonLabel = joinButton.GetComponentInChildren<TMP_Text>();
+            if (buttonLabel != null) buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
             serverAddressInput.interactable = presentation.CanEditAddress;
         }
     }

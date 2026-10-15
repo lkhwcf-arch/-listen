@@ -9,11 +9,22 @@ namespace EscapeGame.Session.Contracts
         public ClientSessionPhase? Phase { get; }
         public int ParticipantCount { get; }
         public bool IsSceneLoaded { get; }
-        public bool IsJoined => !string.IsNullOrEmpty(SessionId);
+        public SessionConnectionStatus ConnectionStatus { get; }
+        public SessionFailureCode DisconnectReason { get; }
+        public bool IsJoined => ConnectionStatus == SessionConnectionStatus.Connected && !string.IsNullOrEmpty(SessionId);
 
         public SessionInfo(string sessionId, string playerId, string role,
             ClientSessionPhase? phase, int participantCount, bool isSceneLoaded)
+            : this(sessionId, playerId, role, phase, participantCount, isSceneLoaded,
+                string.IsNullOrEmpty(sessionId) ? SessionConnectionStatus.NotConnected : SessionConnectionStatus.Connected,
+                SessionFailureCode.None) { }
+
+        public SessionInfo(string sessionId, string playerId, string role,
+            ClientSessionPhase? phase, int participantCount, bool isSceneLoaded,
+            SessionConnectionStatus connectionStatus, SessionFailureCode disconnectReason)
         {
+            ConnectionStatus = connectionStatus;
+            DisconnectReason = disconnectReason;
             SessionId = sessionId;
             PlayerId = playerId;
             Role = role;

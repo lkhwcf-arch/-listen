@@ -11,6 +11,7 @@ namespace EscapeGame.Session
     {
         private readonly ISessionConnectionService service;
         private readonly MillisecondInterval interval;
+        private string playerId;
         private bool stopped;
         private bool connectionFailed;
         public event Action<SessionFailureCode> ConnectionFailed;
@@ -24,13 +25,21 @@ namespace EscapeGame.Session
         }
         public void Tick(CancellationToken token)
         {
-            if (token.IsCancellationRequested || stopped || !service.State.IsJoined || service.IsBusy) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined) return;
+            if (playerId != service.State.PlayerId)
+            {
+                playerId = service.State.PlayerId;
+                stopped = connectionFailed = false;
+                interval.Restart();
+            }
+            if (stopped || service.IsBusy) return;
             if (interval.TryConsume()) _ = PollAsync(token);
         }
         private async Task PollAsync(CancellationToken token)
         {
+            string requestedPlayer = service.State.PlayerId;
             var result = await service.QueryAsync(token);
-            if (token.IsCancellationRequested) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer) return;
             if (result.Outcome != SessionCommandOutcome.Completed)
             {
                 switch (SessionPollingFailurePolicy.Resolve(result))

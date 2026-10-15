@@ -19,6 +19,14 @@ namespace EscapeGame.Session
         // 이전 단계와 현재 단계를 전달합니다.
         // 첫 상태 반영은 이전 단계가 null입니다.
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
+        public void Clear()
+        {
+            SessionId = PlayerId = Role = ParticipantToken = null;
+            Phase = null;
+            IsSceneLoaded = false;
+            ParticipantCount = 0;
+        }
+
         public void ApplyJoin(SessionJoinData response)
         {
             if (IsJoined)
@@ -108,4 +116,3 @@ namespace EscapeGame.Session
         }
     }
 }
-

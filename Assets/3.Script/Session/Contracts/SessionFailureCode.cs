@@ -12,6 +12,8 @@ namespace EscapeGame.Session.Contracts
         InvalidState = 7,
         Busy = 8,
         InvalidResponse = 9,
-        UnexpectedFailure = 10
+        UnexpectedFailure = 10,
+        ConnectionTimedOut = 11,
+        LeaveUnconfirmed = 12
     }
 }
