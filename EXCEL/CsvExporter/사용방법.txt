@@ -1,0 +1,62 @@
+SILENT CSV 추출기
+
+사용 방법
+1. 수정한 엑셀 파일을 저장합니다.
+2. EXCEL 폴더의 ExtractCsv.cmd를 더블클릭합니다.
+3. 완료 메시지를 확인합니다. 결과는 Assets/11.CSV에 저장됩니다.
+
+별도 Excel, Python, 추가 라이브러리 설치가 필요 없습니다.
+Windows 기본 Windows PowerShell 5.1과 .NET Framework를 사용합니다.
+
+폴더 구조
+  프로젝트/
+    EXCEL/
+      *.xlsx
+      ExtractCsv.cmd
+      CsvExporter/
+        Export-Csv.ps1
+        Exporter.cs
+        사용방법.txt
+    Assets/
+      11.CSV/
+        시트명.csv
+
+경로는 추출기 파일 위치를 기준으로 계산합니다.
+EXCEL에서 출력 폴더까지 상대 경로는 ../Assets/11.CSV입니다.
+프로젝트 이름이 listen이 아니어도 되고, 다른 드라이브에 받아도 됩니다.
+실행할 때 열려 있는 터미널의 현재 폴더에 영향을 받지 않습니다.
+공유할 때 위 추출기 파일들과 엑셀을 함께 Git에 포함해 주세요.
+
+추출 규칙
+- EXCEL 폴더 바로 아래의 .xlsx, .xlsm을 모두 읽습니다. 하위 폴더는 탐색하지 않습니다.
+- Excel 임시 파일(~$로 시작)은 무시합니다. 기존 .xls, .xlsb는 지원하지 않습니다.
+- _README, _COLUMNS 시트는 제외합니다.
+- 6행을 CSV의 첫 행(컬럼명)으로, 7행부터를 데이터로 저장합니다.
+- 5행 A열의 '비고' 오른쪽에 적힌 컬럼명을 제외합니다.
+  예: Name, Note → 6행의 Name, Note 컬럼 전체 제외.
+- 쉼표, 세미콜론, 줄바꿈으로 나눈 이름을 읽으며 앞뒤 공백은 제거합니다.
+- 컬럼명은 대소문자를 구분해 정확히 비교합니다.
+- 비고의 이름이 6행에 없으면 오류를 표시하고 기존 CSV를 유지합니다.
+- 서식만 있고 컬럼명/데이터가 없는 열과 뒤쪽 빈 행은 제외합니다.
+- 데이터 사이의 빈 행, 빈 셀, 문자열 공백, 문자열 ID의 앞자리 0은 보존합니다.
+- 시트마다 '시트명.csv' 한 개를 만듭니다. UTF-8(BOM 없음), 쉼표 구분입니다.
+- 모든 필드를 큰따옴표로 감싸 쉼표, 따옴표, 셀 내부 줄바꿈을 보존합니다.
+- 숫자는 저장된 원래 값을 사용합니다. 날짜/백분율/0000 같은 표시 서식은 적용하지 않습니다.
+- 수식은 Excel에 마지막으로 저장된 계산 결과를 사용합니다. 추출기가 수식을 계산하지 않습니다.
+  수식을 변경했다면 Excel에서 계산 후 저장하세요. 결과가 없는 수식/오류 셀은 알려줍니다.
+- 같은 시트명이 여러 파일에 있거나 컬럼명이 중복되면 추출을 중단합니다.
+- 모든 파일을 검증한 후 저장합니다. 같은 이름의 CSV는 갱신합니다.
+- 다른 CSV와 Unity의 .meta 파일은 삭제하거나 변경하지 않습니다.
+  시트를 삭제하거나 이름을 바꾼 경우 이전 CSV는 직접 정리해야 합니다.
+
+자동화/고급 사용 (프로젝트 루트에서)
+  powershell -NoProfile -ExecutionPolicy Bypass -File EXCEL/CsvExporter/Export-Csv.ps1
+
+저장 없이 검증만
+  powershell -NoProfile -ExecutionPolicy Bypass -File EXCEL/CsvExporter/Export-Csv.ps1 -ValidateOnly
+
+입력/출력 폴더 지정
+  powershell -NoProfile -ExecutionPolicy Bypass -File EXCEL/CsvExporter/Export-Csv.ps1 -InputDirectory EXCEL -OutputDirectory Assets/11.CSV
+
+상대 경로 인수는 항상 프로젝트 루트를 기준으로 해석합니다.
+성공 시 종료 코드 0, 실패 시 1을 반환합니다.
