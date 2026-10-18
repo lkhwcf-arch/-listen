@@ -85,6 +85,30 @@ namespace EscapeGame.Networking
             return response;
         }
 
+        public async Task<CsvBundleDto> DownloadDataAsync(string sessionId, string participantToken, CancellationToken token)
+        {
+            ValidateParticipant(sessionId, participantToken);
+            using var request = UnityWebRequest.Get($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/data");
+            request.SetRequestHeader("x-participant-token", participantToken);
+            var response = await SendAndReadAsync<CsvBundleDto>(request, token);
+            if (response == null || (response.success && request.responseCode != 200) || request.responseCode >= 500)
+                throw new InvalidOperationException("유효하지 않은 데이터 응답입니다.");
+            return response;
+        }
+
+        public async Task<QuerySessionResponseDto> SubmitPuzzleAsync(string sessionId, string participantToken,
+            int puzzleId, string[] answers, CancellationToken token)
+        {
+            ValidateParticipant(sessionId, participantToken);
+            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/puzzles/{puzzleId}/submit", "POST");
+            request.SetRequestHeader("x-participant-token", participantToken);
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new PuzzleSubmissionDto { answers = answers })));
+            var response = await SendAndReadAsync<QuerySessionResponseDto>(request, token);
+            SessionResultValidator.ValidateQuery(request.responseCode, response);
+            return response;
+        }
+
         private static void ValidateParticipant(string sessionId, string participantToken)
         {
             if (string.IsNullOrWhiteSpace(sessionId))

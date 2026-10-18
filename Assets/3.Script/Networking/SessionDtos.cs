@@ -35,6 +35,7 @@ namespace EscapeGame.Networking
     [Serializable]
     internal sealed class SessionSnapshotDto
     {
+        public int[] unlockedRoomIds;
         public string sessionId;
         public string phase;
         public PlayerDto[] players;
@@ -50,6 +51,7 @@ namespace EscapeGame.Networking
     [Serializable]
     internal sealed class QuerySessionResponseDto
     {
+        public bool correct;
         public bool success;
         public SessionSnapshotDto snapshot;
         public string code;

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<validation>
+  <profile keyGroup="anchor" name="anchor" key="ID" tag="anchor">
+    <column min="1" name="ID" type="Integer" />
+    <column min="1" name="RoomNo" type="Integer" />
+    <column values="A,B,ALL" name="PlayerType" />
+    <column name="AnchorID" />
+    <column min="1" name="PrefabID" type="Integer" />
+    <column values="Y,N" name="Active" />
+    <reference column="PrefabID" target="prefab" />
+  </profile>
+  <table profile="anchor" name="ANCHOR_INTERACT" key="ID" kind="Interact" />
+  <table profile="anchor" name="ANCHOR_NONINTERACT" key="ID" kind="NonInteract" />
+  <table name="ARROW" key="AnchorRef" tag="arrow">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column min="1" name="Order" type="Integer" />
+    <column values="Up,Down,Left,Right" name="Dir" />
+    <column values="Y,N" name="IsAnswer" />
+  </table>
+  <table key="ID" name="CARD">
+    <column min="1" name="ID" type="Integer" />
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column min="1" name="CardNo" type="Integer" />
+    <column name="TopMark" />
+    <column name="BottomMark" />
+    <column values="Y,N" name="IsAnswer" />
+    <unique columns="AnchorRef,CardNo" />
+  </table>
+  <table key="ID" name="CHARACTER_STAT">
+    <column min="1" name="ID" type="Integer" />
+    <column min="0" name="WalkSpeed" type="Number" />
+    <column min="0" name="Acceleration" type="Number" />
+    <column min="0" name="Deceleration" type="Number" />
+    <column min="0" name="MouseSensitivity" type="Number" />
+    <column min="0" name="PitchLimit" type="Number" />
+    <column min="0" name="FOV" type="Number" />
+    <column min="0" name="EyeHeight" type="Number" />
+    <column min="0" name="CapsuleHeight" type="Number" />
+    <column min="0" name="CapsuleRadius" type="Number" />
+    <column min="0" name="StepOffset" type="Number" />
+    <column min="0" name="InteractDistance" type="Number" />
+    <column min="0" name="CloseUpOpenMs" type="Integer" />
+    <column min="0" name="HeadBob" type="Number" />
+  </table>
+  <table key="ID" name="COLOR_LETTER">
+    <column min="1" name="ID" type="Integer" />
+    <column min="1" name="PuzzleID" type="Integer" />
+    <column name="Letter" />
+    <column name="Color" />
+    <column min="1" name="SignAnchor" type="Integer" />
+    <reference kind="NonInteract" target="anchor" column="SignAnchor" />
+  </table>
+  <table key="ID" name="COMPONENT">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Script" />
+    <column name="Params" />
+  </table>
+  <table name="CONSOLE" key="AnchorRef" tag="console">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column min="1" name="SlotCount" type="Integer" />
+    <column name="Buttons" />
+  </table>
+  <table name="FORMULA" key="AnchorRef">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="Symbol" />
+    <column values="Y,N" name="IsAnswer" />
+  </table>
+  <table name="FRAME" key="AnchorRef">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="Color" />
+    <column name="Wall" />
+    <column values="Y,N" name="IsAnswer" />
+  </table>
+  <table name="GAME_CONFIG" key="ID" tag="config">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Value" />
+    <column values="int,float,color,string" name="Type" />
+    <column name="Unit" optional="true" />
+  </table>
+  <table name="LOCK" key="AnchorRef" tag="lock">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="DialFace" />
+    <column name="DialLetters" optional="true" />
+    <column name="DisplayFace" />
+  </table>
+  <table name="PAPER" key="AnchorRef">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="Equation1" />
+    <column name="Equation2" />
+    <column values="Y,N" name="IsAnswer" />
+  </table>
+  <table name="PREFAB" resource="Prefab" key="ID" tag="prefab">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Path" />
+    <column name="Group" />
+  </table>
+  <table name="PUZZLE_SLOT" key="ID" tag="slot">
+    <column min="1" name="ID" type="Integer" />
+    <column min="1" name="PuzzleID" type="Integer" />
+    <column min="1" name="Slot" type="Integer" />
+    <column name="Display" optional="true" />
+    <column name="Answer" />
+    <unique columns="PuzzleID,Slot" />
+  </table>
+  <table name="PUZZLE" key="ID" tag="puzzle">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Type" />
+    <column min="1" name="SolverRoom" type="Integer" />
+    <column min="1" optional="true" name="ClueRoom" type="Integer" />
+    <column min="1" name="InputAnchor" type="Integer" />
+    <column min="1" name="SlotCount" type="Integer" />
+    <column values="Y,N" name="Active" />
+    <reference column="ClueRoom" target="room" />
+    <reference kind="Interact" target="anchor" column="InputAnchor" />
+  </table>
+  <table name="REGISTRY" key="ID" tag="registry">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Sheet" />
+    <column name="File" />
+    <column name="Parent" />
+    <column name="ParentKey" />
+    <column name="Uses" />
+    <column min="0" name="LoadOrder" type="Integer" />
+    <column values="Y,N" name="Required" />
+    <column values="Y,N" name="Active" />
+  </table>
+  <profile keyGroup="room" name="room" key="ID" tag="room">
+    <column min="1" name="ID" type="Integer" />
+    <column min="1" name="RoomNo" type="Integer" />
+    <column values="Clue,Solver" name="Role" />
+    <column min="1" name="RoomPrefabID" type="Integer" />
+    <column min="1" name="PuzzleID" type="Integer" />
+    <column min="1" name="TargetMs" type="Integer" />
+    <column name="ExitRule" />
+    <column values="Y,N" name="Active" />
+    <column min="0" name="Next" type="Integer" />
+    <unique columns="RoomNo" />
+    <reference column="RoomPrefabID" target="prefab" />
+    <reference column="PuzzleID" target="puzzle" />
+    <reference sentinel="0" target="$self" column="Next" />
+  </profile>
+  <table profile="room" name="ROOM_A" player="A" key="ID" />
+  <table profile="room" name="ROOM_B" player="B" key="ID" />
+  <table name="SOUND_LINK" key="ID" tag="sound-link">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Trigger" />
+    <column name="TargetSheet" />
+    <column min="0" name="TargetID" type="Integer" />
+    <column min="1" name="SoundID" type="Integer" />
+    <column values="Y,N" name="Active" />
+  </table>
+  <table name="SOUND" resource="Audio" key="ID" tag="sound">
+    <column min="1" name="ID" type="Integer" />
+    <column name="Category" />
+    <column name="Path" />
+    <column values="Y,N" name="Loop" />
+    <column min="0" name="Volume" max="1" type="Number" />
+    <column min="0" optional="true" name="MinDist" type="Number" />
+    <column min="0" optional="true" name="MaxDist" type="Number" />
+    <column name="Bus" />
+    <column min="0" name="CooldownMs" type="Integer" />
+    <column values="Y,N" name="Active" />
+  </table>
+  <table name="TV" key="AnchorRef">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="Letter" />
+    <column min="1" name="Number" type="Integer" />
+    <column values="Y,N" name="IsAnswer" />
+  </table>
+  <table name="WIRE" key="AnchorRef" tag="wire">
+    <column min="1" name="AnchorRef" type="Integer" />
+    <column name="Color" />
+    <column min="0" name="LengthM" type="Number" />
+    <column values="Y,N" name="IsAnswer" />
+    <column min="1" name="Port" type="Integer" />
+  </table>
+</validation>

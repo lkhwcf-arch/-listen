@@ -1,0 +1,3 @@
+bin/
+obj/
+!CsvValidation.Tests.csproj

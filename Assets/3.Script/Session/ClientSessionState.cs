@@ -14,6 +14,7 @@ namespace EscapeGame.Session
         public ClientSessionPhase? Phase { get; private set; }
         public bool IsSceneLoaded { get; private set; }
         public int ParticipantCount { get; private set; }
+        public event Action<System.Collections.Generic.IReadOnlyList<int>> RoomsChanged;
         public event Action SnapshotApplied;
         public event Action Joined;
         // 이전 단계와 현재 단계를 전달합니다.
@@ -102,12 +103,19 @@ namespace EscapeGame.Session
             if (nextPhase != expectedPhase)
                 throw new ArgumentException("참가 상태와 세션 단계가 일치하지 않습니다.");
 
+            if (snapshot.UnlockedRoomIds != null)
+            {
+                var ids = new HashSet<int>();
+                foreach (int id in snapshot.UnlockedRoomIds)
+                    if (id <= 0 || !ids.Add(id)) throw new ArgumentException("잘못된 방 해금 목록입니다.");
+            }
             var prevPhase = Phase;
             Phase = nextPhase;
             IsSceneLoaded = localPlayer.SceneLoaded;
             ParticipantCount = snapshot.Players.Count;
 
             SnapshotApplied?.Invoke();
+            if (snapshot.UnlockedRoomIds != null) RoomsChanged?.Invoke(snapshot.UnlockedRoomIds);
 
             if(prevPhase != nextPhase)
             {

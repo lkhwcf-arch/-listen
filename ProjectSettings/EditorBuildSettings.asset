@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1.Scene/SampleScene.unity
+    path: Assets/1.Scene/Join.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Blocks/Vivox/Scenes/RosterWithVoiceAndText.unity
     guid: 1194ec147da678147b1511cb633ca0cc
+  - enabled: 1
+    path: Assets/1.Scene/Ingame.unity
+    guid: f146ab569e718d44aa65c66891f97ac8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

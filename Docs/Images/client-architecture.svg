@@ -1,0 +1,129 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1130' viewBox='0 0 1600 1130' role='img'>
+<title>클라이언트 책임 분리와 이벤트 경계</title><desc>Model·View·제어 책임을 나누고 Presenter, Facade, Adapter, Observer와 생성자 DI를 조합합니다.</desc><rect width='1600' height='1130' fill='white'/>
+<defs><marker id='arrow' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='9' markerHeight='9' orient='auto-start-reverse'><path d='M 0 0 L 10 5 L 0 10 z' fill='#506f85'/></marker></defs>
+<text x='60' y='69.8' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='32' font-weight='600' text-anchor='start'>
+<tspan x='60' y='69.8'>클라이언트 책임 분리와 이벤트 경계</tspan>
+</text>
+<text x='60' y='122.5' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='20' font-weight='400' text-anchor='start'>
+<tspan x='60' y='122.5'>Model·View·제어 책임을 나누고 Presenter, Facade, Adapter, Observer와 생성자 DI를 조합합니다.</tspan>
+</text>
+<rect x='60' y='170' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='280' y='206.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='280' y='206.55'>SessionConnectionView</tspan>
+</text>
+<text x='280' y='246.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='280' y='246.9'>입력 이벤트 / 상태·오류 표시</tspan>
+<tspan x='280' y='273'>HTTP 경로·인증 토큰을 모름</tspan>
+</text>
+<rect x='580' y='170' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='206.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='206.55'>GameEntryPresenter</tspan>
+</text>
+<text x='800' y='246.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='246.9'>View 이벤트 → 입장 서비스</tspan>
+<tspan x='800' y='273'>Changed → View 렌더링</tspan>
+</text>
+<rect x='1100' y='170' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1320' y='206.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1320' y='206.55'>GameEntryService</tspan>
+</text>
+<text x='1320' y='246.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1320' y='246.9'>소스 선택·검증·클래스 주입</tspan>
+<tspan x='1320' y='273'>씬 진입 함수·세션 계약 주입</tspan>
+</text>
+<polyline points='500,232 580,232' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1020,232 1100,232' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1320,295 1320,350 280,350 280,400' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<text x='775' y='332.225' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='19' font-weight='400' text-anchor='middle'>
+<tspan x='775' y='332.225'>등록된 데이터와 방 구성</tspan>
+</text>
+<rect x='60' y='400' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='280' y='436.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='280' y='436.55'>CsvDataSet / CsvDataStore</tspan>
+</text>
+<text x='280' y='476.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='280' y='476.9'>불변 원본·검증·매핑 캐시</tspan>
+<tspan x='280' y='503'>파일·UI와 분리한 일반 C#</tspan>
+</text>
+<rect x='580' y='400' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='436.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='436.55'>CsvGameData / RoomLoadPlan</tspan>
+</text>
+<text x='800' y='476.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='476.9'>읽기 전용 정의 / 역할·활성 선택</tspan>
+<tspan x='800' y='503'>로컬 테스트 진행도 별도 모델</tspan>
+</text>
+<rect x='1100' y='400' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1320' y='436.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1320' y='436.55'>IngameWorldDriver</tspan>
+</text>
+<text x='1320' y='476.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1320' y='476.9'>RoomSceneView · AnchorInstance</tspan>
+<tspan x='1320' y='503'>Unity 생성·수명 / 누적 방 유지</tspan>
+</text>
+<polyline points='500,462 580,462' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1020,462 1100,462' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1540,232 1570,232 1570,590 280,590 280,650' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<text x='775' y='571.225' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='19' font-weight='400' text-anchor='middle'>
+<tspan x='775' y='571.225'>세션 명령·콘텐츠 요청</tspan>
+</text>
+<rect x='60' y='650' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='280' y='686.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='280' y='686.55'>ISession…Service 계약</tspan>
+</text>
+<text x='280' y='726.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='280' y='726.9'>입장·조회·퇴장 / CSV·제출</tspan>
+<tspan x='280' y='753'>인증 정보는 내부 세션 상태에 보관</tspan>
+</text>
+<rect x='580' y='650' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='686.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='686.55'>SessionClient / Coordinator</tspan>
+</text>
+<text x='800' y='726.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='726.9'>Facade · 요청 순서·취소·중복 제어</tspan>
+<tspan x='800' y='753'>StateChanged / RoomsChanged</tspan>
+</text>
+<rect x='1100' y='650' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1320' y='686.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1320' y='686.55'>HTTP Gateway / API Client</tspan>
+</text>
+<text x='1320' y='726.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1320' y='726.9'>Adapter → UnityWebRequest</tspan>
+<tspan x='1320' y='753'>HTTP + JSON ↔ TSC_REST</tspan>
+</text>
+<polyline points='500,712 580,712' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1020,712 1100,712' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='800,775 800,842 280,842 280,900' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<text x='645' y='819.225' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='19' font-weight='400' text-anchor='middle'>
+<tspan x='645' y='819.225'>세션 StateChanged → 음성 연결 목표</tspan>
+</text>
+<rect x='60' y='900' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='280' y='936.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='280' y='936.55'>SessionVoiceCoordinator</tspan>
+</text>
+<text x='280' y='976.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='280' y='976.9'>세션 ID 기반 채널 결정</tspan>
+<tspan x='280' y='1003'>퇴장·단절 시 연결 목표 정리</tspan>
+</text>
+<rect x='580' y='900' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='936.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='936.55'>VoiceChatService</tspan>
+</text>
+<text x='800' y='976.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='976.9'>연결 순서·상태·정리 조정</tspan>
+<tspan x='800' y='1003'>음성 실패와 게임 실패 분리</tspan>
+</text>
+<rect x='1100' y='900' width='440' height='125' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1320' y='936.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1320' y='936.55'>VivoxVoiceGateway</tspan>
+</text>
+<text x='1320' y='976.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1320' y='976.9'>Unity Services / Vivox SDK 경계</tspan>
+<tspan x='1320' y='1003'>실제 음성 송수신은 별도 검증</tspan>
+</text>
+<polyline points='500,962 580,962' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1020,962 1100,962' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<text x='60' y='1086.5' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='20' font-weight='400' text-anchor='start'>
+<tspan x='60' y='1086.5'>GameFlowBootstrapper / SessionBootstrapper가 조립·수명을 소유하고 Driver가 Unity Update를 연결합니다.</tspan>
+</text>
+</svg>

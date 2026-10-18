@@ -15,7 +15,7 @@ namespace EscapeGame.Networking
     }
 
     // Wire DTO와 HTTP 오류를 세션 처리용 데이터/오류로 변환하는 어댑터입니다.
-    internal sealed class HttpSessionGateway : ISessionGateway
+    internal sealed class HttpSessionGateway : ISessionGateway, ISessionContentGateway
     {
         private readonly SessionApiClient api;
         internal HttpSessionGateway(SessionApiClient api) => this.api = api ?? throw new ArgumentNullException(nameof(api));
@@ -61,6 +61,20 @@ namespace EscapeGame.Networking
             });
         }
 
+        public Task<EscapeGame.Data.CsvDataSet> DownloadDataAsync(string sessionId, string participantToken, CancellationToken token) => ExecuteAsync(async () =>
+        {
+            var response = await api.DownloadDataAsync(sessionId, participantToken, token);
+            EnsureSuccess(response.success, response.code);
+            return response.Read();
+        });
+
+        public Task<SessionPuzzleSubmissionData> SubmitPuzzleAsync(string sessionId, string participantToken, int puzzleId, string[] answers, CancellationToken token) => ExecuteAsync(async () =>
+        {
+            var response = await api.SubmitPuzzleAsync(sessionId, participantToken, puzzleId, answers, token);
+            EnsureSuccess(response.success, response.code);
+            return new SessionPuzzleSubmissionData(MapSnapshot(response.snapshot), response.correct);
+        });
+
         private static async Task<T> ExecuteAsync<T>(Func<Task<T>> operation)
         {
             try { return await operation(); }
@@ -95,7 +109,7 @@ namespace EscapeGame.Networking
                 throw new SessionResultException(SessionFailureCode.InvalidResponse);
             var players = new SessionPlayerData[snapshot.players.Length];
             for (int i = 0; i < players.Length; i++) players[i] = MapPlayer(snapshot.players[i]);
-            return new SessionSnapshotData(snapshot.sessionId, SessionPhaseParser.Parse(snapshot.phase), players);
+            return new SessionSnapshotData(snapshot.sessionId, SessionPhaseParser.Parse(snapshot.phase), players, snapshot.unlockedRoomIds);
         }
     }
 }

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeFrameworkVersion>8.0.0</RuntimeFrameworkVersion>
+    <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
+    <UseAppHost>false</UseAppHost>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Assets/3.Script/World/RoomLoadPlan.cs" Link="World/RoomLoadPlan.cs" />
+    <Compile Include="../../Assets/3.Script/World/LocalRoomProgression.cs" Link="World/LocalRoomProgression.cs" />
+    <Compile Include="../../Assets/3.Script/World/GameEntryService.cs" Link="World/GameEntryService.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Contracts/*.cs" Link="Session/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Common/Csv/*.cs" Link="Csv/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Data/CsvValidation/**/*.cs" Link="Validation/%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Data/CsvDataSet.cs" Link="Data/CsvDataSet.cs" />
+    <Compile Include="../../Assets/3.Script/Data/CsvDataStore.cs" Link="Data/CsvDataStore.cs" />
+    <Compile Include="../../Assets/3.Script/Data/CsvTableMapping.cs" Link="Data/CsvTableMapping.cs" />
+    <Compile Include="../../Assets/3.Script/Data/Tables/*.cs" Link="Tables/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Data/Infrastructure/Utf8CsvFileSource.cs" Link="Infrastructure/Utf8CsvFileSource.cs" />
+  </ItemGroup>
+</Project>

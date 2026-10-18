@@ -50,8 +50,12 @@ namespace EscapeGame.Session
 
         private void StartReporting()
         {
-            var readiness = new AllReadinessCheck(
-                new LoadedSceneReadinessCheck(gameObject.scene),
+            if (lifetime != null) return;
+            var flow = GetComponent<EscapeGame.World.GameFlowBootstrapper>();
+            IReadinessCheck sceneReadiness = flow != null
+                ? new EscapeGame.World.GameplayReadinessCheck(flow)
+                : new LoadedSceneReadinessCheck(gameObject.scene);
+            var readiness = new AllReadinessCheck(sceneReadiness,
                 new ActiveComponentsReadinessCheck(requiredComponents));
             reporting = new SessionSceneLoadedController(service, readiness,
                 new MillisecondInterval(clock, reportRetryIntervalMs));

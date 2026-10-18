@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using EscapeGame.Data.Tables;
+
+namespace EscapeGame.World
+{
+    // Unity 오브젝트와 독립적인 선택 규칙입니다. 씬과 서버 데이터의 연결은 이 계획을 사용합니다.
+    public sealed class RoomLoadPlan
+    {
+        private readonly CsvGameData data;
+        private readonly RoomData[] rooms;
+        public string Role { get; }
+        public IReadOnlyList<RoomData> Rooms => Array.AsReadOnly(rooms);
+        public RoomLoadPlan(CsvGameData data, string role)
+        {
+            this.data = data ?? throw new ArgumentNullException(nameof(data));
+            if (role != "A" && role != "B") throw new ArgumentException("역할은 A 또는 B입니다.", nameof(role));
+            Role = role;
+            rooms = (role == "A" ? data.RoomsA.Cast<RoomData>() : data.RoomsB.Cast<RoomData>()).Where(room => room.Active).ToArray();
+        }
+        public RoomData First => rooms.Single(room => !rooms.Any(previous => previous.Next == room.Id));
+        public RoomData Find(int id) => rooms.FirstOrDefault(room => room.Id == id);
+        public IReadOnlyList<AnchorData> Anchors(RoomData room) => Array.AsReadOnly(data.InteractAnchors.Cast<AnchorData>()
+            .Concat(data.NonInteractAnchors).Where(anchor => anchor.Active && anchor.RoomNo == room.RoomNo &&
+                (anchor.PlayerType == "ALL" || anchor.PlayerType == Role)).OrderBy(anchor => anchor.Id).ToArray());
+        public string PrefabPath(int id) => data.Prefabs.Single(prefab => prefab.Id == id).Path;
+    }
+}

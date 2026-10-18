@@ -11,6 +11,7 @@ namespace EscapeGame.Session.Presentation
         [SerializeField] private SessionBootstrapper bootstrapper;
         [SerializeField] private SessionConnectionView view;
         private SessionConnectionPresenter presenter;
+        private EscapeGame.World.GameEntryPresenter entryPresenter;
         private CancellationTokenSource lifetime;
 
         private void OnEnable()
@@ -23,12 +24,20 @@ namespace EscapeGame.Session.Presentation
 
             view.ValidateConfiguration();
             lifetime = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, bootstrapper.destroyCancellationToken);
+            var flow = bootstrapper.GetComponent<EscapeGame.World.GameFlowBootstrapper>();
+            if (flow != null)
+            {
+                entryPresenter = new EscapeGame.World.GameEntryPresenter(flow.Service, view, lifetime.Token);
+                return;
+            }
             presenter = new SessionConnectionPresenter(bootstrapper.Service, view, lifetime.Token);
             presenter.ErrorObserved += OnErrorObserved;
         }
         private void OnDisable()
         {
             lifetime?.Cancel();
+            entryPresenter?.Dispose();
+            entryPresenter = null;
             if (presenter != null)
             {
                 presenter.ErrorObserved -= OnErrorObserved;

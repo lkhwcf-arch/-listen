@@ -30,6 +30,7 @@ namespace EscapeGame.Session
         private void OnEnable() { if (service != null) StartHeartbeat(); }
         private void StartHeartbeat()
         {
+            if (lifetime != null) return;
             lifetime = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, ownerLifetime);
             heartbeat = new SessionHeartbeatController(service, clock, Settings);
         }

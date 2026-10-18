@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace EscapeGame.Session.Presentation
 {
-    public sealed class SessionConnectionView : MonoBehaviour, ISessionConnectionView
+    public sealed class SessionConnectionView : MonoBehaviour, EscapeGame.World.IGameEntryView
     {
         [SerializeField] private TMP_InputField serverAddressInput;
         [SerializeField] private Button joinButton;
@@ -13,6 +13,12 @@ namespace EscapeGame.Session.Presentation
         [SerializeField] private TMP_Text roleText;
         [SerializeField] private TMP_Text participantText;
         [SerializeField] private TMP_Text messageText;
+
+        [SerializeField] private Button localTestAButton;
+        [SerializeField] private Button localTestBButton;
+        public event Action<string> LocalRequested;
+        private void OnLocalA() => LocalRequested?.Invoke("A");
+        private void OnLocalB() => LocalRequested?.Invoke("B");
 
         private SessionDisconnectDialog disconnectDialog;
         private bool canLeave;
@@ -32,10 +38,14 @@ namespace EscapeGame.Session.Presentation
         {
             ValidateConfiguration();
             joinButton.onClick.AddListener(OnJoinClicked);
+            localTestAButton?.onClick.AddListener(OnLocalA);
+            localTestBButton?.onClick.AddListener(OnLocalB);
         }
         private void OnDisable()
         {
             if (joinButton != null) joinButton.onClick.RemoveListener(OnJoinClicked);
+            localTestAButton?.onClick.RemoveListener(OnLocalA);
+            localTestBButton?.onClick.RemoveListener(OnLocalB);
         }
         private void OnJoinClicked() { if (canLeave) LeaveRequested?.Invoke(); else JoinRequested?.Invoke(); }
 
@@ -60,6 +70,8 @@ namespace EscapeGame.Session.Presentation
             joinButton.interactable = presentation.CanJoin || presentation.CanLeave;
             var buttonLabel = joinButton.GetComponentInChildren<TMP_Text>();
             if (buttonLabel != null) buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
+            if (localTestAButton != null) localTestAButton.interactable = presentation.CanJoin;
+            if (localTestBButton != null) localTestBButton.interactable = presentation.CanJoin;
             serverAddressInput.interactable = presentation.CanEditAddress;
         }
     }

@@ -5,7 +5,7 @@ using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Session
 {
-    internal sealed class SessionClient : ISessionConnectionService, IDisposable
+    internal sealed class SessionClient : ISessionConnectionService, ISessionContentService, IDisposable
     {
         private readonly ISessionGatewayFactory gatewayFactory;
         private readonly ClientSessionState state = new ClientSessionState();
@@ -24,6 +24,25 @@ namespace EscapeGame.Session
         public SessionInfo State { get; private set; }
         public bool IsBusy => runner.IsBusy || runner.IsHeartbeatRunning;
         public string ServerBaseUrl { get; private set; }
+        public event Action<System.Collections.Generic.IReadOnlyList<int>> RoomsChanged
+        { add { state.RoomsChanged += value; } remove { state.RoomsChanged -= value; } }
+        public async Task<EscapeGame.Data.CsvDataSet> DownloadDataAsync(CancellationToken token)
+        {
+            EscapeGame.Data.CsvDataSet data = null;
+            var result = await ExecuteAsync(async ct => data = await RequireCoordinator().DownloadDataAsync(ct), token, true);
+            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            return data;
+        }
+        public async Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
+        {
+            bool correct = false;
+            var result = await ExecuteAsync(async ct => correct = await RequireCoordinator().SubmitPuzzleAsync(puzzleId, answers, ct), token, true);
+            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            return correct;
+        }
+
         public event Action<SessionInfo> StateChanged;
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
         public event Action<SessionFailureCode> BackgroundFailed;

@@ -4,6 +4,13 @@ using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Session
 {
+    internal sealed class SessionPuzzleSubmissionData
+    {
+        internal SessionSnapshotData Snapshot { get; }
+        internal bool Correct { get; }
+        internal SessionPuzzleSubmissionData(SessionSnapshotData snapshot, bool correct)
+        { Snapshot = snapshot; Correct = correct; }
+    }
     internal sealed class SessionPlayerData
     {
         internal string Id { get; }
@@ -22,11 +29,13 @@ namespace EscapeGame.Session
     }
     internal sealed class SessionSnapshotData
     {
+        internal IReadOnlyList<int> UnlockedRoomIds { get; }
         internal string SessionId { get; }
         internal ClientSessionPhase Phase { get; }
         internal IReadOnlyList<SessionPlayerData> Players { get; }
-        internal SessionSnapshotData(string sessionId, ClientSessionPhase phase, SessionPlayerData[] players)
+        internal SessionSnapshotData(string sessionId, ClientSessionPhase phase, SessionPlayerData[] players, int[] unlockedRoomIds = null)
         {
+            UnlockedRoomIds = unlockedRoomIds == null ? null : Array.AsReadOnly((int[])unlockedRoomIds.Clone());
             SessionId = sessionId;
             Phase = phase;
             Players = players == null ? null : Array.AsReadOnly((SessionPlayerData[])players.Clone());

@@ -1,0 +1,96 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1060' viewBox='0 0 1600 1060' role='img'>
+<title>클라이언트 데이터 선택과 누적 방 로딩</title><desc>Join의 입력은 소스를 선택합니다. 검증·타입 주입·Ingame 로더는 두 모드가 공유합니다.</desc><rect width='1600' height='1060' fill='white'/>
+<defs><marker id='arrow' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='9' markerHeight='9' orient='auto-start-reverse'><path d='M 0 0 L 10 5 L 0 10 z' fill='#506f85'/></marker></defs>
+<text x='60' y='69.8' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='32' font-weight='600' text-anchor='start'>
+<tspan x='60' y='69.8'>클라이언트 데이터 선택과 누적 방 로딩</tspan>
+</text>
+<text x='60' y='122.5' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='20' font-weight='400' text-anchor='start'>
+<tspan x='60' y='122.5'>Join의 입력은 소스를 선택합니다. 검증·타입 주입·Ingame 로더는 두 모드가 공유합니다.</tspan>
+</text>
+<rect x='60' y='170' width='690' height='120' rx='8' fill='#e9f5ef' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='405' y='206.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='405' y='206.55'>서버 입장 / HTTP + JSON</tspan>
+</text>
+<text x='405' y='244.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='405' y='244.4'>join → CSV 다운로드 → 최초 상태 조회</tspan>
+<tspan x='405' y='270.5'>ISessionContentService / 서버가 데이터·판정 소유</tspan>
+</text>
+<rect x='850' y='170' width='690' height='120' rx='8' fill='#fff4df' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1195' y='206.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1195' y='206.55'>클라이언트 테스트 A / B</tspan>
+</text>
+<text x='1195' y='244.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1195' y='244.4'>빌드에 포함된 CSV TextAsset 읽기</tspan>
+<tspan x='1195' y='270.5'>GameContentAssets / 서버 접속 없이 역할 선택</tspan>
+</text>
+<polyline points='405,290 405,325 800,325 800,355' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1195,290 1195,325 800,325' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<rect x='470' y='355' width='660' height='110' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='391.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='391.55'>CsvParser → CsvDataSet</tspan>
+</text>
+<text x='800' y='424.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='424.4'>한 번 읽은 문자열 원본 · 불변 스냅샷</tspan>
+<tspan x='800' y='450.5'>문법·UTF-8 오류와 원본 위치 보존</tspan>
+</text>
+<polyline points='800,465 800,490 290,490 290,520' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<rect x='60' y='520' width='460' height='130' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='290' y='556.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='290' y='556.55'>CsvValidator</tspan>
+</text>
+<text x='290' y='599.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='290' y='599.4'>컬럼·자료형·ID·테이블 참조 검사</tspan>
+<tspan x='290' y='625.5'>공통 규칙 + 게임 관계 규칙</tspan>
+</text>
+<rect x='570' y='520' width='460' height='130' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='556.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='556.55'>CsvDataStore</tspan>
+</text>
+<text x='800' y='599.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='599.4'>정상 원본만 등록 · 변환 캐시</tspan>
+<tspan x='800' y='625.5'>검증 실패 시 기존 등록 보존</tspan>
+</text>
+<rect x='1080' y='520' width='460' height='130' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1310' y='556.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1310' y='556.55'>CsvGameData</tspan>
+</text>
+<text x='1310' y='599.4' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1310' y='599.4'>23개 읽기 전용 데이터 클래스</tspan>
+<tspan x='1310' y='625.5'>소비자에 같은 데이터 묶음 주입</tspan>
+</text>
+<polyline points='520,585 570,585' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1030,585 1080,585' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1310,650 1310,705 290,705 290,755' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<rect x='60' y='755' width='460' height='135' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='290' y='791.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='290' y='791.55'>GameFlowBootstrapper</tspan>
+</text>
+<text x='290' y='836.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='290' y='836.9'>데이터·역할·세션 수명 유지</tspan>
+<tspan x='290' y='863'>DontDestroyOnLoad → Ingame</tspan>
+</text>
+<rect x='570' y='755' width='460' height='135' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='800' y='791.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='800' y='791.55'>IngameWorldDriver</tspan>
+</text>
+<text x='800' y='836.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='800' y='836.9'>ROOM / PlayerType / Active 선택</tspan>
+<tspan x='800' y='863'>해금 ID → RoomLoadPlan</tspan>
+</text>
+<rect x='1080' y='755' width='460' height='135' rx='8' fill='#eef5fa' stroke='#c1cfda' stroke-width='1.5'/>
+<text x='1310' y='791.55' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='middle'>
+<tspan x='1310' y='791.55'>RoomSceneView</tspan>
+</text>
+<text x='1310' y='836.9' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='18' font-weight='400' text-anchor='middle'>
+<tspan x='1310' y='836.9'>AnchorID → 프리팹 스폰·데이터 주입</tspan>
+<tspan x='1310' y='863'>기존 Surface 구조는 재사용</tspan>
+</text>
+<polyline points='520,820 570,820' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<polyline points='1030,820 1080,820' fill='none' stroke='#506f85' stroke-width='2.4' marker-end='url(#arrow)'/>
+<text x='60' y='951.05' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='22' font-weight='600' text-anchor='start'>
+<tspan x='60' y='951.05'>R01: A 8행 / B 14행 연결  ·  성공한 방만 WorldReady → ready 보고</tspan>
+</text>
+<text x='60' y='1004.5' fill='#183045' font-family='Malgun Gothic, Noto Sans KR, sans-serif' font-size='20' font-weight='400' text-anchor='start'>
+<tspan x='60' y='1004.5'>이후 RoomsChanged로 새 방만 추가합니다. 미완성 방은 대기하고 기존 방·모델은 유지합니다.</tspan>
+</text>
+</svg>

@@ -45,6 +45,7 @@ namespace EscapeGame.Session
 
         private void StartPolling()
         {
+            if (lifetime != null) return;
             polling = new SessionPollingController(service,
                 new MillisecondInterval(clock, pollingIntervalMs));
             polling.ConnectionFailed += OnConnectionFailed;

@@ -58,6 +58,37 @@ namespace EscapeGame.Session
             ct.ThrowIfCancellationRequested();
         }, token);
 
+        internal Task<EscapeGame.Data.CsvDataSet> DownloadDataAsync(CancellationToken token) => DownloadCoreAsync(token);
+        private async Task<EscapeGame.Data.CsvDataSet> DownloadCoreAsync(CancellationToken token)
+        {
+            EscapeGame.Data.CsvDataSet data = null;
+            await runner.RunAfterCurrentAsync(async ct =>
+            {
+                EnsureJoined();
+                data = await ((ISessionContentGateway)gateway).DownloadDataAsync(session.SessionId, session.ParticipantToken, ct);
+                ct.ThrowIfCancellationRequested();
+                // 최초 데이터와 진행 상태를 같은 요청 경로에서 동기화하여 자동 조회와 경합하지 않습니다.
+                var snapshot = await gateway.QueryAsync(session.SessionId, session.ParticipantToken, ct);
+                ct.ThrowIfCancellationRequested();
+                ApplyReceived(() => session.ApplySnapshot(snapshot));
+            }, token);
+            return data;
+        }
+
+        internal async Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
+        {
+            bool correct = false;
+            await runner.RunAfterCurrentAsync(async ct =>
+            {
+                EnsureJoined();
+                var response = await ((ISessionContentGateway)gateway).SubmitPuzzleAsync(session.SessionId, session.ParticipantToken, puzzleId, answers, ct);
+                ct.ThrowIfCancellationRequested();
+                ApplyReceived(() => session.ApplySnapshot(response.Snapshot));
+                correct = response.Correct;
+            }, token);
+            return correct;
+        }
+
         private void EnsureJoined()
         {
             if (!session.IsJoined) throw new InvalidOperationException("먼저 서버 세션에 입장하세요.");
