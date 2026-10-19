@@ -90,3 +90,15 @@ MonoBehaviour:
     prefab: {fileID: 7588112263251202265, guid: c40b772067702e0408b83dfcd126efba, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_BigGrass.prefab
     prefab: {fileID: 8492463631510908357, guid: e40165c74519419438ee777396aef2e4, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/R03_A_ArrowHint.prefab
+    prefab: {fileID: 7894645164500779977, guid: 21eaf95b1f089d34686875b913f0a245, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/R03_LEDPanel.prefab
+    prefab: {fileID: 7862065315645223818, guid: 4d46db4e02e6ea048a98defdf0728d6d, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_Cable.prefab
+    prefab: {fileID: 6084880904258550954, guid: 1d64a3b4e56cf334493e63328e6d3de5, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_LEDPanel.prefab
+    prefab: {fileID: 2216245801197772290, guid: a2f55785e4ecdae41b4c4198156f5b75, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_Machine.prefab
+    prefab: {fileID: 3554719554352467143, guid: 41c99a0921ba30e4dabf7e3c9ef94f31, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_Table.prefab
+    prefab: {fileID: 8721365128282860039, guid: f00c16eb27529c14aa57fd5f9ec102d7, type: 3}
