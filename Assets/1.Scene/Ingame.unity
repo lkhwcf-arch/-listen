@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 372193019}
+  - component: {fileID: 372193020}
   m_Layer: 0
   m_Name: R01_MAP_Basic
   m_TagString: Untagged
@@ -153,6 +154,27 @@ Transform:
   - {fileID: 927148840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372193020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372193018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf05ccf8be0499599748f24b1e86ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.World.RoomSceneView
+  roomNo: 1
+  anchorsRoot: {fileID: 372193019}
+  embedded:
+  - anchorId: R01_DoorPoint
+    objectPath: R01_Door
+  - anchorId: R01_LEDPanelPoint
+    objectPath: R01_LEDPanel
+  - anchorId: R01_FloorCardPoint
+    objectPath: R01_FloorCard
 --- !u!1 &927148839
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927148840}
   m_Layer: 0
-  m_Name: R1A_SPAWN
+  m_Name: R01A_SPAWN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
