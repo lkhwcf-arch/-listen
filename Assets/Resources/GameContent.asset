@@ -38,34 +38,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 0f0408a8f074e0f48ad804d631095740, type: 3}
   validationRules: {fileID: 4900000, guid: 5e83be8417a447cd9fe0a7b1e0affbc3, type: 3}
   prefabs:
-  - path: Assets/2.Model/Prefabs/GH_Map/R1/Room1_A_Line.prefab
-    prefab: {fileID: 6935181648803245046, guid: a3ff91ac9c239684796cc6a8776a5348, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R1/Room1_B_Line.prefab
-    prefab: {fileID: 1112165813414035818, guid: 23301c7b640414d4995045cc0510c7ea, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R2/Room2_A_Line.prefab
-    prefab: {fileID: 4047819676498028393, guid: 6bfeff09d739b1e4ab8da576c3b7dbca, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R2/Room2_B_Line.prefab
-    prefab: {fileID: 8539071334276589622, guid: 9d15c14974611e84d8f5fde2f301c2c4, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R3/Room3_A_Line.prefab
-    prefab: {fileID: 4474177231960693166, guid: a3f751404a5dc3f44b963f77ae78f9e4, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R3/Room3_B_Line.prefab
-    prefab: {fileID: 4430975217666537692, guid: 2a1a16c3979d05243b61dee80650e315, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R4/Room4_A_Line.prefab
-    prefab: {fileID: 1211191230370478896, guid: f2f64311009986a48ba6562b33f1023a, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R4/Room4_B_Line.prefab
-    prefab: {fileID: 2318359679521545275, guid: 9ec9b8f2d581d1940bcb0e320633f8c8, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R5/Room5_A_Line.prefab
-    prefab: {fileID: 2566955015068908849, guid: dcb4241ab1b17834897a0e91b2817c7d, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R5/Room5_B_Line.prefab
-    prefab: {fileID: 6082877549823323020, guid: f242bf89a584b4a40a836310952471ef, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R6/Room6_A_Line.prefab
-    prefab: {fileID: 4815211661328400237, guid: 35c4e9e49abcee84082bd3be9b0381f0, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R6/Room6_B_Line.prefab
-    prefab: {fileID: 7139774623292709556, guid: 927344e84819efb4599d8f2ca8faf926, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R7/Room7_A_Line.prefab
-    prefab: {fileID: 421434940291214756, guid: dae5f284bda823e478f57a3c0425fdea, type: 3}
-  - path: Assets/2.Model/Prefabs/GH_Map/R7/Room7_B_Line.prefab
-    prefab: {fileID: 1476655717771943219, guid: e560ddd56a217254ca0fb501d3af3801, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_01/Room_01.prefab
     prefab: {fileID: 7977798513479699119, guid: 0b6759cea8266004bbd61d66f14f2454, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_02/Room_02.prefab
@@ -78,27 +50,13 @@ MonoBehaviour:
     prefab: {fileID: 7796659345266773393, guid: 578b21bb37eb9c14ab3f333291056477, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_06/Room_06.prefab
     prefab: {fileID: 3497156527012455245, guid: eec570571f6e31443b96df9d02720500, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_0.prefab
-    prefab: {fileID: 2373853040297401475, guid: e7dc48c797da0c54c80d9f909e3e0506, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_1.prefab
-    prefab: {fileID: 8475974053398644675, guid: 5e34ef8d3b009ce42b98e960c1b111c4, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_2.prefab
-    prefab: {fileID: 1188232788199654951, guid: 26c8b9a2089f93f4b86a9f8925fc5175, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_3.prefab
-    prefab: {fileID: 1205707826421302990, guid: 0ffc0485dfe689d448f9f7042ee0d0c5, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_DialCover.prefab
-    prefab: {fileID: 5917037872367384588, guid: 9977150a816b2954e8a142fd6a37411b, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_Dial_table.prefab
-    prefab: {fileID: 187128824412842538, guid: e5613569d422f43458098becfeacbe4c, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Door.prefab
-    prefab: {fileID: 1104313353982160020, guid: 107150da3f4c12b41a4ad9e5d83716b8, type: 3}
+    prefab: {fileID: 1238028231227275465, guid: 107150da3f4c12b41a4ad9e5d83716b8, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_FloorCard.prefab
-    prefab: {fileID: 4251046291390260721, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_Furniture.prefab
-    prefab: {fileID: 1379470756364060737, guid: a9aa59569198fa944a637019e6a1e21e, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_LED_Panel.prefab
-    prefab: {fileID: 2305244765538040894, guid: 914c8883564ac7b4da4ba2cbff5ff14f, type: 3}
+    prefab: {fileID: 137821740748894801, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
+    prefab: {fileID: 1568564019875952849, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Other.prefab
-    prefab: {fileID: 1897280590600810804, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
+    prefab: {fileID: 2056953476137899727, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Surface.prefab
-    prefab: {fileID: 5031196651600542634, guid: fce794fde35b2494485c955c35a87c45, type: 3}
+    prefab: {fileID: 7542745130549833473, guid: fce794fde35b2494485c955c35a87c45, type: 3}
