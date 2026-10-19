@@ -7,7 +7,6 @@ namespace EscapeGame.Session.Presentation
 {
     public sealed class SessionConnectionView : MonoBehaviour, EscapeGame.World.IGameEntryView
     {
-        [SerializeField] private TMP_InputField serverAddressInput;
         [SerializeField] private Button joinButton;
         [SerializeField] private TMP_Text statusText;
         [SerializeField] private TMP_Text roleText;
@@ -23,15 +22,6 @@ namespace EscapeGame.Session.Presentation
         private SessionDisconnectDialog disconnectDialog;
         private bool canLeave;
 
-        public void ConfigureServer(string address, bool showLocalTests)
-        {
-            serverAddressInput.SetTextWithoutNotify(address);
-            serverAddressInput.readOnly = true;
-            serverAddressInput.interactable = false;
-            localTestAButton?.gameObject.SetActive(showLocalTests);
-            localTestBButton?.gameObject.SetActive(showLocalTests);
-        }
-
         public void ShowConfigurationError(string message) => Render(new SessionConnectionPresentation(
             "접속 설정 오류", "-", "-", message, false, false));
 
@@ -40,13 +30,16 @@ namespace EscapeGame.Session.Presentation
 
         public void ValidateConfiguration()
         {
-            if (serverAddressInput == null || joinButton == null || statusText == null ||
+            if (joinButton == null || statusText == null ||
                 roleText == null || participantText == null || messageText == null)
-                throw new InvalidOperationException("접속 화면의 입력창, 버튼, 텍스트 참조를 연결하세요.");
+                throw new InvalidOperationException("접속 화면의 버튼과 텍스트 참조를 연결하세요.");
         }
 
         private void OnEnable()
         {
+            // EditorOnly 태그로 빌드에서 제외하며, 동적 생성된 View도 에디터에서만 표시합니다.
+            if (localTestAButton != null) localTestAButton.gameObject.SetActive(Application.isEditor);
+            if (localTestBButton != null) localTestBButton.gameObject.SetActive(Application.isEditor);
             ValidateConfiguration();
             joinButton.onClick.AddListener(OnJoinClicked);
             localTestAButton?.onClick.AddListener(OnLocalA);
@@ -83,7 +76,6 @@ namespace EscapeGame.Session.Presentation
             if (buttonLabel != null) buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
             if (localTestAButton != null) localTestAButton.interactable = presentation.CanJoin;
             if (localTestBButton != null) localTestBButton.interactable = presentation.CanJoin;
-            serverAddressInput.interactable = false;
         }
     }
 }

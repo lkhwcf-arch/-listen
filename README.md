@@ -18,8 +18,8 @@
 
 1. Unity Hub에서 프로젝트를 열고 패키지 복원·컴파일을 마칩니다.
 2. Join을 열어 Play 모드로 들어갑니다.
-3. Join 활성화 시 config의 현재 환경 주소로 자동 입장합니다. 에디터는 `http://127.0.0.1:3000`, Development Build는 `http://192.168.1.34:3001`입니다. 화면 주소는 읽기 전용이고, 입장 버튼은 같은 설정으로 재시도합니다.
-4. 서버 없이 확인할 때는 `Assets/StreamingAssets/Configuration/connection.json`의 해당 환경 `autoConnect`를 false로 설정하고 **클라이언트 테스트 A/B**를 누릅니다. 로컬 버튼은 에디터와 테스트 빌드에만 표시합니다.
+3. Join 활성화 시 config의 현재 환경 주소로 자동 입장합니다. 에디터는 `http://127.0.0.1:3000`, Development Build는 `http://192.168.1.34:3001`입니다. 주소 입력창은 없으며, 입장 버튼은 같은 config 설정으로 재시도합니다.
+4. 서버 없이 확인할 때는 `Assets/StreamingAssets/Configuration/connection.json`의 editor 환경 `autoConnect`를 false로 설정하고 **클라이언트 테스트 A/B**를 누릅니다. 로컬 버튼은 에디터에서만 표시하며 Development Build를 포함한 모든 빌드에서 제외합니다.
 5. CSV 검증과 클래스 주입이 끝나면 Ingame으로 이동하고 해당 역할의 R01을 로드합니다.
 
 접속 설정은 [환경별 접속 설정 안내](Docs/ConnectionConfiguration.md)를 따릅니다. **Development Build 체크 = 테스트 주소, 체크 해제 = 안정화 주소**입니다. 안정화 주소는 아직 비어 있으므로 클라우드 주소 등록 전 일반 빌드는 검증에서 중단됩니다.

@@ -26,7 +26,6 @@ namespace EscapeGame.Session.Presentation
             try
             {
                 var settings = UnityClientConnectionConfig.Load();
-                view.ConfigureServer(settings.ServerBaseUrl, Application.isEditor || Debug.isDebugBuild);
                 var flow = bootstrapper.GetComponent<EscapeGame.World.GameFlowBootstrapper>();
                 if (flow != null)
                 {

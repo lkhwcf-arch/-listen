@@ -14,9 +14,9 @@
 
 에디터는 Development Build 체크 여부와 관계없이 editor 설정을 선택합니다. 현재 일반 빌드는 stableBuild 주소가 비어 있어 빌드 전 오류로 중단됩니다. 클라우드 주소가 정해지면 stableBuild.serverBaseUrl에 등록합니다. 서버 주소를 네트워크 검색으로 추측하거나 다른 환경으로 대체하지 않습니다. config에 토큰이나 비밀 키를 저장하지 않습니다.
 
-각 환경의 `autoConnect`가 true면 Join 화면 활성화 시 자동 입장을 한 번 시도합니다. 서버가 꺼져 있거나 정원이 찬 경우 기존 오류를 표시하며, 입장 버튼으로 같은 설정에 재시도할 수 있습니다. 자동 재시도 루프는 추가하지 않았습니다. 화면 주소는 설정 확인용 읽기 전용입니다.
+각 환경의 `autoConnect`가 true면 Join 화면 활성화 시 자동 입장을 한 번 시도합니다. 서버가 꺼져 있거나 정원이 찬 경우 기존 오류를 표시하며, 입장 버튼으로 같은 설정에 재시도할 수 있습니다. 자동 재시도 루프는 추가하지 않았습니다. 주소 입력창은 없으며 접속 주소는 config에서만 읽습니다.
 
-서버 없이 CSV를 검사하려면 해당 환경의 autoConnect를 false로 바꾸고 로컬 A/B 버튼을 사용합니다. 로컬 버튼은 에디터와 테스트 빌드에서만 표시합니다. 이미 실행한 앱이 설정 파일을 계속 감시하는 기능은 없으며 수정 후 재실행합니다. 안정화 빌드는 클라우드 주소를 설정하고 Development Build를 해제합니다.
+서버 없이 CSV를 검사하려면 editor 환경의 autoConnect를 false로 바꾸고 로컬 A/B 버튼을 사용합니다. 로컬 A/B 버튼은 에디터에서만 표시합니다. Join 씬의 버튼에는 `EditorOnly` 태그를 지정하여 Development Build를 포함한 모든 빌드에서 오브젝트를 제외합니다. View도 에디터 여부로 표시를 제한합니다. 이미 실행한 앱이 설정 파일을 계속 감시하는 기능은 없으며 수정 후 재실행합니다. 안정화 빌드는 클라우드 주소를 설정하고 Development Build를 해제합니다.
 
 ## 바뀐 코드와 의도
 
@@ -29,8 +29,8 @@
 | `Editor/ClientConnectionBuildValidator.cs` | 빌드 옵션에 맞는 환경을 검사합니다. 잘못된 설정으로 빌드 파일을 만드는 일을 사전에 막습니다. |
 | `World/GameEntryPresenter.cs` | View의 입력 문자열 대신 주입한 설정을 사용합니다. 자동/수동 입장 모두 기존 GameEntryService를 호출합니다. |
 | `Session/Presentation/SessionConnectionPresenter.cs` | 콘텐츠 입장이 없는 세션 화면도 같은 설정·공통 명령을 사용합니다. |
-| `Session/Presentation/SessionConnectionScreen.cs` | 설정 로드 → 화면 설정 → Presenter 조립 → 자동 입장을 연결합니다. 비활성화 시 요청을 취소하고 구독을 해제합니다. 이전 활성화의 늦은 오류가 새 화면을 덮지 않도록 구분합니다. |
-| `SessionConnectionView`, `ISessionConnectionView` | 주소를 입력받는 계약을 제거하고 읽기 전용으로 표시합니다. 오류·입장·로컬 테스트 화면은 기존 구조를 재사용합니다. |
+| `Session/Presentation/SessionConnectionScreen.cs` | 설정 로드 → Presenter 조립 → 자동 입장을 연결합니다. 비활성화 시 요청을 취소하고 구독을 해제합니다. 이전 활성화의 늦은 오류가 새 화면을 덮지 않도록 구분합니다. |
+| `SessionConnectionView`, `ISessionConnectionView` | 주소 입력창과 관련 View 참조를 제거하고, 로컬 테스트 버튼은 에디터에서만 표시합니다. 오류·입장·로컬 테스트 화면은 기존 구조를 재사용합니다. |
 | `Networking/SessionApiClient.cs` | 주소 검증을 공통 HttpServerAddress에 위임합니다. 이번 단계의 네트워크 본문 형식은 변경하지 않았습니다. |
 
 설정 선택은 순수 C# 로직, 파일/빌드 환경 판별은 Unity 어댑터, 입장은 기존 서비스가 담당합니다. 설정 객체는 생성자 DI로 전달합니다. 자동 입장을 위해 HTTP 요청이나 CSV 동기화 로직을 다시 구현하지 않습니다. 상태 반영 이벤트와 방 로더는 기존 구조를 유지합니다.
@@ -60,7 +60,7 @@ Unity 6000.2.8f1의 .NET Standard 2.1·UnityEngine·UnityEditor·uGUI·TMP 참�
 2. 에디터 서버를 끈 뒤 Play하면 접속 오류가 표시되는지 확인합니다. 서버를 켜고 입장 버튼으로 재시도합니다.
 3. 로컬 A/B 검사는 editor.autoConnect=false로 바꾸고 Play한 뒤 선택합니다. 검사 후 true로 돌립니다.
 4. Docker 테스트 서버가 호스트 3001 포트를 공개한 상태에서 Development Build를 체크해 Windows 테스트 빌드를 만듭니다.
-5. 두 PC에서 새 빌드를 실행하면 192.168.1.34:3001로 자동 입장하는지 확인합니다. 해당 IP와 포트의 접근 가능 여부는 LAN·방화벽 설정에 따릅니다.
+5. 새 빌드의 Join 화면에 주소 입력창과 로컬 테스트 버튼이 없는지 확인합니다. 두 PC에서 192.168.1.34:3001로 자동 입장하는지 확인합니다. 해당 IP와 포트의 접근 가능 여부는 LAN·방화벽 설정에 따릅니다.
 6. stableBuild 주소를 비운 상태에서 Development Build를 해제하면 빌드가 설정 오류로 중단되는지 확인합니다.
 
 ## 현재 통신 상태
