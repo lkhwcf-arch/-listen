@@ -24,7 +24,7 @@ namespace EscapeGame.World
         public string Role { get; private set; }
         public bool IsLocal { get; private set; }
         public bool IsBusy { get; private set; }
-        public string Message { get; private set; } = "서버 입장 또는 클라이언트 테스트를 선택하세요.";
+        public string Message { get; private set; } = "접속 설정을 확인하고 있습니다.";
         public IReadOnlyList<int> UnlockedRoomIds { get; private set; } = Array.Empty<int>();
         public event Action Changed;
         public event Action<IReadOnlyList<int>> RoomsChanged;

@@ -23,7 +23,18 @@ namespace EscapeGame.Session.Presentation
         private SessionDisconnectDialog disconnectDialog;
         private bool canLeave;
 
-        public string ServerAddress => serverAddressInput.text;
+        public void ConfigureServer(string address, bool showLocalTests)
+        {
+            serverAddressInput.SetTextWithoutNotify(address);
+            serverAddressInput.readOnly = true;
+            serverAddressInput.interactable = false;
+            localTestAButton?.gameObject.SetActive(showLocalTests);
+            localTestBButton?.gameObject.SetActive(showLocalTests);
+        }
+
+        public void ShowConfigurationError(string message) => Render(new SessionConnectionPresentation(
+            "접속 설정 오류", "-", "-", message, false, false));
+
         public event Action JoinRequested;
         public event Action LeaveRequested;
 
@@ -72,7 +83,7 @@ namespace EscapeGame.Session.Presentation
             if (buttonLabel != null) buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
             if (localTestAButton != null) localTestAButton.interactable = presentation.CanJoin;
             if (localTestBButton != null) localTestBButton.interactable = presentation.CanJoin;
-            serverAddressInput.interactable = presentation.CanEditAddress;
+            serverAddressInput.interactable = false;
         }
     }
 }

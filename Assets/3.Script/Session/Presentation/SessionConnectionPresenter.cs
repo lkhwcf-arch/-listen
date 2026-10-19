@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using EscapeGame.Session.Contracts;
+using EscapeGame.Configuration;
 
 namespace EscapeGame.Session.Presentation
 {
@@ -10,15 +11,17 @@ namespace EscapeGame.Session.Presentation
         private readonly ISessionConnectionService service;
         private readonly ISessionConnectionView view;
         private readonly CancellationToken token;
+        private readonly ConfiguredServerConnection connection;
         private bool joining, leaving, disposed;
         private SessionFailureCode failure;
         public event Action<SessionFailureCode> ErrorObserved;
 
-        public SessionConnectionPresenter(ISessionConnectionService service, ISessionConnectionView view, CancellationToken token)
+        public SessionConnectionPresenter(ISessionConnectionService service, ISessionConnectionView view, ClientConnectionSettings settings, CancellationToken token)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.view = view ?? throw new ArgumentNullException(nameof(view));
             this.token = token;
+            connection = new ConfiguredServerConnection(settings, JoinCoreAsync);
             view.JoinRequested += OnJoinRequested;
             view.LeaveRequested += OnLeaveRequested;
             service.StateChanged += OnStateChanged;
@@ -28,11 +31,13 @@ namespace EscapeGame.Session.Presentation
         }
         private async void OnJoinRequested() => await JoinAsync();
         private async void OnLeaveRequested() => await LeaveAsync();
-        public async Task JoinAsync()
+        public Task StartAsync() => connection.StartAsync(token);
+        public Task JoinAsync() => connection.ConnectAsync(token);
+        private async Task JoinCoreAsync(string address, CancellationToken connectionToken)
         {
             if (disposed || token.IsCancellationRequested || joining || leaving || service.State.IsJoined || service.IsBusy) return;
             joining = true; failure = SessionFailureCode.None; Render();
-            var result = await service.JoinAsync(view.ServerAddress?.Trim(), token);
+            var result = await service.JoinAsync(address, connectionToken);
             joining = false;
             if (disposed || token.IsCancellationRequested) return;
             ObserveResult(result); Render();
@@ -80,14 +85,14 @@ namespace EscapeGame.Session.Presentation
                 failure != SessionFailureCode.None ? SessionErrorMessages.Describe(failure) :
                 disconnected && !joining ? SessionErrorMessages.Describe(state.DisconnectReason) :
                 joining ? "서버에 입장 요청을 보내고 있습니다." :
-                !state.IsJoined ? "서버 주소를 입력하고 입장 버튼을 눌러 주세요." :
+                !state.IsJoined ? "설정된 서버로 연결을 재시도하려면 입장 버튼을 눌러 주세요." :
                 !state.IsSceneLoaded ? "씬과 필수 객체의 준비가 끝나면 자동으로 보고합니다." :
                 state.Phase == ClientSessionPhase.Playing ? "두 참가자의 준비가 완료되었습니다." :
                 "내 준비는 완료되었습니다. 상대방을 기다립니다.";
             bool editable = !joining && !exiting && !state.IsJoined;
             view.Render(new SessionConnectionPresentation(status, state.Role ?? "-",
                 state.Phase.HasValue ? state.ParticipantCount.ToString() : "-", message,
-                editable && !service.IsBusy, editable, state.IsJoined && !joining && !exiting, exiting));
+                editable && !service.IsBusy, false, state.IsJoined && !joining && !exiting, exiting));
         }
         public void Dispose()
         {

@@ -14,14 +14,10 @@ namespace EscapeGame.Networking
 
         public SessionApiClient(string baseUrl, int heartbeatRequestTimeoutMs = 2000)
         {
-            if (!Uri.TryCreate(baseUrl, UriKind.Absolute, out var uri) ||
-                (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps) ||
-                !string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment))
-                throw new ArgumentException("유효한 HTTP 서버 주소가 필요합니다.");
 
             if (heartbeatRequestTimeoutMs <= 0) throw new ArgumentOutOfRangeException(nameof(heartbeatRequestTimeoutMs));
             this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs;
-            this.baseUrl = baseUrl.TrimEnd('/');
+            this.baseUrl = HttpServerAddress.Normalize(baseUrl);
         }
 
         public async Task<JoinSessionResponseDto> JoinAsync(CancellationToken cancellationToken)
