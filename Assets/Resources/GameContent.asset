@@ -56,6 +56,10 @@ MonoBehaviour:
     prefab: {fileID: 4998116800349599745, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
     prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Other.prefab
+    prefab: {fileID: 4628255994314197374, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Serface.prefab
+    prefab: {fileID: 107996671340065090, guid: f46eb60aaa9b12d45a0f38fe0a2e517e, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Chair.prefab
     prefab: {fileID: 1288159639495150889, guid: 469800f6f039a3e45b65d1344c8f8e43, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Light.prefab
