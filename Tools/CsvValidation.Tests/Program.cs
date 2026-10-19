@@ -2,6 +2,8 @@ using EscapeGame.Data.Csv;
 using EscapeGame.Data.CsvValidation;
 using EscapeGame.Data.CsvValidation.Contracts;
 
+if (args.Length == 3 && args[0] == "--http") { await ProtocolHttpChecks.Run(args[1], args[2]); return; }
+
 string root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
 var original = Directory.GetFiles(Path.Combine(root, "Assets", "11.CSV"), "*.csv")
     .ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
@@ -66,3 +68,4 @@ await WorldChecks.Run(original, catalogXml);
 await ContentRegressionChecks.Run(original, catalogXml);
 
 await ConnectionConfigurationChecks.Run(root, original, catalogXml);
+await RoomPermissionChecks.Run();

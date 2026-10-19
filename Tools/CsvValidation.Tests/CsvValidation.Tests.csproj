@@ -9,6 +9,14 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Protobuf"><HintPath>../../Assets/Plugins/Protobuf/Google.Protobuf.dll</HintPath></Reference>
+    <Compile Include="../../Assets/3.Script/Generated/Protocol/*.cs" />
+    <Compile Include="../../Assets/3.Script/Networking/ProtobufApiResponseValidator.cs" />
+    <Compile Include="../../Assets/3.Script/Networking/SessionApiClient.cs" />
+    <Compile Include="../../Assets/3.Script/Networking/HttpSessionGateway.cs" />
+    <Compile Include="../../Assets/3.Script/Networking/SessionContentDtos.cs" />
+    <Compile Include="../../Assets/3.Script/Networking/SessionTransportException.cs" />
+    <Compile Include="../../Assets/3.Script/World/RoomPermissionService.cs" />
     <Compile Include="../../Assets/3.Script/Common/Networking/*.cs" />
     <Compile Include="../../Assets/3.Script/Configuration/*.cs" />
     <Compile Include="../../Assets/3.Script/World/GameEntryPresenter.cs" />
@@ -23,6 +31,7 @@
     <Compile Include="../../Assets/3.Script/Session/SessionRequestRunner.cs" Link="Session/SessionRequestRunner.cs" />
     <Compile Include="../../Assets/3.Script/Session/SessionCommandExecutor.cs" Link="Session/SessionCommandExecutor.cs" />
     <Compile Include="../../Assets/3.Script/Session/Results/*.cs" Link="Session/Results/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Session/Phase/*.cs" />
     <Compile Include="../../Assets/3.Script/Networking/SessionDtos.cs" Link="Networking/SessionDtos.cs" />
     <Compile Include="../../Assets/3.Script/World/RoomLoadPlan.cs" Link="World/RoomLoadPlan.cs" />
     <Compile Include="../../Assets/3.Script/World/LocalRoomProgression.cs" Link="World/LocalRoomProgression.cs" />

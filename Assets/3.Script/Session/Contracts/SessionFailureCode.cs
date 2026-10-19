@@ -14,6 +14,9 @@ namespace EscapeGame.Session.Contracts
         InvalidResponse = 9,
         UnexpectedFailure = 10,
         ConnectionTimedOut = 11,
-        LeaveUnconfirmed = 12
+        LeaveUnconfirmed = 12,
+        RoomNotFound = 13,
+        SubmissionNotAllowed = 14,
+        GameNotPlaying = 15
     }
 }

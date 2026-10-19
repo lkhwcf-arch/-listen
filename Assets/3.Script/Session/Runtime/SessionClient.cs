@@ -5,7 +5,7 @@ using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Session
 {
-    internal sealed class SessionClient : ISessionConnectionService, ISessionContentService, IDisposable
+    internal sealed class SessionClient : ISessionConnectionService, ISessionContentService, ISessionRoomService, IDisposable
     {
         private readonly ISessionGatewayFactory gatewayFactory;
         private readonly ClientSessionState state = new ClientSessionState();
@@ -44,6 +44,20 @@ namespace EscapeGame.Session
         }
 
         public event Action<SessionInfo> StateChanged;
+        public Task<RoomDecision> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            if (answers == null) throw new ArgumentNullException(nameof(answers));
+            return DecideRoomAsync(roomNo, answers, token);
+        }
+        public Task<RoomDecision> CheckRoomDoorAsync(int roomNo, CancellationToken token) => DecideRoomAsync(roomNo, null, token);
+        private async Task<RoomDecision> DecideRoomAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            RoomDecision decision = null;
+            var result = await ExecuteAsync(async ct => decision = await RequireCoordinator().DecideRoomAsync(roomNo, answers, ct), token, true);
+            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            return decision;
+        }
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
         public event Action<SessionFailureCode> BackgroundFailed;
         public event Action<SessionFailureCode> Disconnected;

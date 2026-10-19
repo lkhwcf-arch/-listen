@@ -1,16 +1,18 @@
 {
   "owner": "escape-protocol-tool",
   "target": "client",
-  "contractHash": "12820fc305c8167c749be5f67736dd8c39b8a7bbcff41d0e0405d6e5bdd88b45",
-  "fingerprint": "4b68f868c948e105de18380fbfe18b42a7a4dcd307c6507e50056359c396f04d",
+  "contractHash": "adb017e3b5434fd779865b868dadda1ea0c99e938ea4b805bb734260e915a94f",
+  "fingerprint": "d3e52fff130fc4d94e54491a6a75a4749a1345269a3f35b4902cdf4427e7287d",
   "tools": {
     "tsProto": "2.15.0",
     "grpcTools": "2.76.0",
     "csharpRuntime": "3.33.0"
   },
   "files": {
-    "Common.cs": "567daddfae0238a61cfeb8c6f7c032fcb2e95b8cd29097e0193487721e38bb1a",
-    "Session.cs": "71532c5a7f48fb8a8861e4d793bd79b9af855b73d02a35e3c80372e0e79b7d41",
+    "Common.cs": "347ce92d25feb6ce1b0882fc219251f5cc75932cd082ca09333d7a77c287db30",
+    "GameApi.cs": "de77b421ff8f34b688d8ab86ed33b6c0fbac64bc76e1b407a4a93151a6a46a33",
+    "HttpApi.cs": "1129f3ad26e2b74faa3b0be286c9725704f2787acb0b68fd0945d0501ba8c434",
+    "Session.cs": "33b61245fdf6106dbeff3ac0bc06b4f83f0b401879693d006fe66b69564aaa02",
     "EscapeGame.Protocol.Generated.asmdef": "25447f0d4a4120c107ca4dfc2ac186287ab43fda9c25b5d4fa67367e070336c6"
   }
 }

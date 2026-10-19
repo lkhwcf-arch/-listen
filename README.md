@@ -10,7 +10,7 @@
 |---|---|
 | Unity | 6000.2.8f1 / Unity 6.2 |
 | 시작 / 게임 씬 | [Join](Assets/1.Scene/Join.unity) / [Ingame](Assets/1.Scene/Ingame.unity) |
-| 게임 통신 | UnityWebRequest, HTTP + JSON |
+| 게임 통신 | UnityWebRequest, HTTP + Google Protobuf 바이너리 |
 | 음성 | Vivox 16.12.1, Unity Authentication 3.4.1 |
 | UI / 렌더링 | uGUI·TextMeshPro / URP 17.2.0 |
 | 로컬 데이터 | [Assets/11.CSV](Assets/11.CSV), 23개 CSV |
@@ -72,7 +72,7 @@ MVC의 데이터·표현·제어 책임을 Unity 수명에 맞춰 나누고, 화
 | `RoomSceneView`, `IngameWorldDriver` | 프리팹 생성·앵커 탐색·로드 이벤트·기존 방 유지입니다. |
 | `SessionClient` | `ISessionConnectionService`, `ISessionContentService`를 구현하는 Facade입니다. 인증 정보는 내부에 유지합니다. |
 | `SessionCoordinator`, `SessionRequestRunner` | 요청 순서·취소·중복·연결 수명과 결과 반영을 조정합니다. |
-| `HttpSessionGateway`, `SessionApiClient` | Adapter와 HTTP/JSON 경계입니다. View는 HTTP 경로·토큰·Wire DTO를 다루지 않습니다. |
+| `HttpSessionGateway`, `SessionApiClient` | Adapter와 Protobuf HTTP 경계입니다. View는 HTTP 경로·토큰·Wire DTO를 다루지 않습니다. |
 | `CsvTableMapping<T>`, 검증 규칙 | 시트와 변환 함수를 묶은 매핑, 설정과 규칙 객체의 조합을 재사용합니다. |
 | `StateChanged`, `PhaseChanged`, `RoomsChanged`, `Registered` | 반영 완료 후 통지하는 Observer 방식입니다. Driver는 Unity Update·활성/비활성 수명을 담당합니다. |
 | Voice 모듈 | 세션 이벤트를 음성 연결 목표로 바꾸는 Coordinator, 서비스, Vivox Gateway Adapter입니다. |
@@ -87,7 +87,7 @@ Assets/3.Script/
     Infrastructure/           파일·TextAsset 어댑터
   World/                      입장 조정·방 계획·스폰·로컬 진행
   Session/                    계약·코어·자동 Driver·화면
-  Networking/                 HTTP·JSON DTO·Gateway
+  Networking/                 HTTP·Protobuf·Gateway
   Voice/                      음성 계약·서비스·Vivox·화면
   Editor/                     CSV 검사 창·콘텐츠 참조 생성
   Generated/Protocol/         Protobuf 생성물
@@ -140,7 +140,7 @@ PuzzleSubmissionResult result = await flow.Service.SubmitPuzzleAsync(puzzleId, a
 
 Ingame의 R01_Surface 아래 **R01_모델_Anchor**에 기존 앵커를 묶고, 다이얼 테이블 이름을 CSV의 `R01_Dial_table_Anchor`와 맞췄습니다. 바닥·벽·기본 구조는 이미 Surface에 들어 있어 `RoomSceneView`의 명시적인 embedded 바인딩으로 재사용합니다. R01 연결 행은 **A 8개 / B 14개**이며 재사용한 구조도 포함합니다.
 
-서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 Next를 누적 해금합니다. Next=0이면 추가 방이 없습니다. ExitRule은 `RoomExitRules`에서 공통 해석하며 알 수 없는 값은 검증과 런타임에서 차단합니다. 활성 방은 시작점 하나에서 모두 연결되어야 하며, 비활성 방으로 끊긴 연결도 허용하지 않습니다.
+서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 문을 허가합니다. 정답 제출자는 자기 문과 Next를 먼저 허가받고, 상대는 자기 문 확인 때 허가받습니다. 이후 문 열기·닫기는 RoomPermissionService 캐시를 사용하며 추가 통신이 없습니다. Next=0이면 추가 방이 없습니다. ExitRule은 `RoomExitRules`에서 공통 해석하며 알 수 없는 값은 검증과 런타임에서 차단합니다. 활성 방은 시작점 하나에서 모두 연결되어야 하며, 비활성 방으로 끊긴 연결도 허용하지 않습니다.
 
 **R02 이후 콘텐츠를 추가할 때**:
 
@@ -165,7 +165,7 @@ Vivox는 `StateChanged → SessionVoiceCoordinator → VoiceChatService → Vivo
 
 기존 두 PC 검사에서 채널 연결 표시는 확인했으나 **실제 양방향 송수신·Bluetooth 장치 검증은 보류** 상태입니다. 연결 표시만으로 음성 검증 완료로 판단하지 않습니다. 게임 서버는 음성을 중계하지 않습니다.
 
-현재 게임 API는 아직 HTTP + JSON입니다. **요청·응답 본문을 Google Protobuf 바이너리로 전환하는 것이 다음 통신 작업의 확정 요구사항**입니다. 기존 DLL·TS/C# 생성물·교차 검증·로컬 배포 도구를 확장합니다. 메시지 클래스의 기준은 .proto이며 Swagger/OpenAPI는 HTTP 경로·인증·미디어 타입 설명과 호출 인터페이스 생성에 사용합니다. 접속 config의 JSON은 로컬 설정 파일 형식으로, 네트워크 메시지 형식과 별개입니다.
+게임 API는 **HTTP + Google Protobuf 바이너리**입니다. 메시지는 .proto, 경로·인증·미디어 타입은 OpenAPI로 관리합니다. 생성 도구가 C# 메시지와 호출 인터페이스/기본 클래스를 생성하고, 클라 게임 기능은 공개 계약으로 접근합니다. config JSON은 로컬 설정 파일입니다. 새 문·정답 API, 코드별 설명, 생성·배포 및 검사 방법은 [문·정답 API 안내](Docs/RoomApiAndProtobuf.md)를 참고합니다.
 
 ## 7. 검사 실행과 확인된 결과
 
@@ -176,7 +176,7 @@ Set-Location Tools/CsvValidation.Tests
 dotnet run -- ../..
 ```
 
-기존 123개 + 접속 설정 검사 31개 = **154개 통과**입니다. 실제 CSV 23개와 2,861개 셀을 검사합니다. 회귀 검사는 잘못된 방 연결·ExitRule·제출 결과 3종·통신 실패/취소 구분을 확인합니다. 접속 설정 검사는 실제 JSON 값·환경 선택·중복 자동 입장·취소·재시도·기존 입장/데이터/씬 전환 흐름을 확인합니다. 이번 환경에는 .NET 8 SDK가 없어 동일 소스의 임시 net10 프로젝트에서 실행했으며, 별도로 Unity 6.2 .NET Standard 2.1 참조 컴파일도 통과했습니다.
+기존 154개 + 문 허가/Protobuf 검사 30개 = **184개 통과**입니다. 별도로 C# 클라와 TS 서버의 실제 Protobuf HTTP 검사 **18개 통과**를 확인했습니다. 실제 CSV 23개와 2,861개 셀을 검사합니다. 회귀 검사는 잘못된 방 연결·ExitRule·제출 결과 3종·통신 실패/취소 구분을 확인합니다. 접속 설정 검사는 실제 JSON 값·환경 선택·중복 자동 입장·취소·재시도·기존 입장/데이터/씬 전환 흐름을 확인합니다. 이번 환경에는 .NET 8 SDK가 없어 동일 소스의 임시 net10 프로젝트에서 실행했으며, 별도로 Unity 6.2 .NET Standard 2.1 참조 컴파일도 통과했습니다.
 
 별도 임시 Unity 프로젝트에서 Play 검사를 실행합니다. 원본 씬을 덮어쓰지 않고 결과·로그를 `Temp/WorldPlayVerification`에 보관합니다.
 

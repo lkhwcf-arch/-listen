@@ -1,149 +1,96 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Networking;
-
+using EscapeGame.Protocol.V1;
+using EscapeGame.Session;
+using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Networking
 {
+    // Protobuf wire types are adapted to existing internal session values here.
     internal sealed class SessionApiClient
     {
-        private readonly string baseUrl;
-        private readonly int heartbeatRequestTimeoutMs;
+        private readonly IGameApi api;
+        internal SessionApiClient(IGameApi api) { this.api = api ?? throw new ArgumentNullException(nameof(api)); }
 
-        public SessionApiClient(string baseUrl, int heartbeatRequestTimeoutMs = 2000)
+        public async Task<JoinSessionResponseDto> JoinAsync(CancellationToken token)
         {
-
-            if (heartbeatRequestTimeoutMs <= 0) throw new ArgumentOutOfRangeException(nameof(heartbeatRequestTimeoutMs));
-            this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs;
-            this.baseUrl = HttpServerAddress.Normalize(baseUrl);
+            var reply = (await api.JoinSessionAsync(token)).Joined;
+            if (reply == null) throw Invalid();
+            return new JoinSessionResponseDto { success = true, sessionId = reply.SessionId,
+                participantToken = reply.ParticipantToken, player = MapPlayer(reply.Player) };
         }
-
-        public async Task<JoinSessionResponseDto> JoinAsync(CancellationToken cancellationToken)
-        {
-            using var request = new UnityWebRequest($"{baseUrl}/sessions/join", UnityWebRequest.kHttpVerbPOST);
-
-            var response = await SendAndReadAsync<JoinSessionResponseDto>(request, cancellationToken);
-            SessionResultValidator.ValidateJoin(request.responseCode, response);
-
-            return response;
-        }
-
-        public async Task<SceneLoadedResponseDto> ReportSceneLoadedAsync(
-            string sessionId, string participantToken, CancellationToken cancellationToken)
+        public async Task<SceneLoadedResponseDto> ReportSceneLoadedAsync(string sessionId, string participantToken, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/ready", UnityWebRequest.kHttpVerbPOST);
-            
-            request.SetRequestHeader("x-participant-token", participantToken);
-            
-            var response = await SendAndReadAsync<SceneLoadedResponseDto>(request, cancellationToken);
-            SessionResultValidator.ValidateSceneLoaded(request.responseCode, response);
-            
-            return response;
+            return new SceneLoadedResponseDto { success = true,
+                snapshot = MapSnapshot((await api.ReportSceneLoadedAsync(sessionId, participantToken, token)).Snapshot) };
         }
-
-        public async Task<QuerySessionResponseDto> QuerySessionAsync(
-            string sessionId, string participantToken, CancellationToken cancellationToken)
+        public async Task<QuerySessionResponseDto> QuerySessionAsync(string sessionId, string participantToken, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            
-            using var request = new UnityWebRequest(
-                $"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}",
-                UnityWebRequest.kHttpVerbGET);
-            
-            request.SetRequestHeader("x-participant-token", participantToken);
-            
-            var response = await SendAndReadAsync<QuerySessionResponseDto>(request, cancellationToken);
-            SessionResultValidator.ValidateQuery(request.responseCode, response);
-            
-            return response;
+            return new QuerySessionResponseDto { success = true,
+                snapshot = MapSnapshot((await api.QuerySessionAsync(sessionId, participantToken, token)).Snapshot) };
         }
-
         public async Task<HeartbeatResponseDto> HeartbeatAsync(string sessionId, string participantToken, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/heartbeat", UnityWebRequest.kHttpVerbPOST);
-            request.SetRequestHeader("x-participant-token", participantToken);
-            var response = await SendAndReadAsync<HeartbeatResponseDto>(request, token, heartbeatRequestTimeoutMs);
-            SessionResultValidator.ValidateHeartbeat(request.responseCode, response);
-            return response;
+            await api.HeartbeatAsync(sessionId, participantToken, token);
+            return new HeartbeatResponseDto { success = true };
         }
-
         public async Task<LeaveResponseDto> LeaveAsync(string sessionId, string participantToken, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/leave", UnityWebRequest.kHttpVerbPOST);
-            request.SetRequestHeader("x-participant-token", participantToken);
-            var response = await SendAndReadAsync<LeaveResponseDto>(request, token);
-            SessionResultValidator.ValidateLeave(request.responseCode, response);
-            return response;
+            await api.LeaveSessionAsync(sessionId, participantToken, token);
+            return new LeaveResponseDto { success = true };
         }
-
         public async Task<CsvBundleDto> DownloadDataAsync(string sessionId, string participantToken, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = UnityWebRequest.Get($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/data");
-            request.SetRequestHeader("x-participant-token", participantToken);
-            var response = await SendAndReadAsync<CsvBundleDto>(request, token);
-            if (response == null || (response.success && request.responseCode != 200) || request.responseCode >= 500)
-                throw new InvalidOperationException("유효하지 않은 데이터 응답입니다.");
-            return response;
+            var data = (await api.DownloadDataAsync(sessionId, participantToken, token)).Data;
+            if (data == null) throw Invalid();
+            return new CsvBundleDto { success = true, version = data.Version,
+                tables = data.Tables.Select(table => new CsvTextDto { name = table.Name, csv = table.Csv }).ToArray() };
         }
-
-        public async Task<PuzzleSubmissionResponseDto> SubmitPuzzleAsync(string sessionId, string participantToken,
-            int puzzleId, string[] answers, CancellationToken token)
+        public async Task<PuzzleSubmissionResponseDto> SubmitPuzzleAsync(string sessionId, string participantToken, int puzzleId, string[] answers, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
-            using var request = new UnityWebRequest($"{baseUrl}/sessions/{Uri.EscapeDataString(sessionId)}/puzzles/{puzzleId}/submit", "POST");
-            request.SetRequestHeader("x-participant-token", participantToken);
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new PuzzleSubmissionDto { answers = answers })));
-            var response = await SendAndReadAsync<PuzzleSubmissionResponseDto>(request, token);
-            SessionResultValidator.ValidatePuzzleSubmission(request.responseCode, response);
-            return response;
+            if (puzzleId < 1 || answers == null || answers.Any(answer => answer == null)) throw new ArgumentException("퍼즐 입력이 유효하지 않습니다.");
+            var command = new PuzzleCommandRequest(); command.Answers.Add(answers);
+            var result = (await api.SubmitPuzzleAsync(sessionId, puzzleId, participantToken, command, token)).Puzzle;
+            if (result == null) throw Invalid();
+            PuzzleSubmissionResult.FromDecision(result.Accepted, result.Correct);
+            return new PuzzleSubmissionResponseDto { success = true, accepted = result.Accepted,
+                correct = result.Correct, snapshot = MapSnapshot(result.Snapshot) };
         }
-
-        private static void ValidateParticipant(string sessionId, string participantToken)
+        public async Task<RoomDecisionReply> DecideRoomAsync(string sessionId, string participantToken, int roomNo, string[] answers, CancellationToken token)
         {
-            if (string.IsNullOrWhiteSpace(sessionId))
-                throw new ArgumentException("세션 ID가 필요합니다.");
-            
-            if (string.IsNullOrWhiteSpace(participantToken))
-                throw new ArgumentException("참가 토큰이 필요합니다.");
+            ValidateParticipant(sessionId, participantToken);
+            if (roomNo < 1 || (answers != null && answers.Any(answer => answer == null))) throw new ArgumentException("방 입력이 유효하지 않습니다.");
+            var command = new RoomCommandRequest { RoomNo = roomNo };
+            if (answers != null) command.Answers.Add(answers);
+            var reply = answers == null ? await api.CheckRoomDoorAsync(sessionId, participantToken, command, token)
+                : await api.SubmitRoomAnswerAsync(sessionId, participantToken, command, token);
+            var result = reply.Room;
+            if (result == null || result.RoomNo != roomNo || (answers == null && result.Value != result.DoorAllowed)) throw Invalid();
+            return result;
         }
-
-        // 전송 수명과 취소는 공통 처리하고, 작업별 결과 검증은 Result 모듈에 위임합니다.
-        private static async Task<T> SendAndReadAsync<T>(
-            UnityWebRequest request, CancellationToken cancellationToken, int timeoutMs = 10000) where T : class
+        private static void ValidateParticipant(string sessionId, string token)
+        { if (string.IsNullOrWhiteSpace(sessionId) || string.IsNullOrWhiteSpace(token)) throw new ArgumentException("세션과 참가 토큰이 필요합니다."); }
+        private static SessionResultException Invalid() => new SessionResultException(SessionFailureCode.InvalidResponse);
+        private static PlayerDto MapPlayer(PlayerSnapshot player)
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            
-            request.downloadHandler = new DownloadHandlerBuffer();
-            // Unity API 경계에서만 정수 ms를 정수 초로 올림 변환합니다.
-            request.timeout = 1 + (timeoutMs - 1) / 1000;
-            var operation = request.SendWebRequest();
-            
-            while (!operation.isDone)
-            {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    request.Abort();
-                    cancellationToken.ThrowIfCancellationRequested();
-                }
-                await Task.Yield();
-            }
-            
-            cancellationToken.ThrowIfCancellationRequested();
-            
-            if (request.result == UnityWebRequest.Result.ConnectionError)
-                throw new SessionTransportException($"서버 연결 실패: {request.error}");
-
-            if (request.result == UnityWebRequest.Result.DataProcessingError)
-                throw new InvalidOperationException($"서버 응답 처리 실패: {request.error}");
-
-            return JsonUtility.FromJson<T>(request.downloadHandler.text);
+            if (player == null) throw Invalid();
+            return new PlayerDto { id = player.PlayerId, ready = player.SceneLoaded, role = player.Role switch
+                { PlayerRole.RoleA => "A", PlayerRole.RoleB => "B", _ => throw Invalid() } };
+        }
+        internal static SessionSnapshotDto MapSnapshot(SessionSnapshot snapshot)
+        {
+            if (snapshot == null) throw Invalid();
+            return new SessionSnapshotDto { sessionId = snapshot.SessionId,
+                phase = snapshot.Phase switch { SessionPhase.Waiting => "Waiting", SessionPhase.Loading => "Loading", SessionPhase.Playing => "Playing", _ => throw Invalid() },
+                players = snapshot.Players.Select(MapPlayer).ToArray(), unlockedRoomIds = snapshot.UnlockedRoomIds.ToArray() };
         }
     }
 }

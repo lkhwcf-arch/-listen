@@ -93,6 +93,22 @@ namespace EscapeGame.Session
         {
             if (!session.IsJoined) throw new InvalidOperationException("먼저 서버 세션에 입장하세요.");
         }
+
+        internal async Task<RoomDecision> DecideRoomAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            RoomDecision decision = null;
+            await runner.RunAfterCurrentAsync(async ct =>
+            {
+                EnsureJoined();
+                var response = await ((ISessionRoomGateway)gateway).DecideRoomAsync(session.SessionId, session.ParticipantToken, roomNo, answers, ct);
+                ct.ThrowIfCancellationRequested();
+                if (response?.Decision == null || response.Decision.RoomNo != roomNo) throw new SessionResultException(SessionFailureCode.InvalidResponse);
+                ApplyReceived(() => session.ApplySnapshot(response.Snapshot));
+                decision = response.Decision;
+            }, token);
+            return decision;
+        }
+
         private static void ApplyReceived(Action apply)
         {
             try { apply(); }

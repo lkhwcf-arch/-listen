@@ -13,6 +13,7 @@ namespace EscapeGame.World
         private readonly CsvGameData data;
         private readonly HashSet<int> solved = new HashSet<int>();
         private readonly HashSet<int> unlocked = new HashSet<int>();
+        private readonly HashSet<int> permitted = new HashSet<int>();
         public IReadOnlyList<int> UnlockedRoomIds => Array.AsReadOnly(unlocked.OrderBy(id => id).ToArray());
         public LocalRoomProgression(CsvGameData data)
         {
@@ -32,12 +33,34 @@ namespace EscapeGame.World
                 return PuzzleSubmissionResult.FromDecision(true, false);
             solved.Add(puzzleId);
             var rooms = data.RoomsA.Cast<RoomData>().Concat(data.RoomsB).Where(room => room.Active).ToArray();
-            foreach (var room in rooms.Where(room => unlocked.Contains(room.Id)))
-            {
-                var required = RoomExitRules.RequiresBothPuzzles(room.ExitRule) ? rooms.Where(other => other.RoomNo == room.RoomNo) : new[] { room };
-                if (room.Next != 0 && required.All(other => solved.Contains(other.PuzzleId))) unlocked.Add(room.Next);
-            }
+            CheckDoor(role, plan.Find(puzzle.SolverRoom).RoomNo);
             return PuzzleSubmissionResult.FromDecision(true, true);
+        }
+        public RoomDecision DecideRoom(string role, int roomNo, string[] answers)
+        {
+            var room = new RoomLoadPlan(data, role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
+            if (room == null) throw new EscapeGame.Session.SessionResultException(SessionFailureCode.RoomNotFound);
+            bool value;
+            if (answers == null) value = CheckDoor(role, roomNo);
+            else
+            {
+                var result = Submit(role, room.PuzzleId, answers);
+                if (!result.Accepted) throw new EscapeGame.Session.SessionResultException(SessionFailureCode.SubmissionNotAllowed);
+                value = result.Correct;
+            }
+            return new RoomDecision(roomNo, value, permitted.Contains(room.Id));
+        }
+        public bool CheckDoor(string role, int roomNo)
+        {
+            var room = new RoomLoadPlan(data, role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
+            if (room == null || !unlocked.Contains(room.Id)) return false;
+            if (permitted.Contains(room.Id)) return true;
+            var rooms = data.RoomsA.Cast<RoomData>().Concat(data.RoomsB).Where(row => row.Active);
+            var required = RoomExitRules.RequiresBothPuzzles(room.ExitRule) ? rooms.Where(other => other.RoomNo == room.RoomNo) : new[] { room };
+            if (!required.All(other => solved.Contains(other.PuzzleId))) return false;
+            permitted.Add(room.Id);
+            if (room.Next != 0) unlocked.Add(room.Next);
+            return true;
         }
     }
 }

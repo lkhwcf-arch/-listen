@@ -6,16 +6,8 @@ using EscapeGame.Session.Contracts;
 
 namespace EscapeGame.Networking
 {
-    internal sealed class HttpSessionGatewayFactory : ISessionGatewayFactory
-    {
-        private readonly int heartbeatRequestTimeoutMs;
-        internal HttpSessionGatewayFactory(int heartbeatRequestTimeoutMs = 2000)
-        { this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs; }
-        public ISessionGateway Create(string serverAddress) => new HttpSessionGateway(new SessionApiClient(serverAddress, heartbeatRequestTimeoutMs));
-    }
-
     // Wire DTO와 HTTP 오류를 세션 처리용 데이터/오류로 변환하는 어댑터입니다.
-    internal sealed class HttpSessionGateway : ISessionGateway, ISessionContentGateway
+    internal sealed class HttpSessionGateway : ISessionGateway, ISessionContentGateway, ISessionRoomGateway
     {
         private readonly SessionApiClient api;
         internal HttpSessionGateway(SessionApiClient api) => this.api = api ?? throw new ArgumentNullException(nameof(api));
@@ -86,6 +78,13 @@ namespace EscapeGame.Networking
             catch (Exception exception) when (exception is ArgumentException || exception is InvalidOperationException)
             { throw new SessionResultException(SessionFailureCode.InvalidResponse, exception); }
         }
+
+        public Task<SessionRoomDecisionData> DecideRoomAsync(string sessionId, string participantToken, int roomNo, string[] answers, CancellationToken token) => ExecuteAsync(async () =>
+        {
+            var result = await api.DecideRoomAsync(sessionId, participantToken, roomNo, answers, token);
+            return new SessionRoomDecisionData(MapSnapshot(SessionApiClient.MapSnapshot(result.Snapshot)),
+                new RoomDecision(result.RoomNo, result.Value, result.DoorAllowed));
+        });
 
         private static void EnsureSuccess(bool success, string code)
         {

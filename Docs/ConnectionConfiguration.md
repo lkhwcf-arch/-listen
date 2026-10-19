@@ -63,8 +63,6 @@ Unity 6000.2.8f1의 .NET Standard 2.1·UnityEngine·UnityEditor·uGUI·TMP 참�
 5. 두 PC에서 새 빌드를 실행하면 192.168.1.34:3001로 자동 입장하는지 확인합니다. 해당 IP와 포트의 접근 가능 여부는 LAN·방화벽 설정에 따릅니다.
 6. stableBuild 주소를 비운 상태에서 Development Build를 해제하면 빌드가 설정 오류로 중단되는지 확인합니다.
 
-## 다음 통신 작업의 확정 조건
+## 현재 통신 상태
 
-게임 API 요청·응답 본문은 Google Protobuf 바이너리로 전환합니다. 현재 기존 API는 HTTP+JSON이고 이번 기능만으로 전환된 것은 아닙니다. 접속 설정 JSON은 로컬 편집용 파일이므로 이 요구와 별개입니다.
-
-메시지 구조는 .proto에서 관리하고 기존 생성 도구로 TS/C# 생성·교차 검증·로컬 배포를 수행합니다. Swagger/OpenAPI는 HTTP 경로·인증·미디어 타입과 메시지 연결을 설명하며, 메시지 DTO를 별도 JSON 계약으로 중복 생성하지 않습니다. 호출 인터페이스를 자동 생성할 때는 Protobuf 생성 메시지를 참조하도록 구성합니다. Git 반영은 사용자님이 수행합니다.
+게임 API는 Google Protobuf 바이너리로 전환했습니다. 입장·조회·ready·heartbeat·퇴장·CSV 묶음·문·정답 API가 같은 바이너리 경계를 사용합니다. config JSON은 로컬 편집용 파일로 유지합니다. 메시지 생성과 HTTP 바인딩·로컬 배포는 [문·정답 API 안내](RoomApiAndProtobuf.md)를 따릅니다. 플레이어와 실제 문/입력 UI 연결은 다음 작업입니다.

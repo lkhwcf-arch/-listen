@@ -7,6 +7,8 @@ using EscapeGame.Data;
 using EscapeGame.Data.Tables;
 using EscapeGame.Session;
 using EscapeGame.World;
+using EscapeGame.Protocol.V1;
+using Google.Protobuf;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -94,17 +96,19 @@ public static class WorldVerification
                 await owner.Service.EnterAsync(false,"http://127.0.0.1:3099",null,default);
                 await WaitReady(owner);
                 Check(!owner.Service.IsLocal && owner.Service.Role=="A","Unity downloads and injects server CSV after authenticated join");
-                Check(owner.Service.Data.Source.Documents.Count==23,"Unity JSON/CSV roundtrip registers 23 server tables");
-                var second=JsonUtility.FromJson<Join>(await Send("/sessions/join",null,""));
-                await Send("/sessions/"+second.sessionId+"/ready",second.participantToken,"");
+                Check(owner.Service.Data.Source.Documents.Count==23,"Unity Protobuf/CSV roundtrip registers 23 server tables");
+                var second=(await Send("/sessions/join",null,null)).Joined;
+                await Send("/sessions/"+second.SessionId+"/ready",second.ParticipantToken,null);
                 var deadline=DateTime.UtcNow.AddSeconds(10);
                 while(owner.GetComponent<SessionBootstrapper>().State.Phase!=EscapeGame.Session.Contracts.ClientSessionPhase.Playing && DateTime.UtcNow<deadline)await Task.Yield();
                 Check(owner.GetComponent<SessionBootstrapper>().State.Phase==EscapeGame.Session.Contracts.ClientSessionPhase.Playing,"ready follows world load and both clients reach Playing");
                 Check((await owner.Service.SubmitPuzzleAsync(5001,answers,default)).Outcome == EscapeGame.Session.Contracts.PuzzleSubmissionOutcome.Rejected,"server rejects clue role without treating it as incorrect");
-                await Send("/sessions/"+second.sessionId+"/puzzles/5001/submit",second.participantToken,JsonUtility.ToJson(new Answers{answers=answers}));
+                var command=new RoomCommandRequest { RoomNo=1 };command.Answers.Add(answers);
+                await Send("/sessions/"+second.SessionId+"/rooms/answer",second.ParticipantToken,command);
+                if (!await owner.Service.CheckRoomDoorAsync(1,default)) throw new Exception("Solved room door was denied.");
                 deadline=DateTime.UtcNow.AddSeconds(10);
                 while(!owner.Service.UnlockedRoomIds.Contains(1003) && DateTime.UtcNow<deadline)await Task.Yield();
-                Check(owner.Service.UnlockedRoomIds.Contains(1003),"solver result reaches other Unity client through polling event");
+                Check(owner.Service.UnlockedRoomIds.Contains(1003),"clue door check grants next room through state event");
                 world=UnityEngine.Object.FindFirstObjectByType<IngameWorldDriver>();
                 Check(world.LoadedRooms.ContainsKey(1001) && owner.WorldReady,"online unlock retains authored R01 while R02 is unfinished");
             }
@@ -120,17 +124,16 @@ public static class WorldVerification
         if(!owner.WorldReady)throw new Exception("World did not become ready: "+owner.Service.Message);
     }
     private static void Fail(Exception error) { Debug.LogException(error);File.WriteAllText("verification.txt",error.ToString());EditorApplication.Exit(1); }
-    [Serializable] private class Join { public string sessionId;public string participantToken; }
-    [Serializable] private class Answers { public string[] answers; }
-    private static async Task<string> Send(string route,string token,string body)
+    private static async Task<GameApiResponse> Send(string route,string token,IMessage body)
     {
         using var request=new UnityWebRequest("http://127.0.0.1:3099"+route,"POST");
         request.downloadHandler=new DownloadHandlerBuffer();
+        request.SetRequestHeader("Accept","application/protobuf");
         request.timeout=10;
         if(token!=null)request.SetRequestHeader("x-participant-token",token);
-        if(body.Length>0){request.uploadHandler=new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(body));request.SetRequestHeader("Content-Type","application/json");}
+        if(body!=null){request.uploadHandler=new UploadHandlerRaw(body.ToByteArray());request.SetRequestHeader("Content-Type","application/protobuf");}
         var operation=request.SendWebRequest();while(!operation.isDone)await Task.Yield();
         if(request.responseCode<200 || request.responseCode>=300)throw new Exception("HTTP verification request failed "+request.responseCode+" "+route);
-        return request.downloadHandler.text;
+        return GameApiResponse.Parser.ParseFrom(request.downloadHandler.data);
     }
 }

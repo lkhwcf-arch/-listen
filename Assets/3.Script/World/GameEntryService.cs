@@ -19,6 +19,8 @@ namespace EscapeGame.World
         private readonly CsvValidator validator;
         private readonly Func<CancellationToken, Task> enterScene;
         private LocalRoomProgression local;
+        private readonly RoomPermissionService roomPermissions;
+        public RoomPermissionService RoomPermissions => roomPermissions;
         private IReadOnlyList<int> pendingRooms;
         public CsvGameData Data { get; private set; }
         public string Role { get; private set; }
@@ -34,10 +36,13 @@ namespace EscapeGame.World
             this.session = session; this.content = content; this.readLocal = readLocal;
             this.validator = validator; this.enterScene = enterScene;
             content.RoomsChanged += OnRoomsChanged;
+            session.StateChanged += OnSessionStateChanged;
+            roomPermissions = new RoomPermissionService(RequestRoomAsync);
         }
         public async Task EnterAsync(bool useLocal, string address, string testRole, CancellationToken token)
         {
             if (IsBusy) return;
+            roomPermissions.Reset();
             Data = null; local = null; pendingRooms = null;
             UnlockedRoomIds = Array.Empty<int>();
             IsBusy = true; Message = useLocal ? "로컬 CSV 검증 중" : "서버 접속 및 데이터 동기화 중"; Changed?.Invoke();
@@ -107,6 +112,28 @@ namespace EscapeGame.World
             UnlockedRoomIds = pendingRooms;
             RoomsChanged?.Invoke(UnlockedRoomIds);
         }
-        public void Dispose() => content.RoomsChanged -= OnRoomsChanged;
+        public Task<bool> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token) => roomPermissions.SubmitAnswerAsync(roomNo, answers, token);
+        public Task<bool> CheckRoomDoorAsync(int roomNo, CancellationToken token) => roomPermissions.CheckDoorAsync(roomNo, token);
+        private async Task<RoomDecision> RequestRoomAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            if (Data == null) throw new InvalidOperationException("게임 데이터가 등록되지 않았습니다.");
+            if (IsLocal)
+            {
+                var decision = local.DecideRoom(Role, roomNo, answers);
+                OnRoomsChanged(local.UnlockedRoomIds);
+                return decision;
+            }
+            var rooms = content as ISessionRoomService ?? session as ISessionRoomService
+                ?? throw new InvalidOperationException("방 상호작용 계약이 연결되지 않았습니다.");
+            return answers == null ? await rooms.CheckRoomDoorAsync(roomNo, token) : await rooms.SubmitRoomAnswerAsync(roomNo, answers, token);
+        }
+        private void OnSessionStateChanged(SessionInfo state)
+        { if (!IsLocal && !state.IsJoined) roomPermissions.Reset(); }
+        public void Dispose()
+        {
+            content.RoomsChanged -= OnRoomsChanged;
+            session.StateChanged -= OnSessionStateChanged;
+            roomPermissions.Reset();
+        }
     }
 }

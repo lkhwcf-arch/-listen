@@ -28,7 +28,8 @@ static class WorldChecks
         Check(local.Submit("B", 5002, answer).Outcome == PuzzleSubmissionOutcome.Rejected, "locked puzzle cannot solve");
         Check(local.Submit("B", 5001, new[] { "wrong" }).Outcome == PuzzleSubmissionOutcome.Incorrect, "wrong answer does not unlock");
         Check(local.Submit("B", 5001, answer).Outcome == PuzzleSubmissionOutcome.Correct, "correct answer unlocks");
-        Check(local.UnlockedRoomIds.SequenceEqual(new[] {1001,1002,1003,1004}), "old rooms remain after unlock");
+        Check(local.UnlockedRoomIds.SequenceEqual(new[] {1001,1002,1004}), "only solver next unlocks before clue checks door");
+        if (!local.CheckDoor("A",1)) throw new Exception("clue door should be permitted after solve");
         local.Submit("B", 5001, answer);
         Check(local.UnlockedRoomIds.Count == 4, "repeated solve is idempotent");
         var gateway = new FakeSession(source);
