@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2500742896282415740}
   - component: {fileID: 5353710971417316516}
   m_Layer: 0
-  m_Name: R02_B_BigGrass
+  m_Name: R02_BigGrass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
