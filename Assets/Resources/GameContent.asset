@@ -68,6 +68,18 @@ MonoBehaviour:
     prefab: {fileID: 1476655717771943219, guid: e560ddd56a217254ca0fb501d3af3801, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_01/Room_01.prefab
     prefab: {fileID: 7977798513479699119, guid: 0b6759cea8266004bbd61d66f14f2454, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_02/Room_02.prefab
+    prefab: {fileID: 2908829444973478805, guid: 27c860c4c3efa154fa6019a92c0c694c, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_03/Room_03.prefab
+    prefab: {fileID: 6261565849284820463, guid: 4ad6f60bc0c733a499f9c5138f385a87, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_04/Room_04.prefab
+    prefab: {fileID: 4556510281586884367, guid: 599b435e431cd9c4aa8c15d9b9eacdd0, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_05/Room_05.prefab
+    prefab: {fileID: 7796659345266773393, guid: 578b21bb37eb9c14ab3f333291056477, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_06/Room_06.prefab
+    prefab: {fileID: 3497156527012455245, guid: eec570571f6e31443b96df9d02720500, type: 3}
+  - path: Assets/2.Model/Prefabs/Map/Room_07/Room_07.prefab
+    prefab: {fileID: 2443918875634974723, guid: 1ab6c12de5130f9488681270fea91758, type: 3}
   - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_0.prefab
     prefab: {fileID: 2373853040297401475, guid: e7dc48c797da0c54c80d9f909e3e0506, type: 3}
   - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_1.prefab
