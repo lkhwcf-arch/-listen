@@ -24,10 +24,10 @@ static class WorldChecks
         Check(b.Anchors(b.First).All(row => row.PlayerType != "A"), "B does not load A anchors");
         var local = new LocalRoomProgression(data);
         var answer = data.PuzzleSlots.Where(row => row.PuzzleId == 5001).OrderBy(row => row.Slot).Select(row => row.Answer.ToLowerInvariant()).ToArray();
-        Check(!local.Submit("A", 5001, answer), "clue role cannot solve");
-        Check(!local.Submit("B", 5002, answer), "locked puzzle cannot solve");
-        Check(!local.Submit("B", 5001, new[] { "wrong" }), "wrong answer does not unlock");
-        Check(local.Submit("B", 5001, answer), "correct answer unlocks");
+        Check(local.Submit("A", 5001, answer).Outcome == PuzzleSubmissionOutcome.Rejected, "clue role cannot solve");
+        Check(local.Submit("B", 5002, answer).Outcome == PuzzleSubmissionOutcome.Rejected, "locked puzzle cannot solve");
+        Check(local.Submit("B", 5001, new[] { "wrong" }).Outcome == PuzzleSubmissionOutcome.Incorrect, "wrong answer does not unlock");
+        Check(local.Submit("B", 5001, answer).Outcome == PuzzleSubmissionOutcome.Correct, "correct answer unlocks");
         Check(local.UnlockedRoomIds.SequenceEqual(new[] {1001,1002,1003,1004}), "old rooms remain after unlock");
         local.Submit("B", 5001, answer);
         Check(local.UnlockedRoomIds.Count == 4, "repeated solve is idempotent");
@@ -77,7 +77,7 @@ static class WorldChecks
         public Task<SessionCommandResult> QueryAsync(CancellationToken token) { PublishRooms(new[] {1001,1002}); return Ok(); }
         public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => Ok();
         public Task<SessionCommandResult> ReportSceneLoadedAsync(CancellationToken token) => Ok();
-        public Task<bool> SubmitPuzzleAsync(int id, string[] answers, CancellationToken token) => Task.FromResult(false);
+        public Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int id, string[] answers, CancellationToken token) => Task.FromResult(PuzzleSubmissionResult.FromDecision(false, false));
         public void Disconnect(SessionFailureCode reason) { }
         private Task<SessionCommandResult> Ok() => Task.FromResult(SessionCommandResult.Completed());
     }

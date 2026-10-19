@@ -9,6 +9,14 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="../../Assets/3.Script/Data/RoomExitRules.cs" Link="Data/RoomExitRules.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Runtime/*.cs" Link="Session/Runtime/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Session/ClientSessionState.cs" Link="Session/ClientSessionState.cs" />
+    <Compile Include="../../Assets/3.Script/Session/SessionCoordinator.cs" Link="Session/SessionCoordinator.cs" />
+    <Compile Include="../../Assets/3.Script/Session/SessionRequestRunner.cs" Link="Session/SessionRequestRunner.cs" />
+    <Compile Include="../../Assets/3.Script/Session/SessionCommandExecutor.cs" Link="Session/SessionCommandExecutor.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Results/*.cs" Link="Session/Results/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/3.Script/Networking/SessionDtos.cs" Link="Networking/SessionDtos.cs" />
     <Compile Include="../../Assets/3.Script/World/RoomLoadPlan.cs" Link="World/RoomLoadPlan.cs" />
     <Compile Include="../../Assets/3.Script/World/LocalRoomProgression.cs" Link="World/LocalRoomProgression.cs" />
     <Compile Include="../../Assets/3.Script/World/GameEntryService.cs" Link="World/GameEntryService.cs" />

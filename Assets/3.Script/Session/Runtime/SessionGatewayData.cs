@@ -7,9 +7,9 @@ namespace EscapeGame.Session
     internal sealed class SessionPuzzleSubmissionData
     {
         internal SessionSnapshotData Snapshot { get; }
-        internal bool Correct { get; }
-        internal SessionPuzzleSubmissionData(SessionSnapshotData snapshot, bool correct)
-        { Snapshot = snapshot; Correct = correct; }
+        internal PuzzleSubmissionResult Result { get; }
+        internal SessionPuzzleSubmissionData(SessionSnapshotData snapshot, PuzzleSubmissionResult result)
+        { Snapshot = snapshot ?? throw new ArgumentNullException(nameof(snapshot)); Result = result ?? throw new ArgumentNullException(nameof(result)); }
     }
     internal sealed class SessionPlayerData
     {

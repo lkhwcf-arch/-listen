@@ -131,7 +131,7 @@
     <column min="1" name="RoomPrefabID" type="Integer" />
     <column min="1" name="PuzzleID" type="Integer" />
     <column min="1" name="TargetMs" type="Integer" />
-    <column name="ExitRule" />
+    <column name="ExitRule" values="SolvedEach,BothSolved" />
     <column values="Y,N" name="Active" />
     <column min="0" name="Next" type="Integer" />
     <unique columns="RoomNo" />

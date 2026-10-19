@@ -72,7 +72,8 @@ namespace EscapeGame.Networking
         {
             var response = await api.SubmitPuzzleAsync(sessionId, participantToken, puzzleId, answers, token);
             EnsureSuccess(response.success, response.code);
-            return new SessionPuzzleSubmissionData(MapSnapshot(response.snapshot), response.correct);
+            return new SessionPuzzleSubmissionData(MapSnapshot(response.snapshot),
+                PuzzleSubmissionResult.FromDecision(response.accepted, response.correct));
         });
 
         private static async Task<T> ExecuteAsync<T>(Func<Task<T>> operation)

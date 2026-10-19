@@ -19,7 +19,15 @@ namespace EscapeGame.World
             Role = role;
             rooms = (role == "A" ? data.RoomsA.Cast<RoomData>() : data.RoomsB.Cast<RoomData>()).Where(room => room.Active).ToArray();
         }
-        public RoomData First => rooms.Single(room => !rooms.Any(previous => previous.Next == room.Id));
+        public RoomData First
+        {
+            get
+            {
+                var starts = rooms.Where(room => !rooms.Any(previous => previous.Next == room.Id)).ToArray();
+                if (starts.Length != 1) throw new InvalidOperationException("활성 ROOM 시작 행은 정확히 하나여야 합니다.");
+                return starts[0];
+            }
+        }
         public RoomData Find(int id) => rooms.FirstOrDefault(room => room.Id == id);
         public IReadOnlyList<AnchorData> Anchors(RoomData room) => Array.AsReadOnly(data.InteractAnchors.Cast<AnchorData>()
             .Concat(data.NonInteractAnchors).Where(anchor => anchor.Active && anchor.RoomNo == room.RoomNo &&

@@ -27,6 +27,7 @@ namespace EscapeGame.Data.CsvValidation.Rules
                         next = table.Find(next).Get("Next");
                     }
                 }
+            foreach (var table in rooms) CheckActiveChain(context, table);
             var names = new HashSet<string>(StringComparer.Ordinal);
             foreach (var table in context.Tagged(CsvTableTags.Anchor))
                 foreach (var row in table.Rows)
@@ -40,6 +41,31 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 }
             CheckPlacement(context, CsvTableTags.Arrow, "Order");
             CheckPlacement(context, CsvTableTags.Wire, "Port");
+        }
+        private static void CheckActiveChain(CsvValidationContext context, CsvValidationTable table)
+        {
+            var active = table.Rows.Where(row => row.Get("Active") == "Y").ToArray();
+            var byId = new Dictionary<string, CsvRow>(StringComparer.Ordinal);
+            foreach (var row in active)
+                if (!byId.ContainsKey(row.Get(table.Key))) byId.Add(row.Get(table.Key), row);
+            var incoming = new HashSet<string>(active.Select(row => row.Get("Next")), StringComparer.Ordinal);
+            var starts = active.Where(row => !incoming.Contains(row.Get(table.Key))).ToArray();
+            int line = active.FirstOrDefault()?.SourceLine ?? table.Rows.FirstOrDefault()?.SourceLine ?? 1;
+            if (starts.Length != 1)
+            {
+                context.Add(CsvValidationCode.RoomStartCount, table.Name, line, "Next", starts.Length.ToString(CultureInfo.InvariantCulture));
+                return;
+            }
+            var visited = new HashSet<string>(StringComparer.Ordinal);
+            string next = starts[0].Get(table.Key);
+            while (next != "0" && byId.ContainsKey(next) && visited.Add(next))
+            {
+                context.Token.ThrowIfCancellationRequested();
+                next = byId[next].Get("Next");
+            }
+            if (next != "0" || visited.Count != active.Length)
+                context.Add(CsvValidationCode.RoomDisconnected, table.Name, line, "Next",
+                    visited.Count.ToString(CultureInfo.InvariantCulture), active.Length.ToString(CultureInfo.InvariantCulture));
         }
         private static void CheckPlacement(CsvValidationContext context, string tag, string column)
         {

@@ -11,6 +11,6 @@ namespace EscapeGame.Session.Contracts
     {
         event Action<IReadOnlyList<int>> RoomsChanged;
         Task<CsvDataSet> DownloadDataAsync(CancellationToken token);
-        Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token);
+        Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token);
     }
 }

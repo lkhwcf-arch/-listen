@@ -75,18 +75,18 @@ namespace EscapeGame.Session
             return data;
         }
 
-        internal async Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
+        internal async Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
         {
-            bool correct = false;
+            PuzzleSubmissionResult result = null;
             await runner.RunAfterCurrentAsync(async ct =>
             {
                 EnsureJoined();
                 var response = await ((ISessionContentGateway)gateway).SubmitPuzzleAsync(session.SessionId, session.ParticipantToken, puzzleId, answers, ct);
                 ct.ThrowIfCancellationRequested();
                 ApplyReceived(() => session.ApplySnapshot(response.Snapshot));
-                correct = response.Correct;
+                result = response.Result;
             }, token);
-            return correct;
+            return result;
         }
 
         private void EnsureJoined()

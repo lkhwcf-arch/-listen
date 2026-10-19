@@ -4,10 +4,11 @@ const {loadGameData}=require(root+'/dist/infrastructure/data/loadGameData');
 const {GameSession}=require(root+'/dist/models/GameSession');
 const {SessionService}=require(root+'/dist/services/SessionService');
 const {ParticipantRegistry}=require(root+'/dist/services/ParticipantRegistry');
+const {MonotonicMillisecondClock}=require(root+'/dist/common/MonotonicMillisecondClock');
 const {SessionController}=require(root+'/dist/controllers/SessionController');
 const {createSessionHttpServer}=require(root+'/dist/infrastructure/http/createSessionHttpServer');
 loadGameData(root+'/data').then(data=>{
- const sessions=new SessionService(new GameSession({id:'unity-world-verification',roles:['A','B']}),new ParticipantRegistry({nowMs:()=>Date.now()},60000),data);
+ const sessions=new SessionService(new GameSession({id:'unity-world-verification',roles:['A','B']}),new ParticipantRegistry(new MonotonicMillisecondClock(),60000),data);
  const server=createSessionHttpServer(new SessionController(sessions));
  server.listen(3099,'127.0.0.1',()=>process.stdout.write('ready\n'));
 });

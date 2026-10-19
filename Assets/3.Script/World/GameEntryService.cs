@@ -85,15 +85,15 @@ namespace EscapeGame.World
                 Changed?.Invoke();
             }
         }
-        public async Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
+        public async Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
         {
             if (Data == null) throw new InvalidOperationException("게임 데이터가 등록되지 않았습니다.");
             token.ThrowIfCancellationRequested();
             if (IsLocal)
             {
-                bool correct = local.Submit(Role, puzzleId, answers);
-                if (correct) OnRoomsChanged(local.UnlockedRoomIds);
-                return correct;
+                var result = local.Submit(Role, puzzleId, answers);
+                if (result.Correct) OnRoomsChanged(local.UnlockedRoomIds);
+                return result;
             }
             else
             {

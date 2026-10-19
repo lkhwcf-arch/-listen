@@ -30,7 +30,7 @@ namespace EscapeGame.Data.CsvValidation.Contracts
         EmptyValue, Whitespace, InvalidValue, DuplicateKey, MissingRegistry,
         MissingTable, UnknownSheet, MissingReference, InactiveReference, UnregisteredTable,
         RoomMissing, RoomCycle, SlotCount, SlotRange, PuzzleRoom, InputRoom, ConsoleSlots,
-        InvalidDistance, InvalidLetters, MissingResource
+        InvalidDistance, InvalidLetters, MissingResource, RoomStartCount, RoomDisconnected
     }
 
     // 결과는 불변 값입니다. 사용자 문구는 Presentation에서 해석합니다.

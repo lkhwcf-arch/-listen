@@ -100,7 +100,7 @@ public static class WorldVerification
                 var deadline=DateTime.UtcNow.AddSeconds(10);
                 while(owner.GetComponent<SessionBootstrapper>().State.Phase!=EscapeGame.Session.Contracts.ClientSessionPhase.Playing && DateTime.UtcNow<deadline)await Task.Yield();
                 Check(owner.GetComponent<SessionBootstrapper>().State.Phase==EscapeGame.Session.Contracts.ClientSessionPhase.Playing,"ready follows world load and both clients reach Playing");
-                Check(!await owner.Service.SubmitPuzzleAsync(5001,answers,default),"server rejects clue role submit through Unity service");
+                Check((await owner.Service.SubmitPuzzleAsync(5001,answers,default)).Outcome == EscapeGame.Session.Contracts.PuzzleSubmissionOutcome.Rejected,"server rejects clue role without treating it as incorrect");
                 await Send("/sessions/"+second.sessionId+"/puzzles/5001/submit",second.participantToken,JsonUtility.ToJson(new Answers{answers=answers}));
                 deadline=DateTime.UtcNow.AddSeconds(10);
                 while(!owner.Service.UnlockedRoomIds.Contains(1003) && DateTime.UtcNow<deadline)await Task.Yield();

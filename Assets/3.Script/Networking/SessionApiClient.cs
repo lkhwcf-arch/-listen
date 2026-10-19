@@ -96,7 +96,7 @@ namespace EscapeGame.Networking
             return response;
         }
 
-        public async Task<QuerySessionResponseDto> SubmitPuzzleAsync(string sessionId, string participantToken,
+        public async Task<PuzzleSubmissionResponseDto> SubmitPuzzleAsync(string sessionId, string participantToken,
             int puzzleId, string[] answers, CancellationToken token)
         {
             ValidateParticipant(sessionId, participantToken);
@@ -104,8 +104,8 @@ namespace EscapeGame.Networking
             request.SetRequestHeader("x-participant-token", participantToken);
             request.SetRequestHeader("Content-Type", "application/json");
             request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(new PuzzleSubmissionDto { answers = answers })));
-            var response = await SendAndReadAsync<QuerySessionResponseDto>(request, token);
-            SessionResultValidator.ValidateQuery(request.responseCode, response);
+            var response = await SendAndReadAsync<PuzzleSubmissionResponseDto>(request, token);
+            SessionResultValidator.ValidatePuzzleSubmission(request.responseCode, response);
             return response;
         }
 

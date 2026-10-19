@@ -46,7 +46,7 @@ ID·순서·시간은 정수, Y/N은 bool, 비어 있는 선택 숫자는 nullab
 |---|---|
 | Schema | 필수/미등록 컬럼·빈 값·자료형·범위·키 중복 |
 | Reference | REGISTRY·테이블/ID 참조·활성 대상 관계 |
-| Room | A/B 방·ALL 앵커·Next 연결·순환 |
+| Room | A/B 방·ALL 앵커·Next 순환·시작점 1개·전체 활성 방 연결 |
 | Puzzle | Solver/Clue·입력 앵커·슬롯 수/범위·콘솔 관계 |
 | ValueRelation | 카드·순서·포트·설정·사운드 관계 |
 | Resource | 선택적인 Unity 프리팹·AudioClip 경로 확인 |
@@ -68,4 +68,4 @@ Set-Location Tools/CsvValidation.Tests
 dotnet run -- ../..
 ```
 
-.NET 8 SDK에서 CSV 규칙·등록/취소/캐시·23개 타입·2,861개 셀·입장/방 선택을 포함한 96개 검사를 실행합니다. Unity Play와 실제 HTTP 검사는 루트 README의 `Tools/WorldPlayVerification` 안내를 따릅니다.
+.NET 8 SDK용 검사 프로젝트는 CSV 규칙·등록/취소/캐시·23개 타입·2,861개 셀·입장/방 선택과 콘텐츠 회귀 검사를 포함합니다. 기존 96개에 27개를 추가해 총 123개이며, 이번에는 설치된 .NET 10 SDK의 임시 프로젝트에서 동일 소스를 실행했습니다. ExitRule은 SolvedEach/BothSolved만 허용하고 활성 방은 시작점 하나에서 모두 연결되어야 합니다. Unity Play와 실제 HTTP 검사는 루트 README의 `Tools/WorldPlayVerification` 안내를 따릅니다.

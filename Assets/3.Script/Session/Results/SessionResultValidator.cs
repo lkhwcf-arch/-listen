@@ -32,6 +32,14 @@ namespace EscapeGame.Networking
             ValidateSnapshotResponse(status, response.success, response.snapshot, response.code);
         }
 
+        public static void ValidatePuzzleSubmission(long status, PuzzleSubmissionResponseDto response)
+        {
+            if (response == null) throw new InvalidOperationException("퍼즐 제출 응답이 없습니다.");
+            ValidateSnapshotResponse(status, response.success, response.snapshot, response.code);
+            if (status == 200)
+                EscapeGame.Session.Contracts.PuzzleSubmissionResult.FromDecision(response.accepted, response.correct);
+        }
+
         public static void ValidateLeave(long status, LeaveResponseDto response)
         {
             if (response == null) throw new InvalidOperationException("퇴장 응답이 없습니다.");

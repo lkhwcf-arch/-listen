@@ -29,6 +29,8 @@ namespace EscapeGame.Data.CsvValidation.Presentation
                 CsvValidationCode.UnregisteredTable => "REGISTRY에 등록되지 않은 CSV입니다.",
                 CsvValidationCode.RoomMissing => "해당 플레이어의 방에 RoomNo가 없습니다.",
                 CsvValidationCode.RoomCycle => "다음 방 연결에 자기 참조 또는 순환이 있습니다.",
+                CsvValidationCode.RoomStartCount => "활성 방의 시작점은 정확히 하나여야 합니다. 발견 수:",
+                CsvValidationCode.RoomDisconnected => "활성 방이 시작점부터 마지막 방까지 하나로 연결되지 않았습니다. 도달/전체:",
                 CsvValidationCode.SlotCount => "퍼즐 슬롯 수와 실제 슬롯 개수가 다릅니다. 선언/실제:",
                 CsvValidationCode.SlotRange => "슬롯 번호가 1부터 선언된 슬롯 수까지의 범위를 벗어났습니다.",
                 CsvValidationCode.PuzzleRoom => "방의 PuzzleID 또는 역할이 퍼즐과 맞지 않습니다.",

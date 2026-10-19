@@ -49,9 +49,18 @@ namespace EscapeGame.Networking
     }
 
     [Serializable]
+    internal sealed class PuzzleSubmissionResponseDto
+    {
+        public bool success;
+        public bool accepted;
+        public bool correct;
+        public SessionSnapshotDto snapshot;
+        public string code;
+    }
+
+    [Serializable]
     internal sealed class QuerySessionResponseDto
     {
-        public bool correct;
         public bool success;
         public SessionSnapshotDto snapshot;
         public string code;

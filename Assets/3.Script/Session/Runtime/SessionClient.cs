@@ -34,13 +34,13 @@ namespace EscapeGame.Session
             if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
             return data;
         }
-        public async Task<bool> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
+        public async Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
         {
-            bool correct = false;
-            var result = await ExecuteAsync(async ct => correct = await RequireCoordinator().SubmitPuzzleAsync(puzzleId, answers, ct), token, true);
+            PuzzleSubmissionResult submission = null;
+            var result = await ExecuteAsync(async ct => submission = await RequireCoordinator().SubmitPuzzleAsync(puzzleId, answers, ct), token, true);
             if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
             if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
-            return correct;
+            return submission;
         }
 
         public event Action<SessionInfo> StateChanged;

@@ -106,7 +106,7 @@ CSV는 **UTF-8, 쉼표 구분, 첫 번째 비어 있지 않은 레코드가 헤�
 
 스키마 원본은 [CsvValidationRules.xml](Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml)입니다. 공통 방·앵커 profile을 재사용하고 시트 이름·컬럼 형식·참조 대상과 게임 관계 검사를 분리합니다. 서버는 대응 규칙을 `CsvSchema.ts`로 정의하므로 규칙 변경 시 양쪽을 맞춰 검사해야 합니다.
 
-검사 범위는 CSV 문법·UTF-8, 필수/미등록 컬럼, 자료형·범위·Y/N, 키 중복, REGISTRY·테이블 참조, Next 순환, ROOM/ANCHOR 공통 ID 영역, Solver/Clue·입력 앵커 관계, 슬롯 수·순서, 사운드·설정값 관계입니다. 선택적인 Unity 리소스 경로 검사는 Editor 어댑터가 수행하며 미발견을 경고합니다. 런타임은 필요한 앵커·프리팹이 없으면 해당 방 로드를 완료하지 않습니다.
+검사 범위는 CSV 문법·UTF-8, 필수/미등록 컬럼, 자료형·범위·Y/N, 키 중복, REGISTRY·테이블 참조, Next 순환·활성 방 시작점 1개·전체 활성 방 연결, ExitRule 허용값(SolvedEach/BothSolved), ROOM/ANCHOR 공통 ID 영역, Solver/Clue·입력 앵커 관계, 슬롯 수·순서, 사운드·설정값 관계입니다. 선택적인 Unity 리소스 경로 검사는 Editor 어댑터가 수행하며 미발견을 경고합니다. 런타임은 필요한 앵커·프리팹이 없으면 해당 방 로드를 완료하지 않습니다.
 
 23개 모델은 `AnchorInteractData`, `AnchorNonInteractData`, `RoomAData`, `RoomBData`, `ArrowData`, `CardData`, `CharacterStatData`, `ColorLetterData`, `ComponentData`, `ConsoleData`, `FormulaData`, `FrameData`, `GameConfigData`, `LockData`, `PaperData`, `PrefabData`, `PuzzleData`, `PuzzleSlotData`, `RegistryData`, `SoundData`, `SoundLinkData`, `TvData`, `WireData`입니다. 공통 필드와 변환은 `RoomData`, `AnchorData`, `CsvRowReader`로 재사용합니다.
 
@@ -117,8 +117,11 @@ ID·순서·ms는 정수, Y/N은 bool로 변환합니다. 정답·표시값은 �
 CsvGameData data = flow.Service.Data;
 var anchors = data.InteractAnchors;
 
-// 퍼즐 입력 기능이 연결할 공통 진입점입니다. 정답 여부를 반환합니다.
-bool correct = await flow.Service.SubmitPuzzleAsync(puzzleId, answers, token);
+// using EscapeGame.Session.Contracts;
+// 퍼즐 입력 기능이 연결할 공통 진입점입니다.
+PuzzleSubmissionResult result = await flow.Service.SubmitPuzzleAsync(puzzleId, answers, token);
+// result.Outcome: Rejected=0(제출 거절), Incorrect=1(오답), Correct=2(정답)
+// 통신 실패·취소는 예외 경로로 전달됩니다.
 ```
 
 **Tools → CSV → 검사기**는 처음 검사할 때 파일을 읽습니다. **메모리 데이터 검사**는 같은 원본을 재검사하며, 파일 수정 후에는 **CSV 다시 읽고 검사**를 사용합니다. 결과의 파일·행·컬럼·원인을 검색·복사할 수 있습니다.
@@ -134,7 +137,7 @@ bool correct = await flow.Service.SubmitPuzzleAsync(puzzleId, answers, token);
 
 Ingame의 R01_Surface 아래 **R01_모델_Anchor**에 기존 앵커를 묶고, 다이얼 테이블 이름을 CSV의 `R01_Dial_table_Anchor`와 맞췄습니다. 바닥·벽·기본 구조는 이미 Surface에 들어 있어 `RoomSceneView`의 명시적인 embedded 바인딩으로 재사용합니다. R01 연결 행은 **A 8개 / B 14개**이며 재사용한 구조도 포함합니다.
 
-서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 Next를 누적 해금합니다. Next=0이면 추가 방이 없습니다.
+서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 Next를 누적 해금합니다. Next=0이면 추가 방이 없습니다. ExitRule은 `RoomExitRules`에서 공통 해석하며 알 수 없는 값은 검증과 런타임에서 차단합니다. 활성 방은 시작점 하나에서 모두 연결되어야 하며, 비활성 방으로 끊긴 연결도 허용하지 않습니다.
 
 **R02 이후 콘텐츠를 추가할 때**:
 
@@ -170,7 +173,7 @@ Set-Location Tools/CsvValidation.Tests
 dotnet run -- ../..
 ```
 
-CSV 규칙 26 + 메모리 파이프라인 27 + 타입 변환 26 + 방/입장 17 = **96개 통과**입니다. 실제 CSV 23개와 2,861개 셀을 검사합니다.
+기존 96개 + 콘텐츠 회귀 검사 27개 = **123개 통과**입니다. 실제 CSV 23개와 2,861개 셀을 검사합니다. 추가 검사는 잘못된 방 연결·ExitRule·제출 결과 3종·통신 실패/취소 구분을 확인합니다. 이번 환경에는 .NET 8 SDK가 없어 동일 소스의 임시 net10 프로젝트에서 실행했으며, 별도로 Unity 6.2 .NET Standard 2.1 참조 컴파일도 통과했습니다.
 
 별도 임시 Unity 프로젝트에서 Play 검사를 실행합니다. 원본 씬을 덮어쓰지 않고 결과·로그를 `Temp/WorldPlayVerification`에 보관합니다.
 
@@ -185,7 +188,7 @@ CSV 규칙 26 + 메모리 파이프라인 27 + 타입 변환 26 + 방/입장 17 
 
 NodePath는 Node.js 24 이상, UnityPath는 설치된 Unity 실행 파일을 지정합니다. 기본 UnityPath는 위 Unity 버전의 Windows 설치 경로입니다. 서버 포함 검사는 임시 포트 **3099**를 사용합니다.
 
-R01 A/B 바인딩 수, 동일 데이터 주입, 반복 스냅샷, 미완성 R02 유지, 가상 후속 방 추가, 실제 서버 CSV 수신·ready·상대 해금 이벤트까지 **33개 통과**했습니다. 임시 프로젝트는 게임 모듈과 Unity 내장 모듈 중심이며 실제 빌드의 UI·렌더링·Vivox·음성 장치 검사는 별도입니다.
+기존 검증 기록에는 R01 A/B 바인딩 수, 동일 데이터 주입, 반복 스냅샷, 미완성 R02 유지, 가상 후속 방 추가, 실제 서버 CSV 수신·ready·상대 해금 이벤트 **33개 통과**가 있습니다. 이번 수정 후 Play 재검증은 Unity 라이선스 클라이언트 연결 실패로 실행하지 못했으므로, 위 기록을 이번 수정의 Play 통과로 해석하지 않습니다. 임시 프로젝트는 게임 모듈과 Unity 내장 모듈 중심이며 실제 빌드의 UI·렌더링·Vivox·음성 장치 검사는 별도입니다.
 
 ## 8. 도식과 추가 문서
 
