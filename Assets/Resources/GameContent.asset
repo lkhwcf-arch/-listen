@@ -56,3 +56,33 @@ MonoBehaviour:
     prefab: {fileID: 4998116800349599745, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
     prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_A_Chair.prefab
+    prefab: {fileID: 1288159639495150889, guid: 469800f6f039a3e45b65d1344c8f8e43, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_A_Light.prefab
+    prefab: {fileID: 8192354312488504291, guid: f019bf4de7d31c74ca81a2c61fa55a9d, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_A_Table.prefab
+    prefab: {fileID: 8713027772761716878, guid: 790db61ca74651e43ba89bb79d267acc, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_BigGrass.prefab
+    prefab: {fileID: 8492463631510908357, guid: e40165c74519419438ee777396aef2e4, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_BlackFrame.prefab
+    prefab: {fileID: 2691520453638416691, guid: 39516ab18b4cd2e489763f3afcdd8f5d, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_BlueFrame.prefab
+    prefab: {fileID: 1622178547027086804, guid: 730d089bcd1eaff48886c8bbbe02b012, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_GrayFrame.prefab
+    prefab: {fileID: 5146980852969546029, guid: 0be21e3fa048c9d488bf7d9cfb598dc6, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_GreenFrame.prefab
+    prefab: {fileID: 5428066499726097969, guid: f3cda76ef207cfa44b5c6ad67dfce26a, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_MintFrame.prefab
+    prefab: {fileID: 2053182637457986325, guid: 6ce8a634f91b2f84b9b988105f45c3a1, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_NavyFrame.prefab
+    prefab: {fileID: 2713486841514913841, guid: 4fbfc47771194774db615cd8153365ca, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_OrangeFrame.prefab
+    prefab: {fileID: 5124996203590465221, guid: f5605d49ffb5cd5459bb1a6237f641fe, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_PuppleFrame.prefab
+    prefab: {fileID: 7762976591918682952, guid: 49359d124a19409459c7f974b26c1dcd, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_RedFrame.prefab
+    prefab: {fileID: 4152342278825486752, guid: 959c01f9d5cbf5c43a99c80c15a9ab09, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_SmallGrass.prefab
+    prefab: {fileID: 6418587642678274740, guid: a9317a2c16663b640aa09a0ad57594b9, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_YellowFrame.prefab
+    prefab: {fileID: 7588112263251202265, guid: c40b772067702e0408b83dfcd126efba, type: 3}
