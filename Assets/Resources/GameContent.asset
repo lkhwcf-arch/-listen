@@ -51,12 +51,8 @@ MonoBehaviour:
   - path: Assets/2.Model/Prefabs/Map/Room_06/Room_06.prefab
     prefab: {fileID: 3497156527012455245, guid: eec570571f6e31443b96df9d02720500, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Door.prefab
-    prefab: {fileID: 1238028231227275465, guid: 107150da3f4c12b41a4ad9e5d83716b8, type: 3}
+    prefab: {fileID: 8122939794980265923, guid: 107150da3f4c12b41a4ad9e5d83716b8, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_FloorCard.prefab
-    prefab: {fileID: 137821740748894801, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
+    prefab: {fileID: 4998116800349599745, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
-    prefab: {fileID: 1568564019875952849, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_Other.prefab
-    prefab: {fileID: 2056953476137899727, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
-  - path: Assets/2.Model/Prefabs/R01/R01_Surface.prefab
-    prefab: {fileID: 7542745130549833473, guid: fce794fde35b2494485c955c35a87c45, type: 3}
+    prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
