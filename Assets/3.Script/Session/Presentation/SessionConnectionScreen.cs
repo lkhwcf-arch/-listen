@@ -1,4 +1,5 @@
 using EscapeGame.Session.Contracts;
+using EscapeGame.Configuration;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -14,24 +15,40 @@ namespace EscapeGame.Session.Presentation
         private EscapeGame.World.GameEntryPresenter entryPresenter;
         private CancellationTokenSource lifetime;
 
-        private void OnEnable()
+        private async void OnEnable()
         {
-            if (view == null)
-                view = GetComponent<SessionConnectionView>();
-
+            if (view == null) view = GetComponent<SessionConnectionView>();
             if (bootstrapper == null || view == null)
                 throw new InvalidOperationException("접속 화면에 Bootstrapper와 View를 연결하세요.");
-
             view.ValidateConfiguration();
             lifetime = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, bootstrapper.destroyCancellationToken);
-            var flow = bootstrapper.GetComponent<EscapeGame.World.GameFlowBootstrapper>();
-            if (flow != null)
+            var activation = lifetime;
+            try
             {
-                entryPresenter = new EscapeGame.World.GameEntryPresenter(flow.Service, view, lifetime.Token);
-                return;
+                var settings = UnityClientConnectionConfig.Load();
+                view.ConfigureServer(settings.ServerBaseUrl, Application.isEditor || Debug.isDebugBuild);
+                var flow = bootstrapper.GetComponent<EscapeGame.World.GameFlowBootstrapper>();
+                if (flow != null)
+                {
+                    entryPresenter = new EscapeGame.World.GameEntryPresenter(flow.Service, view, settings, activation.Token);
+                    await entryPresenter.StartAsync();
+                }
+                else
+                {
+                    presenter = new SessionConnectionPresenter(bootstrapper.Service, view, settings, activation.Token);
+                    presenter.ErrorObserved += OnErrorObserved;
+                    await presenter.StartAsync();
+                }
             }
-            presenter = new SessionConnectionPresenter(bootstrapper.Service, view, lifetime.Token);
-            presenter.ErrorObserved += OnErrorObserved;
+            catch (OperationCanceledException) { }
+            catch (Exception error)
+            {
+                if (ReferenceEquals(lifetime, activation) && !activation.IsCancellationRequested)
+                {
+                    Debug.LogError(error.Message);
+                    view.ShowConfigurationError(error.Message);
+                }
+            }
         }
         private void OnDisable()
         {
@@ -47,7 +64,6 @@ namespace EscapeGame.Session.Presentation
             lifetime = null;
             presenter = null;
         }
-        private void OnErrorObserved(SessionFailureCode code) =>
-            Debug.LogWarning($"접속 화면 요청 오류: {code}");
+        private void OnErrorObserved(SessionFailureCode code) => Debug.LogWarning($"접속 화면 요청 오류: {code}");
     }
 }

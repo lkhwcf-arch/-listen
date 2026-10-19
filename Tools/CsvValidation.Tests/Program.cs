@@ -64,3 +64,5 @@ await MemoryPipelineChecks.Run(root, original, catalogXml);
 await TypedTableChecks.Run(root, original, catalogXml);
 await WorldChecks.Run(original, catalogXml);
 await ContentRegressionChecks.Run(original, catalogXml);
+
+await ConnectionConfigurationChecks.Run(root, original, catalogXml);

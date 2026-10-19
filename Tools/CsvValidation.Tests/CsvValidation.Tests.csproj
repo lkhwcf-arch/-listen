@@ -9,6 +9,13 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="../../Assets/3.Script/Common/Networking/*.cs" />
+    <Compile Include="../../Assets/3.Script/Configuration/*.cs" />
+    <Compile Include="../../Assets/3.Script/World/GameEntryPresenter.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Presentation/ISessionConnectionView.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Presentation/SessionConnectionPresentation.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Presentation/SessionConnectionPresenter.cs" />
+    <Compile Include="../../Assets/3.Script/Session/Presentation/SessionErrorMessages.cs" />
     <Compile Include="../../Assets/3.Script/Data/RoomExitRules.cs" Link="Data/RoomExitRules.cs" />
     <Compile Include="../../Assets/3.Script/Session/Runtime/*.cs" Link="Session/Runtime/%(Filename)%(Extension)" />
     <Compile Include="../../Assets/3.Script/Session/ClientSessionState.cs" Link="Session/ClientSessionState.cs" />
