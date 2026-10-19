@@ -78,8 +78,6 @@ MonoBehaviour:
     prefab: {fileID: 7796659345266773393, guid: 578b21bb37eb9c14ab3f333291056477, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_06/Room_06.prefab
     prefab: {fileID: 3497156527012455245, guid: eec570571f6e31443b96df9d02720500, type: 3}
-  - path: Assets/2.Model/Prefabs/Map/Room_07/Room_07.prefab
-    prefab: {fileID: 2443918875634974723, guid: 1ab6c12de5130f9488681270fea91758, type: 3}
   - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_0.prefab
     prefab: {fileID: 2373853040297401475, guid: e7dc48c797da0c54c80d9f909e3e0506, type: 3}
   - path: Assets/2.Model/Prefabs/R01/PZ_R1_B_Dial_1.prefab
