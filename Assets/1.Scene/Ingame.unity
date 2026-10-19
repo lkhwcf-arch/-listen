@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372193019}
   m_Layer: 0
-  m_Name: R01
+  m_Name: R01_MAP_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927148840}
   m_Layer: 0
-  m_Name: Character_Spawn
+  m_Name: R1A_SPAWN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946086530447757237, guid: f46eb60aaa9b12d45a0f38fe0a2e517e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
