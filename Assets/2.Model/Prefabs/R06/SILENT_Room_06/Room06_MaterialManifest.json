@@ -1555,19 +1555,15 @@
     },
     {
       "path": "Models/SILENT_Room_06_A_Objects.fbx",
-      "size_bytes": 350124
+      "size_bytes": 323628
     },
     {
       "path": "Models/SILENT_Room_06_B_Objects.fbx",
-      "size_bytes": 55932
+      "size_bytes": 22637404
     },
     {
       "path": "Models/SILENT_Room_06_A_Puzzle.fbx",
       "size_bytes": 434268
-    },
-    {
-      "path": "Models/SILENT_Room_06_B_TV.fbx",
-      "size_bytes": 22569628
     },
     {
       "path": "Textures/Metal_plate_BaseColor.jpg",
@@ -1652,237 +1648,6 @@
       "uv0": "automap",
       "materials": [
         "Plastic cable"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing.001",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser.001",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing.002",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser.002",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing.003",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser.003",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing.004",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser.004",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling lamp housing.005",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling lamp diffuser.005",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 warm fluorescent"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.001",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.002",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.003",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.004",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.005",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.006",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.007",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "A ceiling acoustic baffle.008",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
       ]
     },
     {
@@ -1986,23 +1751,6 @@
       ]
     },
     {
-      "name": "Room_06_A_Objects_Merged",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 4837,
-      "polygons": 6865,
-      "uv0": "R6_PreservedUV",
-      "materials": [
-        "R4 R6 charcoal powdercoat",
-        "R4 R6 aged nickel",
-        "R4 R6 rubber",
-        "R4 R6 warm printed lettering",
-        "R4 R6 enamel cobalt",
-        "R4 V13 machined steel",
-        "R4 V13 recess"
-      ]
-    },
-    {
       "name": "Ceiling.012",
       "parent": null,
       "source_type": "MESH",
@@ -2011,105 +1759,6 @@
       "uv0": "automap",
       "materials": [
         "Plastic cable"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.001",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.002",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.003",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.004",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.005",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.006",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.007",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
-      ]
-    },
-    {
-      "name": "B ceiling acoustic baffle.008",
-      "parent": null,
-      "source_type": "MESH",
-      "vertices": 56,
-      "polygons": 108,
-      "uv0": null,
-      "materials": [
-        "R4 R6 charcoal powdercoat"
       ]
     },
     {
@@ -2141,13 +1790,34 @@
       ]
     },
     {
-      "name": "Room_06_B_TV_Merged",
+      "name": "Room_06_A_Objects_Merged",
       "parent": null,
-      "source_type": "MESH",
-      "vertices": 329964,
-      "polygons": 638036,
+      "vertices": 6013,
+      "polygons": 9133,
       "uv0": "R6_PreservedUV",
       "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "Room_06_B_Objects_Merged",
+      "parent": null,
+      "vertices": 330468,
+      "polygons": 639008,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
         "tripo_mat_795d782f",
         "tripo_mat_795d782f.001",
         "tripo_mat_795d782f.002",
@@ -2159,12 +1829,7 @@
         "tripo_mat_795d782f.008",
         "tripo_mat_795d782f.009",
         "tripo_mat_795d782f.010",
-        "tripo_mat_795d782f.011",
-        "R4 R6 charcoal powdercoat",
-        "R6 SCREEN - map to URP Unlit",
-        "R4 R6 rubber",
-        "R6 SCREEN white phosphor",
-        "R6 subtle scanline"
+        "tripo_mat_795d782f.011"
       ]
     }
   ],
@@ -2264,10 +1929,11 @@
     }
   ],
   "notes": [
-    "Original Room 06 blend untouched; A/B merged walls/floors, ceilings and TV geometry preserved.",
+    "Revision 2: A static objects 22 meshes merged into one; B static baffles and TV 10 meshes merged into one.",
+    "Structures, ceilings, puzzle FBX, texture bytes and material channel settings remain unchanged.",
+    "TV markers remain Empty objects parented to the single B object mesh.",
     "31 Blender lights and two review cameras excluded. Lamp meshes/emission retained.",
     "Five alphabet dials and shackle animation preserved; hidden reward text remains excluded as in source rendering.",
-    "12 TV position markers and parent hierarchy preserved. TV glyphs were already merged in the source.",
     "Three pure-emission screen materials mapped to URP Unlit; other materials mapped to URP Lit.",
     "Mineral-wall normal baked with the original frozen Generated coordinates and surface UV atlas.",
     "Original image resolution, render UV, evaluated modifiers, triangulation and corner normals preserved.",
@@ -2284,7 +1950,7 @@
   "tv_markers": [
     {
       "name": "PZ_R6_B_TV_08",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2316,12 +1982,12 @@
         "Letter": "D",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_03",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2353,12 +2019,12 @@
         "Letter": "S",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_11",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2390,12 +2056,12 @@
         "Letter": "N",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_06",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2427,12 +2093,12 @@
         "Letter": "E",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_01",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2464,12 +2130,12 @@
         "Letter": "I",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_09",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           1.0,
@@ -2501,12 +2167,12 @@
         "Letter": "P",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_05",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2538,12 +2204,12 @@
         "Letter": "N",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_10",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2575,12 +2241,12 @@
         "Letter": "E",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_02",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2612,12 +2278,12 @@
         "Letter": "T",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_12",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2649,12 +2315,12 @@
         "Letter": "S",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_07",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2686,12 +2352,12 @@
         "Letter": "B",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     },
     {
       "name": "PZ_R6_B_TV_04",
-      "parent": "Room_06_B_TV_Merged",
+      "parent": "Room_06_B_Objects_Merged",
       "matrix": [
         [
           -1.0,
@@ -2723,7 +2389,7 @@
         "Letter": "L",
         "Flip": "N",
         "RuntimeRandomized": "True",
-        "GeometryObject": "Room_06_B_TV_Merged"
+        "GeometryObject": "Room_06_B_Objects_Merged"
       }
     }
   ],
@@ -2732,8 +2398,7 @@
     "Models/SILENT_Room_06_B_Structure.fbx",
     "Models/SILENT_Room_06_A_Objects.fbx",
     "Models/SILENT_Room_06_B_Objects.fbx",
-    "Models/SILENT_Room_06_A_Puzzle.fbx",
-    "Models/SILENT_Room_06_B_TV.fbx"
+    "Models/SILENT_Room_06_A_Puzzle.fbx"
   ],
   "source_types": {
     "Ceiling.005": "MESH",
@@ -3100,6 +2765,1035 @@
   },
   "uv_mapping_adjustments": [],
   "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.005",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          -10.5,
+          -2.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_Shackle",
+      "vertices": 344,
+      "materials": [
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          78.06800079345703,
+          78.13199615478516
+        ],
+        [
+          -8.917000770568848,
+          -8.282999992370605
+        ],
+        [
+          1.350000023841858,
+          1.7070000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_0",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.390501022338867,
+          -8.297500610351562
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_1",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.518500328063965,
+          -8.42549991607666
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_2",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.646500587463379,
+          -8.553500175476074
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_3",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.774500846862793,
+          -8.681500434875488
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_4",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.90250015258789,
+          -8.809499740600586
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_WallsFloor_Merged",
+      "vertices": 477860,
+      "materials": [
+        "tripo_mat_075bce52.008",
+        "tripo_mat_075bce52.009",
+        "tripo_mat_075bce52.010",
+        "tripo_mat_075bce52.011",
+        "tripo_mat_075bce52.012",
+        "tripo_mat_6187e4a4.026",
+        "tripo_mat_6187e4a4.027",
+        "tripo_mat_075bce52.013",
+        "tripo_mat_6187e4a4.028",
+        "tripo_mat_6187e4a4.029",
+        "tripo_mat_075bce52.014",
+        "tripo_mat_6187e4a4.030",
+        "tripo_mat_6187e4a4.031",
+        "tripo_mat_075bce52.015",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal",
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.12158966064453
+        ],
+        [
+          -10.614633560180664,
+          -2.5
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.012",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          2.5,
+          10.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_WallsFloor_Merged",
+      "vertices": 477300,
+      "materials": [
+        "tripo_mat_6187e4a4.021",
+        "tripo_mat_075bce52",
+        "tripo_mat_6187e4a4.022",
+        "tripo_mat_075bce52.001",
+        "tripo_mat_6187e4a4.023",
+        "tripo_mat_075bce52.002",
+        "tripo_mat_075bce52.003",
+        "tripo_mat_075bce52.004",
+        "tripo_mat_075bce52.005",
+        "tripo_mat_6187e4a4.006",
+        "tripo_mat_6187e4a4.024",
+        "tripo_mat_075bce52.006",
+        "tripo_mat_6187e4a4.025",
+        "tripo_mat_075bce52.007",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal"
+      ],
+      "bounds": [
+        [
+          70.79317474365234,
+          79.12158966064453
+        ],
+        [
+          2.4221134185791016,
+          10.510726928710938
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_Objects_Merged",
+      "vertices": 6013,
+      "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          78.86499977111816
+        ],
+        [
+          -10.224999917829145,
+          -2.7750000821708563
+        ],
+        [
+          0.045000268739824476,
+          3.9500005040853434
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_Objects_Merged",
+      "vertices": 330468,
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011"
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          78.64900207519531
+        ],
+        [
+          2.7750000821708563,
+          10.224999917829145
+        ],
+        [
+          0.11194964984679671,
+          3.9500005040853434
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Metal_plate_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Plastic_cable_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    }
+  ],
+  "revision": 2,
+  "static_merge_correction": [
+    {
+      "side": "A",
+      "name": "Room_06_A_Objects_Merged",
+      "source_mesh_count": 22,
+      "mesh_count": 1,
+      "vertices": 6013,
+      "polygons": 9133,
+      "uv0": "R6_PreservedUV",
+      "uv_layers": [
+        "R6_PreservedUV",
+        "UVMap"
+      ],
+      "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ],
+      "parent": null,
+      "records": [
+        {
+          "name": "A ceiling acoustic baffle",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 0,
+          "triangle_start": 0
+        },
+        {
+          "name": "A ceiling acoustic baffle.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 56,
+          "triangle_start": 108
+        },
+        {
+          "name": "A ceiling acoustic baffle.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 112,
+          "triangle_start": 216
+        },
+        {
+          "name": "A ceiling acoustic baffle.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 168,
+          "triangle_start": 324
+        },
+        {
+          "name": "A ceiling acoustic baffle.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 224,
+          "triangle_start": 432
+        },
+        {
+          "name": "A ceiling acoustic baffle.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 280,
+          "triangle_start": 540
+        },
+        {
+          "name": "A ceiling acoustic baffle.006",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 336,
+          "triangle_start": 648
+        },
+        {
+          "name": "A ceiling acoustic baffle.007",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 392,
+          "triangle_start": 756
+        },
+        {
+          "name": "A ceiling acoustic baffle.008",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 448,
+          "triangle_start": 864
+        },
+        {
+          "name": "A ceiling lamp diffuser",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 504,
+          "triangle_start": 972
+        },
+        {
+          "name": "A ceiling lamp diffuser.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 560,
+          "triangle_start": 1080
+        },
+        {
+          "name": "A ceiling lamp diffuser.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 616,
+          "triangle_start": 1188
+        },
+        {
+          "name": "A ceiling lamp diffuser.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 672,
+          "triangle_start": 1296
+        },
+        {
+          "name": "A ceiling lamp diffuser.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 728,
+          "triangle_start": 1404
+        },
+        {
+          "name": "A ceiling lamp diffuser.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 784,
+          "triangle_start": 1512
+        },
+        {
+          "name": "A ceiling lamp housing",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 840,
+          "triangle_start": 1620
+        },
+        {
+          "name": "A ceiling lamp housing.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 896,
+          "triangle_start": 1728
+        },
+        {
+          "name": "A ceiling lamp housing.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 952,
+          "triangle_start": 1836
+        },
+        {
+          "name": "A ceiling lamp housing.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1008,
+          "triangle_start": 1944
+        },
+        {
+          "name": "A ceiling lamp housing.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1064,
+          "triangle_start": 2052
+        },
+        {
+          "name": "A ceiling lamp housing.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1120,
+          "triangle_start": 2160
+        },
+        {
+          "name": "Room_06_A_Objects_Merged",
+          "vertices": 4837,
+          "triangles": 6865,
+          "vertex_start": 1176,
+          "triangle_start": 2268
+        }
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          -10.224999917829145,
+          0.045000268739824476
+        ],
+        [
+          78.86499977111816,
+          -2.7750000821708563,
+          3.9500005040853434
+        ]
+      ],
+      "model_file": "Models/SILENT_Room_06_A_Objects.fbx",
+      "bytes": 323628,
+      "markers": []
+    },
+    {
+      "side": "B",
+      "name": "Room_06_B_Objects_Merged",
+      "source_mesh_count": 10,
+      "mesh_count": 1,
+      "vertices": 330468,
+      "polygons": 639008,
+      "uv0": "R6_PreservedUV",
+      "uv_layers": [
+        "R6_PreservedUV",
+        "Retopo_Untitled_NewUVMap",
+        "UVMap"
+      ],
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011"
+      ],
+      "parent": null,
+      "records": [
+        {
+          "name": "B ceiling acoustic baffle",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 0,
+          "triangle_start": 0
+        },
+        {
+          "name": "B ceiling acoustic baffle.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 56,
+          "triangle_start": 108
+        },
+        {
+          "name": "B ceiling acoustic baffle.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 112,
+          "triangle_start": 216
+        },
+        {
+          "name": "B ceiling acoustic baffle.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 168,
+          "triangle_start": 324
+        },
+        {
+          "name": "B ceiling acoustic baffle.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 224,
+          "triangle_start": 432
+        },
+        {
+          "name": "B ceiling acoustic baffle.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 280,
+          "triangle_start": 540
+        },
+        {
+          "name": "B ceiling acoustic baffle.006",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 336,
+          "triangle_start": 648
+        },
+        {
+          "name": "B ceiling acoustic baffle.007",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 392,
+          "triangle_start": 756
+        },
+        {
+          "name": "B ceiling acoustic baffle.008",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 448,
+          "triangle_start": 864
+        },
+        {
+          "name": "Room_06_B_TV_Merged",
+          "vertices": 329964,
+          "triangles": 638036,
+          "vertex_start": 504,
+          "triangle_start": 972
+        }
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          2.7750000821708563,
+          0.11194964984679671
+        ],
+        [
+          78.64900207519531,
+          10.224999917829145,
+          3.9500005040853434
+        ]
+      ],
+      "model_file": "Models/SILENT_Room_06_B_Objects.fbx",
+      "bytes": 22637404,
+      "markers": [
+        {
+          "name": "PZ_R6_B_TV_01",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              75.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_02",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              77.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_03",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              75.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_04",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              77.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_05",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              73.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_06",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              73.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_07",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              75.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_08",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              73.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_09",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              77.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_10",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              75.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_11",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              77.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_12",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              73.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        }
+      ]
+    }
+  ],
+  "source_evaluated_meshes_before_static_merge": [
     {
       "name": "Ceiling.005",
       "vertices": 8,
@@ -4043,38 +4737,6 @@
           2.924631118774414
         ]
       ]
-    }
-  ],
-  "map_roundtrip_validation": [
-    {
-      "map": "Metal_plate_MetallicSmoothness.png",
-      "max_error": 7.450580596923828e-08,
-      "linear_data": true
-    },
-    {
-      "map": "Plastic_cable_MetallicSmoothness.png",
-      "max_error": 7.450580596923828e-08,
-      "linear_data": true
-    },
-    {
-      "map": "R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
-      "max_error": 7.68899917602539e-06,
-      "linear_data": true
-    },
-    {
-      "map": "tripo_mat_075bce52_MetallicSmoothness.png",
-      "max_error": 7.450580596923828e-08,
-      "linear_data": true
-    },
-    {
-      "map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
-      "max_error": 7.450580596923828e-08,
-      "linear_data": true
-    },
-    {
-      "map": "tripo_mat_795d782f_MetallicSmoothness.png",
-      "max_error": 7.450580596923828e-08,
-      "linear_data": true
     }
   ]
 }

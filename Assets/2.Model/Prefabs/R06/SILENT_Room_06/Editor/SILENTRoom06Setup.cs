@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 public static class SILENTRoom06Setup
 {
     const string Root = "Assets/SILENT_Room_06";
+    const int Revision = 2;
     static bool isBuilding;
     [InitializeOnLoadMethod]
     public static void ScheduleSetup()
@@ -20,9 +21,14 @@ public static class SILENTRoom06Setup
     {
         if(isBuilding) return;
         if(EditorApplication.isCompiling || EditorApplication.isUpdating) { EditorApplication.delayCall += SetupIfNeeded; return; }
-        if(!File.Exists(Root+"/Room06_MaterialManifest.json") || File.Exists(Root+"/Prefabs/SILENT_Room_06.prefab")) return;
+        if(!File.Exists(Root+"/Room06_MaterialManifest.json")) return;
+        if(File.Exists(Root+"/Prefabs/SILENT_Room_06.prefab") && File.Exists(Root+"/Room06_UnityValidation.json"))
+        {
+            var previous=JsonUtility.FromJson<Audit>(File.ReadAllText(Root+"/Room06_UnityValidation.json"));
+            if(previous!=null && previous.revision==Revision) return;
+        }
         var ready=JsonUtility.FromJson<Manifest>(File.ReadAllText(Root+"/Room06_MaterialManifest.json"));
-        if(ready==null || ready.files==null || ready.files.Any(f=>!File.Exists(Root+"/"+f.path))) return;
+        if(ready==null || ready.files==null || ready.revision!=Revision || ready.files.Any(f=>!File.Exists(Root+"/"+f.path) || new FileInfo(Root+"/"+f.path).Length!=f.size_bytes)) return;
         if(Shader.Find("Universal Render Pipeline/Lit")==null) { Debug.LogWarning("Room 06 requires URP. After installing URP, run Tools > SILENT > Setup Room 06 (URP)."); return; }
         try { Build(); } catch(Exception e) { Debug.LogException(e); }
     }
@@ -33,13 +39,13 @@ public static class SILENTRoom06Setup
         public bool alpha_clip, double_sided, unlit;
         public float metallic, smoothness, normal_scale, height_scale, specular;
     }
-    [Serializable] public class FileData { public string path; }
+    [Serializable] public class FileData { public string path; public long size_bytes; }
     [Serializable] public class MeshData { public string name, parent; public int polygons; }
-    [Serializable] public class Manifest { public MaterialData[] materials; public string[] model_files; public FileData[] files; public MeshData[] meshes, tv_markers; }
+    [Serializable] public class Manifest { public int revision; public MaterialData[] materials; public string[] model_files; public FileData[] files; public MeshData[] meshes, tv_markers; }
     static readonly Dictionary<string,Texture2D> textureCache=new Dictionary<string,Texture2D>();
     [Serializable] public class Audit
     {
-        public int meshRenderers, meshFilters, materials, lights, cameras, triangles, missingMaterials, missingUVs, hierarchyErrors, tvMarkers;
+        public int revision, meshRenderers, meshFilters, materials, lights, cameras, triangles, missingMaterials, missingUVs, hierarchyErrors, tvMarkers;
         public bool allShadersSupported;
         public string unityVersion, renderPipeline;
         public string[] rendererNames;
@@ -81,7 +87,7 @@ public static class SILENTRoom06Setup
         AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
         Directory.CreateDirectory(Root+"/Materials");Directory.CreateDirectory(Root+"/Prefabs");
         var data=JsonUtility.FromJson<Manifest>(File.ReadAllText(Root+"/Room06_MaterialManifest.json"));
-        foreach(var file in data.files) if(!File.Exists(Root+"/"+file.path)) throw new Exception("Copy all Room 06 package files first: "+file.path);
+        foreach(var file in data.files) if(!File.Exists(Root+"/"+file.path) || new FileInfo(Root+"/"+file.path).Length!=file.size_bytes) throw new Exception("Copy all Room 06 package files first: "+file.path);
         var shader=Shader.Find("Universal Render Pipeline/Lit");
         if(shader==null)throw new Exception("URP Lit unavailable");
         var unlitShader=Shader.Find("Universal Render Pipeline/Unlit");
@@ -147,12 +153,18 @@ public static class SILENTRoom06Setup
             foreach(var kv in mats)importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material),kv.Key),kv.Value);
             importer.SaveAndReimport();
             var model=AssetDatabase.LoadAssetAtPath<GameObject>(Root+"/"+modelPath);
+            if(modelPath.EndsWith("_A_Objects.fbx",StringComparison.Ordinal) || modelPath.EndsWith("_B_Objects.fbx",StringComparison.Ordinal))
+            {
+                var staticMeshes=model.GetComponentsInChildren<MeshFilter>(true);
+                if(staticMeshes.Length!=1 || staticMeshes[0].sharedMesh==null)
+                    throw new Exception("Room 06 static object FBX must contain exactly one mesh: "+modelPath);
+            }
             var child=(GameObject)PrefabUtility.InstantiatePrefab(model);
             child.transform.SetParent(instance.transform,false);
         }
         var renderers=instance.GetComponentsInChildren<MeshRenderer>(true);
         var meshes=instance.GetComponentsInChildren<MeshFilter>(true);
-        var audit=new Audit{meshRenderers=renderers.Length,meshFilters=meshes.Length,materials=mats.Count,lights=instance.GetComponentsInChildren<Light>(true).Length,cameras=instance.GetComponentsInChildren<Camera>(true).Length,allShadersSupported=mats.Values.All(m=>m.shader.isSupported),unityVersion=Application.unityVersion,renderPipeline=GraphicsSettings.currentRenderPipeline?.GetType().Name,rendererNames=renderers.Select(r=>r.name).ToArray()};
+        var audit=new Audit{revision=Revision,meshRenderers=renderers.Length,meshFilters=meshes.Length,materials=mats.Count,lights=instance.GetComponentsInChildren<Light>(true).Length,cameras=instance.GetComponentsInChildren<Camera>(true).Length,allShadersSupported=mats.Values.All(m=>m.shader.isSupported),unityVersion=Application.unityVersion,renderPipeline=GraphicsSettings.currentRenderPipeline?.GetType().Name,rendererNames=renderers.Select(r=>r.name).ToArray()};
         Bounds bounds=renderers[0].bounds;
         foreach(var r in renderers){bounds.Encapsulate(r.bounds);audit.missingMaterials+=r.sharedMaterials.Count(m=>m==null||!mats.Values.Contains(m));}
         foreach(var f in meshes){audit.triangles+=f.sharedMesh.triangles.Length/3;if(f.sharedMesh.uv.Length==0&&f.GetComponent<MeshRenderer>().sharedMaterials.Any(m=>m.mainTexture!=null||(m.HasProperty("_BumpMap")&&m.GetTexture("_BumpMap")!=null)||(m.HasProperty("_MetallicGlossMap")&&m.GetTexture("_MetallicGlossMap")!=null)||(m.HasProperty("_ParallaxMap")&&m.GetTexture("_ParallaxMap")!=null)))audit.missingUVs++;}
