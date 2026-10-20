@@ -130,6 +130,14 @@ MonoBehaviour:
     prefab: {fileID: 3812699556107798657, guid: 3693c0317977e00439a12e68c75ae8e4, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_Surface.prefab
     prefab: {fileID: 1410984897972358088, guid: 67020ea2e7c64ec4880b6d6526fa2b9e, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/R03_Ceiling.prefab
+    prefab: {fileID: 2924289341384922045, guid: d55e1a751ddd49d3a9bb3af060be2e57, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_A_Objects.prefab
+    prefab: {fileID: 6360090126742825279, guid: e6ca440c221840ad8b3b177678ded684, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_B_Objects.prefab
+    prefab: {fileID: 109024024339181593, guid: a8ece4fd424d4741b82552a978c584e0, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_Structure.prefab
+    prefab: {fileID: 7973185079025619643, guid: 5485ed8e8bd04f86b7288c7bc516f282, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Cable.prefab
     prefab: {fileID: 6084880904258550954, guid: 1d64a3b4e56cf334493e63328e6d3de5, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_LEDPanel.prefab
