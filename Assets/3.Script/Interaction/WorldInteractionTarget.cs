@@ -8,6 +8,7 @@ namespace EscapeGame.Interaction
     public sealed class WorldInteractionTarget : MonoBehaviour, IAnchorDataReceiver, ICloseupTarget
     {
         public AnchorData Anchor { get; private set; }
+        public CsvGameData Data { get; private set; }
         public PrefabFeaturePlan Features { get; private set; }
         public bool IsAvailable => this != null && Anchor != null && Anchor.Active && isActiveAndEnabled;
         public Color HighlightColor { get; private set; }
@@ -24,7 +25,7 @@ namespace EscapeGame.Interaction
             HighlightColor = color;
             if (!System.Linq.Enumerable.Any(GetComponentsInChildren<Collider>(true), collider => collider.enabled && !collider.isTrigger && collider.gameObject.layer != 2))
                 throw new InvalidOperationException("Interactable 프리팹에 클릭 가능한 비 Trigger Collider가 필요합니다: " + anchor.PrefabId);
-            Anchor = anchor;
+            Anchor = anchor; Data = data;
         }
     }
     public static class AnchorFeatureFactory

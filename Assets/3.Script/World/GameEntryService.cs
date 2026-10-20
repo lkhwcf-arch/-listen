@@ -11,7 +11,7 @@ using EscapeGame.Session.Contracts;
 namespace EscapeGame.World
 {
     // 데이터 소스 선택과 등록을 조정합니다. 씬 전환은 Unity 조립 지점이 주입합니다.
-    public sealed class GameEntryService : IDisposable
+    public sealed class GameEntryService : IRoomAnswerService, IDisposable
     {
         private readonly ISessionConnectionService session;
         private readonly ISessionContentService content;
@@ -141,6 +141,13 @@ namespace EscapeGame.World
             var rooms = content as ISessionRoomService ?? session as ISessionRoomService
                 ?? throw new InvalidOperationException("방 상호작용 계약이 연결되지 않았습니다.");
             return answers == null ? await rooms.CheckRoomDoorAsync(roomNo, token) : await rooms.SubmitRoomAnswerAsync(roomNo, answers, token);
+        }
+        async Task<RoomAnswerResult> IRoomAnswerService.SubmitAnswerAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(GameEntryService));
+            using var request = CancellationTokenSource.CreateLinkedTokenSource(token, ownerToken);
+            try { return RoomAnswerResult.Decision(await SubmitRoomAnswerAsync(roomNo, answers, request.Token)); }
+            catch (EscapeGame.Session.SessionResultException error) { return RoomAnswerResult.Failed(error.Code); }
         }
         private void OnSessionStateChanged(SessionInfo state)
         { if (!IsLocal && !state.IsJoined) roomPermissions.Reset(); }
