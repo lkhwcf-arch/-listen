@@ -108,6 +108,14 @@ MonoBehaviour:
     prefab: {fileID: 7588112263251202265, guid: c40b772067702e0408b83dfcd126efba, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_BigGrass.prefab
     prefab: {fileID: 8492463631510908357, guid: e40165c74519419438ee777396aef2e4, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_Ceiling.prefab
+    prefab: {fileID: 6757279924745895227, guid: 46be19f28aae4dbca03f6a951b05b54e, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_A_Objects.prefab
+    prefab: {fileID: 1936810152016759318, guid: 34e1bbe6c144c29488e69ea7a6272de0, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_B_Objects.prefab
+    prefab: {fileID: 1969157609269727121, guid: 8375e48bf9f860145a69f2946c52edb4, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_Structure.prefab
+    prefab: {fileID: 3246392115241737104, guid: 5bc7fe6601fb3734fb11eb13a776568d, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_A_ArrowHint.prefab
     prefab: {fileID: 7894645164500779977, guid: 21eaf95b1f089d34686875b913f0a245, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_LEDPanel.prefab
