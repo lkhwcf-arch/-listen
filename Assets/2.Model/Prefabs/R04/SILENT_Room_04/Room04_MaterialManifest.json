@@ -1,0 +1,1317 @@
+{
+  "source_file": "SILENT_Room_04_AB_Merged_NoDoors.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Black Painted Wood",
+      "file_name": "Black_Painted_Wood",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5999999940395355,
+      "base_map": "Black_Painted_Wood_BaseColor.png",
+      "metallic_smoothness_map": "Black_Painted_Wood_MetallicSmoothness.png",
+      "normal_map": "Black_Painted_Wood_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Concrete wall",
+      "file_name": "Concrete_wall",
+      "base_color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Metal panel",
+      "file_name": "Metal_panel",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Metal_panel_BaseColor.jpg",
+      "metallic_smoothness_map": "Metal_panel_MetallicSmoothness.png",
+      "normal_map": "Metal_panel_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Metal_panel_Height.tif",
+      "height_scale": 0.004999999888241291,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH",
+      "reference_specular_ior_map": "Metal_panel_SpecularIOR_Reference.jpg"
+    },
+    {
+      "name": "Metal plate",
+      "file_name": "Metal_plate",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Metal_plate_BaseColor.jpg",
+      "metallic_smoothness_map": "Metal_plate_MetallicSmoothness.png",
+      "normal_map": "Metal_plate_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Metal_plate_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BUMP"
+    },
+    {
+      "name": "R4 R43 nickel",
+      "file_name": "R4_R43_nickel",
+      "base_color": [
+        0.3199999928474426,
+        0.36000001430511475,
+        0.3499999940395355,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 graphite metal",
+      "file_name": "R4_V13_graphite_metal",
+      "base_color": [
+        0.041999999433755875,
+        0.052000001072883606,
+        0.054999999701976776,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.6200000047683716,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 cyan light",
+      "file_name": "R4_cyan_light",
+      "base_color": [
+        0.03999999910593033,
+        0.800000011920929,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.1599999964237213,
+        3.200000047683716,
+        4.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 fasteners",
+      "file_name": "R4_fasteners",
+      "base_color": [
+        0.3199999928474426,
+        0.3700000047683716,
+        0.38999998569488525,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.7299999892711639,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 gunmetal",
+      "file_name": "R4_gunmetal",
+      "base_color": [
+        0.054999999701976776,
+        0.07500000298023224,
+        0.08500000089406967,
+        1.0
+      ],
+      "metallic": 0.699999988079071,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 rubber cables",
+      "file_name": "R4_rubber_cables",
+      "base_color": [
+        0.012000000104308128,
+        0.01899999938905239,
+        0.023000000044703484,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Sci-Fi Tech Grid Panels",
+      "file_name": "Sci-Fi_Tech_Grid_Panels",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Sci-Fi_Tech_Grid_Panels_BaseColor.jpg",
+      "metallic_smoothness_map": "Sci-Fi_Tech_Grid_Panels_MetallicSmoothness.png",
+      "normal_map": "Sci-Fi_Tech_Grid_Panels_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "Sci-Fi_Tech_Grid_Panels_Height.jpg",
+      "height_scale": 0.03999999910593033,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BUMP"
+    },
+    {
+      "name": "Sci-fi Cables",
+      "file_name": "Sci-fi_Cables",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Sci-fi_Cables_BaseColor.tga",
+      "metallic_smoothness_map": "Sci-fi_Cables_MetallicSmoothness.png",
+      "normal_map": "Sci-fi_Cables_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "Sci-fi_Cables_Height.tga",
+      "height_scale": 0.019999999552965164,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "Stucco wall",
+      "file_name": "Stucco_wall",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Stucco_wall_BaseColor.jpg",
+      "metallic_smoothness_map": "Stucco_wall_MetallicSmoothness.png",
+      "normal_map": "Stucco_wall_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "Stucco_wall_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "tripo_mat_6e1f08b9",
+      "file_name": "tripo_mat_6e1f08b9",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.001",
+      "file_name": "tripo_mat_6e1f08b9_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.002",
+      "file_name": "tripo_mat_6e1f08b9_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.003",
+      "file_name": "tripo_mat_6e1f08b9_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.004",
+      "file_name": "tripo_mat_6e1f08b9_004",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.005",
+      "file_name": "tripo_mat_6e1f08b9_005",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.006",
+      "file_name": "tripo_mat_6e1f08b9_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.007",
+      "file_name": "tripo_mat_6e1f08b9_007",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.008",
+      "file_name": "tripo_mat_6e1f08b9_008",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.009",
+      "file_name": "tripo_mat_6e1f08b9_009",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.010",
+      "file_name": "tripo_mat_6e1f08b9_010",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6e1f08b9.011",
+      "file_name": "tripo_mat_6e1f08b9_011",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6e1f08b9_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6e1f08b9_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_04_Structure.fbx",
+      "size_bytes": 50172
+    },
+    {
+      "path": "Models/SILENT_Room_04_A_Objects.fbx",
+      "size_bytes": 18352812
+    },
+    {
+      "path": "Models/SILENT_Room_04_B_Objects.fbx",
+      "size_bytes": 16764012
+    },
+    {
+      "path": "Textures/Black_Painted_Wood_BaseColor.png",
+      "size_bytes": 44839
+    },
+    {
+      "path": "Textures/Black_Painted_Wood_MetallicSmoothness.png",
+      "size_bytes": 2865975
+    },
+    {
+      "path": "Textures/Black_Painted_Wood_Normal.png",
+      "size_bytes": 15198984
+    },
+    {
+      "path": "Textures/Metal_panel_BaseColor.jpg",
+      "size_bytes": 1326626
+    },
+    {
+      "path": "Textures/Metal_panel_Height.tif",
+      "size_bytes": 1561053
+    },
+    {
+      "path": "Textures/Metal_panel_MetallicSmoothness.png",
+      "size_bytes": 6534816
+    },
+    {
+      "path": "Textures/Metal_panel_Normal.jpg",
+      "size_bytes": 1060720
+    },
+    {
+      "path": "Textures/Metal_panel_SpecularIOR_Reference.jpg",
+      "size_bytes": 329881
+    },
+    {
+      "path": "Textures/Metal_plate_BaseColor.jpg",
+      "size_bytes": 580349
+    },
+    {
+      "path": "Textures/Metal_plate_Height.jpg",
+      "size_bytes": 1116803
+    },
+    {
+      "path": "Textures/Metal_plate_MetallicSmoothness.png",
+      "size_bytes": 9101417
+    },
+    {
+      "path": "Textures/Metal_plate_Normal.jpg",
+      "size_bytes": 1892830
+    },
+    {
+      "path": "Textures/Sci-Fi_Tech_Grid_Panels_BaseColor.jpg",
+      "size_bytes": 130671
+    },
+    {
+      "path": "Textures/Sci-Fi_Tech_Grid_Panels_Height.jpg",
+      "size_bytes": 47883
+    },
+    {
+      "path": "Textures/Sci-Fi_Tech_Grid_Panels_MetallicSmoothness.png",
+      "size_bytes": 898218
+    },
+    {
+      "path": "Textures/Sci-Fi_Tech_Grid_Panels_Normal.png",
+      "size_bytes": 10144584
+    },
+    {
+      "path": "Textures/Sci-fi_Cables_BaseColor.tga",
+      "size_bytes": 12582930
+    },
+    {
+      "path": "Textures/Sci-fi_Cables_Height.tga",
+      "size_bytes": 4194322
+    },
+    {
+      "path": "Textures/Sci-fi_Cables_MetallicSmoothness.png",
+      "size_bytes": 3565087
+    },
+    {
+      "path": "Textures/Sci-fi_Cables_Normal.png",
+      "size_bytes": 21310452
+    },
+    {
+      "path": "Textures/Stucco_wall_BaseColor.jpg",
+      "size_bytes": 1858078
+    },
+    {
+      "path": "Textures/Stucco_wall_Height.jpg",
+      "size_bytes": 1114287
+    },
+    {
+      "path": "Textures/Stucco_wall_MetallicSmoothness.png",
+      "size_bytes": 10237968
+    },
+    {
+      "path": "Textures/Stucco_wall_Normal.png",
+      "size_bytes": 27194241
+    },
+    {
+      "path": "Textures/tripo_mat_6e1f08b9_BaseColor.jpg",
+      "size_bytes": 1935478
+    },
+    {
+      "path": "Textures/tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "size_bytes": 9063115
+    },
+    {
+      "path": "Textures/tripo_mat_6e1f08b9_Normal.png",
+      "size_bytes": 6575445
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.003",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Sci-Fi Tech Grid Panels"
+      ],
+      "source_vertices": 8,
+      "additional_vertices_for_duplicate_faces": 0
+    },
+    {
+      "name": "Room_04_A_Structure",
+      "vertices": 56,
+      "polygons": 84,
+      "uv0": "Room04_SurfaceUV",
+      "materials": [
+        "Metal plate",
+        "Sci-fi Cables",
+        "Concrete wall",
+        "Metal panel",
+        "Stucco wall"
+      ],
+      "source_vertices": 56,
+      "additional_vertices_for_duplicate_faces": 0
+    },
+    {
+      "name": "Room_04_A_Objects",
+      "vertices": 209728,
+      "polygons": 414168,
+      "uv0": "Room04_SurfaceUV",
+      "materials": [
+        "R4 cyan light",
+        "tripo_mat_6e1f08b9",
+        "tripo_mat_6e1f08b9.001",
+        "tripo_mat_6e1f08b9.002",
+        "tripo_mat_6e1f08b9.003",
+        "tripo_mat_6e1f08b9.004",
+        "tripo_mat_6e1f08b9.005",
+        "Black Painted Wood",
+        "R4 fasteners",
+        "R4 gunmetal",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 V13 graphite metal",
+        "R4 rubber cables"
+      ],
+      "source_vertices": 209494,
+      "additional_vertices_for_duplicate_faces": 234
+    },
+    {
+      "name": "Ceiling.010",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Sci-Fi Tech Grid Panels"
+      ],
+      "source_vertices": 8,
+      "additional_vertices_for_duplicate_faces": 0
+    },
+    {
+      "name": "Room_04_B_Structure",
+      "vertices": 56,
+      "polygons": 84,
+      "uv0": "Room04_SurfaceUV",
+      "materials": [
+        "Metal plate",
+        "Sci-fi Cables",
+        "Concrete wall",
+        "Metal panel",
+        "Stucco wall"
+      ],
+      "source_vertices": 56,
+      "additional_vertices_for_duplicate_faces": 0
+    },
+    {
+      "name": "Room_04_B_Objects",
+      "vertices": 208048,
+      "polygons": 410848,
+      "uv0": "Room04_SurfaceUV",
+      "materials": [
+        "R4 cyan light",
+        "tripo_mat_6e1f08b9.006",
+        "tripo_mat_6e1f08b9.007",
+        "tripo_mat_6e1f08b9.008",
+        "tripo_mat_6e1f08b9.009",
+        "tripo_mat_6e1f08b9.010",
+        "tripo_mat_6e1f08b9.011",
+        "R4 fasteners",
+        "R4 gunmetal",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 V13 graphite metal",
+        "R4 rubber cables"
+      ],
+      "source_vertices": 207814,
+      "additional_vertices_for_duplicate_faces": 234
+    }
+  ],
+  "removed_lights": [
+    "R4 neutral lock reading light",
+    "A ambient cyan",
+    "A ambient cyan.001",
+    "B ambient cyan",
+    "B ambient cyan.001",
+    "B neutral console inspection",
+    "REVIEW_Fill_4_A_0",
+    "REVIEW_Fill_4_B_0"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_04_A",
+      "matrix": [
+        [
+          -0.23227469623088837,
+          0.04232023283839226,
+          -0.971729040145874,
+          40.650001525878906
+        ],
+        [
+          -0.9726502299308777,
+          -0.010106397792696953,
+          0.2320547103881836,
+          -5.699999809265137
+        ],
+        [
+          -7.115779965261027e-08,
+          0.9990530014038086,
+          0.04351023957133293,
+          1.649999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 57.22092063977898
+    },
+    {
+      "name": "REVIEW_Room_04_B",
+      "matrix": [
+        [
+          0.23227450251579285,
+          0.04232010990381241,
+          -0.9717290997505188,
+          40.650001525878906
+        ],
+        [
+          -0.9726502895355225,
+          0.010106395930051804,
+          -0.23205451667308807,
+          5.699999809265137
+        ],
+        [
+          1.0639256942113207e-07,
+          0.9990530014038086,
+          0.04351012036204338,
+          1.649999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 57.22092063977898
+    }
+  ],
+  "notes": [
+    "All 6 visible source meshes retained: A/B structures, A/B ceilings, and separately merged A/B object meshes.",
+    "8 Blender lights and 2 review cameras excluded. Hidden reward text excluded as in source rendering.",
+    "Original world placement, Blender tessellation and corner normals preserved.",
+    "Original render UV promoted to UV0; source material mapping scales baked into matching UV faces.",
+    "Black Painted Wood baked on actual surfaces; normal channel math converted for Sci-Fi materials and Stucco.",
+    "Original image resolution preserved. Duplicate image bytes shared without merging material slots.",
+    "Color maps encoded as sRGB; packed data channels saved without alpha premultiplication.",
+    "Height maps use URP parallax. Metal panel Specular IOR texture supplied as a reference.",
+    "Unity lighting and tone mapping require user visual verification.",
+    "156 coincident source triangles retained with distinct vertex indices so FBX import does not discard their differing UV data. Adds 468 vertices, without changing positions, material assignments or triangle count."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "Black Painted Wood",
+      "resolution": 2048,
+      "faces": 1622
+    },
+    {
+      "material": "Sci-Fi Tech Grid Panels",
+      "resolution": 2048,
+      "channel": "normal_color"
+    },
+    {
+      "material": "Sci-fi Cables",
+      "resolution": 2048,
+      "channel": "normal_color"
+    },
+    {
+      "material": "Stucco wall",
+      "resolution": 2048,
+      "channel": "normal_color"
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_04_Structure.fbx",
+    "Models/SILENT_Room_04_A_Objects.fbx",
+    "Models/SILENT_Room_04_B_Objects.fbx"
+  ],
+  "uv_mapping_adjustments": [
+    {
+      "material": "Sci-Fi Tech Grid Panels",
+      "scale_baked_into_uv0": [
+        1.5,
+        1.5,
+        1.5
+      ]
+    }
+  ],
+  "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.003",
+      "vertices": 8,
+      "materials": [
+        "Sci-Fi Tech Grid Panels"
+      ],
+      "bounds": [
+        [
+          40.0,
+          47.0
+        ],
+        [
+          -10.0,
+          -3.0
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Room_04_A_Structure",
+      "vertices": 56,
+      "materials": [
+        "Metal plate",
+        "Sci-fi Cables",
+        "Concrete wall",
+        "Metal panel",
+        "Stucco wall"
+      ],
+      "bounds": [
+        [
+          40.0,
+          47.099998474121094
+        ],
+        [
+          -11.0,
+          -2.0
+        ],
+        [
+          -0.23999999463558197,
+          7.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_04_A_Objects",
+      "vertices": 209494,
+      "materials": [
+        "R4 cyan light",
+        "tripo_mat_6e1f08b9",
+        "tripo_mat_6e1f08b9.001",
+        "tripo_mat_6e1f08b9.002",
+        "tripo_mat_6e1f08b9.003",
+        "tripo_mat_6e1f08b9.004",
+        "tripo_mat_6e1f08b9.005",
+        "Black Painted Wood",
+        "R4 fasteners",
+        "R4 gunmetal",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 V13 graphite metal",
+        "R4 rubber cables"
+      ],
+      "bounds": [
+        [
+          40.10499954223633,
+          47.09000015258789
+        ],
+        [
+          -9.795000076293945,
+          -3.2049999237060547
+        ],
+        [
+          0.0,
+          3.9600000381469727
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.010",
+      "vertices": 8,
+      "materials": [
+        "Sci-Fi Tech Grid Panels"
+      ],
+      "bounds": [
+        [
+          40.0,
+          47.0
+        ],
+        [
+          3.0,
+          10.0
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Room_04_B_Structure",
+      "vertices": 56,
+      "materials": [
+        "Metal plate",
+        "Sci-fi Cables",
+        "Concrete wall",
+        "Metal panel",
+        "Stucco wall"
+      ],
+      "bounds": [
+        [
+          40.0,
+          47.099998474121094
+        ],
+        [
+          2.0,
+          11.0
+        ],
+        [
+          -0.23999999463558197,
+          7.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_04_B_Objects",
+      "vertices": 207814,
+      "materials": [
+        "R4 cyan light",
+        "tripo_mat_6e1f08b9.006",
+        "tripo_mat_6e1f08b9.007",
+        "tripo_mat_6e1f08b9.008",
+        "tripo_mat_6e1f08b9.009",
+        "tripo_mat_6e1f08b9.010",
+        "tripo_mat_6e1f08b9.011",
+        "R4 fasteners",
+        "R4 gunmetal",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 V13 graphite metal",
+        "R4 rubber cables"
+      ],
+      "bounds": [
+        [
+          40.10499954223633,
+          47.09000015258789
+        ],
+        [
+          3.2049999237060547,
+          9.795000076293945
+        ],
+        [
+          0.0,
+          3.9600000381469727
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Black_Painted_Wood_BaseColor.png",
+      "max_error": 1.3832468539476395e-06,
+      "linear_data": false
+    },
+    {
+      "map": "Black_Painted_Wood_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Black_Painted_Wood_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Metal_panel_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Metal_plate_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Sci-Fi_Tech_Grid_Panels_MetallicSmoothness.png",
+      "max_error": 5.960464477539063e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Sci-Fi_Tech_Grid_Panels_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Sci-fi_Cables_MetallicSmoothness.png",
+      "max_error": 5.960464477539063e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Sci-fi_Cables_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Stucco_wall_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Stucco_wall_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    }
+  ],
+  "duplicate_triangle_preservation": [
+    {
+      "mesh": "Ceiling.003",
+      "preserved_triangles": 12,
+      "coincident_triangle_count": 0,
+      "additional_vertices": 0,
+      "coincident_faces_with_different_render_uv": 0,
+      "coincident_faces_with_different_any_uv": 0,
+      "coincident_faces_with_different_normals": 0,
+      "coincident_faces_with_different_material": 0
+    },
+    {
+      "mesh": "Room_04_A_Structure",
+      "preserved_triangles": 84,
+      "coincident_triangle_count": 0,
+      "additional_vertices": 0,
+      "coincident_faces_with_different_render_uv": 0,
+      "coincident_faces_with_different_any_uv": 0,
+      "coincident_faces_with_different_normals": 0,
+      "coincident_faces_with_different_material": 0
+    },
+    {
+      "mesh": "Room_04_A_Objects",
+      "preserved_triangles": 414168,
+      "coincident_triangle_count": 78,
+      "additional_vertices": 234,
+      "coincident_faces_with_different_render_uv": 78,
+      "coincident_faces_with_different_any_uv": 78,
+      "coincident_faces_with_different_normals": 2,
+      "coincident_faces_with_different_material": 0
+    },
+    {
+      "mesh": "Ceiling.010",
+      "preserved_triangles": 12,
+      "coincident_triangle_count": 0,
+      "additional_vertices": 0,
+      "coincident_faces_with_different_render_uv": 0,
+      "coincident_faces_with_different_any_uv": 0,
+      "coincident_faces_with_different_normals": 0,
+      "coincident_faces_with_different_material": 0
+    },
+    {
+      "mesh": "Room_04_B_Structure",
+      "preserved_triangles": 84,
+      "coincident_triangle_count": 0,
+      "additional_vertices": 0,
+      "coincident_faces_with_different_render_uv": 0,
+      "coincident_faces_with_different_any_uv": 0,
+      "coincident_faces_with_different_normals": 0,
+      "coincident_faces_with_different_material": 0
+    },
+    {
+      "mesh": "Room_04_B_Objects",
+      "preserved_triangles": 410848,
+      "coincident_triangle_count": 78,
+      "additional_vertices": 234,
+      "coincident_faces_with_different_render_uv": 78,
+      "coincident_faces_with_different_any_uv": 78,
+      "coincident_faces_with_different_normals": 6,
+      "coincident_faces_with_different_material": 0
+    }
+  ]
+}
