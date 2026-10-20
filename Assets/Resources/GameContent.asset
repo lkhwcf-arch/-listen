@@ -204,3 +204,7 @@ MonoBehaviour:
     prefab: {fileID: 5893446212883437637, guid: d4ada379c7fa8684ead4ddd19684be6f, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Surface.prefab
     prefab: {fileID: 3191639606950993386, guid: d825293d7b80a084daa6772691a6ea6c, type: 3}
+  - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/R07_Structure.prefab
+    prefab: {fileID: 2389970105685068966, guid: ba0335544ca1c71458a3795a7a8852c1, type: 3}
+  - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/SILENT_Room_07_Objects.prefab
+    prefab: {fileID: 8665118456540563358, guid: c4857b113a4db65449b9986d2e204586, type: 3}
