@@ -150,6 +150,14 @@ MonoBehaviour:
     prefab: {fileID: 232195569398558123, guid: a403a86a78170fb4cbdf24dde6217542, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Table.prefab
     prefab: {fileID: 8721365128282860039, guid: f00c16eb27529c14aa57fd5f9ec102d7, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/R04_Ceiling.prefab
+    prefab: {fileID: 8892864759288825393, guid: c0480f41d262444b886115596411eb3e, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/SILENT_Room_04_A_Objects.prefab
+    prefab: {fileID: 4920222092841081795, guid: efd866d22782fd14f9e3ae8e5a83993e, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/SILENT_Room_04_B_Objects.prefab
+    prefab: {fileID: 5637324553495372359, guid: c29a98761ea78a04d96997d92c559926, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/SILENT_Room_04_Structure.prefab
+    prefab: {fileID: 8535515597128227431, guid: 35e3645b38378e6469028d98f7ae2324, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_Dial_Table.prefab
     prefab: {fileID: 5612625600057070950, guid: 9987cfe60e4153c45942023985e05589, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_LED_Display.prefab
