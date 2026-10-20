@@ -1,0 +1,1538 @@
+{
+  "source_file": "SILENT_Room_03_AB_Merged_NoDoors.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Colored Foam Pads",
+      "file_name": "Colored_Foam_Pads",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Colored_Foam_Pads_BaseColor.jpg",
+      "metallic_smoothness_map": "Colored_Foam_Pads_MetallicSmoothness.png",
+      "normal_map": "Colored_Foam_Pads_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Colored_Foam_Pads_Height.jpg",
+      "height_scale": 0.019999999552965164,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "Concrete wall",
+      "file_name": "Concrete_wall",
+      "base_color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Metal panel",
+      "file_name": "Metal_panel",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Metal_panel_BaseColor.jpg",
+      "metallic_smoothness_map": "Metal_panel_MetallicSmoothness.png",
+      "normal_map": "Metal_panel_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Metal_panel_Height.tif",
+      "height_scale": 0.004999999888241291,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH",
+      "reference_specular_ior_map": "Metal_panel_SpecularIOR_Reference.jpg"
+    },
+    {
+      "name": "R3 - console graphite",
+      "file_name": "R3_-_console_graphite",
+      "base_color": [
+        0.04500000178813934,
+        0.054999999701976776,
+        0.06499999761581421,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.6200000047683716,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "R3_-_console_graphite_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R3 - markings",
+      "file_name": "R3_-_markings",
+      "base_color": [
+        0.8799999952316284,
+        0.8399999737739563,
+        0.699999988079071,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "R3_-_markings_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 nickel",
+      "file_name": "R4_R43_nickel",
+      "base_color": [
+        0.3199999928474426,
+        0.36000001430511475,
+        0.3499999940395355,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_A_Patterns - R3 - charcoal paint",
+      "file_name": "Room_03_A_Patterns_-_R3_-_charcoal_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_A_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_A_Patterns - R3 - cobalt paint",
+      "file_name": "Room_03_A_Patterns_-_R3_-_cobalt_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_A_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_A_Patterns - R3 - markings",
+      "file_name": "Room_03_A_Patterns_-_R3_-_markings",
+      "base_color": [
+        0.8799999952316284,
+        0.8399999737739563,
+        0.699999988079071,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "Room_03_A_Patterns_-_R3_-_markings_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_A_Patterns - R3 - ochre paint",
+      "file_name": "Room_03_A_Patterns_-_R3_-_ochre_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_A_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_A_Patterns - R3 - vermilion paint",
+      "file_name": "Room_03_A_Patterns_-_R3_-_vermilion_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_A_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_B_Patterns - R3 - charcoal paint",
+      "file_name": "Room_03_B_Patterns_-_R3_-_charcoal_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_B_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_B_Patterns - R3 - cobalt paint",
+      "file_name": "Room_03_B_Patterns_-_R3_-_cobalt_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_B_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_B_Patterns - R3 - ochre paint",
+      "file_name": "Room_03_B_Patterns_-_R3_-_ochre_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_B_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_03_B_Patterns - R3 - vermilion paint",
+      "file_name": "Room_03_B_Patterns_-_R3_-_vermilion_paint",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.19999998807907104,
+      "base_map": "Room_03_B_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_03_Structure.fbx",
+      "size_bytes": 30300
+    },
+    {
+      "path": "Models/SILENT_Room_03_A_Objects.fbx",
+      "size_bytes": 1194428
+    },
+    {
+      "path": "Models/SILENT_Room_03_B_Objects.fbx",
+      "size_bytes": 1202028
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_BaseColor.jpg",
+      "size_bytes": 1359490
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_Height.jpg",
+      "size_bytes": 384425
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_MetallicSmoothness.png",
+      "size_bytes": 4399264
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_Normal.jpg",
+      "size_bytes": 1403123
+    },
+    {
+      "path": "Textures/Metal_panel_BaseColor.jpg",
+      "size_bytes": 1326626
+    },
+    {
+      "path": "Textures/Metal_panel_Height.tif",
+      "size_bytes": 1561053
+    },
+    {
+      "path": "Textures/Metal_panel_MetallicSmoothness.png",
+      "size_bytes": 6534816
+    },
+    {
+      "path": "Textures/Metal_panel_Normal.jpg",
+      "size_bytes": 1060720
+    },
+    {
+      "path": "Textures/Metal_panel_SpecularIOR_Reference.jpg",
+      "size_bytes": 329881
+    },
+    {
+      "path": "Textures/R3_-_console_graphite_Normal.png",
+      "size_bytes": 5096834
+    },
+    {
+      "path": "Textures/R3_-_markings_Normal.png",
+      "size_bytes": 4812470
+    },
+    {
+      "path": "Textures/Room_03_A_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "size_bytes": 4750278
+    },
+    {
+      "path": "Textures/Room_03_A_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "size_bytes": 4635586
+    },
+    {
+      "path": "Textures/Room_03_A_Patterns_-_R3_-_markings_Normal.png",
+      "size_bytes": 12054789
+    },
+    {
+      "path": "Textures/Room_03_A_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "size_bytes": 4502943
+    },
+    {
+      "path": "Textures/Room_03_A_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "size_bytes": 4638606
+    },
+    {
+      "path": "Textures/Room_03_B_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "size_bytes": 4942584
+    },
+    {
+      "path": "Textures/Room_03_B_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "size_bytes": 4558271
+    },
+    {
+      "path": "Textures/Room_03_B_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "size_bytes": 4511686
+    },
+    {
+      "path": "Textures/Room_03_B_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "size_bytes": 4502608
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.002",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Colored Foam Pads"
+      ]
+    },
+    {
+      "name": "A ceiling fixture",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "A ceiling fixture.001",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "A ceiling fixture.002",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "A ceiling fixture.003",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Jamb",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Jamb.001",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Lintel",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "A diffuser",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "A diffuser.001",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "A diffuser.002",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "A diffuser.003",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "DOOR_A_03 latch strike",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "Room_03_A_Structure",
+      "vertices": 48,
+      "polygons": 72,
+      "uv0": "Room03_SurfaceUV",
+      "materials": [
+        "Colored Foam Pads",
+        "Concrete wall",
+        "Metal panel"
+      ]
+    },
+    {
+      "name": "Room_03_A_Patterns",
+      "vertices": 18588,
+      "polygons": 35456,
+      "uv0": "Room03_SurfaceUV",
+      "materials": [
+        "Room_03_A_Patterns - R3 - ochre paint",
+        "Room_03_A_Patterns - R3 - cobalt paint",
+        "Room_03_A_Patterns - R3 - vermilion paint",
+        "Room_03_A_Patterns - R3 - charcoal paint",
+        "Room_03_A_Patterns - R3 - markings"
+      ]
+    },
+    {
+      "name": "B ceiling fixture",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "B ceiling fixture.001",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "B ceiling fixture.002",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "B ceiling fixture.003",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "B diffuser",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "B diffuser.001",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "B diffuser.002",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "B diffuser.003",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - markings"
+      ]
+    },
+    {
+      "name": "DOOR_B_03 latch strike",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "PZ_R3_B_RewardDisplay",
+      "vertices": 96,
+      "polygons": 188,
+      "uv0": "UVMap",
+      "materials": [
+        "R3 - console graphite"
+      ]
+    },
+    {
+      "name": "Room_03_B_Patterns",
+      "vertices": 18816,
+      "polygons": 35808,
+      "uv0": "Room03_SurfaceUV",
+      "materials": [
+        "Room_03_B_Patterns - R3 - charcoal paint",
+        "Room_03_B_Patterns - R3 - vermilion paint",
+        "Room_03_B_Patterns - R3 - ochre paint",
+        "Room_03_B_Patterns - R3 - cobalt paint"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "A R3 ceiling light",
+    "A R3 ceiling light.001",
+    "A R3 ceiling light.002",
+    "A R3 ceiling light.003",
+    "B R3 ceiling light",
+    "B R3 ceiling light.001",
+    "B R3 ceiling light.002",
+    "B R3 ceiling light.003",
+    "REVIEW_Fill_3_A_0",
+    "REVIEW_Fill_3_A_1",
+    "REVIEW_Fill_3_A_2",
+    "REVIEW_Fill_3_B_0",
+    "REVIEW_Fill_3_B_1",
+    "REVIEW_Fill_3_B_2"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_03_A",
+      "matrix": [
+        [
+          0.5273628830909729,
+          0.014933351427316666,
+          -0.8495088815689087,
+          22.75
+        ],
+        [
+          -0.8496401309967041,
+          0.009269003756344318,
+          -0.5272814631462097,
+          -9.0
+        ],
+        [
+          2.1949752238015208e-08,
+          0.9998455047607422,
+          0.017576104030013084,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    },
+    {
+      "name": "REVIEW_Room_03_B",
+      "matrix": [
+        [
+          0.5273628830909729,
+          0.014933351427316666,
+          -0.8495088815689087,
+          22.75
+        ],
+        [
+          -0.8496401309967041,
+          0.009269003756344318,
+          -0.5272814631462097,
+          4.0
+        ],
+        [
+          2.1949752238015208e-08,
+          0.9998455047607422,
+          0.017576104030013084,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    }
+  ],
+  "notes": [
+    "All visible source geometry and world placement retained. Original merged A/B pattern meshes remain merged.",
+    "14 Blender lights and 2 review cameras excluded. Hidden reward text excluded as in source rendering.",
+    "Evaluated bevel and weighted normals applied before preserving Blender tessellation and corner normals.",
+    "Original render UV promoted to UV0; only baked procedural faces receive new UVs.",
+    "Generated/object attribute coordinates preserved for procedural baking. Color maps encoded as sRGB and packed data saved without alpha premultiplication.",
+    "The source has no separate B-room structure or B ceiling mesh; none has been invented.",
+    "Height maps use URP parallax. Blender-specific specular IOR texture supplied as a reference; URP metallic workflow does not directly reproduce it.",
+    "Unity lighting and tone mapping require user visual verification."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "R3 - console graphite",
+      "resolution": 1024,
+      "faces": 882
+    },
+    {
+      "material": "R3 - markings",
+      "resolution": 1024,
+      "faces": 784
+    },
+    {
+      "material": "Room_03_A_Patterns - R3 - charcoal paint",
+      "resolution": 2048,
+      "faces": 4302
+    },
+    {
+      "material": "Room_03_A_Patterns - R3 - cobalt paint",
+      "resolution": 2048,
+      "faces": 3455
+    },
+    {
+      "material": "Room_03_A_Patterns - R3 - markings",
+      "resolution": 2048,
+      "faces": 1600
+    },
+    {
+      "material": "Room_03_A_Patterns - R3 - ochre paint",
+      "resolution": 2048,
+      "faces": 4365
+    },
+    {
+      "material": "Room_03_A_Patterns - R3 - vermilion paint",
+      "resolution": 2048,
+      "faces": 3744
+    },
+    {
+      "material": "Room_03_B_Patterns - R3 - charcoal paint",
+      "resolution": 2048,
+      "faces": 5373
+    },
+    {
+      "material": "Room_03_B_Patterns - R3 - cobalt paint",
+      "resolution": 2048,
+      "faces": 3645
+    },
+    {
+      "material": "Room_03_B_Patterns - R3 - ochre paint",
+      "resolution": 2048,
+      "faces": 4068
+    },
+    {
+      "material": "Room_03_B_Patterns - R3 - vermilion paint",
+      "resolution": 2048,
+      "faces": 4626
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_03_Structure.fbx",
+    "Models/SILENT_Room_03_A_Objects.fbx",
+    "Models/SILENT_Room_03_B_Objects.fbx"
+  ],
+  "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.002",
+      "vertices": 8,
+      "materials": [
+        "Colored Foam Pads"
+      ],
+      "bounds": [
+        [
+          22.0,
+          40.0
+        ],
+        [
+          -10.0,
+          -3.0
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling fixture",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          23.674999237060547,
+          24.325000762939453
+        ],
+        [
+          -6.724999904632568,
+          -6.275000095367432
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling fixture.001",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          28.274999618530273,
+          28.92500114440918
+        ],
+        [
+          -6.724999904632568,
+          -6.275000095367432
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling fixture.002",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          32.875,
+          33.525001525878906
+        ],
+        [
+          -6.724999904632568,
+          -6.275000095367432
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling fixture.003",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          37.474998474121094,
+          38.125
+        ],
+        [
+          -6.724999904632568,
+          -6.275000095367432
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Jamb",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          39.90999984741211,
+          40.09000015258789
+        ],
+        [
+          -7.357499599456787,
+          -7.292500019073486
+        ],
+        [
+          0.0,
+          2.4000000953674316
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Jamb.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          39.90999984741211,
+          40.09000015258789
+        ],
+        [
+          -5.707499980926514,
+          -5.642500400543213
+        ],
+        [
+          0.0,
+          2.4000000953674316
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_03_Lintel",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          39.90999984741211,
+          40.09000015258789
+        ],
+        [
+          -7.355000019073486,
+          -5.644999980926514
+        ],
+        [
+          2.3600001335144043,
+          2.4200000762939453
+        ]
+      ]
+    },
+    {
+      "name": "A diffuser",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          23.719999313354492,
+          24.280000686645508
+        ],
+        [
+          -6.679999828338623,
+          -6.320000171661377
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "A diffuser.001",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          28.31999969482422,
+          28.880001068115234
+        ],
+        [
+          -6.679999828338623,
+          -6.320000171661377
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "A diffuser.002",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          32.92000198364258,
+          33.47999954223633
+        ],
+        [
+          -6.679999828338623,
+          -6.320000171661377
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "A diffuser.003",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          37.52000045776367,
+          38.07999801635742
+        ],
+        [
+          -6.679999828338623,
+          -6.320000171661377
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_03 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          39.94499969482422,
+          40.05500030517578
+        ],
+        [
+          -7.362499713897705,
+          -7.337500095367432
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "Room_03_A_Structure",
+      "vertices": 48,
+      "materials": [
+        "Colored Foam Pads",
+        "Concrete wall",
+        "Metal panel"
+      ],
+      "bounds": [
+        [
+          22.0,
+          40.099998474121094
+        ],
+        [
+          -10.0,
+          -3.0
+        ],
+        [
+          -0.23999999463558197,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_03_A_Patterns",
+      "vertices": 18588,
+      "materials": [
+        "Room_03_A_Patterns - R3 - ochre paint",
+        "Room_03_A_Patterns - R3 - cobalt paint",
+        "Room_03_A_Patterns - R3 - vermilion paint",
+        "Room_03_A_Patterns - R3 - charcoal paint",
+        "Room_03_A_Patterns - R3 - markings"
+      ],
+      "bounds": [
+        [
+          21.896137237548828,
+          40.04097366333008
+        ],
+        [
+          -10.302865982055664,
+          -2.777029037475586
+        ],
+        [
+          0.0055320002138614655,
+          3.984250068664551
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling fixture",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          23.674999237060547,
+          24.325000762939453
+        ],
+        [
+          6.275000095367432,
+          6.724999904632568
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling fixture.001",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          28.274999618530273,
+          28.92500114440918
+        ],
+        [
+          6.275000095367432,
+          6.724999904632568
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling fixture.002",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          32.875,
+          33.525001525878906
+        ],
+        [
+          6.275000095367432,
+          6.724999904632568
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling fixture.003",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          37.474998474121094,
+          38.125
+        ],
+        [
+          6.275000095367432,
+          6.724999904632568
+        ],
+        [
+          3.8500001430511475,
+          3.9700000286102295
+        ]
+      ]
+    },
+    {
+      "name": "B diffuser",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          23.719999313354492,
+          24.280000686645508
+        ],
+        [
+          6.320000171661377,
+          6.679999828338623
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "B diffuser.001",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          28.31999969482422,
+          28.880001068115234
+        ],
+        [
+          6.320000171661377,
+          6.679999828338623
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "B diffuser.002",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          32.92000198364258,
+          33.47999954223633
+        ],
+        [
+          6.320000171661377,
+          6.679999828338623
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "B diffuser.003",
+      "vertices": 96,
+      "materials": [
+        "R3 - markings"
+      ],
+      "bounds": [
+        [
+          37.52000045776367,
+          38.07999801635742
+        ],
+        [
+          6.320000171661377,
+          6.679999828338623
+        ],
+        [
+          3.8305001258850098,
+          3.8454999923706055
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_B_03 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          39.94499969482422,
+          40.05500030517578
+        ],
+        [
+          5.637500286102295,
+          5.662499904632568
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R3_B_RewardDisplay",
+      "vertices": 96,
+      "materials": [
+        "R3 - console graphite"
+      ],
+      "bounds": [
+        [
+          39.69999694824219,
+          39.86000061035156
+        ],
+        [
+          6.150000095367432,
+          6.849999904632568
+        ],
+        [
+          2.569999933242798,
+          2.930000066757202
+        ]
+      ]
+    },
+    {
+      "name": "Room_03_B_Patterns",
+      "vertices": 18816,
+      "materials": [
+        "Room_03_B_Patterns - R3 - charcoal paint",
+        "Room_03_B_Patterns - R3 - vermilion paint",
+        "Room_03_B_Patterns - R3 - ochre paint",
+        "Room_03_B_Patterns - R3 - cobalt paint"
+      ],
+      "bounds": [
+        [
+          22.03156852722168,
+          39.840599060058594
+        ],
+        [
+          2.6764369010925293,
+          10.289953231811523
+        ],
+        [
+          0.006422000005841255,
+          3.98335599899292
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Colored_Foam_Pads_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Metal_panel_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "R3_-_console_graphite_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "R3_-_markings_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Room_03_A_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "max_error": 2.2351741790771484e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_A_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "max_error": 2.1278858184814453e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_A_Patterns_-_R3_-_markings_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Room_03_A_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "max_error": 2.9385089874267578e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_A_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "max_error": 2.2292137145996094e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_B_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "max_error": 2.181529998779297e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_B_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "max_error": 2.1457672119140625e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_B_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "max_error": 2.9265880584716797e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Room_03_B_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "max_error": 2.2292137145996094e-05,
+      "linear_data": false
+    }
+  ]
+}
