@@ -1,0 +1,30 @@
+{
+    "meshRenderers": 5,
+    "meshFilters": 5,
+    "materials": 11,
+    "lights": 0,
+    "cameras": 0,
+    "triangles": 67461,
+    "missingMaterials": 0,
+    "missingUVs": 0,
+    "allShadersSupported": true,
+    "unityVersion": "6000.2.8f1",
+    "renderPipeline": "UniversalRenderPipelineAsset",
+    "rendererNames": [
+        "dver'",
+        "Hemnes.Drawer",
+        "Ceiling.007",
+        "Room_01_A_Cards",
+        "Room_01_A_Structure"
+    ],
+    "boundsCenter": {
+        "x": -4.125727653503418,
+        "y": 15.596948623657227,
+        "z": 6.421922206878662
+    },
+    "boundsSize": {
+        "x": 10.314210891723633,
+        "y": 4.479999542236328,
+        "z": 10.361515998840332
+    }
+}

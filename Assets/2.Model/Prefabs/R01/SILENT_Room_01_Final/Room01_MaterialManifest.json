@@ -1,0 +1,435 @@
+{
+  "source_file": "SILENT_Room_01_Final.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Acier noir mat",
+      "file_name": "Acier_noir_mat",
+      "base_color": [
+        0.012581931427121162,
+        0.012581931427121162,
+        0.012581931427121162,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.42272764444351196,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.0
+    },
+    {
+      "name": "Dark Rough Concrete",
+      "file_name": "Dark_Rough_Concrete",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Dark_Rough_Concrete_BaseColor.jpg",
+      "metallic_smoothness_map": "Dark_Rough_Concrete_MetallicSmoothness.png",
+      "normal_map": "Dark_Rough_Concrete_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Dark_Rough_Concrete_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "blender_displacement_method": "DISPLACEMENT"
+    },
+    {
+      "name": "Grey Troweled Concrete",
+      "file_name": "Grey_Troweled_Concrete",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Grey_Troweled_Concrete_BaseColor.jpg",
+      "metallic_smoothness_map": "Grey_Troweled_Concrete_MetallicSmoothness.png",
+      "normal_map": "Grey_Troweled_Concrete_Normal.jpg",
+      "normal_scale": 0.5199999809265137,
+      "height_map": "Grey_Troweled_Concrete_Height.jpg",
+      "height_scale": 0.008999999612569809,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "blender_displacement_method": "BUMP"
+    },
+    {
+      "name": "Hemnes.Wood.Black",
+      "file_name": "Hemnes_Wood_Black",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.768181785941124,
+      "base_map": "Hemnes_Wood_Black_BaseColor.png",
+      "metallic_smoothness_map": "Hemnes_Wood_Black_MetallicSmoothness.png",
+      "normal_map": "Hemnes_Wood_Black_Normal.jpg",
+      "normal_scale": 0.05000000074505806,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "R4 R43 ink",
+      "file_name": "R4_R43_ink",
+      "base_color": [
+        0.008999999612569809,
+        0.014000000432133675,
+        0.013000000268220901,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "R4 R43 nickel",
+      "file_name": "R4_R43_nickel",
+      "base_color": [
+        0.3199999928474426,
+        0.36000001430511475,
+        0.3499999940395355,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "R4 V13 graphite metal",
+      "file_name": "R4_V13_graphite_metal",
+      "base_color": [
+        0.041999999433755875,
+        0.052000001072883606,
+        0.054999999701976776,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.6200000047683716,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "Stainless Steel.003",
+      "file_name": "Stainless_Steel_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.7409090995788574,
+      "base_map": "Stainless_Steel_003_BaseColor.jpg",
+      "metallic_smoothness_map": "Stainless_Steel_003_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 1.0
+    },
+    {
+      "name": "Warm ivory cardstock - identical on every card",
+      "file_name": "Warm_ivory_cardstock_-_identical_on_every_card",
+      "base_color": [
+        0.8199999928474426,
+        0.7900000214576721,
+        0.6899999976158142,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.12000000476837158,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5
+    },
+    {
+      "name": "palermo",
+      "file_name": "palermo",
+      "base_color": [
+        0.0077918097376823425,
+        0.018204640597105026,
+        0.018204640597105026,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.7199999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "palermo_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.45175284147262573
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_01_Final.fbx",
+      "size_bytes": 2407468
+    },
+    {
+      "path": "Textures/Dark_Rough_Concrete_BaseColor.jpg",
+      "size_bytes": 1586935
+    },
+    {
+      "path": "Textures/Dark_Rough_Concrete_Height.jpg",
+      "size_bytes": 1049274
+    },
+    {
+      "path": "Textures/Dark_Rough_Concrete_MetallicSmoothness.png",
+      "size_bytes": 7366879
+    },
+    {
+      "path": "Textures/Dark_Rough_Concrete_Normal.jpg",
+      "size_bytes": 1952453
+    },
+    {
+      "path": "Textures/Grey_Troweled_Concrete_BaseColor.jpg",
+      "size_bytes": 1881904
+    },
+    {
+      "path": "Textures/Grey_Troweled_Concrete_Height.jpg",
+      "size_bytes": 1818282
+    },
+    {
+      "path": "Textures/Grey_Troweled_Concrete_MetallicSmoothness.png",
+      "size_bytes": 6941909
+    },
+    {
+      "path": "Textures/Grey_Troweled_Concrete_Normal.jpg",
+      "size_bytes": 2120470
+    },
+    {
+      "path": "Textures/Hemnes_Wood_Black_BaseColor.png",
+      "size_bytes": 5215697
+    },
+    {
+      "path": "Textures/Hemnes_Wood_Black_MetallicSmoothness.png",
+      "size_bytes": 7265458
+    },
+    {
+      "path": "Textures/Hemnes_Wood_Black_Normal.jpg",
+      "size_bytes": 1169717
+    },
+    {
+      "path": "Textures/Stainless_Steel_003_BaseColor.jpg",
+      "size_bytes": 226065
+    },
+    {
+      "path": "Textures/Stainless_Steel_003_MetallicSmoothness.png",
+      "size_bytes": 4105580
+    },
+    {
+      "path": "Textures/palermo_MetallicSmoothness.png",
+      "size_bytes": 11288352
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.007",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Grey Troweled Concrete"
+      ]
+    },
+    {
+      "name": "Hemnes.Drawer",
+      "vertices": 7128,
+      "polygons": 14116,
+      "uv0": "UVMap",
+      "materials": [
+        "Hemnes.Wood.Black",
+        "Acier noir mat"
+      ]
+    },
+    {
+      "name": "dver'",
+      "vertices": 19001,
+      "polygons": 37910,
+      "uv0": "UVChannel_1",
+      "materials": [
+        "palermo",
+        "Stainless Steel.003"
+      ]
+    },
+    {
+      "name": "Room_01_A_Structure",
+      "vertices": 1360,
+      "polygons": 2592,
+      "uv0": "Room01_SurfaceUV",
+      "materials": [
+        "Grey Troweled Concrete",
+        "Dark Rough Concrete",
+        "R4 R43 nickel",
+        "R4 V13 graphite metal",
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "Room_01_A_Cards",
+      "vertices": 12491,
+      "polygons": 12839,
+      "uv0": "Room01_CardsUV",
+      "materials": [
+        "Warm ivory cardstock - identical on every card",
+        "R4 R43 ink"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "R1 B warm neutral ceiling",
+    "R1 B warm neutral ceiling.001",
+    "R1 B warm neutral ceiling.002",
+    "R1 B warm neutral ceiling.003",
+    "R1 B task light",
+    "REVIEW_Fill_1_A_0"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_01_A",
+      "matrix": [
+        [
+          0.6450836062431335,
+          0.013441015034914017,
+          -0.7639937996864319,
+          0.6175813674926758
+        ],
+        [
+          -0.7641119956970215,
+          0.011347128078341484,
+          -0.6449837684631348,
+          -9.5
+        ],
+        [
+          -1.0125620519829681e-07,
+          0.9998452663421631,
+          0.01759028621017933,
+          15.29694938659668
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    }
+  ],
+  "notes": [
+    "All five original Room 01 A meshes and positions retained; the 50 cards remain one merged mesh. Blender lights and review cameras excluded.",
+    "UV0 reordered to match Blender active render UV.",
+    "ColorRamp and roughness shader math baked without lighting.",
+    "Height textures supplied for URP parallax; this is not Blender true displacement.",
+    "Blender AgX and Unity lighting/tonemapping differ; pixel-identical final shading is not guaranteed."
+  ]
+}
