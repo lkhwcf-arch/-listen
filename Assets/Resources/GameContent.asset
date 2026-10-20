@@ -38,6 +38,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 0f0408a8f074e0f48ad804d631095740, type: 3}
   validationRules: {fileID: 4900000, guid: 5e83be8417a447cd9fe0a7b1e0affbc3, type: 3}
   prefabs:
+  - path: Assets/2.Model/Prefabs/Door.prefab
+    prefab: {fileID: 987553494092161001, guid: db8fdac6b4fdc094ebd48319d7088a69, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_01/Room_01.prefab
     prefab: {fileID: 7977798513479699119, guid: 0b6759cea8266004bbd61d66f14f2454, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_02/Room_02.prefab
@@ -50,16 +52,28 @@ MonoBehaviour:
     prefab: {fileID: 7796659345266773393, guid: 578b21bb37eb9c14ab3f333291056477, type: 3}
   - path: Assets/2.Model/Prefabs/Map/Room_06/Room_06.prefab
     prefab: {fileID: 3497156527012455245, guid: eec570571f6e31443b96df9d02720500, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_A_Cards.prefab
+    prefab: {fileID: 4340149115603030006, guid: fe38343241394908ad011ff88417ea70, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Ceiling.prefab
+    prefab: {fileID: 6102157293950932385, guid: 8226a84fc835424cb58faafaa1bf6094, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Door.prefab
     prefab: {fileID: 8122939794980265923, guid: 107150da3f4c12b41a4ad9e5d83716b8, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Drawer.prefab
+    prefab: {fileID: 1150278855608453666, guid: cb4bc3750209475db6438a5ccba1ac21, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Dver.prefab
+    prefab: {fileID: 5909175742490145811, guid: 2033096b51e642548a6d5e433fcf6851, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_FloorCard.prefab
     prefab: {fileID: 4998116800349599745, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
     prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Other.prefab
     prefab: {fileID: 4628255994314197374, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Structure.prefab
+    prefab: {fileID: 4788807917163519818, guid: 1c9b672761f34d3c959de3383e317ab2, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Surface.prefab
     prefab: {fileID: 107996671340065090, guid: f46eb60aaa9b12d45a0f38fe0a2e517e, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Prefabs/Room_01_Final.prefab
+    prefab: {fileID: 8217652443546526269, guid: 47470909e5887bb40968d409f4034dff, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Chair.prefab
     prefab: {fileID: 1288159639495150889, guid: 469800f6f039a3e45b65d1344c8f8e43, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Light.prefab

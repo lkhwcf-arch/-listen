@@ -1,5 +1,5 @@
 "ID","RoomNo","PlayerType","AnchorID","PrefabID","Active"
-"2002","1","ALL","R01_DoorPoint","13036","Y"
+"2002","1","ALL","R01_DoorPoint","13002","Y"
 "2030","1","B","R01_Dial_table_Anchor","13045","N"
 "2201","1","B","PZ_R1_B_Dial_0_Anchor","13046","N"
 "2202","1","B","PZ_R1_B_Dial_1_Anchor","13047","N"
