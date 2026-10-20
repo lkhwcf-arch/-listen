@@ -206,3 +206,10 @@ PNG와 확대 가능한 SVG를 함께 보관합니다. Windows PowerShell의 Sys
 - 서버 실행·API·데이터 판정은 TSC_REST 저장소 루트 README를 참고합니다.
 
 Git에는 코드·CSV·프리팹·필요한 `.meta`·Packages·ProjectSettings·검사 소스·문서를 공유합니다. Library, Temp, Logs, 의존성 캐시와 검사 bin/obj는 재생성합니다. 로컬 경로·자격 증명·개인 배포 설정은 공유하지 않습니다.
+
+
+## 에디터 방 클리어 테스트
+
+`Ingame` 씬을 Play한 뒤 `Tools > Game > Room Clear Test`를 엽니다. 역할 A/B를 고르고 미리보기를 시작하면 방별 클리어 버튼으로 CSV `Next`에 연결된 다음 방 외형을 생성합니다. 이전 방은 유지합니다. 도구는 Editor 폴더에만 존재하며 빌드에는 포함되지 않습니다.
+
+내부 오브젝트·앵커 스폰과 서버 클리어 상태는 이번 도구에서 처리하지 않습니다. 다음 프리팹이 없으면 클리어를 확정하지 않고 오류를 표시합니다. 창 닫기·Play 종료 시 생성한 미리보기만 정리합니다. 사용법과 코드 책임은 [개발자 방 클리어 안내](Docs/DeveloperRoomClear.md)를 따릅니다.

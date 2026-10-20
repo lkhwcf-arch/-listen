@@ -1,0 +1,105 @@
+#if UNITY_EDITOR
+using System;
+using System.Linq;
+using EscapeGame.Data;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace EscapeGame.Editor
+{
+    public sealed class RoomClearTestWindow : EditorWindow
+    {
+        private RoomClearPreviewSession session;
+        private int roleIndex;
+        private Vector2 scroll;
+        private string message = "Ingame 씬을 열고 Play한 뒤 미리보기를 시작하세요.";
+
+        [MenuItem("Tools/Game/Room Clear Test")]
+        public static void Open() => GetWindow<RoomClearTestWindow>("방 클리어 테스트");
+
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeChanged;
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeChanged;
+            SceneManager.activeSceneChanged -= OnSceneChanged;
+            Stop();
+        }
+        private void OnPlayModeChanged(PlayModeStateChange state)
+        {
+            if (state != PlayModeStateChange.EnteredPlayMode) Stop();
+            Repaint();
+        }
+        private void OnSceneChanged(Scene previous, Scene next) { Stop(); Repaint(); }
+
+        private void OnGUI()
+        {
+            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 방 외형만 생성합니다. 서버·실제 클리어·내부 앵커 스폰은 변경하지 않습니다.", MessageType.Info);
+            using (new EditorGUI.DisabledScope(session != null))
+                roleIndex = EditorGUILayout.Popup("미리보기 역할", roleIndex, new[] { "A", "B" });
+            using (new EditorGUI.DisabledScope(!Application.isPlaying || SceneManager.GetActiveScene().name != "Ingame" || session != null))
+                if (GUILayout.Button("미리보기 시작")) Execute(StartPreview);
+            using (new EditorGUI.DisabledScope(session == null))
+                if (GUILayout.Button("미리보기 종료 / 상태 초기화")) { Stop(); message = "생성한 미리보기와 클리어 상태를 초기화했습니다."; }
+            EditorGUILayout.HelpBox(message, MessageType.Info);
+            if (session == null) return;
+            scroll = EditorGUILayout.BeginScrollView(scroll);
+            var current = session;
+            foreach (var room in current.Progression.Rooms.OrderBy(row => row.RoomNo))
+            {
+                bool cleared = current.Progression.IsCleared(room);
+                bool unlocked = current.Progression.IsUnlocked(room);
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                EditorGUILayout.LabelField($"R{room.RoomNo:00} / {current.Role} / {(cleared ? "클리어" : unlocked ? "개방" : "잠김")}", EditorStyles.boldLabel);
+                using (new EditorGUI.DisabledScope(!unlocked || cleared))
+                    if (GUILayout.Button("이 방 클리어 → 다음 방 자동 생성")) Execute(() =>
+                    {
+                        current.Clear(room.RoomNo);
+                        message = room.Next == 0 ? $"R{room.RoomNo:00}: 마지막 방 클리어 완료" : $"R{room.RoomNo:00} 클리어 / Next={room.Next} 방 외형 생성 완료";
+                    });
+                var target = current.FindPreview(room);
+                using (new EditorGUI.DisabledScope(target == null))
+                    if (GUILayout.Button("Scene 뷰에서 보기"))
+                    {
+                        Selection.activeGameObject = target;
+                        SceneView.lastActiveSceneView?.FrameSelected();
+                    }
+                EditorGUILayout.EndVertical();
+            }
+            EditorGUILayout.EndScrollView();
+        }
+
+        private void StartPreview()
+        {
+            var assets = Resources.Load<GameContentAssets>("GameContent")
+                ?? throw new InvalidOperationException("GameContent 에셋이 없습니다.");
+            var store = new CsvDataStore();
+            if (!store.TryRegister(assets.ReadLocalData(), assets.CreateValidator(), out var report))
+                throw new InvalidOperationException("CSV 검증 실패: " + string.Join("\n", report.Issues.Take(5)));
+            var next = new RoomClearPreviewSession(assets, new EscapeGame.Data.Tables.CsvGameData(store), roleIndex == 0 ? "A" : "B", SceneManager.GetActiveScene());
+            try { next.Start(); }
+            catch { next.Dispose(); throw; }
+            session = next;
+            session.Progression.Changed += Repaint;
+            message = $"역할 {session.Role} / 첫 방 준비. 기존 씬의 방은 재사용합니다. CSV 경고 {report.WarningCount}개.";
+        }
+
+        private void Execute(Action action)
+        {
+            try { action(); }
+            catch (Exception error) { message = error.Message; Debug.LogWarning("[Room Clear Test] " + error.Message); }
+        }
+        private void Stop()
+        {
+            if (session == null) return;
+            session.Progression.Changed -= Repaint;
+            session.Dispose();
+            session = null;
+        }
+    }
+}
+#endif
