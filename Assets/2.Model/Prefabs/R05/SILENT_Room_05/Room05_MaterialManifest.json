@@ -1,0 +1,4385 @@
+{
+  "source_file": "SILENT_Room_05_AB_Merged_NoDoors.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Ceiling Tiles",
+      "file_name": "Ceiling_Tiles",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Ceiling_Tiles_BaseColor.jpg",
+      "metallic_smoothness_map": "Ceiling_Tiles_MetallicSmoothness.png",
+      "normal_map": "Ceiling_Tiles_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Ceiling_Tiles_Height.jpg",
+      "height_scale": 0.019999999552965164,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BUMP"
+    },
+    {
+      "name": "Desk wood",
+      "file_name": "Desk_wood",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Desk_wood_BaseColor.jpg",
+      "metallic_smoothness_map": "Desk_wood_MetallicSmoothness.png",
+      "normal_map": "Desk_wood_Normal.jpg",
+      "normal_scale": 0.75,
+      "height_map": "Desk_wood_Height.jpg",
+      "height_scale": 0.0010000000474974513,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.06000000238418579,
+      "alpha_clip": false,
+      "double_sided": false,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "Frozen white metal",
+      "file_name": "Frozen_white_metal",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.5,
+      "base_map": "Frozen_white_metal_BaseColor.jpg",
+      "metallic_smoothness_map": "Frozen_white_metal_MetallicSmoothness.png",
+      "normal_map": "Frozen_white_metal_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 enamel",
+      "file_name": "R4_R43_enamel",
+      "base_color": [
+        0.75,
+        0.7400000095367432,
+        0.6499999761581421,
+        1.0
+      ],
+      "metallic": 0.11999999731779099,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 graphite",
+      "file_name": "R4_R43_graphite",
+      "base_color": [
+        0.041999999433755875,
+        0.054999999701976776,
+        0.05900000035762787,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 ink",
+      "file_name": "R4_R43_ink",
+      "base_color": [
+        0.008999999612569809,
+        0.014000000432133675,
+        0.013000000268220901,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 nickel",
+      "file_name": "R4_R43_nickel",
+      "base_color": [
+        0.3199999928474426,
+        0.36000001430511475,
+        0.3499999940395355,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 black steel",
+      "file_name": "R4_R5_black_steel",
+      "base_color": [
+        0.02500000037252903,
+        0.029999999329447746,
+        0.027000000700354576,
+        1.0
+      ],
+      "metallic": 0.6000000238418579,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 chalk",
+      "file_name": "R4_R5_chalk",
+      "base_color": [
+        0.7599999904632568,
+        0.800000011920929,
+        0.699999988079071,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.050000011920928955,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 diffuser",
+      "file_name": "R4_R5_diffuser",
+      "base_color": [
+        1.0,
+        0.9200000166893005,
+        0.7599999904632568,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        3.0,
+        2.7600000500679016,
+        2.2799999713897705
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 erased chalk",
+      "file_name": "R4_R5_erased_chalk",
+      "base_color": [
+        0.12999999523162842,
+        0.18000000715255737,
+        0.14499999582767487,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.0,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 frame brass",
+      "file_name": "R4_R5_frame_brass",
+      "base_color": [
+        0.23999999463558197,
+        0.20999999344348907,
+        0.12999999523162842,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 ink",
+      "file_name": "R4_R5_ink",
+      "base_color": [
+        0.012000000104308128,
+        0.017000000923871994,
+        0.019999999552965164,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 paper",
+      "file_name": "R4_R5_paper",
+      "base_color": [
+        0.8799999952316284,
+        0.8500000238418579,
+        0.7300000190734863,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.050000011920928955,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R5 red chalk",
+      "file_name": "R4_R5_red_chalk",
+      "base_color": [
+        0.699999988079071,
+        0.027000000700354576,
+        0.017999999225139618,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 ivory moulding",
+      "file_name": "R4_V13_ivory_moulding",
+      "base_color": [
+        0.6600000262260437,
+        0.6399999856948853,
+        0.5600000023841858,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 recess",
+      "file_name": "R4_V13_recess",
+      "base_color": [
+        0.007000000216066837,
+        0.012000000104308128,
+        0.010999999940395355,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 walnut",
+      "file_name": "R4_V13_walnut",
+      "base_color": [
+        0.11999999731779099,
+        0.06499999761581421,
+        0.02800000086426735,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.3999999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_05_A_Objects - R4 R5 chalkboard",
+      "file_name": "Room_05_A_Objects_-_R4_R5_chalkboard",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.04000002145767212,
+      "base_map": "Room_05_A_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_05_A_Structure - R4 R6 mineral wall",
+      "file_name": "Room_05_A_Structure_-_R4_R6_mineral_wall",
+      "base_color": [
+        0.10000000149011612,
+        0.11999999731779099,
+        0.11999999731779099,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "Room_05_A_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_05_B_Objects - R4 R5 chalkboard",
+      "file_name": "Room_05_B_Objects_-_R4_R5_chalkboard",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.04000002145767212,
+      "base_map": "Room_05_B_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Room_05_B_Structure - R4 R6 mineral wall",
+      "file_name": "Room_05_B_Structure_-_R4_R6_mineral_wall",
+      "base_color": [
+        0.10000000149011612,
+        0.11999999731779099,
+        0.11999999731779099,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "Room_05_B_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Simple wood",
+      "file_name": "Simple_wood",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Simple_wood_BaseColor.jpg",
+      "metallic_smoothness_map": "Simple_wood_MetallicSmoothness.png",
+      "normal_map": "Simple_wood_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Simple_wood_Height.jpg",
+      "height_scale": 0.003000000026077032,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "Stucco wall",
+      "file_name": "Stucco_wall",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Stucco_wall_BaseColor.jpg",
+      "metallic_smoothness_map": "Stucco_wall_MetallicSmoothness.png",
+      "normal_map": "Stucco_wall_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "Stucco_wall_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "White calculation room",
+      "file_name": "White_calculation_room",
+      "base_color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Wood",
+      "file_name": "Wood",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_BaseColor.jpg",
+      "metallic_smoothness_map": "Wood_MetallicSmoothness.png",
+      "normal_map": "Wood_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Wood_Height.tif",
+      "height_scale": 0.0020000000949949026,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH",
+      "reference_specular_ior_map": "Wood_SpecularIOR_Reference.jpg"
+    },
+    {
+      "name": "Wood.001",
+      "file_name": "Wood_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_001_BaseColor.jpg",
+      "metallic_smoothness_map": "Wood_001_MetallicSmoothness.png",
+      "normal_map": "Wood_001_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Wood_001_Height.jpg",
+      "height_scale": 0.003000000026077032,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "Wood.002",
+      "file_name": "Wood_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_002_BaseColor.jpg",
+      "metallic_smoothness_map": "Wood_002_MetallicSmoothness.png",
+      "normal_map": "Wood_002_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Wood_002_Height.tif",
+      "height_scale": 0.0010000000474974513,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH",
+      "reference_specular_ior_map": "Wood_002_SpecularIOR_Reference.jpg"
+    },
+    {
+      "name": "wood_floor",
+      "file_name": "wood_floor",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "wood_floor_BaseColor.jpg",
+      "metallic_smoothness_map": "wood_floor_MetallicSmoothness.png",
+      "normal_map": "wood_floor_Normal.exr",
+      "normal_scale": 1.0,
+      "height_map": "wood_floor_Height.jpg",
+      "height_scale": 0.000699999975040555,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "DISPLACEMENT"
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_05_Structure.fbx",
+      "size_bytes": 49276
+    },
+    {
+      "path": "Models/SILENT_Room_05_A_Objects.fbx",
+      "size_bytes": 5848956
+    },
+    {
+      "path": "Models/SILENT_Room_05_B_Objects.fbx",
+      "size_bytes": 3068012
+    },
+    {
+      "path": "Models/SILENT_Room_05_B_Puzzle.fbx",
+      "size_bytes": 1859532
+    },
+    {
+      "path": "Textures/Ceiling_Tiles_BaseColor.jpg",
+      "size_bytes": 151844
+    },
+    {
+      "path": "Textures/Ceiling_Tiles_Height.jpg",
+      "size_bytes": 1440861
+    },
+    {
+      "path": "Textures/Ceiling_Tiles_MetallicSmoothness.png",
+      "size_bytes": 1327855
+    },
+    {
+      "path": "Textures/Ceiling_Tiles_Normal.jpg",
+      "size_bytes": 1803113
+    },
+    {
+      "path": "Textures/Desk_wood_BaseColor.jpg",
+      "size_bytes": 164001
+    },
+    {
+      "path": "Textures/Desk_wood_Height.jpg",
+      "size_bytes": 121970
+    },
+    {
+      "path": "Textures/Desk_wood_MetallicSmoothness.png",
+      "size_bytes": 823813
+    },
+    {
+      "path": "Textures/Desk_wood_Normal.jpg",
+      "size_bytes": 85284
+    },
+    {
+      "path": "Textures/Frozen_white_metal_BaseColor.jpg",
+      "size_bytes": 135329
+    },
+    {
+      "path": "Textures/Frozen_white_metal_MetallicSmoothness.png",
+      "size_bytes": 335472
+    },
+    {
+      "path": "Textures/Frozen_white_metal_Normal.jpg",
+      "size_bytes": 46911
+    },
+    {
+      "path": "Textures/Room_05_A_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "size_bytes": 6012930
+    },
+    {
+      "path": "Textures/Room_05_A_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "size_bytes": 14270297
+    },
+    {
+      "path": "Textures/Room_05_B_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "size_bytes": 6007840
+    },
+    {
+      "path": "Textures/Room_05_B_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "size_bytes": 14270314
+    },
+    {
+      "path": "Textures/Simple_wood_BaseColor.jpg",
+      "size_bytes": 1729865
+    },
+    {
+      "path": "Textures/Simple_wood_Height.jpg",
+      "size_bytes": 243065
+    },
+    {
+      "path": "Textures/Simple_wood_MetallicSmoothness.png",
+      "size_bytes": 8398924
+    },
+    {
+      "path": "Textures/Simple_wood_Normal.jpg",
+      "size_bytes": 414867
+    },
+    {
+      "path": "Textures/Stucco_wall_BaseColor.jpg",
+      "size_bytes": 1858078
+    },
+    {
+      "path": "Textures/Stucco_wall_Height.jpg",
+      "size_bytes": 1114287
+    },
+    {
+      "path": "Textures/Stucco_wall_MetallicSmoothness.png",
+      "size_bytes": 10237968
+    },
+    {
+      "path": "Textures/Stucco_wall_Normal.png",
+      "size_bytes": 27194241
+    },
+    {
+      "path": "Textures/Wood_001_BaseColor.jpg",
+      "size_bytes": 1168044
+    },
+    {
+      "path": "Textures/Wood_001_Height.jpg",
+      "size_bytes": 390696
+    },
+    {
+      "path": "Textures/Wood_001_MetallicSmoothness.png",
+      "size_bytes": 2113063
+    },
+    {
+      "path": "Textures/Wood_001_Normal.jpg",
+      "size_bytes": 367417
+    },
+    {
+      "path": "Textures/Wood_002_BaseColor.jpg",
+      "size_bytes": 729107
+    },
+    {
+      "path": "Textures/Wood_002_Height.tif",
+      "size_bytes": 3436536
+    },
+    {
+      "path": "Textures/Wood_002_MetallicSmoothness.png",
+      "size_bytes": 8830525
+    },
+    {
+      "path": "Textures/Wood_002_Normal.jpg",
+      "size_bytes": 503660
+    },
+    {
+      "path": "Textures/Wood_002_SpecularIOR_Reference.jpg",
+      "size_bytes": 49731
+    },
+    {
+      "path": "Textures/Wood_BaseColor.jpg",
+      "size_bytes": 771244
+    },
+    {
+      "path": "Textures/Wood_Height.tif",
+      "size_bytes": 3591822
+    },
+    {
+      "path": "Textures/Wood_MetallicSmoothness.png",
+      "size_bytes": 3112879
+    },
+    {
+      "path": "Textures/Wood_Normal.jpg",
+      "size_bytes": 316010
+    },
+    {
+      "path": "Textures/Wood_SpecularIOR_Reference.jpg",
+      "size_bytes": 49498
+    },
+    {
+      "path": "Textures/wood_floor_BaseColor.jpg",
+      "size_bytes": 1069128
+    },
+    {
+      "path": "Textures/wood_floor_Height.jpg",
+      "size_bytes": 1088461
+    },
+    {
+      "path": "Textures/wood_floor_MetallicSmoothness.png",
+      "size_bytes": 7646698
+    },
+    {
+      "path": "Textures/wood_floor_Normal.exr",
+      "size_bytes": 12889272
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.004",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Ceiling Tiles"
+      ]
+    },
+    {
+      "name": "Room_05_A_Structure",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 72,
+      "polygons": 108,
+      "uv0": "Room05_SurfaceUV",
+      "materials": [
+        "wood_floor",
+        "Stucco wall",
+        "White calculation room",
+        "Room_05_A_Structure - R4 R6 mineral wall"
+      ]
+    },
+    {
+      "name": "Room_05_A_Objects",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 114276,
+      "polygons": 145800,
+      "uv0": "Room05_SurfaceUV",
+      "materials": [
+        "R4 R5 paper",
+        "Simple wood",
+        "R4 R5 chalk",
+        "R4 V13 ivory moulding",
+        "R4 R5 frame brass",
+        "Wood.002",
+        "R4 V13 walnut",
+        "Wood.001",
+        "R4 R5 diffuser",
+        "R4 V13 recess",
+        "Room_05_A_Objects - R4 R5 chalkboard",
+        "R4 R5 black steel",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 R5 erased chalk",
+        "R4 R5 red chalk",
+        "R4 R5 ink"
+      ]
+    },
+    {
+      "name": "Ceiling.011",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Ceiling Tiles"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Body",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_0",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_0",
+      "parent": null,
+      "source_type": "FONT",
+      "vertices": 11,
+      "polygons": 11,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 enamel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_1",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_1",
+      "parent": null,
+      "source_type": "FONT",
+      "vertices": 309,
+      "polygons": 311,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 enamel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.002",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.003",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_2",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_2",
+      "parent": null,
+      "source_type": "FONT",
+      "vertices": 230,
+      "polygons": 228,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 enamel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.004",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.005",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_3",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_3",
+      "parent": null,
+      "source_type": "FONT",
+      "vertices": 230,
+      "polygons": 228,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 enamel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.007",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 136,
+      "polygons": 268,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 136,
+      "polygons": 268,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.002",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 136,
+      "polygons": 268,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.002",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.003",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 136,
+      "polygons": 268,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.003",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_CaseSeam",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_CaseSeam.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Shackle",
+      "parent": null,
+      "source_type": "CURVE",
+      "vertices": 312,
+      "polygons": 608,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_0",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 20,
+      "polygons": 36,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 434,
+      "polygons": 436,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.001",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 11,
+      "polygons": 9,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.002",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 247,
+      "polygons": 245,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.003",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 461,
+      "polygons": 459,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.004",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 14,
+      "polygons": 14,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.005",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 248,
+      "polygons": 246,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.006",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 484,
+      "polygons": 484,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.007",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 7,
+      "polygons": 5,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.008",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 624,
+      "polygons": 626,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.009",
+      "parent": "PZ_R5_B_Dial_0",
+      "source_type": "FONT",
+      "vertices": 460,
+      "polygons": 460,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_1",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 20,
+      "polygons": 36,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.010",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 434,
+      "polygons": 436,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.011",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 11,
+      "polygons": 9,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.012",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 247,
+      "polygons": 245,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.013",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 461,
+      "polygons": 459,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.014",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 14,
+      "polygons": 14,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.015",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 248,
+      "polygons": 246,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.016",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 484,
+      "polygons": 484,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.017",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 7,
+      "polygons": 5,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.018",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 624,
+      "polygons": 626,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.019",
+      "parent": "PZ_R5_B_Dial_1",
+      "source_type": "FONT",
+      "vertices": 460,
+      "polygons": 460,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_2",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 20,
+      "polygons": 36,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.020",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 434,
+      "polygons": 436,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.021",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 11,
+      "polygons": 9,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.022",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 247,
+      "polygons": 245,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.023",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 461,
+      "polygons": 459,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.024",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 14,
+      "polygons": 14,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.025",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 248,
+      "polygons": 246,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.026",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 484,
+      "polygons": 484,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.027",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 7,
+      "polygons": 5,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.028",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 624,
+      "polygons": 626,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.029",
+      "parent": "PZ_R5_B_Dial_2",
+      "source_type": "FONT",
+      "vertices": 460,
+      "polygons": 460,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_3",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 20,
+      "polygons": 36,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 nickel"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.030",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 434,
+      "polygons": 436,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.031",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 11,
+      "polygons": 9,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.032",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 247,
+      "polygons": 245,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.033",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 461,
+      "polygons": 459,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.034",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 14,
+      "polygons": 14,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.035",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 248,
+      "polygons": 246,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.036",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 484,
+      "polygons": 484,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.037",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 7,
+      "polygons": 5,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.038",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 624,
+      "polygons": 626,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.039",
+      "parent": "PZ_R5_B_Dial_3",
+      "source_type": "FONT",
+      "vertices": 460,
+      "polygons": 460,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 ink"
+      ]
+    },
+    {
+      "name": "Room_05_B_Structure",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 72,
+      "polygons": 108,
+      "uv0": "Room05_SurfaceUV",
+      "materials": [
+        "wood_floor",
+        "Stucco wall",
+        "White calculation room",
+        "Room_05_B_Structure - R4 R6 mineral wall"
+      ]
+    },
+    {
+      "name": "Room_05_B_Objects",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 31788,
+      "polygons": 62868,
+      "uv0": "Room05_SurfaceUV",
+      "materials": [
+        "R4 R5 diffuser",
+        "Simple wood",
+        "Desk wood",
+        "Frozen white metal",
+        "R4 V13 ivory moulding",
+        "R4 R5 black steel",
+        "R4 R5 frame brass",
+        "Wood.002",
+        "R4 V13 walnut",
+        "Wood.001",
+        "R4 V13 recess",
+        "Room_05_B_Objects - R4 R5 chalkboard",
+        "Wood",
+        "R4 V13 machined steel",
+        "R4 R43 nickel"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "A ceiling white light",
+    "A ceiling white light.001",
+    "A ceiling white light.002",
+    "A ceiling white light.003",
+    "A ceiling white light.004",
+    "A ceiling white light.005",
+    "A ceiling white light.006",
+    "A ceiling white light.007",
+    "A ceiling white light.008",
+    "A ceiling white light.009",
+    "A ceiling white light.010",
+    "A ceiling white light.011",
+    "A board wash",
+    "A board wash.001",
+    "A board wash.002",
+    "A board wash.003",
+    "B ceiling white light",
+    "B ceiling white light.001",
+    "B ceiling white light.002",
+    "B ceiling white light.003",
+    "B ceiling white light.004",
+    "B ceiling white light.005",
+    "B ceiling white light.006",
+    "B ceiling white light.007",
+    "B ceiling white light.008",
+    "B ceiling white light.009",
+    "B ceiling white light.010",
+    "B ceiling white light.011",
+    "B board wash",
+    "B board wash.001",
+    "B board wash.002",
+    "B board wash.003",
+    "REVIEW_Fill_5_A_0",
+    "REVIEW_Fill_5_A_1",
+    "REVIEW_Fill_5_A_2",
+    "REVIEW_Fill_5_B_0",
+    "REVIEW_Fill_5_B_1",
+    "REVIEW_Fill_5_B_2"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_05_A",
+      "matrix": [
+        [
+          0.6675448417663574,
+          0.011468515731394291,
+          -0.7444812655448914,
+          47.75
+        ],
+        [
+          -0.7445695996284485,
+          0.010282078757882118,
+          -0.6674656867980957,
+          -10.0
+        ],
+        [
+          -2.5791749180825718e-08,
+          0.999881386756897,
+          0.015402856282889843,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    },
+    {
+      "name": "REVIEW_Room_05_B",
+      "matrix": [
+        [
+          0.6675448417663574,
+          0.011468515731394291,
+          -0.7444812655448914,
+          47.75
+        ],
+        [
+          -0.7445695996284485,
+          0.010282078757882118,
+          -0.6674656867980957,
+          3.0
+        ],
+        [
+          -2.5791749180825718e-08,
+          0.999881386756897,
+          0.015402856282889843,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    }
+  ],
+  "notes": [
+    "Original A/B structures, ceilings and merged general object meshes retained.",
+    "44 visible text objects and 1 shackle curve converted into meshes; 40 digit children remain parented to their four dials.",
+    "38 Blender lights and 2 review cameras excluded. Hidden reward text excluded as in source rendering.",
+    "Evaluated bevels, original world placement, source tessellation and corner normals preserved.",
+    "Original render UV promoted to UV0; Desk wood mapping scale folded into matching faces.",
+    "Procedural chalkboard and mineral wall materials baked on their actual surfaces; Stucco normal channel math converted.",
+    "Original 1K/2K image resolution preserved. Duplicate image bytes shared without merging material slots.",
+    "Color maps encoded as sRGB; packed data channels saved without alpha premultiplication.",
+    "Height maps use URP parallax. Blender-specific specular textures supplied as references.",
+    "Unity lighting and tone mapping require user visual verification. No gameplay logic added."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "Room_05_A_Objects - R4 R5 chalkboard",
+      "resolution": 2048,
+      "faces": 54
+    },
+    {
+      "material": "Room_05_A_Structure - R4 R6 mineral wall",
+      "resolution": 2048,
+      "faces": 3
+    },
+    {
+      "material": "Room_05_B_Objects - R4 R5 chalkboard",
+      "resolution": 2048,
+      "faces": 54
+    },
+    {
+      "material": "Room_05_B_Structure - R4 R6 mineral wall",
+      "resolution": 2048,
+      "faces": 3
+    },
+    {
+      "material": "Stucco wall",
+      "resolution": 2048,
+      "channel": "normal_color"
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_05_Structure.fbx",
+    "Models/SILENT_Room_05_A_Objects.fbx",
+    "Models/SILENT_Room_05_B_Objects.fbx",
+    "Models/SILENT_Room_05_B_Puzzle.fbx"
+  ],
+  "source_types": {
+    "Ceiling.004": "MESH",
+    "Room_05_A_Structure": "MESH",
+    "Room_05_A_Objects": "MESH",
+    "Ceiling.011": "MESH",
+    "PZ_R5_B_Body": "MESH",
+    "PZ_R5_B_Window_0": "MESH",
+    "PZ_R5_B_Clue_0": "FONT",
+    "PZ_R5_B_Aperture": "MESH",
+    "PZ_R5_B_Aperture.001": "MESH",
+    "PZ_R5_B_Window_1": "MESH",
+    "PZ_R5_B_Clue_1": "FONT",
+    "PZ_R5_B_Aperture.002": "MESH",
+    "PZ_R5_B_Aperture.003": "MESH",
+    "PZ_R5_B_Window_2": "MESH",
+    "PZ_R5_B_Clue_2": "FONT",
+    "PZ_R5_B_Aperture.004": "MESH",
+    "PZ_R5_B_Aperture.005": "MESH",
+    "PZ_R5_B_Window_3": "MESH",
+    "PZ_R5_B_Clue_3": "FONT",
+    "PZ_R5_B_Aperture.006": "MESH",
+    "PZ_R5_B_Aperture.007": "MESH",
+    "PZ_R5_B_FaceScrew": "MESH",
+    "PZ_R5_B_ScrewSlot": "MESH",
+    "PZ_R5_B_FaceScrew.001": "MESH",
+    "PZ_R5_B_ScrewSlot.001": "MESH",
+    "PZ_R5_B_FaceScrew.002": "MESH",
+    "PZ_R5_B_ScrewSlot.002": "MESH",
+    "PZ_R5_B_FaceScrew.003": "MESH",
+    "PZ_R5_B_ScrewSlot.003": "MESH",
+    "PZ_R5_B_CaseSeam": "MESH",
+    "PZ_R5_B_CaseSeam.001": "MESH",
+    "PZ_R5_B_Shackle": "CURVE",
+    "PZ_R5_B_Dial_0": "MESH",
+    "PZ_R5_B_Digit": "FONT",
+    "PZ_R5_B_Digit.001": "FONT",
+    "PZ_R5_B_Digit.002": "FONT",
+    "PZ_R5_B_Digit.003": "FONT",
+    "PZ_R5_B_Digit.004": "FONT",
+    "PZ_R5_B_Digit.005": "FONT",
+    "PZ_R5_B_Digit.006": "FONT",
+    "PZ_R5_B_Digit.007": "FONT",
+    "PZ_R5_B_Digit.008": "FONT",
+    "PZ_R5_B_Digit.009": "FONT",
+    "PZ_R5_B_Dial_1": "MESH",
+    "PZ_R5_B_Digit.010": "FONT",
+    "PZ_R5_B_Digit.011": "FONT",
+    "PZ_R5_B_Digit.012": "FONT",
+    "PZ_R5_B_Digit.013": "FONT",
+    "PZ_R5_B_Digit.014": "FONT",
+    "PZ_R5_B_Digit.015": "FONT",
+    "PZ_R5_B_Digit.016": "FONT",
+    "PZ_R5_B_Digit.017": "FONT",
+    "PZ_R5_B_Digit.018": "FONT",
+    "PZ_R5_B_Digit.019": "FONT",
+    "PZ_R5_B_Dial_2": "MESH",
+    "PZ_R5_B_Digit.020": "FONT",
+    "PZ_R5_B_Digit.021": "FONT",
+    "PZ_R5_B_Digit.022": "FONT",
+    "PZ_R5_B_Digit.023": "FONT",
+    "PZ_R5_B_Digit.024": "FONT",
+    "PZ_R5_B_Digit.025": "FONT",
+    "PZ_R5_B_Digit.026": "FONT",
+    "PZ_R5_B_Digit.027": "FONT",
+    "PZ_R5_B_Digit.028": "FONT",
+    "PZ_R5_B_Digit.029": "FONT",
+    "PZ_R5_B_Dial_3": "MESH",
+    "PZ_R5_B_Digit.030": "FONT",
+    "PZ_R5_B_Digit.031": "FONT",
+    "PZ_R5_B_Digit.032": "FONT",
+    "PZ_R5_B_Digit.033": "FONT",
+    "PZ_R5_B_Digit.034": "FONT",
+    "PZ_R5_B_Digit.035": "FONT",
+    "PZ_R5_B_Digit.036": "FONT",
+    "PZ_R5_B_Digit.037": "FONT",
+    "PZ_R5_B_Digit.038": "FONT",
+    "PZ_R5_B_Digit.039": "FONT",
+    "Room_05_B_Structure": "MESH",
+    "Room_05_B_Objects": "MESH"
+  },
+  "source_hierarchy": {
+    "Ceiling.004": "ROOM_05_A",
+    "Room_05_A_Structure": "ROOM_05_A",
+    "Room_05_A_Objects": "ROOM_05_A",
+    "Ceiling.011": "ROOM_05_B",
+    "PZ_R5_B_Body": "ROOM_05_B",
+    "PZ_R5_B_Window_0": "ROOM_05_B",
+    "PZ_R5_B_Clue_0": "ROOM_05_B",
+    "PZ_R5_B_Aperture": "ROOM_05_B",
+    "PZ_R5_B_Aperture.001": "ROOM_05_B",
+    "PZ_R5_B_Window_1": "ROOM_05_B",
+    "PZ_R5_B_Clue_1": "ROOM_05_B",
+    "PZ_R5_B_Aperture.002": "ROOM_05_B",
+    "PZ_R5_B_Aperture.003": "ROOM_05_B",
+    "PZ_R5_B_Window_2": "ROOM_05_B",
+    "PZ_R5_B_Clue_2": "ROOM_05_B",
+    "PZ_R5_B_Aperture.004": "ROOM_05_B",
+    "PZ_R5_B_Aperture.005": "ROOM_05_B",
+    "PZ_R5_B_Window_3": "ROOM_05_B",
+    "PZ_R5_B_Clue_3": "ROOM_05_B",
+    "PZ_R5_B_Aperture.006": "ROOM_05_B",
+    "PZ_R5_B_Aperture.007": "ROOM_05_B",
+    "PZ_R5_B_FaceScrew": "ROOM_05_B",
+    "PZ_R5_B_ScrewSlot": "ROOM_05_B",
+    "PZ_R5_B_FaceScrew.001": "ROOM_05_B",
+    "PZ_R5_B_ScrewSlot.001": "ROOM_05_B",
+    "PZ_R5_B_FaceScrew.002": "ROOM_05_B",
+    "PZ_R5_B_ScrewSlot.002": "ROOM_05_B",
+    "PZ_R5_B_FaceScrew.003": "ROOM_05_B",
+    "PZ_R5_B_ScrewSlot.003": "ROOM_05_B",
+    "PZ_R5_B_CaseSeam": "ROOM_05_B",
+    "PZ_R5_B_CaseSeam.001": "ROOM_05_B",
+    "PZ_R5_B_Shackle": "ROOM_05_B",
+    "PZ_R5_B_Dial_0": "ROOM_05_B",
+    "PZ_R5_B_Digit": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.001": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.002": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.003": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.004": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.005": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.006": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.007": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.008": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Digit.009": "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Dial_1": "ROOM_05_B",
+    "PZ_R5_B_Digit.010": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.011": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.012": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.013": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.014": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.015": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.016": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.017": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.018": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Digit.019": "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Dial_2": "ROOM_05_B",
+    "PZ_R5_B_Digit.020": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.021": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.022": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.023": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.024": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.025": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.026": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.027": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.028": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Digit.029": "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Dial_3": "ROOM_05_B",
+    "PZ_R5_B_Digit.030": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.031": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.032": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.033": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.034": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.035": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.036": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.037": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.038": "PZ_R5_B_Dial_3",
+    "PZ_R5_B_Digit.039": "PZ_R5_B_Dial_3",
+    "Room_05_B_Structure": "ROOM_05_B",
+    "Room_05_B_Objects": "ROOM_05_B"
+  },
+  "duplicate_triangle_preservation": [
+    {
+      "mesh": "Ceiling.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_05_A_Structure",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_05_A_Objects",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Ceiling.011",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Body",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Window_0",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Clue_0",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Window_1",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Clue_1",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Window_2",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Clue_2",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Window_3",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Clue_3",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Aperture.007",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_FaceScrew",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_ScrewSlot",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_FaceScrew.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_ScrewSlot.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_FaceScrew.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_ScrewSlot.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_FaceScrew.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_ScrewSlot.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_CaseSeam",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_CaseSeam.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Shackle",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Dial_0",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.007",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.008",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.009",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Dial_1",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.010",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.011",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.012",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.014",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.015",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.016",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.017",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.018",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.019",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Dial_2",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.020",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.021",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.022",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.023",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.024",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.025",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.026",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.027",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.028",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.029",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Dial_3",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.030",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.031",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.032",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.033",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.034",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.035",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.036",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.037",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.038",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R5_B_Digit.039",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_05_B_Structure",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_05_B_Objects",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    }
+  ],
+  "animation_sources": [
+    "PZ_R5_B_Shackle",
+    "PZ_R5_B_Dial_0",
+    "PZ_R5_B_Dial_1",
+    "PZ_R5_B_Dial_2",
+    "PZ_R5_B_Dial_3"
+  ],
+  "animation_info": {
+    "fps": 24.0,
+    "frame_start": 1,
+    "frame_end": 250,
+    "actions": [
+      {
+        "object": "PZ_R5_B_Shackle",
+        "action": "PZ_R5_B_ShackleAction",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R5_B_Dial_0",
+        "action": "PZ_R5_B_Dial_0Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R5_B_Dial_1",
+        "action": "PZ_R5_B_Dial_1Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R5_B_Dial_2",
+        "action": "PZ_R5_B_Dial_2Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R5_B_Dial_3",
+        "action": "PZ_R5_B_Dial_3Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      }
+    ]
+  },
+  "uv_mapping_adjustments": [
+    {
+      "material": "Desk wood",
+      "scale_baked_into_uv0": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  ],
+  "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.004",
+      "vertices": 8,
+      "materials": [
+        "Ceiling Tiles"
+      ],
+      "bounds": [
+        [
+          47.0,
+          71.0
+        ],
+        [
+          -11.0,
+          -2.0
+        ],
+        [
+          7.0,
+          7.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Room_05_A_Structure",
+      "vertices": 72,
+      "materials": [
+        "wood_floor",
+        "Stucco wall",
+        "White calculation room",
+        "Room_05_A_Structure - R4 R6 mineral wall"
+      ],
+      "bounds": [
+        [
+          47.0,
+          71.0999984741211
+        ],
+        [
+          -11.0,
+          -2.0
+        ],
+        [
+          -0.23999999463558197,
+          7.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_05_A_Objects",
+      "vertices": 114276,
+      "materials": [
+        "R4 R5 paper",
+        "Simple wood",
+        "R4 R5 chalk",
+        "R4 V13 ivory moulding",
+        "R4 R5 frame brass",
+        "Wood.002",
+        "R4 V13 walnut",
+        "Wood.001",
+        "R4 R5 diffuser",
+        "R4 V13 recess",
+        "Room_05_A_Objects - R4 R5 chalkboard",
+        "R4 R5 black steel",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 R5 erased chalk",
+        "R4 R5 red chalk",
+        "R4 R5 ink"
+      ],
+      "bounds": [
+        [
+          47.10499572753906,
+          71.08999633789062
+        ],
+        [
+          -10.834999084472656,
+          -2.164999008178711
+        ],
+        [
+          5.960464477539063e-08,
+          6.959999084472656
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.011",
+      "vertices": 8,
+      "materials": [
+        "Ceiling Tiles"
+      ],
+      "bounds": [
+        [
+          47.0,
+          71.0
+        ],
+        [
+          2.0,
+          11.0
+        ],
+        [
+          7.0,
+          7.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Body",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          70.05500030517578,
+          70.26500701904297
+        ],
+        [
+          4.259999752044678,
+          4.940000057220459
+        ],
+        [
+          1.0649999380111694,
+          1.4950000047683716
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_0",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.03600311279297,
+          70.05400848388672
+        ],
+        [
+          4.764499664306641,
+          4.885499954223633
+        ],
+        [
+          1.3639999628067017,
+          1.4520000219345093
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_0",
+      "vertices": 11,
+      "materials": [
+        "R4 R43 enamel"
+      ],
+      "bounds": [
+        [
+          70.031005859375,
+          70.031005859375
+        ],
+        [
+          4.811431884765625,
+          4.838567733764648
+        ],
+        [
+          1.3958059549331665,
+          1.4278736114501953
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.759999752044678,
+          4.889999866485596
+        ],
+        [
+          1.119499921798706,
+          1.1445000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.759999752044678,
+          4.889999866485596
+        ],
+        [
+          1.3294999599456787,
+          1.3545000553131104
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_1",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.03600311279297,
+          70.05400848388672
+        ],
+        [
+          4.614499568939209,
+          4.735499858856201
+        ],
+        [
+          1.3639999628067017,
+          1.4520000219345093
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_1",
+      "vertices": 309,
+      "materials": [
+        "R4 R43 enamel"
+      ],
+      "bounds": [
+        [
+          70.031005859375,
+          70.031005859375
+        ],
+        [
+          4.663885116577148,
+          4.6849365234375
+        ],
+        [
+          1.3958059549331665,
+          1.4278736114501953
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.002",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.609999656677246,
+          4.739999771118164
+        ],
+        [
+          1.119499921798706,
+          1.1445000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.003",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.609999656677246,
+          4.739999771118164
+        ],
+        [
+          1.3294999599456787,
+          1.3545000553131104
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_2",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.03600311279297,
+          70.05400848388672
+        ],
+        [
+          4.4644999504089355,
+          4.585500240325928
+        ],
+        [
+          1.3639999628067017,
+          1.4520000219345093
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_2",
+      "vertices": 230,
+      "materials": [
+        "R4 R43 enamel"
+      ],
+      "bounds": [
+        [
+          70.031005859375,
+          70.031005859375
+        ],
+        [
+          4.514400959014893,
+          4.536556243896484
+        ],
+        [
+          1.3954133987426758,
+          1.428266167640686
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.004",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.460000038146973,
+          4.590000152587891
+        ],
+        [
+          1.119499921798706,
+          1.1445000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.005",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.460000038146973,
+          4.590000152587891
+        ],
+        [
+          1.3294999599456787,
+          1.3545000553131104
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Window_3",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.03600311279297,
+          70.05400848388672
+        ],
+        [
+          4.314499855041504,
+          4.435500144958496
+        ],
+        [
+          1.3639999628067017,
+          1.4520000219345093
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Clue_3",
+      "vertices": 230,
+      "materials": [
+        "R4 R43 enamel"
+      ],
+      "bounds": [
+        [
+          70.031005859375,
+          70.031005859375
+        ],
+        [
+          4.364400863647461,
+          4.386556148529053
+        ],
+        [
+          1.3954133987426758,
+          1.428266167640686
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.006",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.309999942779541,
+          4.440000057220459
+        ],
+        [
+          1.119499921798706,
+          1.1445000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Aperture.007",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          69.99449920654297,
+          70.03350067138672
+        ],
+        [
+          4.309999942779541,
+          4.440000057220459
+        ],
+        [
+          1.3294999599456787,
+          1.3545000553131104
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew",
+      "vertices": 136,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          70.04650115966797,
+          70.05550384521484
+        ],
+        [
+          4.906000137329102,
+          4.923999786376953
+        ],
+        [
+          1.0809999704360962,
+          1.0989998579025269
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot",
+      "vertices": 8,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.04525756835938,
+          70.0467529296875
+        ],
+        [
+          4.909999847412109,
+          4.920000076293945
+        ],
+        [
+          1.08899986743927,
+          1.090999960899353
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.001",
+      "vertices": 136,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          70.04650115966797,
+          70.05550384521484
+        ],
+        [
+          4.906000137329102,
+          4.923999786376953
+        ],
+        [
+          1.4609999656677246,
+          1.4789998531341553
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.001",
+      "vertices": 8,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.04525756835938,
+          70.0467529296875
+        ],
+        [
+          4.909999847412109,
+          4.920000076293945
+        ],
+        [
+          1.4689998626708984,
+          1.4709999561309814
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.002",
+      "vertices": 136,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          70.04650115966797,
+          70.05550384521484
+        ],
+        [
+          4.276000022888184,
+          4.293999671936035
+        ],
+        [
+          1.0809999704360962,
+          1.0989998579025269
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.002",
+      "vertices": 8,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.04525756835938,
+          70.0467529296875
+        ],
+        [
+          4.279999732971191,
+          4.289999961853027
+        ],
+        [
+          1.08899986743927,
+          1.090999960899353
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_FaceScrew.003",
+      "vertices": 136,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          70.04650115966797,
+          70.05550384521484
+        ],
+        [
+          4.276000022888184,
+          4.293999671936035
+        ],
+        [
+          1.4609999656677246,
+          1.4789998531341553
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_ScrewSlot.003",
+      "vertices": 8,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.04525756835938,
+          70.0467529296875
+        ],
+        [
+          4.279999732971191,
+          4.289999961853027
+        ],
+        [
+          1.4689998626708984,
+          1.4709999561309814
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_CaseSeam",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.24549865722656,
+          70.25450134277344
+        ],
+        [
+          4.270199775695801,
+          4.929800033569336
+        ],
+        [
+          1.0750000476837158,
+          1.0789999961853027
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_CaseSeam.001",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          70.24549865722656,
+          70.25450134277344
+        ],
+        [
+          4.270199775695801,
+          4.929800033569336
+        ],
+        [
+          1.4810000658035278,
+          1.4850000143051147
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Shackle",
+      "vertices": 312,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          70.13500213623047,
+          70.18500518798828
+        ],
+        [
+          4.302999973297119,
+          4.896999835968018
+        ],
+        [
+          1.4799998998641968,
+          1.784999966621399
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_0",
+      "vertices": 20,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          69.98176574707031,
+          70.12823486328125
+        ],
+        [
+          4.771999835968018,
+          4.877999782562256
+        ],
+        [
+          1.1609998941421509,
+          1.3149999380111694
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit",
+      "vertices": 434,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98076629638672,
+          69.98076629638672
+        ],
+        [
+          4.8144049644470215,
+          4.835594654083252
+        ],
+        [
+          1.2265129089355469,
+          1.2564682960510254
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.001",
+      "vertices": 11,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98843383789062,
+          70.00564575195312
+        ],
+        [
+          4.815319538116455,
+          4.834546089172363
+        ],
+        [
+          1.2726637125015259,
+          1.2963567972183228
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.002",
+      "vertices": 247,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.02151489257812,
+          70.04962158203125
+        ],
+        [
+          4.8150739669799805,
+          4.834278583526611
+        ],
+        [
+          1.3051725625991821,
+          1.3143051862716675
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.003",
+      "vertices": 461,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.0670166015625,
+          70.09550476074219
+        ],
+        [
+          4.815631866455078,
+          4.83389949798584
+        ],
+        [
+          1.3028911352157593,
+          1.312147855758667
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.004",
+      "vertices": 14,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10853576660156,
+          70.12567138671875
+        ],
+        [
+          4.813624382019043,
+          4.8365983963012695
+        ],
+        [
+          1.2670155763626099,
+          1.2906004190444946
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.005",
+      "vertices": 248,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.12923431396484,
+          70.12923431396484
+        ],
+        [
+          4.815810203552246,
+          4.833587169647217
+        ],
+        [
+          1.219933032989502,
+          1.2494869232177734
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.006",
+      "vertices": 484,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10443115234375,
+          70.1218032836914
+        ],
+        [
+          4.8147172927856445,
+          4.834814071655273
+        ],
+        [
+          1.1797512769699097,
+          1.2036609649658203
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.007",
+      "vertices": 7,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.06076049804688,
+          70.08848571777344
+        ],
+        [
+          4.815230369567871,
+          4.83494758605957
+        ],
+        [
+          1.1618187427520752,
+          1.1708272695541382
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.008",
+      "vertices": 624,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.01449584960938,
+          70.04298400878906
+        ],
+        [
+          4.8150739669799805,
+          4.834903240203857
+        ],
+        [
+          1.1638519763946533,
+          1.173108696937561
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.009",
+      "vertices": 460,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98409271240234,
+          70.00146484375
+        ],
+        [
+          4.815230369567871,
+          4.8353271484375
+        ],
+        [
+          1.1853994131088257,
+          1.2093089818954468
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_1",
+      "vertices": 20,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          69.98176574707031,
+          70.12823486328125
+        ],
+        [
+          4.621999740600586,
+          4.727999687194824
+        ],
+        [
+          1.1609998941421509,
+          1.3149999380111694
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.010",
+      "vertices": 434,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98076629638672,
+          69.98076629638672
+        ],
+        [
+          4.66440486907959,
+          4.68559455871582
+        ],
+        [
+          1.2265129089355469,
+          1.2564682960510254
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.011",
+      "vertices": 11,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98843383789062,
+          70.00564575195312
+        ],
+        [
+          4.665319442749023,
+          4.684545993804932
+        ],
+        [
+          1.2726637125015259,
+          1.2963567972183228
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.012",
+      "vertices": 247,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.02151489257812,
+          70.04962158203125
+        ],
+        [
+          4.665073871612549,
+          4.68427848815918
+        ],
+        [
+          1.3051725625991821,
+          1.3143051862716675
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.013",
+      "vertices": 461,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.0670166015625,
+          70.09550476074219
+        ],
+        [
+          4.6656317710876465,
+          4.683899402618408
+        ],
+        [
+          1.3028911352157593,
+          1.312147855758667
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.014",
+      "vertices": 14,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10853576660156,
+          70.12567138671875
+        ],
+        [
+          4.663624286651611,
+          4.686598300933838
+        ],
+        [
+          1.2670155763626099,
+          1.2906004190444946
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.015",
+      "vertices": 248,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.12923431396484,
+          70.12923431396484
+        ],
+        [
+          4.6658101081848145,
+          4.683587074279785
+        ],
+        [
+          1.219933032989502,
+          1.2494869232177734
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.016",
+      "vertices": 484,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10443115234375,
+          70.1218032836914
+        ],
+        [
+          4.664717197418213,
+          4.684813976287842
+        ],
+        [
+          1.1797512769699097,
+          1.2036609649658203
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.017",
+      "vertices": 7,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.06076049804688,
+          70.08848571777344
+        ],
+        [
+          4.6652302742004395,
+          4.684947490692139
+        ],
+        [
+          1.1618187427520752,
+          1.1708272695541382
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.018",
+      "vertices": 624,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.01449584960938,
+          70.04298400878906
+        ],
+        [
+          4.665073871612549,
+          4.684903144836426
+        ],
+        [
+          1.1638519763946533,
+          1.173108696937561
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.019",
+      "vertices": 460,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98409271240234,
+          70.00146484375
+        ],
+        [
+          4.6652302742004395,
+          4.685327053070068
+        ],
+        [
+          1.1853994131088257,
+          1.2093089818954468
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_2",
+      "vertices": 20,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          69.98176574707031,
+          70.12823486328125
+        ],
+        [
+          4.4720001220703125,
+          4.578000068664551
+        ],
+        [
+          1.1609998941421509,
+          1.3149999380111694
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.020",
+      "vertices": 434,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98076629638672,
+          69.98076629638672
+        ],
+        [
+          4.514405250549316,
+          4.535594940185547
+        ],
+        [
+          1.2265129089355469,
+          1.2564682960510254
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.021",
+      "vertices": 11,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98843383789062,
+          70.00564575195312
+        ],
+        [
+          4.51531982421875,
+          4.534546375274658
+        ],
+        [
+          1.2726637125015259,
+          1.2963567972183228
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.022",
+      "vertices": 247,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.02151489257812,
+          70.04962158203125
+        ],
+        [
+          4.515074253082275,
+          4.534278869628906
+        ],
+        [
+          1.3051725625991821,
+          1.3143051862716675
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.023",
+      "vertices": 461,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.0670166015625,
+          70.09550476074219
+        ],
+        [
+          4.515632152557373,
+          4.533899784088135
+        ],
+        [
+          1.3028911352157593,
+          1.312147855758667
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.024",
+      "vertices": 14,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10853576660156,
+          70.12567138671875
+        ],
+        [
+          4.513624668121338,
+          4.5365986824035645
+        ],
+        [
+          1.2670155763626099,
+          1.2906004190444946
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.025",
+      "vertices": 248,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.12923431396484,
+          70.12923431396484
+        ],
+        [
+          4.515810489654541,
+          4.533587455749512
+        ],
+        [
+          1.219933032989502,
+          1.2494869232177734
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.026",
+      "vertices": 484,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10443115234375,
+          70.1218032836914
+        ],
+        [
+          4.5147175788879395,
+          4.534814357757568
+        ],
+        [
+          1.1797512769699097,
+          1.2036609649658203
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.027",
+      "vertices": 7,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.06076049804688,
+          70.08848571777344
+        ],
+        [
+          4.515230655670166,
+          4.534947872161865
+        ],
+        [
+          1.1618187427520752,
+          1.1708272695541382
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.028",
+      "vertices": 624,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.01449584960938,
+          70.04298400878906
+        ],
+        [
+          4.515074253082275,
+          4.534903526306152
+        ],
+        [
+          1.1638519763946533,
+          1.173108696937561
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.029",
+      "vertices": 460,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98409271240234,
+          70.00146484375
+        ],
+        [
+          4.515230655670166,
+          4.535327434539795
+        ],
+        [
+          1.1853994131088257,
+          1.2093089818954468
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Dial_3",
+      "vertices": 20,
+      "materials": [
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          69.98176574707031,
+          70.12823486328125
+        ],
+        [
+          4.322000026702881,
+          4.427999973297119
+        ],
+        [
+          1.1609998941421509,
+          1.3149999380111694
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.030",
+      "vertices": 434,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98076629638672,
+          69.98076629638672
+        ],
+        [
+          4.364405155181885,
+          4.385594844818115
+        ],
+        [
+          1.2265129089355469,
+          1.2564682960510254
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.031",
+      "vertices": 11,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98843383789062,
+          70.00564575195312
+        ],
+        [
+          4.365319728851318,
+          4.384546279907227
+        ],
+        [
+          1.2726637125015259,
+          1.2963567972183228
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.032",
+      "vertices": 247,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.02151489257812,
+          70.04962158203125
+        ],
+        [
+          4.365074157714844,
+          4.384278774261475
+        ],
+        [
+          1.3051725625991821,
+          1.3143051862716675
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.033",
+      "vertices": 461,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.0670166015625,
+          70.09550476074219
+        ],
+        [
+          4.365632057189941,
+          4.383899688720703
+        ],
+        [
+          1.3028911352157593,
+          1.312147855758667
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.034",
+      "vertices": 14,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10853576660156,
+          70.12567138671875
+        ],
+        [
+          4.363624572753906,
+          4.386598587036133
+        ],
+        [
+          1.2670155763626099,
+          1.2906004190444946
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.035",
+      "vertices": 248,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.12923431396484,
+          70.12923431396484
+        ],
+        [
+          4.365810394287109,
+          4.38358736038208
+        ],
+        [
+          1.219933032989502,
+          1.2494869232177734
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.036",
+      "vertices": 484,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.10443115234375,
+          70.1218032836914
+        ],
+        [
+          4.364717483520508,
+          4.384814262390137
+        ],
+        [
+          1.1797512769699097,
+          1.2036609649658203
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.037",
+      "vertices": 7,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.06076049804688,
+          70.08848571777344
+        ],
+        [
+          4.365230560302734,
+          4.384947776794434
+        ],
+        [
+          1.1618187427520752,
+          1.1708272695541382
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.038",
+      "vertices": 624,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          70.01449584960938,
+          70.04298400878906
+        ],
+        [
+          4.365074157714844,
+          4.384903430938721
+        ],
+        [
+          1.1638519763946533,
+          1.173108696937561
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R5_B_Digit.039",
+      "vertices": 460,
+      "materials": [
+        "R4 R43 ink"
+      ],
+      "bounds": [
+        [
+          69.98409271240234,
+          70.00146484375
+        ],
+        [
+          4.365230560302734,
+          4.385327339172363
+        ],
+        [
+          1.1853994131088257,
+          1.2093089818954468
+        ]
+      ]
+    },
+    {
+      "name": "Room_05_B_Structure",
+      "vertices": 72,
+      "materials": [
+        "wood_floor",
+        "Stucco wall",
+        "White calculation room",
+        "Room_05_B_Structure - R4 R6 mineral wall"
+      ],
+      "bounds": [
+        [
+          47.0,
+          71.0999984741211
+        ],
+        [
+          2.0,
+          11.0
+        ],
+        [
+          -0.23999999463558197,
+          7.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_05_B_Objects",
+      "vertices": 31788,
+      "materials": [
+        "R4 R5 diffuser",
+        "Simple wood",
+        "Desk wood",
+        "Frozen white metal",
+        "R4 V13 ivory moulding",
+        "R4 R5 black steel",
+        "R4 R5 frame brass",
+        "Wood.002",
+        "R4 V13 walnut",
+        "Wood.001",
+        "R4 V13 recess",
+        "Room_05_B_Objects - R4 R5 chalkboard",
+        "Wood",
+        "R4 V13 machined steel",
+        "R4 R43 nickel"
+      ],
+      "bounds": [
+        [
+          47.10499954223633,
+          71.08999633789062
+        ],
+        [
+          2.1649999618530273,
+          10.834999084472656
+        ],
+        [
+          0.0,
+          6.960000038146973
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Ceiling_Tiles_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Desk_wood_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Frozen_white_metal_MetallicSmoothness.png",
+      "max_error": 5.960464477539063e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Room_05_A_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "max_error": 3.5241246223449707e-06,
+      "linear_data": false
+    },
+    {
+      "map": "Room_05_A_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Room_05_B_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "max_error": 3.5390257835388184e-06,
+      "linear_data": false
+    },
+    {
+      "map": "Room_05_B_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Simple_wood_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Stucco_wall_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Stucco_wall_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Wood_MetallicSmoothness.png",
+      "max_error": 5.960464477539063e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Wood_001_MetallicSmoothness.png",
+      "max_error": 5.960464477539063e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Wood_002_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "wood_floor_MetallicSmoothness.png",
+      "max_error": 7.62939453125e-06,
+      "linear_data": true
+    }
+  ]
+}
