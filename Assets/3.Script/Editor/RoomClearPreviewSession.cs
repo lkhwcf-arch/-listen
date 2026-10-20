@@ -18,6 +18,7 @@ namespace EscapeGame.Editor
         private readonly RoomLoadPlan plan;
         private readonly Scene scene;
         private readonly Dictionary<int, GameObject> previews = new Dictionary<int, GameObject>();
+        private readonly Dictionary<GameObject, Pose> borrowedPoses = new Dictionary<GameObject, Pose>();
         private GameObject ownedRoot;
         private bool disposed;
         public DeveloperRoomProgression Progression { get; }
@@ -43,21 +44,48 @@ namespace EscapeGame.Editor
             if (Progression.IsCleared(room)) return false;
             var next = Progression.NextForClear(roomNo);
             // 누락된 프리팹 때문에 실패하면 클리어 상태를 확정하지 않습니다.
-            if (next != null) EnsureRoom(next);
+            if (next != null) ConnectNext(room, next);
             return Progression.Complete(roomNo);
         }
 
-        private void EnsureRoom(RoomData row)
+        private void ConnectNext(RoomData room, RoomData next)
+        {
+            var previous = FindPreview(room);
+            if (previous == null) throw new InvalidOperationException("현재 방 미리보기가 없습니다. 미리보기를 다시 시작하세요.");
+            var exit = RoomConnectionAlignment.FindExit(previous.transform, room.RoomNo);
+            bool wasRegistered = FindPreview(next) != null;
+            var candidate = EnsureRoom(next);
+            bool owned = ownedRoot != null && candidate.transform.IsChildOf(ownedRoot.transform);
+            var original = new Pose(candidate.transform.position, candidate.transform.rotation);
+            try
+            {
+                var entry = RoomConnectionAlignment.FindEntry(candidate.transform, next.RoomNo);
+                RoomConnectionAlignment.Align(candidate.transform, entry, exit);
+                if (!owned && !borrowedPoses.ContainsKey(candidate)) borrowedPoses.Add(candidate, original);
+            }
+            catch
+            {
+                candidate.transform.SetPositionAndRotation(original.position, original.rotation);
+                if (!wasRegistered)
+                {
+                    previews.Remove(next.Id);
+                    if (owned) Object.DestroyImmediate(candidate);
+                }
+                throw;
+            }
+        }
+
+        private GameObject EnsureRoom(RoomData row)
         {
             ValidateLifetime();
-            if (FindPreview(row) != null) return;
+            if (FindPreview(row) != null) return FindPreview(row);
             var existing = Object.FindObjectsByType<RoomSceneView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(view => view.gameObject.scene == scene && view.RoomNo == row.RoomNo).ToArray();
             if (existing.Length > 1) throw new InvalidOperationException("같은 방 번호의 RoomSceneView가 여러 개 있습니다: " + row.RoomNo);
             if (existing.Length == 1)
             {
                 previews[row.Id] = existing[0].gameObject;
-                return;
+                return existing[0].gameObject;
             }
             string path = plan.PrefabPath(row.RoomPrefabId);
             var prefab = assets.ResolvePrefab(path);
@@ -70,6 +98,7 @@ namespace EscapeGame.Editor
             var instance = Object.Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, ownedRoot.transform);
             instance.name = $"R{row.RoomNo:00}_{Role}_Preview";
             previews[row.Id] = instance;
+            return instance;
         }
 
         private void ValidateLifetime()
@@ -83,6 +112,9 @@ namespace EscapeGame.Editor
         {
             if (disposed) return;
             disposed = true;
+            foreach (var entry in borrowedPoses)
+                if (entry.Key != null) entry.Key.transform.SetPositionAndRotation(entry.Value.position, entry.Value.rotation);
+            borrowedPoses.Clear();
             if (ownedRoot != null) Object.DestroyImmediate(ownedRoot);
             previews.Clear();
         }

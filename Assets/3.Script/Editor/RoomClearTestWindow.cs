@@ -38,7 +38,7 @@ namespace EscapeGame.Editor
 
         private void OnGUI()
         {
-            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 방 외형만 생성합니다. 서버·실제 클리어·내부 앵커 스폰은 변경하지 않습니다.", MessageType.Info);
+            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 다음 방 입구를 현재 방 출구에 맞춰 연결합니다. 서버·실제 클리어·내부 앵커 스폰은 변경하지 않습니다.", MessageType.Info);
             using (new EditorGUI.DisabledScope(session != null))
                 roleIndex = EditorGUILayout.Popup("미리보기 역할", roleIndex, new[] { "A", "B" });
             using (new EditorGUI.DisabledScope(!Application.isPlaying || SceneManager.GetActiveScene().name != "Ingame" || session != null))
@@ -59,7 +59,7 @@ namespace EscapeGame.Editor
                     if (GUILayout.Button("이 방 클리어 → 다음 방 자동 생성")) Execute(() =>
                     {
                         current.Clear(room.RoomNo);
-                        message = room.Next == 0 ? $"R{room.RoomNo:00}: 마지막 방 클리어 완료" : $"R{room.RoomNo:00} 클리어 / Next={room.Next} 방 외형 생성 완료";
+                        message = room.Next == 0 ? $"R{room.RoomNo:00}: 마지막 방 클리어 완료" : $"R{room.RoomNo:00} 클리어 / Next={room.Next} 출구·입구 연결 완료";
                     });
                 var target = current.FindPreview(room);
                 using (new EditorGUI.DisabledScope(target == null))
