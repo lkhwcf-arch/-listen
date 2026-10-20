@@ -72,6 +72,8 @@ MonoBehaviour:
     prefab: {fileID: 4788807917163519818, guid: 1c9b672761f34d3c959de3383e317ab2, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Surface.prefab
     prefab: {fileID: 107996671340065090, guid: f46eb60aaa9b12d45a0f38fe0a2e517e, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Prefabs/Room_01_Final 1.prefab
+    prefab: {fileID: 5168569452455116280, guid: 9734e1c4fa11d6d45bf3f864113c5341, type: 3}
   - path: Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Prefabs/Room_01_Final.prefab
     prefab: {fileID: 8217652443546526269, guid: 47470909e5887bb40968d409f4034dff, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Chair.prefab
