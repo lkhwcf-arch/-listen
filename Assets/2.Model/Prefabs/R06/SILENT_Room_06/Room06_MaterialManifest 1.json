@@ -1,0 +1,4742 @@
+{
+  "source_file": "SILENT_Room_06_AB_Merged_NoDoors_TV.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Concrete wall",
+      "file_name": "Concrete_wall",
+      "base_color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "Metal plate",
+      "file_name": "Metal_plate",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Metal_plate_BaseColor.jpg",
+      "metallic_smoothness_map": "Metal_plate_MetallicSmoothness.png",
+      "normal_map": "Metal_plate_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Metal_plate_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BUMP",
+      "unlit": false
+    },
+    {
+      "name": "Plastic cable",
+      "file_name": "Plastic_cable",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Plastic_cable_BaseColor.jpg",
+      "metallic_smoothness_map": "Plastic_cable_MetallicSmoothness.png",
+      "normal_map": "Plastic_cable_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Plastic_cable_Height.jpg",
+      "height_scale": 0.009999999776482582,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BUMP",
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 aged nickel",
+      "file_name": "R4_R6_aged_nickel",
+      "base_color": [
+        0.20000000298023224,
+        0.23999999463558197,
+        0.25,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.6599999964237213,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 charcoal powdercoat",
+      "file_name": "R4_R6_charcoal_powdercoat",
+      "base_color": [
+        0.026000000536441803,
+        0.03700000047683716,
+        0.04100000113248825,
+        1.0
+      ],
+      "metallic": 0.550000011920929,
+      "smoothness": 0.550000011920929,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 enamel cobalt",
+      "file_name": "R4_R6_enamel_cobalt",
+      "base_color": [
+        0.03500000014901161,
+        0.10000000149011612,
+        0.2199999988079071,
+        1.0
+      ],
+      "metallic": 0.44999998807907104,
+      "smoothness": 0.6699999868869781,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 lock brass",
+      "file_name": "R4_R6_lock_brass",
+      "base_color": [
+        0.38999998569488525,
+        0.27000001072883606,
+        0.10999999940395355,
+        1.0
+      ],
+      "metallic": 0.7799999713897705,
+      "smoothness": 0.6800000071525574,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 mineral wall - R6 preserved mapping",
+      "file_name": "R4_R6_mineral_wall_-_R6_preserved_mapping",
+      "base_color": [
+        0.10000000149011612,
+        0.11999999731779099,
+        0.11999999731779099,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 rubber",
+      "file_name": "R4_R6_rubber",
+      "base_color": [
+        0.008999999612569809,
+        0.012000000104308128,
+        0.013000000268220901,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 warm fluorescent",
+      "file_name": "R4_R6_warm_fluorescent",
+      "base_color": [
+        1.0,
+        0.7900000214576721,
+        0.49000000953674316,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        3.0,
+        2.3700000643730164,
+        1.4700000286102295
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 R6 warm printed lettering",
+      "file_name": "R4_R6_warm_printed_lettering",
+      "base_color": [
+        0.7799999713897705,
+        0.8100000023841858,
+        0.7300000190734863,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.3999999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 V13 graphite metal",
+      "file_name": "R4_V13_graphite_metal",
+      "base_color": [
+        0.041999999433755875,
+        0.052000001072883606,
+        0.054999999701976776,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.6200000047683716,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R4 V13 recess",
+      "file_name": "R4_V13_recess",
+      "base_color": [
+        0.007000000216066837,
+        0.012000000104308128,
+        0.010999999940395355,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "R6 SCREEN - map to URP Unlit",
+      "file_name": "R6_SCREEN_-_map_to_URP_Unlit",
+      "base_color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.0,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.029250000089406925,
+        0.1299999971687793,
+        0.11049999710917469
+      ],
+      "specular": 0.0,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": true
+    },
+    {
+      "name": "R6 SCREEN white phosphor",
+      "file_name": "R6_SCREEN_white_phosphor",
+      "base_color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.0,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        1.2799999713897705,
+        2.0,
+        1.7400000095367432
+      ],
+      "specular": 0.0,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": true
+    },
+    {
+      "name": "R6 subtle scanline",
+      "file_name": "R6_subtle_scanline",
+      "base_color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.0,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.020800000225007498,
+        0.08449999380111706,
+        0.07474999861419196
+      ],
+      "specular": 0.0,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": true
+    },
+    {
+      "name": "tripo_mat_075bce52",
+      "file_name": "tripo_mat_075bce52",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.001",
+      "file_name": "tripo_mat_075bce52_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.002",
+      "file_name": "tripo_mat_075bce52_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.003",
+      "file_name": "tripo_mat_075bce52_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.004",
+      "file_name": "tripo_mat_075bce52_004",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.005",
+      "file_name": "tripo_mat_075bce52_005",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.006",
+      "file_name": "tripo_mat_075bce52_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.007",
+      "file_name": "tripo_mat_075bce52_007",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.008",
+      "file_name": "tripo_mat_075bce52_008",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.009",
+      "file_name": "tripo_mat_075bce52_009",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.010",
+      "file_name": "tripo_mat_075bce52_010",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.011",
+      "file_name": "tripo_mat_075bce52_011",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.012",
+      "file_name": "tripo_mat_075bce52_012",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.013",
+      "file_name": "tripo_mat_075bce52_013",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.014",
+      "file_name": "tripo_mat_075bce52_014",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_075bce52.015",
+      "file_name": "tripo_mat_075bce52_015",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_075bce52_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_075bce52_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.006",
+      "file_name": "tripo_mat_6187e4a4_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.021",
+      "file_name": "tripo_mat_6187e4a4_021",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.022",
+      "file_name": "tripo_mat_6187e4a4_022",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.023",
+      "file_name": "tripo_mat_6187e4a4_023",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.024",
+      "file_name": "tripo_mat_6187e4a4_024",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.025",
+      "file_name": "tripo_mat_6187e4a4_025",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.026",
+      "file_name": "tripo_mat_6187e4a4_026",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.027",
+      "file_name": "tripo_mat_6187e4a4_027",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.028",
+      "file_name": "tripo_mat_6187e4a4_028",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.029",
+      "file_name": "tripo_mat_6187e4a4_029",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.030",
+      "file_name": "tripo_mat_6187e4a4_030",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_6187e4a4.031",
+      "file_name": "tripo_mat_6187e4a4_031",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_006_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f",
+      "file_name": "tripo_mat_795d782f",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.001",
+      "file_name": "tripo_mat_795d782f_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.002",
+      "file_name": "tripo_mat_795d782f_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.003",
+      "file_name": "tripo_mat_795d782f_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.004",
+      "file_name": "tripo_mat_795d782f_004",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.005",
+      "file_name": "tripo_mat_795d782f_005",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.006",
+      "file_name": "tripo_mat_795d782f_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.007",
+      "file_name": "tripo_mat_795d782f_007",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.008",
+      "file_name": "tripo_mat_795d782f_008",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.009",
+      "file_name": "tripo_mat_795d782f_009",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.010",
+      "file_name": "tripo_mat_795d782f_010",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    },
+    {
+      "name": "tripo_mat_795d782f.011",
+      "file_name": "tripo_mat_795d782f_011",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_795d782f_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_795d782f_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "unlit": false
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_06_A_Structure.fbx",
+      "size_bytes": 42212428
+    },
+    {
+      "path": "Models/SILENT_Room_06_B_Structure.fbx",
+      "size_bytes": 42177532
+    },
+    {
+      "path": "Models/SILENT_Room_06_A_Objects.fbx",
+      "size_bytes": 323628
+    },
+    {
+      "path": "Models/SILENT_Room_06_B_Objects.fbx",
+      "size_bytes": 22637404
+    },
+    {
+      "path": "Models/SILENT_Room_06_A_Puzzle.fbx",
+      "size_bytes": 434268
+    },
+    {
+      "path": "Textures/Metal_plate_BaseColor.jpg",
+      "size_bytes": 580349
+    },
+    {
+      "path": "Textures/Metal_plate_Height.jpg",
+      "size_bytes": 1116803
+    },
+    {
+      "path": "Textures/Metal_plate_MetallicSmoothness.png",
+      "size_bytes": 9101417
+    },
+    {
+      "path": "Textures/Metal_plate_Normal.jpg",
+      "size_bytes": 1892830
+    },
+    {
+      "path": "Textures/Plastic_cable_BaseColor.jpg",
+      "size_bytes": 300631
+    },
+    {
+      "path": "Textures/Plastic_cable_Height.jpg",
+      "size_bytes": 165811
+    },
+    {
+      "path": "Textures/Plastic_cable_MetallicSmoothness.png",
+      "size_bytes": 3287931
+    },
+    {
+      "path": "Textures/Plastic_cable_Normal.jpg",
+      "size_bytes": 962506
+    },
+    {
+      "path": "Textures/R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
+      "size_bytes": 14004064
+    },
+    {
+      "path": "Textures/tripo_mat_075bce52_BaseColor.jpg",
+      "size_bytes": 1752719
+    },
+    {
+      "path": "Textures/tripo_mat_075bce52_MetallicSmoothness.png",
+      "size_bytes": 9438923
+    },
+    {
+      "path": "Textures/tripo_mat_075bce52_Normal.png",
+      "size_bytes": 3323955
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "size_bytes": 1783379
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "size_bytes": 8932579
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_006_Normal.png",
+      "size_bytes": 4979933
+    },
+    {
+      "path": "Textures/tripo_mat_795d782f_BaseColor.jpg",
+      "size_bytes": 1110805
+    },
+    {
+      "path": "Textures/tripo_mat_795d782f_MetallicSmoothness.png",
+      "size_bytes": 6672631
+    },
+    {
+      "path": "Textures/tripo_mat_795d782f_Normal.png",
+      "size_bytes": 2600928
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.005",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Plastic cable"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_Shackle",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 344,
+      "polygons": 672,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 aged nickel"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_0",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 1199,
+      "polygons": 1203,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_1",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 1199,
+      "polygons": 1203,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_2",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 1199,
+      "polygons": 1203,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_3",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 1199,
+      "polygons": 1203,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_4",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 1199,
+      "polygons": 1203,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ]
+    },
+    {
+      "name": "Room_06_A_WallsFloor_Merged",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 479045,
+      "polygons": 941942,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "tripo_mat_075bce52.008",
+        "tripo_mat_075bce52.009",
+        "tripo_mat_075bce52.010",
+        "tripo_mat_075bce52.011",
+        "tripo_mat_075bce52.012",
+        "tripo_mat_6187e4a4.026",
+        "tripo_mat_6187e4a4.027",
+        "tripo_mat_075bce52.013",
+        "tripo_mat_6187e4a4.028",
+        "tripo_mat_6187e4a4.029",
+        "tripo_mat_075bce52.014",
+        "tripo_mat_6187e4a4.030",
+        "tripo_mat_6187e4a4.031",
+        "tripo_mat_075bce52.015",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal",
+        "R4 R6 aged nickel"
+      ]
+    },
+    {
+      "name": "Ceiling.012",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Plastic cable"
+      ]
+    },
+    {
+      "name": "Room_06_B_WallsFloor_Merged",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 478485,
+      "polygons": 940862,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "tripo_mat_6187e4a4.021",
+        "tripo_mat_075bce52",
+        "tripo_mat_6187e4a4.022",
+        "tripo_mat_075bce52.001",
+        "tripo_mat_6187e4a4.023",
+        "tripo_mat_075bce52.002",
+        "tripo_mat_075bce52.003",
+        "tripo_mat_075bce52.004",
+        "tripo_mat_075bce52.005",
+        "tripo_mat_6187e4a4.006",
+        "tripo_mat_6187e4a4.024",
+        "tripo_mat_075bce52.006",
+        "tripo_mat_6187e4a4.025",
+        "tripo_mat_075bce52.007",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal"
+      ]
+    },
+    {
+      "name": "Room_06_A_Objects_Merged",
+      "parent": null,
+      "vertices": 6013,
+      "polygons": 9133,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ]
+    },
+    {
+      "name": "Room_06_B_Objects_Merged",
+      "parent": null,
+      "vertices": 330468,
+      "polygons": 639008,
+      "uv0": "R6_PreservedUV",
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "A soft warm overhead",
+    "A soft warm overhead.001",
+    "A soft warm overhead.002",
+    "A soft warm overhead.003",
+    "A soft warm overhead.004",
+    "A soft warm overhead.005",
+    "A lock inspection softbox",
+    "A foliage soft fill",
+    "A foliage soft fill.001",
+    "B soft warm overhead",
+    "B soft warm overhead.001",
+    "B soft warm overhead.002",
+    "B soft warm overhead.003",
+    "B soft warm overhead.004",
+    "B soft warm overhead.005",
+    "B TV bounced phosphor",
+    "B TV bounced phosphor.001",
+    "B TV bounced phosphor.002",
+    "B TV bounced phosphor.003",
+    "B TV bounced phosphor.004",
+    "B TV bounced phosphor.005",
+    "B TV bounced phosphor.006",
+    "B TV bounced phosphor.007",
+    "B TV bounced phosphor.008",
+    "B TV bounced phosphor.009",
+    "B TV bounced phosphor.010",
+    "B TV bounced phosphor.011",
+    "B foliage soft fill",
+    "B foliage soft fill.001",
+    "REVIEW_Fill_6_A_0",
+    "REVIEW_Fill_6_B_0"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_06_A",
+      "matrix": [
+        [
+          -0.6455347537994385,
+          -0.03191418573260307,
+          -0.7630637884140015,
+          72.05000305175781
+        ],
+        [
+          -0.7637308835983276,
+          0.026974862441420555,
+          0.6449708938598633,
+          -4.849999904632568
+        ],
+        [
+          -1.7895374071486003e-07,
+          0.9991265535354614,
+          -0.04178706184029579,
+          1.6699999570846558
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 67.38013718106679
+    },
+    {
+      "name": "REVIEW_Room_06_B",
+      "matrix": [
+        [
+          0.6455347537994385,
+          -0.03191401809453964,
+          -0.7630637884140015,
+          72.05000305175781
+        ],
+        [
+          -0.7637308835983276,
+          -0.02697487361729145,
+          -0.6449709534645081,
+          4.849999904632568
+        ],
+        [
+          6.508790306725132e-08,
+          0.9991265535354614,
+          -0.04178694263100624,
+          1.6699999570846558
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 67.38013718106679
+    }
+  ],
+  "notes": [
+    "Revision 2: A static objects 22 meshes merged into one; B static baffles and TV 10 meshes merged into one.",
+    "Structures, ceilings, puzzle FBX, texture bytes and material channel settings remain unchanged.",
+    "TV markers remain Empty objects parented to the single B object mesh.",
+    "31 Blender lights and two review cameras excluded. Lamp meshes/emission retained.",
+    "Five alphabet dials and shackle animation preserved; hidden reward text remains excluded as in source rendering.",
+    "Three pure-emission screen materials mapped to URP Unlit; other materials mapped to URP Lit.",
+    "Mineral-wall normal baked with the original frozen Generated coordinates and surface UV atlas.",
+    "Original image resolution, render UV, evaluated modifiers, triangulation and corner normals preserved.",
+    "Duplicate image bytes and generated maps shared, without merging material slots.",
+    "Unity lights, tone mapping and final appearance are for user verification. No gameplay logic added."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "R4 R6 mineral wall - R6 preserved mapping",
+      "resolution": 2048,
+      "faces": 30
+    }
+  ],
+  "tv_markers": [
+    {
+      "name": "PZ_R6_B_TV_08",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          73.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "8",
+        "Letter": "D",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_03",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          75.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "3",
+        "Letter": "S",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_11",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          77.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "11",
+        "Letter": "N",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_06",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          73.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "6",
+        "Letter": "E",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_01",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          75.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "1",
+        "Letter": "I",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_09",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          77.0
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          9.980000495910645
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "9",
+        "Letter": "P",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_05",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          73.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "5",
+        "Letter": "N",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_10",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          75.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "10",
+        "Letter": "E",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_02",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          77.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          1.399999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "2",
+        "Letter": "T",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_12",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          73.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "12",
+        "Letter": "S",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_07",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          75.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "7",
+        "Letter": "B",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    },
+    {
+      "name": "PZ_R6_B_TV_04",
+      "parent": "Room_06_B_Objects_Merged",
+      "matrix": [
+        [
+          -1.0,
+          2.144845817609025e-14,
+          -1.5099580252808664e-07,
+          77.0
+        ],
+        [
+          -1.5099580252808664e-07,
+          -7.549790126404332e-08,
+          1.0,
+          3.0199999809265137
+        ],
+        [
+          1.0048592410634785e-14,
+          1.0,
+          7.549790126404332e-08,
+          2.440000057220459
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "properties": {
+        "Number": "4",
+        "Letter": "L",
+        "Flip": "N",
+        "RuntimeRandomized": "True",
+        "GeometryObject": "Room_06_B_Objects_Merged"
+      }
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_06_A_Structure.fbx",
+    "Models/SILENT_Room_06_B_Structure.fbx",
+    "Models/SILENT_Room_06_A_Objects.fbx",
+    "Models/SILENT_Room_06_B_Objects.fbx",
+    "Models/SILENT_Room_06_A_Puzzle.fbx"
+  ],
+  "source_types": {
+    "Ceiling.005": "MESH",
+    "A ceiling lamp housing": "MESH",
+    "A ceiling lamp diffuser": "MESH",
+    "A ceiling lamp housing.001": "MESH",
+    "A ceiling lamp diffuser.001": "MESH",
+    "A ceiling lamp housing.002": "MESH",
+    "A ceiling lamp diffuser.002": "MESH",
+    "A ceiling lamp housing.003": "MESH",
+    "A ceiling lamp diffuser.003": "MESH",
+    "A ceiling lamp housing.004": "MESH",
+    "A ceiling lamp diffuser.004": "MESH",
+    "A ceiling lamp housing.005": "MESH",
+    "A ceiling lamp diffuser.005": "MESH",
+    "A ceiling acoustic baffle": "MESH",
+    "A ceiling acoustic baffle.001": "MESH",
+    "A ceiling acoustic baffle.002": "MESH",
+    "A ceiling acoustic baffle.003": "MESH",
+    "A ceiling acoustic baffle.004": "MESH",
+    "A ceiling acoustic baffle.005": "MESH",
+    "A ceiling acoustic baffle.006": "MESH",
+    "A ceiling acoustic baffle.007": "MESH",
+    "A ceiling acoustic baffle.008": "MESH",
+    "PZ_R6_A_Shackle": "MESH",
+    "PZ_R6_A_AlphaDial_0": "MESH",
+    "PZ_R6_A_AlphaDial_1": "MESH",
+    "PZ_R6_A_AlphaDial_2": "MESH",
+    "PZ_R6_A_AlphaDial_3": "MESH",
+    "PZ_R6_A_AlphaDial_4": "MESH",
+    "Room_06_A_WallsFloor_Merged": "MESH",
+    "Room_06_A_Objects_Merged": "MESH",
+    "Ceiling.012": "MESH",
+    "B ceiling acoustic baffle": "MESH",
+    "B ceiling acoustic baffle.001": "MESH",
+    "B ceiling acoustic baffle.002": "MESH",
+    "B ceiling acoustic baffle.003": "MESH",
+    "B ceiling acoustic baffle.004": "MESH",
+    "B ceiling acoustic baffle.005": "MESH",
+    "B ceiling acoustic baffle.006": "MESH",
+    "B ceiling acoustic baffle.007": "MESH",
+    "B ceiling acoustic baffle.008": "MESH",
+    "Room_06_B_WallsFloor_Merged": "MESH",
+    "Room_06_B_TV_Merged": "MESH"
+  },
+  "source_hierarchy": {
+    "Ceiling.005": "ROOM_06_A",
+    "A ceiling lamp housing": "ROOM_06_A",
+    "A ceiling lamp diffuser": "ROOM_06_A",
+    "A ceiling lamp housing.001": "ROOM_06_A",
+    "A ceiling lamp diffuser.001": "ROOM_06_A",
+    "A ceiling lamp housing.002": "ROOM_06_A",
+    "A ceiling lamp diffuser.002": "ROOM_06_A",
+    "A ceiling lamp housing.003": "ROOM_06_A",
+    "A ceiling lamp diffuser.003": "ROOM_06_A",
+    "A ceiling lamp housing.004": "ROOM_06_A",
+    "A ceiling lamp diffuser.004": "ROOM_06_A",
+    "A ceiling lamp housing.005": "ROOM_06_A",
+    "A ceiling lamp diffuser.005": "ROOM_06_A",
+    "A ceiling acoustic baffle": "ROOM_06_A",
+    "A ceiling acoustic baffle.001": "ROOM_06_A",
+    "A ceiling acoustic baffle.002": "ROOM_06_A",
+    "A ceiling acoustic baffle.003": "ROOM_06_A",
+    "A ceiling acoustic baffle.004": "ROOM_06_A",
+    "A ceiling acoustic baffle.005": "ROOM_06_A",
+    "A ceiling acoustic baffle.006": "ROOM_06_A",
+    "A ceiling acoustic baffle.007": "ROOM_06_A",
+    "A ceiling acoustic baffle.008": "ROOM_06_A",
+    "PZ_R6_A_Shackle": "ROOM_06_A",
+    "PZ_R6_A_AlphaDial_0": "ROOM_06_A",
+    "PZ_R6_A_AlphaDial_1": "ROOM_06_A",
+    "PZ_R6_A_AlphaDial_2": "ROOM_06_A",
+    "PZ_R6_A_AlphaDial_3": "ROOM_06_A",
+    "PZ_R6_A_AlphaDial_4": "ROOM_06_A",
+    "Room_06_A_WallsFloor_Merged": "ROOM_06_A",
+    "Room_06_A_Objects_Merged": "ROOM_06_A",
+    "Ceiling.012": "ROOM_06_B",
+    "B ceiling acoustic baffle": "ROOM_06_B",
+    "B ceiling acoustic baffle.001": "ROOM_06_B",
+    "B ceiling acoustic baffle.002": "ROOM_06_B",
+    "B ceiling acoustic baffle.003": "ROOM_06_B",
+    "B ceiling acoustic baffle.004": "ROOM_06_B",
+    "B ceiling acoustic baffle.005": "ROOM_06_B",
+    "B ceiling acoustic baffle.006": "ROOM_06_B",
+    "B ceiling acoustic baffle.007": "ROOM_06_B",
+    "B ceiling acoustic baffle.008": "ROOM_06_B",
+    "Room_06_B_WallsFloor_Merged": "ROOM_06_B",
+    "Room_06_B_TV_Merged": "ROOM_06_B"
+  },
+  "duplicate_triangle_preservation": [
+    {
+      "mesh": "Ceiling.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp housing.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling lamp diffuser.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.007",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "A ceiling acoustic baffle.008",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_Shackle",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_AlphaDial_0",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_AlphaDial_1",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_AlphaDial_2",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_AlphaDial_3",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "PZ_R6_A_AlphaDial_4",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_06_A_WallsFloor_Merged",
+      "coincident_triangles_preserved": 395,
+      "additional_vertices": 1185
+    },
+    {
+      "mesh": "Room_06_A_Objects_Merged",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Ceiling.012",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.007",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "B ceiling acoustic baffle.008",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Room_06_B_WallsFloor_Merged",
+      "coincident_triangles_preserved": 395,
+      "additional_vertices": 1185
+    },
+    {
+      "mesh": "Room_06_B_TV_Merged",
+      "coincident_triangles_preserved": 12,
+      "additional_vertices": 36
+    }
+  ],
+  "animation_sources": [
+    "PZ_R6_A_Shackle",
+    "PZ_R6_A_AlphaDial_0",
+    "PZ_R6_A_AlphaDial_1",
+    "PZ_R6_A_AlphaDial_2",
+    "PZ_R6_A_AlphaDial_3",
+    "PZ_R6_A_AlphaDial_4"
+  ],
+  "animation_info": {
+    "fps": 24.0,
+    "frame_start": 1,
+    "frame_end": 250,
+    "actions": [
+      {
+        "object": "PZ_R6_A_Shackle",
+        "action": "PZ_R6_A_ShackleAction",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R6_A_AlphaDial_0",
+        "action": "PZ_R6_A_AlphaDial_0Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R6_A_AlphaDial_1",
+        "action": "PZ_R6_A_AlphaDial_1Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R6_A_AlphaDial_2",
+        "action": "PZ_R6_A_AlphaDial_2Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R6_A_AlphaDial_3",
+        "action": "PZ_R6_A_AlphaDial_3Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      },
+      {
+        "object": "PZ_R6_A_AlphaDial_4",
+        "action": "PZ_R6_A_AlphaDial_4Action",
+        "frame_range": [
+          1.0,
+          90.0
+        ]
+      }
+    ]
+  },
+  "uv_mapping_adjustments": [],
+  "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.005",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          -10.5,
+          -2.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_Shackle",
+      "vertices": 344,
+      "materials": [
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          78.06800079345703,
+          78.13199615478516
+        ],
+        [
+          -8.917000770568848,
+          -8.282999992370605
+        ],
+        [
+          1.350000023841858,
+          1.7070000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_0",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.390501022338867,
+          -8.297500610351562
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_1",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.518500328063965,
+          -8.42549991607666
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_2",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.646500587463379,
+          -8.553500175476074
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_3",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.774500846862793,
+          -8.681500434875488
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_4",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.90250015258789,
+          -8.809499740600586
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_WallsFloor_Merged",
+      "vertices": 477860,
+      "materials": [
+        "tripo_mat_075bce52.008",
+        "tripo_mat_075bce52.009",
+        "tripo_mat_075bce52.010",
+        "tripo_mat_075bce52.011",
+        "tripo_mat_075bce52.012",
+        "tripo_mat_6187e4a4.026",
+        "tripo_mat_6187e4a4.027",
+        "tripo_mat_075bce52.013",
+        "tripo_mat_6187e4a4.028",
+        "tripo_mat_6187e4a4.029",
+        "tripo_mat_075bce52.014",
+        "tripo_mat_6187e4a4.030",
+        "tripo_mat_6187e4a4.031",
+        "tripo_mat_075bce52.015",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal",
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.12158966064453
+        ],
+        [
+          -10.614633560180664,
+          -2.5
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.012",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          2.5,
+          10.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_WallsFloor_Merged",
+      "vertices": 477300,
+      "materials": [
+        "tripo_mat_6187e4a4.021",
+        "tripo_mat_075bce52",
+        "tripo_mat_6187e4a4.022",
+        "tripo_mat_075bce52.001",
+        "tripo_mat_6187e4a4.023",
+        "tripo_mat_075bce52.002",
+        "tripo_mat_075bce52.003",
+        "tripo_mat_075bce52.004",
+        "tripo_mat_075bce52.005",
+        "tripo_mat_6187e4a4.006",
+        "tripo_mat_6187e4a4.024",
+        "tripo_mat_075bce52.006",
+        "tripo_mat_6187e4a4.025",
+        "tripo_mat_075bce52.007",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal"
+      ],
+      "bounds": [
+        [
+          70.79317474365234,
+          79.12158966064453
+        ],
+        [
+          2.4221134185791016,
+          10.510726928710938
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_Objects_Merged",
+      "vertices": 6013,
+      "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          78.86499977111816
+        ],
+        [
+          -10.224999917829145,
+          -2.7750000821708563
+        ],
+        [
+          0.045000268739824476,
+          3.9500005040853434
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_Objects_Merged",
+      "vertices": 330468,
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011"
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          78.64900207519531
+        ],
+        [
+          2.7750000821708563,
+          10.224999917829145
+        ],
+        [
+          0.11194964984679671,
+          3.9500005040853434
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Metal_plate_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Plastic_cable_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_075bce52_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "tripo_mat_795d782f_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    }
+  ],
+  "revision": 2,
+  "static_merge_correction": [
+    {
+      "side": "A",
+      "name": "Room_06_A_Objects_Merged",
+      "source_mesh_count": 22,
+      "mesh_count": 1,
+      "vertices": 6013,
+      "polygons": 9133,
+      "uv0": "R6_PreservedUV",
+      "uv_layers": [
+        "R6_PreservedUV",
+        "UVMap"
+      ],
+      "materials": [
+        "R4 R6 aged nickel",
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 enamel cobalt",
+        "R4 R6 rubber",
+        "R4 R6 warm fluorescent",
+        "R4 R6 warm printed lettering",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ],
+      "parent": null,
+      "records": [
+        {
+          "name": "A ceiling acoustic baffle",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 0,
+          "triangle_start": 0
+        },
+        {
+          "name": "A ceiling acoustic baffle.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 56,
+          "triangle_start": 108
+        },
+        {
+          "name": "A ceiling acoustic baffle.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 112,
+          "triangle_start": 216
+        },
+        {
+          "name": "A ceiling acoustic baffle.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 168,
+          "triangle_start": 324
+        },
+        {
+          "name": "A ceiling acoustic baffle.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 224,
+          "triangle_start": 432
+        },
+        {
+          "name": "A ceiling acoustic baffle.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 280,
+          "triangle_start": 540
+        },
+        {
+          "name": "A ceiling acoustic baffle.006",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 336,
+          "triangle_start": 648
+        },
+        {
+          "name": "A ceiling acoustic baffle.007",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 392,
+          "triangle_start": 756
+        },
+        {
+          "name": "A ceiling acoustic baffle.008",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 448,
+          "triangle_start": 864
+        },
+        {
+          "name": "A ceiling lamp diffuser",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 504,
+          "triangle_start": 972
+        },
+        {
+          "name": "A ceiling lamp diffuser.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 560,
+          "triangle_start": 1080
+        },
+        {
+          "name": "A ceiling lamp diffuser.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 616,
+          "triangle_start": 1188
+        },
+        {
+          "name": "A ceiling lamp diffuser.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 672,
+          "triangle_start": 1296
+        },
+        {
+          "name": "A ceiling lamp diffuser.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 728,
+          "triangle_start": 1404
+        },
+        {
+          "name": "A ceiling lamp diffuser.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 784,
+          "triangle_start": 1512
+        },
+        {
+          "name": "A ceiling lamp housing",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 840,
+          "triangle_start": 1620
+        },
+        {
+          "name": "A ceiling lamp housing.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 896,
+          "triangle_start": 1728
+        },
+        {
+          "name": "A ceiling lamp housing.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 952,
+          "triangle_start": 1836
+        },
+        {
+          "name": "A ceiling lamp housing.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1008,
+          "triangle_start": 1944
+        },
+        {
+          "name": "A ceiling lamp housing.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1064,
+          "triangle_start": 2052
+        },
+        {
+          "name": "A ceiling lamp housing.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 1120,
+          "triangle_start": 2160
+        },
+        {
+          "name": "Room_06_A_Objects_Merged",
+          "vertices": 4837,
+          "triangles": 6865,
+          "vertex_start": 1176,
+          "triangle_start": 2268
+        }
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          -10.224999917829145,
+          0.045000268739824476
+        ],
+        [
+          78.86499977111816,
+          -2.7750000821708563,
+          3.9500005040853434
+        ]
+      ],
+      "model_file": "Models/SILENT_Room_06_A_Objects.fbx",
+      "bytes": 323628,
+      "markers": []
+    },
+    {
+      "side": "B",
+      "name": "Room_06_B_Objects_Merged",
+      "source_mesh_count": 10,
+      "mesh_count": 1,
+      "vertices": 330468,
+      "polygons": 639008,
+      "uv0": "R6_PreservedUV",
+      "uv_layers": [
+        "R6_PreservedUV",
+        "Retopo_Untitled_NewUVMap",
+        "UVMap"
+      ],
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 rubber",
+        "R6 SCREEN - map to URP Unlit",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline",
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011"
+      ],
+      "parent": null,
+      "records": [
+        {
+          "name": "B ceiling acoustic baffle",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 0,
+          "triangle_start": 0
+        },
+        {
+          "name": "B ceiling acoustic baffle.001",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 56,
+          "triangle_start": 108
+        },
+        {
+          "name": "B ceiling acoustic baffle.002",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 112,
+          "triangle_start": 216
+        },
+        {
+          "name": "B ceiling acoustic baffle.003",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 168,
+          "triangle_start": 324
+        },
+        {
+          "name": "B ceiling acoustic baffle.004",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 224,
+          "triangle_start": 432
+        },
+        {
+          "name": "B ceiling acoustic baffle.005",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 280,
+          "triangle_start": 540
+        },
+        {
+          "name": "B ceiling acoustic baffle.006",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 336,
+          "triangle_start": 648
+        },
+        {
+          "name": "B ceiling acoustic baffle.007",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 392,
+          "triangle_start": 756
+        },
+        {
+          "name": "B ceiling acoustic baffle.008",
+          "vertices": 56,
+          "triangles": 108,
+          "vertex_start": 448,
+          "triangle_start": 864
+        },
+        {
+          "name": "Room_06_B_TV_Merged",
+          "vertices": 329964,
+          "triangles": 638036,
+          "vertex_start": 504,
+          "triangle_start": 972
+        }
+      ],
+      "bounds": [
+        [
+          71.56999847479165,
+          2.7750000821708563,
+          0.11194964984679671
+        ],
+        [
+          78.64900207519531,
+          10.224999917829145,
+          3.9500005040853434
+        ]
+      ],
+      "model_file": "Models/SILENT_Room_06_B_Objects.fbx",
+      "bytes": 22637404,
+      "markers": [
+        {
+          "name": "PZ_R6_B_TV_01",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              75.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_02",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              77.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_03",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              75.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_04",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              77.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_05",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              73.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_06",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              73.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_07",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              75.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_08",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              73.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_09",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              77.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980001449584961
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              2.439999580383301
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_10",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              75.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.0199999809265137
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              1.4000005722045898
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_11",
+          "matrix": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              77.0
+            ],
+            [
+              0.0,
+              -1.1920928955078125e-07,
+              -1.0,
+              9.980000495910645
+            ],
+            [
+              0.0,
+              1.0,
+              -1.1920928955078125e-07,
+              1.3999993801116943
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        },
+        {
+          "name": "PZ_R6_B_TV_12",
+          "matrix": [
+            [
+              -1.0,
+              -1.2120156325779157e-14,
+              -1.5099580252808664e-07,
+              73.0
+            ],
+            [
+              -1.5099580252808664e-07,
+              4.450506594366743e-07,
+              1.0,
+              3.020000457763672
+            ],
+            [
+              5.508062132482741e-14,
+              1.0,
+              -4.450506594366743e-07,
+              2.440000534057617
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parent": "Room_06_B_Objects_Merged"
+        }
+      ]
+    }
+  ],
+  "source_evaluated_meshes_before_static_merge": [
+    {
+      "name": "Ceiling.005",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          -10.5,
+          -2.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          71.5999984741211,
+          72.79999542236328
+        ],
+        [
+          -9.269999504089355,
+          -9.130000114440918
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          71.64999389648438,
+          72.75
+        ],
+        [
+          -9.25,
+          -9.149999618530273
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.4000015258789,
+          75.5999984741211
+        ],
+        [
+          -9.269999504089355,
+          -9.130000114440918
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          74.44999694824219,
+          75.55000305175781
+        ],
+        [
+          -9.25,
+          -9.149999618530273
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing.002",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          77.20000457763672,
+          78.4000015258789
+        ],
+        [
+          -9.269999504089355,
+          -9.130000114440918
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser.002",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          77.25,
+          78.35000610351562
+        ],
+        [
+          -9.25,
+          -9.149999618530273
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing.003",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          71.5999984741211,
+          72.79999542236328
+        ],
+        [
+          -3.869999885559082,
+          -3.7300000190734863
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser.003",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          71.64999389648438,
+          72.75
+        ],
+        [
+          -3.8499999046325684,
+          -3.75
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing.004",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.4000015258789,
+          75.5999984741211
+        ],
+        [
+          -3.869999885559082,
+          -3.7300000190734863
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser.004",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          74.44999694824219,
+          75.55000305175781
+        ],
+        [
+          -3.8499999046325684,
+          -3.75
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp housing.005",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          77.20000457763672,
+          78.4000015258789
+        ],
+        [
+          -3.869999885559082,
+          -3.7300000190734863
+        ],
+        [
+          3.759999990463257,
+          3.8999998569488525
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling lamp diffuser.005",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 warm fluorescent"
+      ],
+      "bounds": [
+        [
+          77.25,
+          78.35000610351562
+        ],
+        [
+          -3.8499999046325684,
+          -3.75
+        ],
+        [
+          3.746500015258789,
+          3.7614998817443848
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          71.56999969482422,
+          71.62999725341797
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          72.41999816894531,
+          72.47999572753906
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.002",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          73.27000427246094,
+          73.33000183105469
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.003",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.12000274658203,
+          74.18000030517578
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.004",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.97000122070312,
+          75.02999877929688
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.005",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          75.81999969482422,
+          75.87999725341797
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.006",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          76.66999816894531,
+          76.72999572753906
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.007",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          77.52000427246094,
+          77.58000183105469
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "A ceiling acoustic baffle.008",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          78.37000274658203,
+          78.43000030517578
+        ],
+        [
+          -10.225000381469727,
+          -2.7750000953674316
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_Shackle",
+      "vertices": 344,
+      "materials": [
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          78.06800079345703,
+          78.13199615478516
+        ],
+        [
+          -8.917000770568848,
+          -8.282999992370605
+        ],
+        [
+          1.350000023841858,
+          1.7070000171661377
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_0",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.390501022338867,
+          -8.297500610351562
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_1",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.518500328063965,
+          -8.42549991607666
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_2",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.646500587463379,
+          -8.553500175476074
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_3",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.774500846862793,
+          -8.681500434875488
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R6_A_AlphaDial_4",
+      "vertices": 1199,
+      "materials": [
+        "R4 R6 lock brass",
+        "R4 R6 rubber"
+      ],
+      "bounds": [
+        [
+          77.92488098144531,
+          78.08300018310547
+        ],
+        [
+          -8.90250015258789,
+          -8.809499740600586
+        ],
+        [
+          1.0452306270599365,
+          1.2047693729400635
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_WallsFloor_Merged",
+      "vertices": 477860,
+      "materials": [
+        "tripo_mat_075bce52.008",
+        "tripo_mat_075bce52.009",
+        "tripo_mat_075bce52.010",
+        "tripo_mat_075bce52.011",
+        "tripo_mat_075bce52.012",
+        "tripo_mat_6187e4a4.026",
+        "tripo_mat_6187e4a4.027",
+        "tripo_mat_075bce52.013",
+        "tripo_mat_6187e4a4.028",
+        "tripo_mat_6187e4a4.029",
+        "tripo_mat_075bce52.014",
+        "tripo_mat_6187e4a4.030",
+        "tripo_mat_6187e4a4.031",
+        "tripo_mat_075bce52.015",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal",
+        "R4 R6 aged nickel"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.12158966064453
+        ],
+        [
+          -10.614633560180664,
+          -2.5
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_A_Objects_Merged",
+      "vertices": 4837,
+      "materials": [
+        "R4 R6 charcoal powdercoat",
+        "R4 R6 aged nickel",
+        "R4 R6 rubber",
+        "R4 R6 warm printed lettering",
+        "R4 R6 enamel cobalt",
+        "R4 V13 machined steel",
+        "R4 V13 recess"
+      ],
+      "bounds": [
+        [
+          77.9324951171875,
+          78.86499786376953
+        ],
+        [
+          -8.985000610351562,
+          -6.184999942779541
+        ],
+        [
+          0.04499998688697815,
+          2.9049999713897705
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.012",
+      "vertices": 8,
+      "materials": [
+        "Plastic cable"
+      ],
+      "bounds": [
+        [
+          71.0,
+          79.0
+        ],
+        [
+          2.5,
+          10.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          71.56999969482422,
+          71.62999725341797
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          72.41999816894531,
+          72.47999572753906
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.002",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          73.27000427246094,
+          73.33000183105469
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.003",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.12000274658203,
+          74.18000030517578
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.004",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          74.97000122070312,
+          75.02999877929688
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.005",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          75.81999969482422,
+          75.87999725341797
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.006",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          76.66999816894531,
+          76.72999572753906
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.007",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          77.52000427246094,
+          77.58000183105469
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "B ceiling acoustic baffle.008",
+      "vertices": 56,
+      "materials": [
+        "R4 R6 charcoal powdercoat"
+      ],
+      "bounds": [
+        [
+          78.37000274658203,
+          78.43000030517578
+        ],
+        [
+          2.7750000953674316,
+          10.225000381469727
+        ],
+        [
+          3.7699999809265137,
+          3.9499998092651367
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_WallsFloor_Merged",
+      "vertices": 477300,
+      "materials": [
+        "tripo_mat_6187e4a4.021",
+        "tripo_mat_075bce52",
+        "tripo_mat_6187e4a4.022",
+        "tripo_mat_075bce52.001",
+        "tripo_mat_6187e4a4.023",
+        "tripo_mat_075bce52.002",
+        "tripo_mat_075bce52.003",
+        "tripo_mat_075bce52.004",
+        "tripo_mat_075bce52.005",
+        "tripo_mat_6187e4a4.006",
+        "tripo_mat_6187e4a4.024",
+        "tripo_mat_075bce52.006",
+        "tripo_mat_6187e4a4.025",
+        "tripo_mat_075bce52.007",
+        "Metal plate",
+        "R4 R6 mineral wall - R6 preserved mapping",
+        "Concrete wall",
+        "R4 V13 graphite metal"
+      ],
+      "bounds": [
+        [
+          70.79317474365234,
+          79.12158966064453
+        ],
+        [
+          2.4221134185791016,
+          10.510726928710938
+        ],
+        [
+          -0.23999999463558197,
+          4.059102535247803
+        ]
+      ]
+    },
+    {
+      "name": "Room_06_B_TV_Merged",
+      "vertices": 329928,
+      "materials": [
+        "tripo_mat_795d782f",
+        "tripo_mat_795d782f.001",
+        "tripo_mat_795d782f.002",
+        "tripo_mat_795d782f.003",
+        "tripo_mat_795d782f.004",
+        "tripo_mat_795d782f.005",
+        "tripo_mat_795d782f.006",
+        "tripo_mat_795d782f.007",
+        "tripo_mat_795d782f.008",
+        "tripo_mat_795d782f.009",
+        "tripo_mat_795d782f.010",
+        "tripo_mat_795d782f.011",
+        "R4 R6 charcoal powdercoat",
+        "R6 SCREEN - map to URP Unlit",
+        "R4 R6 rubber",
+        "R6 SCREEN white phosphor",
+        "R6 subtle scanline"
+      ],
+      "bounds": [
+        [
+          72.24182891845703,
+          78.64900207519531
+        ],
+        [
+          3.652491807937622,
+          10.220000267028809
+        ],
+        [
+          0.11195015162229538,
+          2.924631118774414
+        ]
+      ]
+    }
+  ]
+}

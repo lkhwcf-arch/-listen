@@ -192,6 +192,12 @@ MonoBehaviour:
     prefab: {fileID: 1568908261643902820, guid: a6d66354c277aab4292245e48d703058, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_TV.prefab
     prefab: {fileID: 8839623411883223752, guid: 7128d9bc9b807ce42a150db693192164, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/SILENT_Room_06/Prefabs/SILENT_Room_06_A_Objects.prefab
+    prefab: {fileID: 4765876245538737590, guid: 22840c5b4baa67942a2cb94a21d44bc2, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/SILENT_Room_06/Prefabs/SILENT_Room_06_A_Structure.prefab
+    prefab: {fileID: 1975627259476554360, guid: afe69dbcc79b58a45be13bbc14cdd510, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/SILENT_Room_06/Prefabs/SILENT_Room_06_B_Objects.prefab
+    prefab: {fileID: 4010894133097192366, guid: 917739c6593bdfd49a34a48dbd2f7aa8, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Other.prefab
     prefab: {fileID: 5893446212883437637, guid: d4ada379c7fa8684ead4ddd19684be6f, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Surface.prefab
