@@ -78,6 +78,8 @@ MonoBehaviour:
     prefab: {fileID: 1288159639495150889, guid: 469800f6f039a3e45b65d1344c8f8e43, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Light.prefab
     prefab: {fileID: 8192354312488504291, guid: f019bf4de7d31c74ca81a2c61fa55a9d, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_A_Other.prefab
+    prefab: {fileID: 8029597030624984720, guid: c6dc9630f33e0a44282fce02703ac07b, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Surface.prefab
     prefab: {fileID: 6192481711257920715, guid: 6108fa818e4444e409a425fd39a632e4, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_A_Table.prefab
@@ -96,6 +98,8 @@ MonoBehaviour:
     prefab: {fileID: 2713486841514913841, guid: 4fbfc47771194774db615cd8153365ca, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_B_OrangeFrame.prefab
     prefab: {fileID: 5124996203590465221, guid: f5605d49ffb5cd5459bb1a6237f641fe, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_B_Other.prefab
+    prefab: {fileID: 4281913025452011952, guid: 013944c2f42837e458fc102002cdf0c1, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_B_PuppleFrame.prefab
     prefab: {fileID: 7762976591918682952, guid: 49359d124a19409459c7f974b26c1dcd, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_B_RedFrame.prefab
@@ -112,6 +116,8 @@ MonoBehaviour:
     prefab: {fileID: 7894645164500779977, guid: 21eaf95b1f089d34686875b913f0a245, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_LEDPanel.prefab
     prefab: {fileID: 7862065315645223818, guid: 4d46db4e02e6ea048a98defdf0728d6d, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/R03_Other.prefab
+    prefab: {fileID: 3812699556107798657, guid: 3693c0317977e00439a12e68c75ae8e4, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_Surface.prefab
     prefab: {fileID: 1410984897972358088, guid: 67020ea2e7c64ec4880b6d6526fa2b9e, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Cable.prefab
@@ -120,13 +126,39 @@ MonoBehaviour:
     prefab: {fileID: 2216245801197772290, guid: a2f55785e4ecdae41b4c4198156f5b75, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Machine.prefab
     prefab: {fileID: 3554719554352467143, guid: 41c99a0921ba30e4dabf7e3c9ef94f31, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_Other.prefab
+    prefab: {fileID: 263522794272130299, guid: 17f4627ce7b0d2f449bce0f077158d73, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Surface.prefab
     prefab: {fileID: 232195569398558123, guid: a403a86a78170fb4cbdf24dde6217542, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Table.prefab
     prefab: {fileID: 8721365128282860039, guid: f00c16eb27529c14aa57fd5f9ec102d7, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Dial_Table.prefab
+    prefab: {fileID: 5612625600057070950, guid: 9987cfe60e4153c45942023985e05589, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_LED_Display.prefab
+    prefab: {fileID: 3509274666561409854, guid: 74f78599120547d4199eff22ac84990e, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Math.prefab
+    prefab: {fileID: 1437722453080450001, guid: ada3e9f69f2d4c74bbc7e1c62b70b1d5, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Other.prefab
+    prefab: {fileID: 2434053955929583206, guid: 1f7dc9cd397b42a4eb4da6eef279fd6e, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Paper.prefab
+    prefab: {fileID: 8515445266150557364, guid: 1e7d53e68507e644cac9b4eefa7cb6d8, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_Surface.prefab
     prefab: {fileID: 8889053733511593451, guid: 052dc853ce0178647b2438a5897d25eb, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Table.prefab
+    prefab: {fileID: 3857239761211780118, guid: bfef6d9ae8df3254fadba7a43cf03635, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_Dial_Table.prefab
+    prefab: {fileID: 8661274174417957746, guid: 9ed03df8a67072d47be00258d4f6dfe8, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_LED_Display.prefab
+    prefab: {fileID: 4318979577017197899, guid: 4710b06d1dbc18d418cffbbc16101a56, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_Light.prefab
+    prefab: {fileID: 8317576321920579666, guid: 6103b59c1858822418af6acbbd0affff, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_Other.prefab
+    prefab: {fileID: 1199560009649290690, guid: 3bd38cd0768c23248b12640943ae97f8, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_Surface.prefab
     prefab: {fileID: 1568908261643902820, guid: a6d66354c277aab4292245e48d703058, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_TV.prefab
+    prefab: {fileID: 8839623411883223752, guid: 7128d9bc9b807ce42a150db693192164, type: 3}
+  - path: Assets/2.Model/Prefabs/R07/R07_Other.prefab
+    prefab: {fileID: 5893446212883437637, guid: d4ada379c7fa8684ead4ddd19684be6f, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Surface.prefab
     prefab: {fileID: 3191639606950993386, guid: d825293d7b80a084daa6772691a6ea6c, type: 3}
