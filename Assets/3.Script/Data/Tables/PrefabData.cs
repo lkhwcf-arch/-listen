@@ -10,6 +10,7 @@ namespace EscapeGame.Data.Tables
         public int Id { get; }
         public string Path { get; }
         public string Group { get; }
+        public System.Collections.Generic.IReadOnlyList<int> Components { get; }
 
         public PrefabData(CsvRow row)
         {
@@ -17,6 +18,7 @@ namespace EscapeGame.Data.Tables
             Id = value.Integer("ID");
             Path = value.Text("Path");
             Group = value.Text("Group");
+            Components = value.IdList("Components", '|');
         }
     }
 }

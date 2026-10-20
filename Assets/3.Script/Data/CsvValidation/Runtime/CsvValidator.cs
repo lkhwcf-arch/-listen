@@ -21,7 +21,7 @@ namespace EscapeGame.Data.CsvValidation.Runtime
             var defaults = new List<ICsvValidationRule>
             {
                 new CsvSchemaRule(), new CsvReferenceRule(), new CsvRoomRule(),
-                new CsvPuzzleRule(), new CsvValueRelationRule(), new CsvCharacterStatRule()
+                new CsvPuzzleRule(), new CsvValueRelationRule(), new CsvCharacterStatRule(), new CsvPrefabComponentRule()
             };
             if (resources != null) defaults.Add(new CsvResourceRule(resources));
             if (additionalRules != null) defaults.AddRange(additionalRules);

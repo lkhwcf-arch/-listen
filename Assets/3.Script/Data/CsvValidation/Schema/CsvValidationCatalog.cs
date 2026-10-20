@@ -120,7 +120,7 @@ namespace EscapeGame.Data.CsvValidation.Schema
     // 규칙은 실제 파일명 대신 역할을 사용합니다. 파일명은 설정 한 곳에만 있습니다.
     public static class CsvTableTags
     {
-        public const string Registry = "registry", Room = "room", Anchor = "anchor", Prefab = "prefab",
+        public const string Component = "component", Registry = "registry", Room = "room", Anchor = "anchor", Prefab = "prefab",
             Puzzle = "puzzle", Slot = "slot", Console = "console", Sound = "sound", SoundLink = "sound-link",
             Config = "config", Lock = "lock", Arrow = "arrow", Wire = "wire", CharacterStat = "character-stat";
     }

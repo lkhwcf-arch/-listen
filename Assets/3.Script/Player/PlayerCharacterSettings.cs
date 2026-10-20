@@ -8,6 +8,7 @@ namespace EscapeGame.Player
     public sealed class PlayerCharacterSettings
     {
         public int ProfileId { get; }
+        public int InteractDistanceMm { get; }
         public int WalkSpeedMmPerSecond { get; }
         public int AccelerationMmPerSecondSquared { get; }
         public int DecelerationMmPerSecondSquared { get; }
@@ -34,6 +35,7 @@ namespace EscapeGame.Player
         {
             ProfileId = profile.Id;
             var units = new CharacterStatUnits(profile);
+            InteractDistanceMm = units.InteractDistanceMm;
             WalkSpeedMmPerSecond = units.WalkSpeedMmPerSecond;
             AccelerationMmPerSecondSquared = units.AccelerationMmPerSecondSquared;
             DecelerationMmPerSecondSquared = units.DecelerationMmPerSecondSquared;

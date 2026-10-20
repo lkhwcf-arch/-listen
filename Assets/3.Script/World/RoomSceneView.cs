@@ -65,6 +65,7 @@ namespace EscapeGame.World
                         instance.transform.localPosition = Vector3.zero;
                         instance.transform.localRotation = Quaternion.identity;
                     }
+                    EscapeGame.Interaction.AnchorFeatureFactory.Compose(instance, operation.row, data);
                     var binding = instance.GetComponent<AnchorInstance>() ?? instance.AddComponent<AnchorInstance>();
                     binding.Initialize(operation.row, data);
                 }

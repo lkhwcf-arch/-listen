@@ -50,7 +50,7 @@
     <column min="1" name="SignAnchor" type="Integer" />
     <reference kind="NonInteract" target="anchor" column="SignAnchor" />
   </table>
-  <table key="ID" name="COMPONENT">
+  <table key="ID" name="COMPONENT" tag="component">
     <column min="1" name="ID" type="Integer" />
     <column name="Script" />
     <column name="Params" />
@@ -93,6 +93,7 @@
     <column min="1" name="ID" type="Integer" />
     <column name="Path" />
     <column name="Group" />
+    <column name="Components" optional="true" />
   </table>
   <table name="PUZZLE_SLOT" key="ID" tag="slot">
     <column min="1" name="ID" type="Integer" />

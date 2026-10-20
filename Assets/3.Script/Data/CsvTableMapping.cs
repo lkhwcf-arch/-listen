@@ -52,6 +52,17 @@ namespace EscapeGame.Data
             if (value == "N") return false;
             throw Error(column, "Expected Y or N.");
         }
+        public IReadOnlyList<int> IdList(string column, char separator)
+        {
+            string text = Text(column);
+            if (text.Length == 0) return Array.AsReadOnly(Array.Empty<int>());
+            return Array.AsReadOnly(text.Split(separator).Select(part =>
+            {
+                if (!int.TryParse(part.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out int id) || id <= 0)
+                    throw Error(column, "Expected positive int32 IDs.");
+                return id;
+            }).ToArray());
+        }
         public IReadOnlyList<string> List(string column, bool dashMeansEmpty = false)
         {
             string value = Text(column);

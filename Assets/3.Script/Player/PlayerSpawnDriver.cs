@@ -24,7 +24,17 @@ namespace EscapeGame.Player
                 .Where(room => room.gameObject.scene == gameObject.scene && room.RoomNo == plan.Room.RoomNo).ToArray();
             if (rooms.Length != 1 || rooms[0].gameObject.scene != gameObject.scene || rooms[0].RoomNo != plan.Room.RoomNo)
                 throw new InvalidOperationException("첫 방의 RoomSceneView가 현재 씬에 정확히 하나 필요합니다.");
-            Player = LocalPlayerFactory.Spawn(plan, rooms[0].transform, settings);
+            var interactionSettings = Resources.Load<EscapeGame.Interaction.InteractionPresentationSettings>("InteractionPresentation")
+                ?? throw new InvalidOperationException("InteractionPresentation 설정 에셋이 필요합니다.");
+            interactionSettings.Validate();
+            var spawned = LocalPlayerFactory.Spawn(plan, rooms[0].transform, settings);
+            try
+            {
+                spawned.gameObject.AddComponent<EscapeGame.Interaction.PlayerInteractionDriver>().Initialize(
+                    spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings);
+                Player = spawned;
+            }
+            catch { spawned.gameObject.SetActive(false); Destroy(spawned.gameObject); throw; }
             Spawned?.Invoke(Player);
         }
         private void OnDestroy()

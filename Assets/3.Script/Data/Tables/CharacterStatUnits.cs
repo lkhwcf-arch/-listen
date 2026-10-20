@@ -11,6 +11,7 @@ namespace EscapeGame.Data.Tables
     // CSV 검증과 플레이어 생성이 함께 사용하는 불변 정수 정의입니다.
     public sealed class CharacterStatUnits
     {
+        public int InteractDistanceMm { get; }
         public int WalkSpeedMmPerSecond { get; }
         public int AccelerationMmPerSecondSquared { get; }
         public int DecelerationMmPerSecondSquared { get; }
@@ -24,6 +25,7 @@ namespace EscapeGame.Data.Tables
 
         public CharacterStatUnits(CharacterStatData profile) : this(field => field switch
         {
+            "InteractDistance" => profile.InteractDistance,
             "WalkSpeed" => profile.WalkSpeed, "Acceleration" => profile.Acceleration, "Deceleration" => profile.Deceleration,
             "EyeHeight" => profile.EyeHeight, "CapsuleHeight" => profile.CapsuleHeight, "CapsuleRadius" => profile.CapsuleRadius,
             "StepOffset" => profile.StepOffset, "FOV" => profile.Fov,
@@ -34,6 +36,8 @@ namespace EscapeGame.Data.Tables
         public CharacterStatUnits(Func<string, float> read)
         {
             if (read == null) throw new ArgumentNullException(nameof(read));
+            InteractDistanceMm = ToMilliUnit(read("InteractDistance"), "InteractDistance");
+            Require("InteractDistance", InteractDistanceMm >= 0, "0 이상 int32 mm");
             WalkSpeedMmPerSecond = ToMilliUnit(read("WalkSpeed"), "WalkSpeed");
             AccelerationMmPerSecondSquared = ToMilliUnit(read("Acceleration"), "Acceleration");
             DecelerationMmPerSecondSquared = ToMilliUnit(read("Deceleration"), "Deceleration");

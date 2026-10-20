@@ -23,7 +23,7 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     try
                     {
                         _ = new CharacterStatUnits(Read);
-                        foreach (string field in new[] { "InteractDistance", "HeadBob" }) _ = Read(field);
+                        _ = Read("HeadBob");
                     }
                     catch (CharacterStatValueException error)
                     { context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, error.Column, row.Get(error.Column), error.Message); }

@@ -62,7 +62,7 @@ internal static class TypedTableChecks
                     else
                     {
                         var expected = raw.Length == 0 || (sheet == "REGISTRY" && raw == "-") ? Array.Empty<string>() : raw.Split(',').Select(x => x.Trim()).ToArray();
-                        matches = ((IEnumerable<string>)actual).SequenceEqual(expected);
+                        matches = sheet == "PREFAB" && column == "Components" ? ((IEnumerable<int>)actual).SequenceEqual(raw.Length == 0 ? Array.Empty<int>() : raw.Split('|').Select(int.Parse)) : ((IEnumerable<string>)actual).SequenceEqual(expected);
                     }
                     if (!matches) throw new Exception($"Value mismatch: {sheet}:{sourceRows[i].SourceLine} [{column}]");
                     checkedCells++;

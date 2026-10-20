@@ -33,6 +33,8 @@
     <Compile Include="../../Assets/3.Script/Session/Results/*.cs" Link="Session/Results/%(Filename)%(Extension)" />
     <Compile Include="../../Assets/3.Script/Session/Phase/*.cs" />
     <Compile Include="../../Assets/3.Script/Networking/SessionDtos.cs" Link="Networking/SessionDtos.cs" />
+    <Compile Include="../../Assets/3.Script/World/PrefabFeaturePlan.cs" />
+    <Compile Include="../../Assets/3.Script/Interaction/CloseupController.cs" />
     <Compile Include="../../Assets/3.Script/World/RoomLoadPlan.cs" Link="World/RoomLoadPlan.cs" />
     <Compile Include="../../Assets/3.Script/World/LocalRoomProgression.cs" Link="World/LocalRoomProgression.cs" />
     <Compile Include="../../Assets/3.Script/World/GameEntryService.cs" Link="World/GameEntryService.cs" />

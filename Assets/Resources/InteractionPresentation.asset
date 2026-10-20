@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d93eb15a817422fb01abfbf684da042, type: 3}
+  m_Name: InteractionPresentation
+  m_EditorClassIdentifier:
+  font: {fileID: 11400000, guid: fc3e48ef0b151e444b6f356b0e2d5b06, type: 2}
+  previewLayer: 31
+  previewSizePixels: 512
+  previewFovMilliDegrees: 40000

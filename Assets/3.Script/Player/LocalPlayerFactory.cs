@@ -77,9 +77,10 @@ namespace EscapeGame.Player
                         settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
                 }
                 catch { input.Dispose(); throw; }
+                var pointerDriver = root.AddComponent<PlayerPointerDriver>();
                 var look = root.AddComponent<PlayerLookDriver>();
                 var pointer = new InputSystemPointerInput(settings.InputActions);
-                try { look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointer, controls); }
+                try { pointerDriver.Initialize(pointer, controls); look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver); }
                 catch { pointer.Dispose(); throw; }
                 root.AddComponent<ViewModelObstructionDriver>().Initialize(camera, visual, settings.ModelCollisionMarginMm);
                 root.SetActive(true);
