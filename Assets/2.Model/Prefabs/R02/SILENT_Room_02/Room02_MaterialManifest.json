@@ -1,0 +1,3152 @@
+{
+  "source_file": "SILENT_Room_02_AB_NoDoorA.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "AR3DMat Carrara Marble Tiles",
+      "file_name": "AR3DMat_Carrara_Marble_Tiles",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "AR3DMat_Carrara_Marble_Tiles_BaseColor.jpg",
+      "metallic_smoothness_map": "AR3DMat_Carrara_Marble_Tiles_MetallicSmoothness.png",
+      "normal_map": "AR3DMat_Carrara_Marble_Tiles_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Black",
+      "file_name": "COLOR_-_Black",
+      "base_color": [
+        0.008999999612569809,
+        0.008999999612569809,
+        0.012000000104308128,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Black.001",
+      "file_name": "COLOR_-_Black_001",
+      "base_color": [
+        0.008999999612569809,
+        0.008999999612569809,
+        0.012000000104308128,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Blue",
+      "file_name": "COLOR_-_Blue",
+      "base_color": [
+        0.017999999225139618,
+        0.14000000059604645,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Blue.001",
+      "file_name": "COLOR_-_Blue_001",
+      "base_color": [
+        0.017999999225139618,
+        0.14000000059604645,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Gray",
+      "file_name": "COLOR_-_Gray",
+      "base_color": [
+        0.3700000047683716,
+        0.3700000047683716,
+        0.3700000047683716,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Gray.001",
+      "file_name": "COLOR_-_Gray_001",
+      "base_color": [
+        0.3700000047683716,
+        0.3700000047683716,
+        0.3700000047683716,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Green",
+      "file_name": "COLOR_-_Green",
+      "base_color": [
+        0.02500000037252903,
+        0.3799999952316284,
+        0.07000000029802322,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Green.001",
+      "file_name": "COLOR_-_Green_001",
+      "base_color": [
+        0.02500000037252903,
+        0.3799999952316284,
+        0.07000000029802322,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Green.002",
+      "file_name": "COLOR_-_Green_002",
+      "base_color": [
+        0.02500000037252903,
+        0.3799999952316284,
+        0.07000000029802322,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Green.003",
+      "file_name": "COLOR_-_Green_003",
+      "base_color": [
+        0.02500000037252903,
+        0.3799999952316284,
+        0.07000000029802322,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Navy",
+      "file_name": "COLOR_-_Navy",
+      "base_color": [
+        0.012000000104308128,
+        0.02500000037252903,
+        0.10999999940395355,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Navy.001",
+      "file_name": "COLOR_-_Navy_001",
+      "base_color": [
+        0.012000000104308128,
+        0.02500000037252903,
+        0.10999999940395355,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Navy.002",
+      "file_name": "COLOR_-_Navy_002",
+      "base_color": [
+        0.012000000104308128,
+        0.02500000037252903,
+        0.10999999940395355,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Orange",
+      "file_name": "COLOR_-_Orange",
+      "base_color": [
+        0.949999988079071,
+        0.20000000298023224,
+        0.017999999225139618,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Orange.001",
+      "file_name": "COLOR_-_Orange_001",
+      "base_color": [
+        0.949999988079071,
+        0.20000000298023224,
+        0.017999999225139618,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Purple",
+      "file_name": "COLOR_-_Purple",
+      "base_color": [
+        0.3499999940395355,
+        0.03500000014901161,
+        0.550000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Purple.001",
+      "file_name": "COLOR_-_Purple_001",
+      "base_color": [
+        0.3499999940395355,
+        0.03500000014901161,
+        0.550000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Purple.002",
+      "file_name": "COLOR_-_Purple_002",
+      "base_color": [
+        0.3499999940395355,
+        0.03500000014901161,
+        0.550000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Purple.003",
+      "file_name": "COLOR_-_Purple_003",
+      "base_color": [
+        0.3499999940395355,
+        0.03500000014901161,
+        0.550000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Red",
+      "file_name": "COLOR_-_Red",
+      "base_color": [
+        0.6499999761581421,
+        0.02500000037252903,
+        0.017999999225139618,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Red.001",
+      "file_name": "COLOR_-_Red_001",
+      "base_color": [
+        0.6499999761581421,
+        0.02500000037252903,
+        0.017999999225139618,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Teal",
+      "file_name": "COLOR_-_Teal",
+      "base_color": [
+        0.012000000104308128,
+        0.46000000834465027,
+        0.4300000071525574,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Teal.001",
+      "file_name": "COLOR_-_Teal_001",
+      "base_color": [
+        0.012000000104308128,
+        0.46000000834465027,
+        0.4300000071525574,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Yellow",
+      "file_name": "COLOR_-_Yellow",
+      "base_color": [
+        0.9399999976158142,
+        0.6499999761581421,
+        0.02500000037252903,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Yellow.001",
+      "file_name": "COLOR_-_Yellow_001",
+      "base_color": [
+        0.9399999976158142,
+        0.6499999761581421,
+        0.02500000037252903,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Yellow.002",
+      "file_name": "COLOR_-_Yellow_002",
+      "base_color": [
+        0.9399999976158142,
+        0.6499999761581421,
+        0.02500000037252903,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "COLOR - Yellow.003",
+      "file_name": "COLOR_-_Yellow_003",
+      "base_color": [
+        0.9399999976158142,
+        0.6499999761581421,
+        0.02500000037252903,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.10000002384185791,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Colored Foam Pads",
+      "file_name": "Colored_Foam_Pads",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Colored_Foam_Pads_BaseColor.jpg",
+      "metallic_smoothness_map": "Colored_Foam_Pads_MetallicSmoothness.png",
+      "normal_map": "Colored_Foam_Pads_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "Colored_Foam_Pads_Height.jpg",
+      "height_scale": 0.019999999552965164,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true,
+      "blender_displacement_method": "BOTH"
+    },
+    {
+      "name": "FRAME - back board",
+      "file_name": "FRAME_-_back_board",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.001",
+      "file_name": "FRAME_-_back_board_001",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.002",
+      "file_name": "FRAME_-_back_board_002",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.003",
+      "file_name": "FRAME_-_back_board_003",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.004",
+      "file_name": "FRAME_-_back_board_004",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.005",
+      "file_name": "FRAME_-_back_board_005",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.006",
+      "file_name": "FRAME_-_back_board_006",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.007",
+      "file_name": "FRAME_-_back_board_007",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - back board.008",
+      "file_name": "FRAME_-_back_board_008",
+      "base_color": [
+        0.07999999821186066,
+        0.07000000029802322,
+        0.05999999865889549,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal",
+      "file_name": "FRAME_-_inset_charcoal_reveal",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.001",
+      "file_name": "FRAME_-_inset_charcoal_reveal_001",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.002",
+      "file_name": "FRAME_-_inset_charcoal_reveal_002",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.003",
+      "file_name": "FRAME_-_inset_charcoal_reveal_003",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.004",
+      "file_name": "FRAME_-_inset_charcoal_reveal_004",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.005",
+      "file_name": "FRAME_-_inset_charcoal_reveal_005",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.006",
+      "file_name": "FRAME_-_inset_charcoal_reveal_006",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.007",
+      "file_name": "FRAME_-_inset_charcoal_reveal_007",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - inset charcoal reveal.008",
+      "file_name": "FRAME_-_inset_charcoal_reveal_008",
+      "base_color": [
+        0.04500000178813934,
+        0.04500000178813934,
+        0.03999999910593033,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.1499999761581421,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish",
+      "file_name": "FRAME_-_shared_warm_ivory_finish",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.001",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_001",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.002",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_002",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.003",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_003",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.004",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_004",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.005",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_005",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.006",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_006",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.007",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_007",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "FRAME - shared warm ivory finish.008",
+      "file_name": "FRAME_-_shared_warm_ivory_finish_008",
+      "base_color": [
+        0.7200000286102295,
+        0.6600000262260437,
+        0.5299999713897705,
+        1.0
+      ],
+      "metallic": 0.15000000596046448,
+      "smoothness": 0.44999998807907104,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Metal_Cromo.006",
+      "file_name": "Metal_Cromo_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7790317833423615,
+      "base_map": "Metal_Cromo_006_BaseColor.png",
+      "metallic_smoothness_map": "Metal_Cromo_006_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 1.0,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Metallic_black",
+      "file_name": "R2_A_Merged_-_Metallic_black",
+      "base_color": [
+        0.047653257846832275,
+        0.047653257846832275,
+        0.047653257846832275,
+        1.0
+      ],
+      "metallic": 0.8011363744735718,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "R2_A_Merged_-_Metallic_black_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Metallic_black.001",
+      "file_name": "R2_A_Merged_-_Metallic_black_001",
+      "base_color": [
+        0.047653257846832275,
+        0.047653257846832275,
+        0.047653257846832275,
+        1.0
+      ],
+      "metallic": 0.8011363744735718,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "R2_A_Merged_-_Metallic_black_001_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Metallic_black.002",
+      "file_name": "R2_A_Merged_-_Metallic_black_002",
+      "base_color": [
+        0.047653257846832275,
+        0.047653257846832275,
+        0.047653257846832275,
+        1.0
+      ],
+      "metallic": 0.8011363744735718,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "R2_A_Merged_-_Metallic_black_002_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Metallic_black.003",
+      "file_name": "R2_A_Merged_-_Metallic_black_003",
+      "base_color": [
+        0.047653257846832275,
+        0.047653257846832275,
+        0.047653257846832275,
+        1.0
+      ],
+      "metallic": 0.8011363744735718,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "R2_A_Merged_-_Metallic_black_003_MetallicSmoothness.png",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - R4 R12 warm lime plaster",
+      "file_name": "R2_A_Merged_-_R4_R12_warm_lime_plaster",
+      "base_color": [
+        0.5299999713897705,
+        0.5099999904632568,
+        0.4399999976158142,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.12000000476837158,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "R2_A_Merged_-_R4_R12_warm_lime_plaster_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Wood_material",
+      "file_name": "R2_A_Merged_-_Wood_material",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5999999940395355,
+      "base_map": "R2_A_Merged_-_Wood_material_BaseColor.png",
+      "metallic_smoothness_map": "R2_A_Merged_-_Wood_material_MetallicSmoothness.png",
+      "normal_map": "R2_A_Merged_-_Wood_material_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Wood_material.001",
+      "file_name": "R2_A_Merged_-_Wood_material_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5999999940395355,
+      "base_map": "R2_A_Merged_-_Wood_material_001_BaseColor.png",
+      "metallic_smoothness_map": "R2_A_Merged_-_Wood_material_001_MetallicSmoothness.png",
+      "normal_map": "R2_A_Merged_-_Wood_material_001_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Wood_material.002",
+      "file_name": "R2_A_Merged_-_Wood_material_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5999999940395355,
+      "base_map": "R2_A_Merged_-_Wood_material_002_BaseColor.png",
+      "metallic_smoothness_map": "R2_A_Merged_-_Wood_material_002_MetallicSmoothness.png",
+      "normal_map": "R2_A_Merged_-_Wood_material_002_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - Wood_material.003",
+      "file_name": "R2_A_Merged_-_Wood_material_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5999999940395355,
+      "base_map": "R2_A_Merged_-_Wood_material_003_BaseColor.png",
+      "metallic_smoothness_map": "R2_A_Merged_-_Wood_material_003_MetallicSmoothness.png",
+      "normal_map": "R2_A_Merged_-_Wood_material_003_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_A_Merged - vines Texture.017",
+      "file_name": "R2_A_Merged_-_vines_Texture_017",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "R2_A_Merged_-_vines_Texture_017_BaseColor.png",
+      "metallic_smoothness_map": "R2_A_Merged_-_vines_Texture_017_MetallicSmoothness.png",
+      "normal_map": "R2_A_Merged_-_vines_Texture_017_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R2_B_Merged - dark moss substrate",
+      "file_name": "R2_B_Merged_-_dark_moss_substrate",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.029999971389770508,
+      "base_map": "R2_B_Merged_-_dark_moss_substrate_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "R2_B_Merged_-_dark_moss_substrate_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R12 antique brass",
+      "file_name": "R4_R12_antique_brass",
+      "base_color": [
+        0.30000001192092896,
+        0.20999999344348907,
+        0.08799999952316284,
+        1.0
+      ],
+      "metallic": 0.75,
+      "smoothness": 0.6399999856948853,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R12 brushed nickel",
+      "file_name": "R4_R12_brushed_nickel",
+      "base_color": [
+        0.25999999046325684,
+        0.30000001192092896,
+        0.2800000011920929,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R12 graphite steel",
+      "file_name": "R4_R12_graphite_steel",
+      "base_color": [
+        0.04500000178813934,
+        0.052000001072883606,
+        0.04899999871850014,
+        1.0
+      ],
+      "metallic": 0.699999988079071,
+      "smoothness": 0.5800000131130219,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R12 ivory enamel",
+      "file_name": "R4_R12_ivory_enamel",
+      "base_color": [
+        0.6700000166893005,
+        0.6399999856948853,
+        0.550000011920929,
+        1.0
+      ],
+      "metallic": 0.11999999731779099,
+      "smoothness": 0.5800000131130219,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R12 opal diffuser",
+      "file_name": "R4_R12_opal_diffuser",
+      "base_color": [
+        1.0,
+        0.8799999952316284,
+        0.6600000262260437,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        3.0,
+        2.6399999856948853,
+        1.980000078678131
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 nickel",
+      "file_name": "R4_R43_nickel",
+      "base_color": [
+        0.3199999928474426,
+        0.36000001430511475,
+        0.3499999940395355,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 ivory moulding",
+      "file_name": "R4_V13_ivory_moulding",
+      "base_color": [
+        0.6600000262260437,
+        0.6399999856948853,
+        0.5600000023841858,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.30000001192092896,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Realistic White Plaster Wall",
+      "file_name": "Realistic_White_Plaster_Wall",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Realistic_White_Plaster_Wall_BaseColor.png",
+      "metallic_smoothness_map": "Realistic_White_Plaster_Wall_MetallicSmoothness.png",
+      "normal_map": "Realistic_White_Plaster_Wall_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Table.006",
+      "file_name": "Table_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.4472135901451111,
+      "base_map": "Table_006_BaseColor.png",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 1.0,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple.018",
+      "file_name": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_BaseColor.png",
+      "metallic_smoothness_map": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_MetallicSmoothness.png",
+      "normal_map": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": true,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4",
+      "file_name": "tripo_mat_6187e4a4",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.001",
+      "file_name": "tripo_mat_6187e4a4_001",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.002",
+      "file_name": "tripo_mat_6187e4a4_002",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.003",
+      "file_name": "tripo_mat_6187e4a4_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.004",
+      "file_name": "tripo_mat_6187e4a4_004",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.005",
+      "file_name": "tripo_mat_6187e4a4_005",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.007",
+      "file_name": "tripo_mat_6187e4a4_007",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.008",
+      "file_name": "tripo_mat_6187e4a4_008",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.009",
+      "file_name": "tripo_mat_6187e4a4_009",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.010",
+      "file_name": "tripo_mat_6187e4a4_010",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.011",
+      "file_name": "tripo_mat_6187e4a4_011",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.012",
+      "file_name": "tripo_mat_6187e4a4_012",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.013",
+      "file_name": "tripo_mat_6187e4a4_013",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.014",
+      "file_name": "tripo_mat_6187e4a4_014",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.015",
+      "file_name": "tripo_mat_6187e4a4_015",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.016",
+      "file_name": "tripo_mat_6187e4a4_016",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.017",
+      "file_name": "tripo_mat_6187e4a4_017",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.018",
+      "file_name": "tripo_mat_6187e4a4_018",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.019",
+      "file_name": "tripo_mat_6187e4a4_019",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "tripo_mat_6187e4a4.020",
+      "file_name": "tripo_mat_6187e4a4_020",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "tripo_mat_6187e4a4_BaseColor.jpg",
+      "metallic_smoothness_map": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "normal_map": "tripo_mat_6187e4a4_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_02_Structure.fbx",
+      "size_bytes": 128396
+    },
+    {
+      "path": "Models/SILENT_Room_02_A_Objects.fbx",
+      "size_bytes": 27508460
+    },
+    {
+      "path": "Models/SILENT_Room_02_B_Objects.fbx",
+      "size_bytes": 29652364
+    },
+    {
+      "path": "Textures/AR3DMat_Carrara_Marble_Tiles_BaseColor.jpg",
+      "size_bytes": 643491
+    },
+    {
+      "path": "Textures/AR3DMat_Carrara_Marble_Tiles_MetallicSmoothness.png",
+      "size_bytes": 48733
+    },
+    {
+      "path": "Textures/AR3DMat_Carrara_Marble_Tiles_Normal.jpg",
+      "size_bytes": 141808
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_BaseColor.jpg",
+      "size_bytes": 1359490
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_Height.jpg",
+      "size_bytes": 384425
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_MetallicSmoothness.png",
+      "size_bytes": 4399264
+    },
+    {
+      "path": "Textures/Colored_Foam_Pads_Normal.jpg",
+      "size_bytes": 1403123
+    },
+    {
+      "path": "Textures/Metal_Cromo_006_BaseColor.png",
+      "size_bytes": 10744541
+    },
+    {
+      "path": "Textures/Metal_Cromo_006_MetallicSmoothness.png",
+      "size_bytes": 4888967
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Metallic_black_001_MetallicSmoothness.png",
+      "size_bytes": 1201006
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Metallic_black_002_MetallicSmoothness.png",
+      "size_bytes": 1199801
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Metallic_black_003_MetallicSmoothness.png",
+      "size_bytes": 1202188
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Metallic_black_MetallicSmoothness.png",
+      "size_bytes": 1201046
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_R4_R12_warm_lime_plaster_Normal.png",
+      "size_bytes": 5518052
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_001_BaseColor.png",
+      "size_bytes": 20590975
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_001_MetallicSmoothness.png",
+      "size_bytes": 7578428
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_001_Normal.png",
+      "size_bytes": 20890558
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_002_BaseColor.png",
+      "size_bytes": 20650309
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_002_MetallicSmoothness.png",
+      "size_bytes": 7634850
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_002_Normal.png",
+      "size_bytes": 21037814
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_003_BaseColor.png",
+      "size_bytes": 20715485
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_003_MetallicSmoothness.png",
+      "size_bytes": 7615132
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_003_Normal.png",
+      "size_bytes": 20972132
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_BaseColor.png",
+      "size_bytes": 20673566
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_MetallicSmoothness.png",
+      "size_bytes": 7573190
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_Wood_material_Normal.png",
+      "size_bytes": 21049271
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_vines_Texture_017_BaseColor.png",
+      "size_bytes": 3697913
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_vines_Texture_017_MetallicSmoothness.png",
+      "size_bytes": 1497285
+    },
+    {
+      "path": "Textures/R2_A_Merged_-_vines_Texture_017_Normal.png",
+      "size_bytes": 4191413
+    },
+    {
+      "path": "Textures/R2_B_Merged_-_dark_moss_substrate_BaseColor.png",
+      "size_bytes": 20795746
+    },
+    {
+      "path": "Textures/R2_B_Merged_-_dark_moss_substrate_Normal.png",
+      "size_bytes": 19631343
+    },
+    {
+      "path": "Textures/Realistic_White_Plaster_Wall_BaseColor.png",
+      "size_bytes": 22041825
+    },
+    {
+      "path": "Textures/Realistic_White_Plaster_Wall_MetallicSmoothness.png",
+      "size_bytes": 11443263
+    },
+    {
+      "path": "Textures/Realistic_White_Plaster_Wall_Normal.png",
+      "size_bytes": 29208362
+    },
+    {
+      "path": "Textures/Table_006_BaseColor.png",
+      "size_bytes": 1416502
+    },
+    {
+      "path": "Textures/png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_BaseColor.png",
+      "size_bytes": 362689
+    },
+    {
+      "path": "Textures/png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_MetallicSmoothness.png",
+      "size_bytes": 142961
+    },
+    {
+      "path": "Textures/png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_Normal.png",
+      "size_bytes": 455574
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_BaseColor.jpg",
+      "size_bytes": 1783379
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "size_bytes": 8932579
+    },
+    {
+      "path": "Textures/tripo_mat_6187e4a4_Normal.png",
+      "size_bytes": 4979933
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Room_02_A_Objects",
+      "vertices": 275598,
+      "polygons": 541834,
+      "uv0": "Room02A_SurfaceUV",
+      "materials": [
+        "R2_A_Merged - Metallic_black",
+        "R2_A_Merged - Metallic_black.001",
+        "R2_A_Merged - Metallic_black.002",
+        "R2_A_Merged - Metallic_black.003",
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "R4 R12 graphite steel",
+        "R2_A_Merged - Wood_material.001",
+        "R2_A_Merged - Wood_material.002",
+        "R2_A_Merged - Wood_material.003",
+        "R2_A_Merged - Wood_material",
+        "R4 R12 antique brass",
+        "R4 R12 ivory enamel",
+        "R2_A_Merged - vines Texture.017",
+        "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple.018",
+        "R4 R12 opal diffuser",
+        "R2_A_Merged - R4 R12 warm lime plaster",
+        "R4 V13 ivory moulding",
+        "Metal_Cromo.006",
+        "Table.006",
+        "tripo_mat_6187e4a4",
+        "tripo_mat_6187e4a4.001",
+        "tripo_mat_6187e4a4.002",
+        "tripo_mat_6187e4a4.003",
+        "tripo_mat_6187e4a4.004",
+        "tripo_mat_6187e4a4.005"
+      ]
+    },
+    {
+      "name": "Ceiling.008",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Realistic White Plaster Wall"
+      ]
+    },
+    {
+      "name": "Room_02_B_FrameBody",
+      "vertices": 18144,
+      "polygons": 35532,
+      "uv0": "UVMap",
+      "materials": [
+        "FRAME - back board",
+        "FRAME - shared warm ivory finish",
+        "FRAME - inset charcoal reveal",
+        "COLOR - Black",
+        "FRAME - back board.005",
+        "FRAME - shared warm ivory finish.005",
+        "FRAME - inset charcoal reveal.005",
+        "COLOR - Black.001",
+        "COLOR - Blue",
+        "COLOR - Blue.001",
+        "COLOR - Gray",
+        "COLOR - Gray.001",
+        "COLOR - Green",
+        "FRAME - back board.001",
+        "FRAME - shared warm ivory finish.001",
+        "FRAME - inset charcoal reveal.001",
+        "COLOR - Green.001",
+        "FRAME - back board.007",
+        "FRAME - shared warm ivory finish.007",
+        "FRAME - inset charcoal reveal.007",
+        "COLOR - Green.002",
+        "COLOR - Green.003",
+        "COLOR - Navy",
+        "COLOR - Navy.001",
+        "FRAME - back board.008",
+        "FRAME - shared warm ivory finish.008",
+        "FRAME - inset charcoal reveal.008",
+        "COLOR - Navy.002",
+        "COLOR - Orange",
+        "COLOR - Orange.001",
+        "COLOR - Purple",
+        "FRAME - back board.002",
+        "FRAME - shared warm ivory finish.002",
+        "FRAME - inset charcoal reveal.002",
+        "COLOR - Purple.001",
+        "FRAME - back board.006",
+        "FRAME - shared warm ivory finish.006",
+        "FRAME - inset charcoal reveal.006",
+        "COLOR - Purple.002",
+        "COLOR - Purple.003",
+        "COLOR - Red",
+        "COLOR - Red.001",
+        "COLOR - Teal",
+        "COLOR - Teal.001",
+        "COLOR - Yellow",
+        "FRAME - back board.003",
+        "FRAME - shared warm ivory finish.003",
+        "FRAME - inset charcoal reveal.003",
+        "COLOR - Yellow.001",
+        "FRAME - back board.004",
+        "FRAME - shared warm ivory finish.004",
+        "FRAME - inset charcoal reveal.004",
+        "COLOR - Yellow.002",
+        "COLOR - Yellow.003"
+      ]
+    },
+    {
+      "name": "Room_02_B_Tripo",
+      "vertices": 486220,
+      "polygons": 953134,
+      "uv0": "Retopo_Untitled_NewUVMap",
+      "materials": [
+        "tripo_mat_6187e4a4.008",
+        "tripo_mat_6187e4a4.007",
+        "tripo_mat_6187e4a4.009",
+        "tripo_mat_6187e4a4.010",
+        "tripo_mat_6187e4a4.011",
+        "tripo_mat_6187e4a4.012",
+        "tripo_mat_6187e4a4.013",
+        "tripo_mat_6187e4a4.014",
+        "tripo_mat_6187e4a4.015",
+        "tripo_mat_6187e4a4.016",
+        "tripo_mat_6187e4a4.017",
+        "tripo_mat_6187e4a4.018",
+        "tripo_mat_6187e4a4.019",
+        "tripo_mat_6187e4a4.020"
+      ]
+    },
+    {
+      "name": "Room_02_B_Structure",
+      "vertices": 1112,
+      "polygons": 2116,
+      "uv0": "Room02_SurfaceUV",
+      "materials": [
+        "R4 V13 machined steel",
+        "R4 R43 nickel",
+        "Realistic White Plaster Wall",
+        "R2_B_Merged - dark moss substrate",
+        "Colored Foam Pads",
+        "AR3DMat Carrara Marble Tiles",
+        "R4 R12 brushed nickel",
+        "R4 V13 ivory moulding"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "R2 A neutral gallery light",
+    "R2 A neutral gallery light.001",
+    "R2 A planting wash",
+    "R2 A planting wash.001",
+    "R2 A neutral gallery light.002",
+    "R2 A neutral gallery light.003",
+    "R2 A planting wash.002",
+    "R2 A planting wash.003",
+    "R2 A neutral gallery light.004",
+    "R2 A neutral gallery light.005",
+    "R2 A planting wash.004",
+    "R2 A planting wash.005",
+    "R2 A neutral gallery light.006",
+    "R2 A neutral gallery light.007",
+    "R2 A planting wash.006",
+    "R2 A planting wash.007",
+    "R2 A neutral lock light",
+    "REVIEW_Fill_2_A_0",
+    "REVIEW_Fill_2_A_1",
+    "REVIEW_Fill_2_B_0",
+    "REVIEW_Fill_2_B_1"
+  ],
+  "cameras": [
+    {
+      "name": "REVIEW_Room_02_A",
+      "matrix": [
+        [
+          0.718988299369812,
+          0.00999318715184927,
+          -0.6949503421783447,
+          8.75
+        ],
+        [
+          -0.6950221657752991,
+          0.010337804444134235,
+          -0.7189139723777771,
+          -10.5
+        ],
+        [
+          1.8591606476547895e-08,
+          0.9998966455459595,
+          0.01437824685126543,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    },
+    {
+      "name": "REVIEW_Room_02_B",
+      "matrix": [
+        [
+          0.718988299369812,
+          0.00999318715184927,
+          -0.6949503421783447,
+          8.75
+        ],
+        [
+          -0.6950221657752991,
+          0.010337804444134235,
+          -0.7189139723777771,
+          2.5
+        ],
+        [
+          1.8591606476547895e-08,
+          0.9998966455459595,
+          0.01437824685126543,
+          1.7000000476837158
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 61.92751520437556
+    }
+  ],
+  "notes": [
+    "All five source meshes and their world placement retained. The source has no separate A-room wall/floor mesh; none has been invented.",
+    "21 Blender lights and 2 review cameras excluded; hidden reward text excluded as in source rendering.",
+    "Active render UV promoted to UV0. Only procedural material faces use freshly baked UVs.",
+    "Surface-dependent procedural color/roughness/normal baked without lighting, retaining original generated/object attributes.",
+    "Original image textures extracted losslessly; identical images and packed PBR maps deduplicated by contents.",
+    "Height texture supplied for URP parallax; this is not true mesh displacement.",
+    "Unity lighting, tone mapping and shader response require user visual verification."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "R2_A_Merged - Metallic_black",
+      "resolution": 1024,
+      "faces": 432
+    },
+    {
+      "material": "R2_A_Merged - Metallic_black.001",
+      "resolution": 1024,
+      "faces": 432
+    },
+    {
+      "material": "R2_A_Merged - Metallic_black.002",
+      "resolution": 1024,
+      "faces": 432
+    },
+    {
+      "material": "R2_A_Merged - Metallic_black.003",
+      "resolution": 1024,
+      "faces": 432
+    },
+    {
+      "material": "R2_A_Merged - R4 R12 warm lime plaster",
+      "resolution": 1024,
+      "faces": 1296
+    },
+    {
+      "material": "R2_A_Merged - Wood_material",
+      "resolution": 2048,
+      "faces": 10608
+    },
+    {
+      "material": "R2_A_Merged - Wood_material.001",
+      "resolution": 2048,
+      "faces": 10608
+    },
+    {
+      "material": "R2_A_Merged - Wood_material.002",
+      "resolution": 2048,
+      "faces": 10608
+    },
+    {
+      "material": "R2_A_Merged - Wood_material.003",
+      "resolution": 2048,
+      "faces": 10608
+    },
+    {
+      "material": "R2_A_Merged - vines Texture.017",
+      "resolution": 1024,
+      "faces": 100
+    },
+    {
+      "material": "R2_B_Merged - dark moss substrate",
+      "resolution": 2048,
+      "faces": 18
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_02_Structure.fbx",
+    "Models/SILENT_Room_02_A_Objects.fbx",
+    "Models/SILENT_Room_02_B_Objects.fbx"
+  ],
+  "color_encoding_validation": [
+    {
+      "file": "Metal_Cromo_006_BaseColor.png",
+      "linear_roundtrip_max_error": 2.3037195205688477e-05
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_BaseColor.png",
+      "linear_roundtrip_max_error": 2.2917985916137695e-05
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_001_BaseColor.png",
+      "linear_roundtrip_max_error": 2.3037195205688477e-05
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_002_BaseColor.png",
+      "linear_roundtrip_max_error": 2.3037195205688477e-05
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_003_BaseColor.png",
+      "linear_roundtrip_max_error": 2.2977590560913086e-05
+    },
+    {
+      "file": "R2_A_Merged_-_vines_Texture_017_BaseColor.png",
+      "linear_roundtrip_max_error": 1.1399388313293457e-05
+    },
+    {
+      "file": "R2_B_Merged_-_dark_moss_substrate_BaseColor.png",
+      "linear_roundtrip_max_error": 6.57886266708374e-06
+    }
+  ],
+  "packed_channel_validation": [
+    {
+      "file": "AR3DMat_Carrara_Marble_Tiles_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "Colored_Foam_Pads_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "Metal_Cromo_006_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "R2_A_Merged_-_Metallic_black_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 7.212162017822266e-06
+    },
+    {
+      "file": "R2_A_Merged_-_Metallic_black_001_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 7.212162017822266e-06
+    },
+    {
+      "file": "R2_A_Merged_-_Metallic_black_002_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 7.212162017822266e-06
+    },
+    {
+      "file": "R2_A_Merged_-_Metallic_black_003_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 7.212162017822266e-06
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_001_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_002_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "R2_A_Merged_-_Wood_material_003_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "R2_A_Merged_-_vines_Texture_017_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "Realistic_White_Plaster_Wall_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "png-transparent-leaf-texture-mapping-vine-leaves-leaf-maple_018_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 0.0
+    },
+    {
+      "file": "tripo_mat_6187e4a4_MetallicSmoothness.png",
+      "channel_roundtrip_max_error": 2.9802322387695312e-08
+    }
+  ]
+}
