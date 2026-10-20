@@ -12,7 +12,7 @@ namespace EscapeGame.Interaction
     public sealed class CloseupPanelView : IDisposable
     {
         private readonly GameObject root, overlay, ownedEventSystem;
-        private readonly TMP_Text title, hint;
+        private readonly TMP_Text title, hint, notice;
         private readonly Button back;
         public RawImage Preview { get; }
         public RectTransform ContentRoot { get; }
@@ -34,6 +34,7 @@ namespace EscapeGame.Interaction
             title = InteractionUiFactory.Text("Title", panel, settings.Font, "조작 화면", 1000, 64, 0, 282, 32);
             var previewRect = InteractionUiFactory.Rect("ObjectPreview", panel, 540, 480, -240, 5); Preview = previewRect.gameObject.AddComponent<RawImage>(); Preview.raycastTarget = false;
             ContentRoot = InteractionUiFactory.Rect("Controls", panel, 420, 480, 300, 5);
+            notice = InteractionUiFactory.Text("InputNotice", ContentRoot, settings.Font, "", 400, 240, 0, 0, 22);
             back = InteractionUiFactory.Button("Back", panel, settings.Font, "돌아가기", 240, 60, 0, -292); back.onClick.AddListener(OnBack);
             overlay.SetActive(false);
             if (EventSystem.current == null)
@@ -45,7 +46,8 @@ namespace EscapeGame.Interaction
         }
         private void OnBack() => CloseRequested?.Invoke();
         public void Show(int roomNo) { title.text = roomNo + "번 방 · 조작 화면"; hint.text = ""; overlay.SetActive(true); }
-        public void Hide() { Preview.texture = null; overlay.SetActive(false); }
+        public void Hide() { Preview.texture = null; notice.text = ""; overlay.SetActive(false); }
+        public void SetNotice(string message) => notice.text = message;
         public void SetHint(bool available) => hint.text = available ? "좌클릭으로 살펴보기" : "";
         public void SetActive(bool active) => root.SetActive(active);
         public void Dispose()

@@ -63,7 +63,7 @@ namespace EscapeGame.World
                 worlds[0].Initialize(this);
                 var firstRoom = worlds[0].RequireFirstRoom();
                 playerSpawn = spawnHost.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
-                playerSpawn.Initialize(Service.Data, Service.Role, firstRoom);
+                playerSpawn.Initialize(Service.Data, Service.Role, firstRoom, Service);
                 if (!PlayerReady) throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
             }
             catch (Exception error)

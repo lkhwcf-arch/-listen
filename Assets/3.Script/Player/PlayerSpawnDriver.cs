@@ -10,7 +10,7 @@ namespace EscapeGame.Player
     {
         public FirstPersonPlayerRig Player { get; private set; }
         public event Action<FirstPersonPlayerRig> Spawned;
-        public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null)
+        public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null, IRoomAnswerService answers = null)
         {
             if (Player != null)
             {
@@ -31,7 +31,7 @@ namespace EscapeGame.Player
             try
             {
                 spawned.gameObject.AddComponent<EscapeGame.Interaction.PlayerInteractionDriver>().Initialize(
-                    spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings);
+                    spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings, answers, role);
                 Player = spawned;
             }
             catch { spawned.gameObject.SetActive(false); Destroy(spawned.gameObject); throw; }

@@ -3,6 +3,15 @@ using EscapeGame.Data.CsvValidation;
 using EscapeGame.Data.CsvValidation.Contracts;
 
 if (args.Length == 3 && args[0] == "--http") { await ProtocolHttpChecks.Run(args[1], args[2]); return; }
+if (args.Length == 3 && args[0] == "--answers")
+{
+    var sources = Directory.GetFiles(Path.GetFullPath(args[1]), "*.csv").ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
+    string rules = File.ReadAllText(Path.Combine(Path.GetFullPath(args[2]), "Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml"));
+    var errors = new TestValidator(rules).Validate(sources).Where(issue => issue.Severity == CsvValidationSeverity.Error).ToArray();
+    if (errors.Length != 0) throw new Exception(string.Join("\n", errors.Select(issue=>issue.ToString())));
+    Console.WriteLine("정답 입력 분리 검사 데이터: " + Path.GetFullPath(args[1]));
+    await PuzzleAnswerChecks.Run(sources, rules); return;
+}
 
 string root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
 var original = Directory.GetFiles(Path.Combine(root, "Assets", "11.CSV"), "*.csv")
@@ -78,3 +87,4 @@ await ContentRegressionChecks.Run(original, catalogXml);
 await ConnectionConfigurationChecks.Run(root, original, catalogXml);
 await RoomPermissionChecks.Run();
 InteractionChecks.Run(original, catalogXml);
+await PuzzleAnswerChecks.Run(original, catalogXml);
