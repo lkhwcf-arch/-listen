@@ -29,11 +29,8 @@ namespace EscapeGame.Player
             {
                 root.transform.SetPositionAndRotation(anchors[0].position, anchors[0].rotation);
                 var controller = root.AddComponent<CharacterController>();
-                controller.height = plan.CapsuleHeightMm / 1000f;
-                controller.radius = plan.CapsuleRadiusMm / 1000f;
-                controller.center = Vector3.up * (plan.CapsuleHeightMm / 2000f);
-                controller.stepOffset = plan.StepOffsetMm / 1000f;
-                controller.minMoveDistance = 0;
+                PlayerBodyConfiguration.Apply(controller, plan.Character, settings.SkinWidthMm);
+                root.AddComponent<PlayerCollisionProbe>();
                 var cameraObject = new GameObject("FirstPersonCamera");
                 cameraObject.tag = "MainCamera";
                 cameraObject.transform.SetParent(root.transform, false);
@@ -71,14 +68,20 @@ namespace EscapeGame.Player
                 }
                 var rig = root.AddComponent<FirstPersonPlayerRig>();
                 rig.Initialize(plan.Role, camera, visual);
+                var controls = new PlayerControlState();
                 var movement = root.AddComponent<PlayerMovementDriver>();
                 var input = new InputSystemMoveInput(settings.InputActions);
                 try
                 {
                     movement.Initialize(plan.Character, input, new EscapeGame.Timing.StopwatchMillisecondClock(),
-                        settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm);
+                        settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
                 }
                 catch { input.Dispose(); throw; }
+                var look = root.AddComponent<PlayerLookDriver>();
+                var pointer = new InputSystemPointerInput(settings.InputActions);
+                try { look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointer, controls); }
+                catch { pointer.Dispose(); throw; }
+                root.AddComponent<ViewModelObstructionDriver>().Initialize(camera, visual, settings.ModelCollisionMarginMm);
                 root.SetActive(true);
                 return rig;
             }

@@ -33,7 +33,8 @@ void Cell(Dictionary<string, string> input, string sheet, int rowIndex, string c
 }
 Func<CsvValidationIssue, bool> At(string sheet, string column) => x => x.Sheet == sheet && x.Column == column && x.Severity == CsvValidationSeverity.Error;
 foreach (var sample in new[] { ("WalkSpeed", "0"), ("Acceleration", "0"), ("Deceleration", "0"),
-    ("WalkSpeed", "1000"), ("EyeHeight", "2"), ("CapsuleRadius", "1"), ("StepOffset", "1.8"), ("FOV", "179"), ("WalkSpeed", "1e100") })
+    ("WalkSpeed", "1000"), ("EyeHeight", "2"), ("CapsuleRadius", "1"), ("StepOffset", "1.8"), ("FOV", "179"), ("WalkSpeed", "1e100"),
+    ("MouseSensitivity", "0"), ("MouseSensitivity", "101"), ("PitchLimit", "90") })
 {
     string expectedColumn = sample.Item1 == "CapsuleRadius" ? "CapsuleHeight" : sample.Item1;
     Check("character profile " + sample.Item1 + "=" + sample.Item2,

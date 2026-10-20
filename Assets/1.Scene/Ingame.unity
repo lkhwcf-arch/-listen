@@ -167,17 +167,11 @@ MonoBehaviour:
   roomNo: 1
   anchorsRoot: {fileID: 372193019}
   embedded:
-  - anchorId: R01A_CardsPoint
-    objectPath: Room_01_Final/ROOM_01_A/Room_01_A_Cards
-    hideWhenUnused: 1
   - anchorId: R01_CeilingPoint
     objectPath: Room_01_Final/ROOM_01_A/Ceiling.007
     hideWhenUnused: 0
   - anchorId: R01_DverPoint
     objectPath: Room_01_Final/Door
-    hideWhenUnused: 0
-  - anchorId: R01_DrawerPoint
-    objectPath: Room_01_Final/Hemnes.Drawer
     hideWhenUnused: 0
 --- !u!1 &1602747292
 GameObject:

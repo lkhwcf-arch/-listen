@@ -59,7 +59,7 @@ public static class WorldVerification
             var expectedA = planA.Anchors(planA.First).Where(row=>row.PrefabId!=settings.SpawnPrefabId).Select(row=>row.Id).OrderBy(id=>id);
             Check(roomA.GetComponentsInChildren<AnchorInstance>(true).Select(item=>item.Definition.Id).OrderBy(id=>id).SequenceEqual(expectedA),"A R01 binds every selected non-player CSV row exactly once");
             Check(owner.PlayerReady && owner.IsGameplayReady,"room readiness includes initialized local player");
-            Check(roomA.transform.Find("Room_01_Final/ROOM_01_A/Room_01_A_Cards")!=null,"authored prefab root and embedded card path resolve");
+            Check(roomA.transform.Find("Room_01_Final")!=null,"authored prefab root resolves");
             Check(owner.GetComponent<SessionBootstrapper>().State.IsJoined == false,"local mode has no server participant");
 
             await owner.Service.EnterAsync(true,null,"B",default);
@@ -79,7 +79,7 @@ public static class WorldVerification
             var planB = new RoomLoadPlan(owner.Service.Data,"B");
             var expectedB = planB.Anchors(planB.First).Where(row=>row.PrefabId!=settings.SpawnPrefabId).Select(row=>row.Id).OrderBy(id=>id);
             Check(roomB.GetComponentsInChildren<AnchorInstance>(true).Select(item=>item.Definition.Id).OrderBy(id=>id).SequenceEqual(expectedB),"B R01 bindings follow the current CSV");
-            Check(!roomB.transform.Find("Room_01_Final/ROOM_01_A/Room_01_A_Cards").gameObject.activeSelf,"B does not display A-only embedded cards");
+            Check(!roomB.GetComponentsInChildren<AnchorInstance>(true).Any(item=>item.Definition.PlayerType=="A"),"B does not spawn A-only CSV props");
             foreach(var binding in roomB.GetComponentsInChildren<AnchorInstance>())
                 Check(object.ReferenceEquals(binding.Data,owner.Service.Data),"spawn receives registered data snapshot "+binding.Definition.Id);
             var apply = typeof(IngameWorldDriver).GetMethod("ApplyRooms",BindingFlags.Instance|BindingFlags.NonPublic);

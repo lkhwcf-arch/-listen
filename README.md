@@ -87,7 +87,7 @@ Assets/3.Script/
     CsvValidation/            설정·규칙·결과·한국어 메시지
     Infrastructure/           파일·TextAsset 어댑터
   World/                      입장 수명·방 로더·첫 방/플레이어 준비·로컬 진행
-  Player/                     스폰·입력 Adapter·정수 이동 상태·Unity 충돌
+  Player/                     스폰·입력 Adapter·정수 이동/시점·공통 조작 상태·Unity 충돌/모델 보정
   Session/                    계약·코어·자동 Driver·화면
   Networking/                 HTTP·Protobuf·Gateway
   Voice/                      음성 계약·서비스·Vivox·화면
@@ -140,7 +140,7 @@ PuzzleSubmissionResult result = await flow.Service.SubmitPuzzleAsync(puzzleId, a
 5. `AnchorInstance`가 `AnchorData`와 `CsvGameData`를 보유하며, 기능 컴포넌트는 `IAnchorDataReceiver.Initialize`로 주입받습니다.
 6. 성공한 방만 등록하고 반복 스냅샷으로 방·프리팹을 중복 생성하지 않습니다.
 
-현재 Ingame은 **R01_Runtime → Room_01_Final** 구조입니다. 프리팹 루트 Transform 참조를 바로잡았고, 포함된 카드·천장·문 외형·서랍 4개는 RoomSceneView의 embedded 바인딩으로 재사용합니다. A 전용 카드는 CSV 역할 선택에 따라 B에서 숨깁니다. 현재 R01 활성 행은 A/B 각각 6개이며, 플레이어 스폰 행 1개는 전용 Factory가 처리합니다. B의 R01_LEDPanelPoint가 없어 B 첫 방은 실패 원인을 표시하고 준비를 차단합니다. 이 숫자는 현재 콘텐츠 현황이며 자동 검사는 개수를 고정하지 않고 선택된 행 ID와 실제 바인딩을 대조합니다.
+현재 Ingame은 **R01_Runtime → Room_01_Final** 구조입니다. 최신 Git Pull에서 카드·서랍이 분리되어 삭제된 embedded 경로 2개를 제거했고, 유효한 천장·입구 문 바인딩 2개를 유지합니다. A 소품 묶음은 최신 CSV의 `R01A_PropsPoint → PREFAB 13075`로 생성합니다. 활성 앵커는 CSV에서 역할별로 선택하며 플레이어 행은 전용 Factory가 처리합니다. B의 R01_LEDPanelPoint가 없어 B 첫 방은 실패 원인을 표시하고 준비를 차단합니다. 이 숫자는 현재 콘텐츠 현황이며 자동 검사는 개수를 고정하지 않고 선택된 행 ID와 실제 바인딩을 대조합니다.
 
 서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 문을 허가합니다. 정답 제출자는 자기 문과 Next를 먼저 허가받고, 상대는 자기 문 확인 때 허가받습니다. 이후 문 열기·닫기는 RoomPermissionService 캐시를 사용하며 추가 통신이 없습니다. Next=0이면 추가 방이 없습니다. ExitRule은 `RoomExitRules`에서 공통 해석하며 알 수 없는 값은 검증과 런타임에서 차단합니다. 활성 방은 시작점 하나에서 모두 연결되어야 하며, 비활성 방으로 끊긴 연결도 허용하지 않습니다.
 
@@ -178,7 +178,7 @@ Set-Location Tools/CsvValidation.Tests
 dotnet run -- ../..
 ```
 
-현재 공통 순수 C# 검사 **198개**, 스폰·정수 이동 검사 **45개**가 통과했습니다. CSV **23개·3,121개 셀**, 오류 **0개**, 비활성 앵커 참조 경고 **52개**를 확인했습니다. 셀·앵커 개수는 콘텐츠 변경으로 달라질 수 있어 고정 성공 기준으로 사용하지 않습니다. 화면 제거 후 씬 진입 유지, 게임 소유자 취소, 초기화 실패 시 참가 자리 정리와 캐릭터 정수 검증을 포함합니다. .NET 8 SDK가 없어 같은 소스를 임시 net10 프로젝트에서 실행했습니다. Unity 6.2 런타임/에디터 도구/Windows 런타임 분리 참조 컴파일도 통과했습니다. 실제 Unity Play·빌드 검증과 구분합니다.
+현재 공통 순수 C# 검사 **201개**, 스폰·이동·시점·조작 상태 검사 **72개**가 통과했습니다. 최신 클라이언트 CSV **23개·3,151개 셀**, 오류 **0개**, 비활성 앵커 참조 경고 **29개**를 확인했습니다. 셀·앵커 개수는 콘텐츠 변경으로 달라질 수 있어 고정 성공 기준으로 사용하지 않습니다. 화면 제거 후 씬 진입 유지, 게임 소유자 취소, 초기화 실패 시 참가 자리 정리와 캐릭터 정수 검증을 포함합니다. .NET 8 SDK가 없어 같은 소스를 임시 net10 프로젝트에서 실행했습니다. Unity 6.2 런타임/에디터 도구/Windows 런타임 분리 참조 컴파일도 통과했습니다. 실제 Unity Play·빌드 검증과 구분합니다.
 
 별도 임시 Unity 프로젝트에서 Play 검사를 실행합니다. 원본 씬을 덮어쓰지 않고 결과·로그를 `Temp/WorldPlayVerification`에 보관합니다.
 
@@ -219,7 +219,7 @@ Git에는 코드·CSV·프리팹·필요한 `.meta`·Packages·ProjectSettings·
 
 ## 1번 방 공통 앵커 플레이어 생성
 
-시트의 공통 스폰 행에서 AnchorID를 선택하고 같은 위치·회전으로 1인칭 플레이어를 생성합니다. A는 큐브, B는 실린더를 카메라 앞 손·무전기 대체 모델로 표시합니다. 스폰·모델 구조는 [플레이어 스폰 안내](Docs/PlayerSpawn.md)를 따릅니다. Input System의 기존 Player/Move와 CHARACTER_STAT을 연결한 WASD·정수 가감속·중력·구조 충돌을 추가했습니다. 설계·변경 파일·검토 순서는 [WASD 이동 안내](Docs/PlayerMovement.md)를 참고하세요. 마우스 시점·전용 클로즈업 UI·좌클릭 상호작용은 다음 단계입니다.
+시트의 공통 스폰 행에서 AnchorID를 선택하고 같은 위치·회전으로 1인칭 플레이어를 생성합니다. A는 큐브, B는 실린더를 카메라 앞 손·무전기 대체 모델로 표시합니다. 스폰·모델 구조는 [플레이어 스폰 안내](Docs/PlayerSpawn.md)를 따릅니다. Input System의 기존 Player/Move와 CHARACTER_STAT을 연결한 WASD·정수 가감속·중력·구조 충돌을 추가했습니다. 설계·변경 파일·검토 순서는 [WASD 이동 안내](Docs/PlayerMovement.md)를 참고하세요. 마우스 시점·공통 조작 잠금·캡슐 skin 설정·모델의 벽 끼임 보정을 추가했습니다. 설계·파일별 설명·검토 절차는 [마우스 시점과 충돌 안내](Docs/PlayerLookAndCollision.md)를 따릅니다. 전용 클로즈업 UI·좌클릭 상호작용·실제 다음 방 연결은 이 단위 검토 뒤 진행합니다.
 
 ## 씬 진입 정합성 검토
 
@@ -230,4 +230,16 @@ Git에는 코드·CSV·프리팹·필요한 `.meta`·Packages·ProjectSettings·
 3. 정상 입장 후 **Tools > Game > Verify Gameplay Readiness**: 플레이어 비활성화 동안 준비가 해제되는지 검사.
 4. B 모델/이동만 확인할 때는 **Ingame 단독 Play > Room Clear Test**를 사용합니다. 정상 B 입장·두 PC Playing 검증은 LEDPanel 앵커 배치 후 별도 진행합니다.
 
-현재 서버 CSV와 로컬 CSV는 내용이 일치합니다. 다음 방의 공간 정렬은 아직 개발자 미리보기 도구에 연결되어 있으며, 실제 런타임 문/정답 UI와 방 이동 연결은 후속 범위입니다.
+Git Pull 후 서버와 최신 로컬 CSV는 ANCHOR_INTERACT / ANCHOR_NONINTERACT / CARD / PREFAB 4개에서 다릅니다. 최신 배치의 마우스/충돌 검토는 로컬 A 테스트를 사용합니다. 온라인은 서버 CSV 번들을 사용하므로 같은 콘텐츠라고 가정하지 않습니다. 다음 방의 공간 정렬은 아직 개발자 미리보기 도구에 연결되어 있으며, 실제 런타임 문/정답 UI와 방 이동 연결은 후속 범위입니다.
+
+
+## 마우스 시점·충돌 검토
+
+Game 화면 좌클릭 → 마우스 회전/WASD, ESC → 커서 해제 및 이동·시점 정지, 좌클릭 → 복귀입니다. 포커스 복귀도 좌클릭을 기다립니다. 상하 회전은 CHARACTER_STAT.PitchLimit, 감도는 MouseSensitivity를 사용합니다.
+
+- **Tools > Game > Verify Player Look And Collision**: 임시 벽으로 모델 당김/숨김/복원과 입력 소유권 검사.
+- **Tools > Game > Inspect Player Collision**: 실제 방에서 최근 측면 접촉 collider·캡슐 반경/skin 출력. 문 앞 조기 충돌의 정확한 물체는 이 로그로 확인합니다.
+
+마우스 기능을 추가한 당시에는 실제 커서·방 물리·위 메뉴 실행을 자동 검사하지 않았습니다. 이후 충돌 검토에서 Unity MCP로 누락된 문·서랍 Collider와 단면 메시의 뒷면 감지 누락을 재현했습니다. 문/가구 Collider 보완과 양방향 표면 조회는 [충돌 수정 안내](Docs/CollisionFixes.md)를 따릅니다. **Tools > Game > Verify R01 Collision**은 별도 임시 씬에서 실제 프리팹·캡슐과 모델 표면 조회를 검사합니다. 서버 데이터와 정상 B 콘텐츠 문제는 별도입니다.
+
+적용 후 본 프로젝트의 Unity MCP에서 **R01 충돌 18개 네이티브 물리 검사 통과**를 확인했습니다. 문·가구 Collider/메시 일치·캡슐 차단, 실제 방 네 방향 벽 차단, 단면 양방향 모델 보호·복원, 전역 backface 설정 보존을 포함합니다. 플레이 화면의 실제 조작과 빌드 검증은 별도입니다.

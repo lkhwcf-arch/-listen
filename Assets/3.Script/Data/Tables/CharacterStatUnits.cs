@@ -19,12 +19,15 @@ namespace EscapeGame.Data.Tables
         public int CapsuleRadiusMm { get; }
         public int StepOffsetMm { get; }
         public int FovMilliDegrees { get; }
+        public int MouseSensitivityMilli { get; }
+        public int PitchLimitMilliDegrees { get; }
 
         public CharacterStatUnits(CharacterStatData profile) : this(field => field switch
         {
             "WalkSpeed" => profile.WalkSpeed, "Acceleration" => profile.Acceleration, "Deceleration" => profile.Deceleration,
             "EyeHeight" => profile.EyeHeight, "CapsuleHeight" => profile.CapsuleHeight, "CapsuleRadius" => profile.CapsuleRadius,
             "StepOffset" => profile.StepOffset, "FOV" => profile.Fov,
+            "MouseSensitivity" => profile.MouseSensitivity, "PitchLimit" => profile.PitchLimit,
             _ => throw new ArgumentException("알 수 없는 캐릭터 필드: " + field)
         }) { }
 
@@ -39,6 +42,10 @@ namespace EscapeGame.Data.Tables
             CapsuleRadiusMm = ToMilliUnit(read("CapsuleRadius"), "CapsuleRadius");
             StepOffsetMm = ToMilliUnit(read("StepOffset"), "StepOffset");
             FovMilliDegrees = ToMilliUnit(read("FOV"), "FOV");
+            MouseSensitivityMilli = ToMilliUnit(read("MouseSensitivity"), "MouseSensitivity");
+            PitchLimitMilliDegrees = ToMilliUnit(read("PitchLimit"), "PitchLimit");
+            Require("MouseSensitivity", MouseSensitivityMilli > 0 && MouseSensitivityMilli <= 100000, "1..100000 milli 배율");
+            Require("PitchLimit", PitchLimitMilliDegrees >= 0 && PitchLimitMilliDegrees < 90000, "0 <= PitchLimit < 90도");
             Require("WalkSpeed", WalkSpeedMmPerSecond > 0 && WalkSpeedMmPerSecond <= 100000, "1..100000 mm/s");
             Require("Acceleration", AccelerationMmPerSecondSquared > 0 && AccelerationMmPerSecondSquared <= 1000000, "1..1000000 mm/s²");
             Require("Deceleration", DecelerationMmPerSecondSquared > 0 && DecelerationMmPerSecondSquared <= 1000000, "1..1000000 mm/s²");
