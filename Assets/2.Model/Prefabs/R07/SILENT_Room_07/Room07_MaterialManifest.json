@@ -1,0 +1,3230 @@
+{
+  "source_file": "Room07_SourceOnly.blend",
+  "source_blender": "5.2.1 LTS",
+  "materials": [
+    {
+      "name": "Acoustic Ceiling Tile",
+      "file_name": "Acoustic_Ceiling_Tile",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Acoustic_Ceiling_Tile_BaseColor.png",
+      "metallic_smoothness_map": "Acoustic_Ceiling_Tile_MetallicSmoothness.png",
+      "normal_map": "Acoustic_Ceiling_Tile_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Backrooms Wallpaper",
+      "file_name": "Backrooms_Wallpaper",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Backrooms_Wallpaper_BaseColor.png",
+      "metallic_smoothness_map": "Backrooms_Wallpaper_MetallicSmoothness.png",
+      "normal_map": "Backrooms_Wallpaper_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Carpet",
+      "file_name": "Carpet",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Carpet_BaseColor.jpg",
+      "metallic_smoothness_map": "Carpet_MetallicSmoothness.png",
+      "normal_map": "Carpet_Normal.jpg",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.0,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Concrete wall",
+      "file_name": "Concrete_wall",
+      "base_color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 R43 graphite",
+      "file_name": "R4_R43_graphite",
+      "base_color": [
+        0.041999999433755875,
+        0.054999999701976776,
+        0.05900000035762787,
+        1.0
+      ],
+      "metallic": 0.6499999761581421,
+      "smoothness": 0.5999999940395355,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R4 V13 machined steel",
+      "file_name": "R4_V13_machined_steel",
+      "base_color": [
+        0.30000001192092896,
+        0.3400000035762787,
+        0.33000001311302185,
+        1.0
+      ],
+      "metallic": 0.800000011920929,
+      "smoothness": 0.699999988079071,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "R7 warm ceiling emission",
+      "file_name": "R7_warm_ceiling_emission",
+      "base_color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.0,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        3.0,
+        2.459999978542328,
+        1.7399999499320984
+      ],
+      "specular": 0.0,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Wood.003",
+      "file_name": "Wood_003",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_003_BaseColor.png",
+      "metallic_smoothness_map": "Wood_003_MetallicSmoothness.png",
+      "normal_map": "Wood_003_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Wood.004",
+      "file_name": "Wood_004",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_003_BaseColor.png",
+      "metallic_smoothness_map": "Wood_003_MetallicSmoothness.png",
+      "normal_map": "Wood_003_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Wood.005",
+      "file_name": "Wood_005",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_003_BaseColor.png",
+      "metallic_smoothness_map": "Wood_003_MetallicSmoothness.png",
+      "normal_map": "Wood_003_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "Wood.006",
+      "file_name": "Wood_006",
+      "base_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "metallic": 0.0,
+      "smoothness": 0.5,
+      "base_map": "Wood_003_BaseColor.png",
+      "metallic_smoothness_map": "Wood_003_MetallicSmoothness.png",
+      "normal_map": "Wood_003_Normal.png",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "knob-metal.001",
+      "file_name": "knob-metal_001",
+      "base_color": [
+        0.6382724046707153,
+        0.5469938516616821,
+        0.4802609384059906,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7092039585113525,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "knob-metal.002",
+      "file_name": "knob-metal_002",
+      "base_color": [
+        0.6382724046707153,
+        0.5469938516616821,
+        0.4802609384059906,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7092039585113525,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "knob-metal.003",
+      "file_name": "knob-metal_003",
+      "base_color": [
+        0.6382724046707153,
+        0.5469938516616821,
+        0.4802609384059906,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7092039585113525,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "knob-metal.004",
+      "file_name": "knob-metal_004",
+      "base_color": [
+        0.6382724046707153,
+        0.5469938516616821,
+        0.4802609384059906,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7092039585113525,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "lock metal.001",
+      "file_name": "lock_metal_001",
+      "base_color": [
+        0.9511123895645142,
+        0.9294615387916565,
+        1.0,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7175372838973999,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "lock metal.002",
+      "file_name": "lock_metal_002",
+      "base_color": [
+        0.9511123895645142,
+        0.9294615387916565,
+        1.0,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7175372838973999,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "lock metal.003",
+      "file_name": "lock_metal_003",
+      "base_color": [
+        0.9511123895645142,
+        0.9294615387916565,
+        1.0,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7175372838973999,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    },
+    {
+      "name": "lock metal.004",
+      "file_name": "lock_metal_004",
+      "base_color": [
+        0.9511123895645142,
+        0.9294615387916565,
+        1.0,
+        1.0
+      ],
+      "metallic": 1.0,
+      "smoothness": 0.7175372838973999,
+      "base_map": "",
+      "metallic_smoothness_map": "",
+      "normal_map": "",
+      "normal_scale": 1.0,
+      "height_map": "",
+      "height_scale": 0.0,
+      "emission_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "specular": 0.5,
+      "alpha_clip": false,
+      "double_sided": true
+    }
+  ],
+  "files": [
+    {
+      "path": "Models/SILENT_Room_07_Structure.fbx",
+      "size_bytes": 38684
+    },
+    {
+      "path": "Models/SILENT_Room_07_A_Objects.fbx",
+      "size_bytes": 4535484
+    },
+    {
+      "path": "Models/SILENT_Room_07_B_Objects.fbx",
+      "size_bytes": 4533372
+    },
+    {
+      "path": "Textures/Acoustic_Ceiling_Tile_BaseColor.png",
+      "size_bytes": 10375965
+    },
+    {
+      "path": "Textures/Acoustic_Ceiling_Tile_MetallicSmoothness.png",
+      "size_bytes": 147329
+    },
+    {
+      "path": "Textures/Acoustic_Ceiling_Tile_Normal.jpg",
+      "size_bytes": 1876468
+    },
+    {
+      "path": "Textures/Backrooms_Wallpaper_BaseColor.png",
+      "size_bytes": 19952697
+    },
+    {
+      "path": "Textures/Backrooms_Wallpaper_MetallicSmoothness.png",
+      "size_bytes": 1048954
+    },
+    {
+      "path": "Textures/Backrooms_Wallpaper_Normal.png",
+      "size_bytes": 25350848
+    },
+    {
+      "path": "Textures/Carpet_BaseColor.jpg",
+      "size_bytes": 87267
+    },
+    {
+      "path": "Textures/Carpet_MetallicSmoothness.png",
+      "size_bytes": 1275143
+    },
+    {
+      "path": "Textures/Carpet_Normal.jpg",
+      "size_bytes": 464410
+    },
+    {
+      "path": "Textures/Wood_003_BaseColor.png",
+      "size_bytes": 14318039
+    },
+    {
+      "path": "Textures/Wood_003_MetallicSmoothness.png",
+      "size_bytes": 8349047
+    },
+    {
+      "path": "Textures/Wood_003_Normal.png",
+      "size_bytes": 15656625
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Ceiling.006",
+      "parent": null,
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "UVMap",
+      "materials": [
+        "Concrete wall"
+      ]
+    },
+    {
+      "name": "Hinges.003",
+      "parent": "Wooden Door.002",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.003",
+        "knob-metal.003",
+        "Wood.005"
+      ]
+    },
+    {
+      "name": "Hinges.004",
+      "parent": "Wooden Door.003",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.004",
+        "knob-metal.004",
+        "Wood.006"
+      ]
+    },
+    {
+      "name": "Ceiling.013",
+      "parent": null,
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Acoustic Ceiling Tile"
+      ]
+    },
+    {
+      "name": "Hinges.001",
+      "parent": "Wooden Door",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.001",
+        "knob-metal.001",
+        "Wood.003"
+      ]
+    },
+    {
+      "name": "Hinges.002",
+      "parent": "Wooden Door.001",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.002",
+        "knob-metal.002",
+        "Wood.004"
+      ]
+    },
+    {
+      "name": "Room_07_A_Structure",
+      "parent": null,
+      "vertices": 72,
+      "polygons": 108,
+      "uv0": "UnityUV0",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Carpet"
+      ]
+    },
+    {
+      "name": "Room_07_A_Objects",
+      "parent": null,
+      "vertices": 392,
+      "polygons": 756,
+      "uv0": "UnityUV0",
+      "materials": [
+        "R4 V13 machined steel",
+        "R7 warm ceiling emission",
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "Room_07_B_Structure",
+      "parent": null,
+      "vertices": 72,
+      "polygons": 108,
+      "uv0": "UnityUV0",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Carpet"
+      ]
+    },
+    {
+      "name": "Room_07_B_Objects",
+      "parent": null,
+      "vertices": 392,
+      "polygons": 756,
+      "uv0": "UnityUV0",
+      "materials": [
+        "R4 V13 machined steel",
+        "R7 warm ceiling emission",
+        "R4 R43 graphite"
+      ]
+    }
+  ],
+  "removed_lights": [
+    "R7 A soft light",
+    "R7 A soft light.001",
+    "R7 A soft light.002",
+    "R7 A task light",
+    "R7 B soft light",
+    "R7 B soft light.001",
+    "R7 B soft light.002",
+    "R7 B task light"
+  ],
+  "cameras": [
+    {
+      "name": "R43 final room overview",
+      "matrix": [
+        [
+          -0.32080721855163574,
+          0.01446736790239811,
+          -0.9470340013504028,
+          79.80000305175781
+        ],
+        [
+          -0.9471445083618164,
+          -0.004900243133306503,
+          0.3207698166370392,
+          -5.300000190734863
+        ],
+        [
+          -2.1655917059604235e-09,
+          0.9998833537101746,
+          0.015274721197783947,
+          1.649999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "vertical_fov": 57.22092063977898
+    }
+  ],
+  "notes": [
+    "Only Room 07 retained; original 7ROOM.blend was not modified.",
+    "A/B walls and floors merged per room; ceilings kept separate; four wooden doors and twelve empty text position markers kept individually.",
+    "8 Room 07 Blender lights and review camera excluded from FBX. Lighting fixture geometry/emission retained.",
+    "Original render UV, evaluated bevels, world placement, triangulation and corner normals preserved.",
+    "Wallpaper 2x texture scale preserved in UV0; height normals baked at original 0.5m texture period.",
+    "Ceiling AO color mix, door color/roughness curves and normal-channel group converted into texture maps.",
+    "Duplicate B ceiling removed after exact mesh/UV/shader equality checks.",
+    "Unity lighting and tone mapping require user visual verification. No gameplay logic added."
+  ],
+  "procedural_bakes": [
+    {
+      "material": "Backrooms Wallpaper",
+      "resolution": 2048,
+      "channel": "height_to_normal",
+      "physical_tile_metres": 0.5
+    },
+    {
+      "material": "Wood.003",
+      "resolution": 2048,
+      "channel": "normal_color"
+    },
+    {
+      "material": "Wood.004",
+      "resolution": 2048,
+      "channel": "normal_color"
+    },
+    {
+      "material": "Wood.005",
+      "resolution": 2048,
+      "channel": "normal_color"
+    },
+    {
+      "material": "Wood.006",
+      "resolution": 2048,
+      "channel": "normal_color"
+    }
+  ],
+  "source_meshes_before_merging": [
+    {
+      "name": "Ceiling.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "UVMap",
+      "materials": [
+        "Concrete wall"
+      ]
+    },
+    {
+      "name": "DOOR_A_06 latch strike",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "DOOR_A_07 latch strike",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "East lintel.005",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East lintel.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall north.005",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall north.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall south.005",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall south.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "Floor.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Carpet"
+      ]
+    },
+    {
+      "name": "Hinges.003",
+      "parent": "Wooden Door.002",
+      "source_type": "MESH",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.003",
+        "knob-metal.003",
+        "Wood.005"
+      ]
+    },
+    {
+      "name": "Hinges.004",
+      "parent": "Wooden Door.003",
+      "source_type": "MESH",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.004",
+        "knob-metal.004",
+        "Wood.006"
+      ]
+    },
+    {
+      "name": "North wall.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "R7 A ceiling light",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 A ceiling light.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 A ceiling light.002",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 A skirting",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "R7 A skirting.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "South wall.006",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "Ceiling.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Acoustic Ceiling Tile"
+      ]
+    },
+    {
+      "name": "DOOR_B_06 latch strike",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "DOOR_B_07 latch strike",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": null,
+      "materials": [
+        "R4 V13 machined steel"
+      ]
+    },
+    {
+      "name": "East lintel.012",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East lintel.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall north.012",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall north.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall south.012",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "East wall south.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "Floor.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Carpet"
+      ]
+    },
+    {
+      "name": "Hinges.001",
+      "parent": "Wooden Door",
+      "source_type": "MESH",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.001",
+        "knob-metal.001",
+        "Wood.003"
+      ]
+    },
+    {
+      "name": "Hinges.002",
+      "parent": "Wooden Door.001",
+      "source_type": "MESH",
+      "vertices": 28555,
+      "polygons": 56498,
+      "uv0": "UVMap",
+      "materials": [
+        "lock metal.002",
+        "knob-metal.002",
+        "Wood.004"
+      ]
+    },
+    {
+      "name": "North wall.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    },
+    {
+      "name": "R7 B ceiling light",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 B ceiling light.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 B ceiling light.002",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R7 warm ceiling emission"
+      ]
+    },
+    {
+      "name": "R7 B skirting",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "R7 B skirting.001",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 56,
+      "polygons": 108,
+      "uv0": "UVMap",
+      "materials": [
+        "R4 R43 graphite"
+      ]
+    },
+    {
+      "name": "South wall.013",
+      "parent": null,
+      "source_type": "MESH",
+      "vertices": 8,
+      "polygons": 12,
+      "uv0": "automap",
+      "materials": [
+        "Backrooms Wallpaper"
+      ]
+    }
+  ],
+  "merge_records": [
+    {
+      "output": "Room_07_A_Structure",
+      "sources": [
+        "East lintel.005",
+        "East lintel.006",
+        "East wall north.005",
+        "East wall north.006",
+        "East wall south.005",
+        "East wall south.006",
+        "Floor.006",
+        "North wall.006",
+        "South wall.006"
+      ],
+      "triangles": 108,
+      "vertices": 72
+    },
+    {
+      "output": "Room_07_A_Objects",
+      "sources": [
+        "DOOR_A_06 latch strike",
+        "DOOR_A_07 latch strike",
+        "R7 A ceiling light",
+        "R7 A ceiling light.001",
+        "R7 A ceiling light.002",
+        "R7 A skirting",
+        "R7 A skirting.001"
+      ],
+      "triangles": 756,
+      "vertices": 392
+    },
+    {
+      "output": "Room_07_B_Structure",
+      "sources": [
+        "East lintel.012",
+        "East lintel.013",
+        "East wall north.012",
+        "East wall north.013",
+        "East wall south.012",
+        "East wall south.013",
+        "Floor.013",
+        "North wall.013",
+        "South wall.013"
+      ],
+      "triangles": 108,
+      "vertices": 72
+    },
+    {
+      "output": "Room_07_B_Objects",
+      "sources": [
+        "DOOR_B_06 latch strike",
+        "DOOR_B_07 latch strike",
+        "R7 B ceiling light",
+        "R7 B ceiling light.001",
+        "R7 B ceiling light.002",
+        "R7 B skirting",
+        "R7 B skirting.001"
+      ],
+      "triangles": 756,
+      "vertices": 392
+    }
+  ],
+  "output_reference_meshes": [
+    {
+      "name": "Ceiling.006",
+      "vertices": 8,
+      "materials": [
+        "Concrete wall"
+      ],
+      "bounds": [
+        [
+          79.0,
+          87.0
+        ],
+        [
+          -10.5,
+          -2.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.003",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.003",
+        "knob-metal.003",
+        "Wood.005"
+      ],
+      "bounds": [
+        [
+          78.86714172363281,
+          79.15147399902344
+        ],
+        [
+          -7.316347599029541,
+          -5.707226276397705
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.004",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.004",
+        "knob-metal.004",
+        "Wood.006"
+      ],
+      "bounds": [
+        [
+          86.7988052368164,
+          87.08314514160156
+        ],
+        [
+          -7.316347599029541,
+          -5.707226276397705
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.013",
+      "vertices": 8,
+      "materials": [
+        "Acoustic Ceiling Tile"
+      ],
+      "bounds": [
+        [
+          78.89032745361328,
+          87.10967254638672
+        ],
+        [
+          2.3903307914733887,
+          10.609668731689453
+        ],
+        [
+          3.996641159057617,
+          4.243221282958984
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.001",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.001",
+        "knob-metal.001",
+        "Wood.003"
+      ],
+      "bounds": [
+        [
+          78.86714172363281,
+          79.15147399902344
+        ],
+        [
+          5.696053981781006,
+          7.30517578125
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.002",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.002",
+        "knob-metal.002",
+        "Wood.004"
+      ],
+      "bounds": [
+        [
+          86.89971160888672,
+          87.18404388427734
+        ],
+        [
+          5.696053981781006,
+          7.30517578125
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Room_07_A_Structure",
+      "vertices": 72,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Carpet"
+      ],
+      "bounds": [
+        [
+          78.87261962890625,
+          87.12738037109375
+        ],
+        [
+          -10.627381324768066,
+          -2.3726186752319336
+        ],
+        [
+          -0.24382144212722778,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_07_A_Objects",
+      "vertices": 392,
+      "materials": [
+        "R4 V13 machined steel",
+        "R7 warm ceiling emission",
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          78.94499969482422,
+          87.05500030517578
+        ],
+        [
+          -10.450000762939453,
+          -2.549999952316284
+        ],
+        [
+          0.0,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "Room_07_B_Structure",
+      "vertices": 72,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Carpet"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          87.0999984741211
+        ],
+        [
+          2.5,
+          10.5
+        ],
+        [
+          -0.2041458785533905,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Room_07_B_Objects",
+      "vertices": 392,
+      "materials": [
+        "R4 V13 machined steel",
+        "R7 warm ceiling emission",
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          78.94499969482422,
+          87.05500030517578
+        ],
+        [
+          2.549999952316284,
+          10.450000762939453
+        ],
+        [
+          0.0,
+          3.9025001525878906
+        ]
+      ]
+    }
+  ],
+  "empty_placeholders": [
+    {
+      "name": "PZ_R7_A_LetterWindow_0",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.125
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_A_LetterWindow_1",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.274999618530273
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_A_LetterWindow_2",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.425000190734863
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_A_LetterWindow_3",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.574999809265137
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_A_LetterWindow_4",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.725000381469727
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_A_LetterWindow_5",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          -8.875
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_0",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.875
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_1",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.724999904632568
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_2",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.574999809265137
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_3",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.425000190734863
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_4",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.275000095367432
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "PZ_R7_B_LetterWindow_5",
+      "body": "",
+      "font": "Consolas Regular.002",
+      "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+      "fill_mode": "BOTH",
+      "size": 0.06599999964237213,
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -4.371138828673793e-08,
+          -1.0,
+          85.88999938964844
+        ],
+        [
+          -1.0,
+          1.910685676922942e-15,
+          4.371138828673793e-08,
+          4.125
+        ],
+        [
+          0.0,
+          1.0,
+          -4.371138828673793e-08,
+          1.3880000114440918
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "model_files": [
+    "Models/SILENT_Room_07_Structure.fbx",
+    "Models/SILENT_Room_07_A_Objects.fbx",
+    "Models/SILENT_Room_07_B_Objects.fbx"
+  ],
+  "cleanup_summary": {
+    "original_file": "C:\\Users\\m\\Documents\\ChatGPT\\프로젝트 서포트\\7ROOM.blend",
+    "original_bytes": 517066011,
+    "original_sha256": "644db632ad3cc07d479387040cdfa20bd2ba7b1006981469e043ba4749363dcc",
+    "original_objects": 2397,
+    "removed_count": 2334,
+    "kept_geometry": [
+      "Ceiling.006",
+      "Ceiling.013",
+      "DOOR_A_06 latch strike",
+      "DOOR_A_07 latch strike",
+      "DOOR_B_06 latch strike",
+      "DOOR_B_07 latch strike",
+      "East lintel.005",
+      "East lintel.006",
+      "East lintel.012",
+      "East lintel.013",
+      "East wall north.005",
+      "East wall north.006",
+      "East wall north.012",
+      "East wall north.013",
+      "East wall south.005",
+      "East wall south.006",
+      "East wall south.012",
+      "East wall south.013",
+      "Floor.006",
+      "Floor.013",
+      "Hinges.001",
+      "Hinges.002",
+      "Hinges.003",
+      "Hinges.004",
+      "North wall.006",
+      "North wall.013",
+      "PZ_R7_A_LetterWindow_0",
+      "PZ_R7_A_LetterWindow_1",
+      "PZ_R7_A_LetterWindow_2",
+      "PZ_R7_A_LetterWindow_3",
+      "PZ_R7_A_LetterWindow_4",
+      "PZ_R7_A_LetterWindow_5",
+      "PZ_R7_B_LetterWindow_0",
+      "PZ_R7_B_LetterWindow_1",
+      "PZ_R7_B_LetterWindow_2",
+      "PZ_R7_B_LetterWindow_3",
+      "PZ_R7_B_LetterWindow_4",
+      "PZ_R7_B_LetterWindow_5",
+      "R7 A ceiling light",
+      "R7 A ceiling light.001",
+      "R7 A ceiling light.002",
+      "R7 A skirting",
+      "R7 A skirting.001",
+      "R7 B ceiling light",
+      "R7 B ceiling light.001",
+      "R7 B ceiling light.002",
+      "R7 B skirting",
+      "R7 B skirting.001",
+      "South wall.006",
+      "South wall.013"
+    ],
+    "retained_other_collection_objects": [
+      {
+        "name": "DOOR_A_06 latch strike",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "DOOR_B_06 latch strike",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East lintel.005",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East lintel.012",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East wall north.005",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East wall north.012",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East wall south.005",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "East wall south.012",
+        "from": [
+          "Scene Collection"
+        ]
+      },
+      {
+        "name": "Hinges.001",
+        "from": [
+          "Wooden Door"
+        ]
+      },
+      {
+        "name": "Hinges.002",
+        "from": [
+          "04_B_03_Puzzle"
+        ]
+      },
+      {
+        "name": "Hinges.003",
+        "from": [
+          "04_B_03_Puzzle"
+        ]
+      },
+      {
+        "name": "Hinges.004",
+        "from": [
+          "04_B_03_Puzzle"
+        ]
+      }
+    ],
+    "retained_lights_for_comparison_only": [
+      "R7 A soft light",
+      "R7 A soft light.001",
+      "R7 A soft light.002",
+      "R7 A task light",
+      "R7 B soft light",
+      "R7 B soft light.001",
+      "R7 B soft light.002",
+      "R7 B task light"
+    ],
+    "retained_hidden_room07_ceiling": "Ceiling.006",
+    "duplicate_ceiling_removed": {
+      "kept": "Ceiling.013",
+      "removed": "Ceiling.014",
+      "equality_checks": {
+        "world_vertices": true,
+        "faces": true,
+        "uvs": true,
+        "materials": true
+      }
+    },
+    "notes": [
+      "Object membership resolved by actual Room 07 geometry bounds plus Room 07 puzzle names, not by old collection labels.",
+      "Room 06 east boundary walls at x=79 are also Room 07 west walls and were retained.",
+      "Original viewport-hidden obsolete door copies and unrelated room assets removed.",
+      "Removed one exactly matching B ceiling duplicate after verifying world vertices, faces, UVs and all material node inputs/image hashes."
+    ]
+  },
+  "source_types": {
+    "Ceiling.006": "MESH",
+    "DOOR_A_06 latch strike": "MESH",
+    "DOOR_A_07 latch strike": "MESH",
+    "East lintel.005": "MESH",
+    "East lintel.006": "MESH",
+    "East wall north.005": "MESH",
+    "East wall north.006": "MESH",
+    "East wall south.005": "MESH",
+    "East wall south.006": "MESH",
+    "Floor.006": "MESH",
+    "Hinges.003": "MESH",
+    "Hinges.004": "MESH",
+    "North wall.006": "MESH",
+    "PZ_R7_A_LetterWindow_0": "FONT",
+    "PZ_R7_A_LetterWindow_1": "FONT",
+    "PZ_R7_A_LetterWindow_2": "FONT",
+    "PZ_R7_A_LetterWindow_3": "FONT",
+    "PZ_R7_A_LetterWindow_4": "FONT",
+    "PZ_R7_A_LetterWindow_5": "FONT",
+    "R7 A ceiling light": "MESH",
+    "R7 A ceiling light.001": "MESH",
+    "R7 A ceiling light.002": "MESH",
+    "R7 A skirting": "MESH",
+    "R7 A skirting.001": "MESH",
+    "South wall.006": "MESH",
+    "Ceiling.013": "MESH",
+    "DOOR_B_06 latch strike": "MESH",
+    "DOOR_B_07 latch strike": "MESH",
+    "East lintel.012": "MESH",
+    "East lintel.013": "MESH",
+    "East wall north.012": "MESH",
+    "East wall north.013": "MESH",
+    "East wall south.012": "MESH",
+    "East wall south.013": "MESH",
+    "Floor.013": "MESH",
+    "Hinges.001": "MESH",
+    "Hinges.002": "MESH",
+    "North wall.013": "MESH",
+    "PZ_R7_B_LetterWindow_0": "FONT",
+    "PZ_R7_B_LetterWindow_1": "FONT",
+    "PZ_R7_B_LetterWindow_2": "FONT",
+    "PZ_R7_B_LetterWindow_3": "FONT",
+    "PZ_R7_B_LetterWindow_4": "FONT",
+    "PZ_R7_B_LetterWindow_5": "FONT",
+    "R7 B ceiling light": "MESH",
+    "R7 B ceiling light.001": "MESH",
+    "R7 B ceiling light.002": "MESH",
+    "R7 B skirting": "MESH",
+    "R7 B skirting.001": "MESH",
+    "South wall.013": "MESH"
+  },
+  "source_hierarchy": {
+    "Ceiling.006": null,
+    "DOOR_A_06 latch strike": null,
+    "DOOR_A_07 latch strike": null,
+    "East lintel.005": null,
+    "East lintel.006": null,
+    "East wall north.005": null,
+    "East wall north.006": null,
+    "East wall south.005": null,
+    "East wall south.006": null,
+    "Floor.006": null,
+    "Hinges.003": "Wooden Door.002",
+    "Hinges.004": "Wooden Door.003",
+    "North wall.006": null,
+    "PZ_R7_A_LetterWindow_0": null,
+    "PZ_R7_A_LetterWindow_1": null,
+    "PZ_R7_A_LetterWindow_2": null,
+    "PZ_R7_A_LetterWindow_3": null,
+    "PZ_R7_A_LetterWindow_4": null,
+    "PZ_R7_A_LetterWindow_5": null,
+    "R7 A ceiling light": null,
+    "R7 A ceiling light.001": null,
+    "R7 A ceiling light.002": null,
+    "R7 A skirting": null,
+    "R7 A skirting.001": null,
+    "South wall.006": null,
+    "Ceiling.013": null,
+    "DOOR_B_06 latch strike": null,
+    "DOOR_B_07 latch strike": null,
+    "East lintel.012": null,
+    "East lintel.013": null,
+    "East wall north.012": null,
+    "East wall north.013": null,
+    "East wall south.012": null,
+    "East wall south.013": null,
+    "Floor.013": null,
+    "Hinges.001": "Wooden Door",
+    "Hinges.002": "Wooden Door.001",
+    "North wall.013": null,
+    "PZ_R7_B_LetterWindow_0": null,
+    "PZ_R7_B_LetterWindow_1": null,
+    "PZ_R7_B_LetterWindow_2": null,
+    "PZ_R7_B_LetterWindow_3": null,
+    "PZ_R7_B_LetterWindow_4": null,
+    "PZ_R7_B_LetterWindow_5": null,
+    "R7 B ceiling light": null,
+    "R7 B ceiling light.001": null,
+    "R7 B ceiling light.002": null,
+    "R7 B skirting": null,
+    "R7 B skirting.001": null,
+    "South wall.013": null
+  },
+  "duplicate_triangle_preservation": [
+    {
+      "mesh": "Ceiling.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "DOOR_A_06 latch strike",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "DOOR_A_07 latch strike",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East lintel.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East lintel.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall north.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall north.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall south.005",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall south.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Floor.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Hinges.003",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Hinges.004",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "North wall.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 A ceiling light",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 A ceiling light.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 A ceiling light.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 A skirting",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 A skirting.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "South wall.006",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Ceiling.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "DOOR_B_06 latch strike",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "DOOR_B_07 latch strike",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East lintel.012",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East lintel.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall north.012",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall north.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall south.012",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "East wall south.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Floor.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Hinges.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "Hinges.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "North wall.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 B ceiling light",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 B ceiling light.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 B ceiling light.002",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 B skirting",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "R7 B skirting.001",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    },
+    {
+      "mesh": "South wall.013",
+      "coincident_triangles_preserved": 0,
+      "additional_vertices": 0
+    }
+  ],
+  "animation_sources": [],
+  "animation_info": {
+    "fps": 24.0,
+    "frame_start": 1,
+    "frame_end": 90,
+    "actions": []
+  },
+  "uv_mapping_adjustments": [
+    {
+      "material": "Backrooms Wallpaper",
+      "scale_baked_into_uv0": [
+        2,
+        2,
+        2
+      ],
+      "tile_world_metres": 0.5
+    }
+  ],
+  "source_evaluated_meshes": [
+    {
+      "name": "Ceiling.006",
+      "vertices": 8,
+      "materials": [
+        "Concrete wall"
+      ],
+      "bounds": [
+        [
+          79.0,
+          87.0
+        ],
+        [
+          -10.5,
+          -2.5
+        ],
+        [
+          4.0,
+          4.239999771118164
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_06 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          78.94499969482422,
+          79.05500030517578
+        ],
+        [
+          -7.362499713897705,
+          -7.337500095367432
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_A_07 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          86.94499969482422,
+          87.05500030517578
+        ],
+        [
+          -7.362499713897705,
+          -7.337500095367432
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "East lintel.005",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          -7.300000190734863,
+          -5.699999809265137
+        ],
+        [
+          2.4000000953674316,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East lintel.006",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          -7.300000190734863,
+          -5.699999809265137
+        ],
+        [
+          2.4000000953674316,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall north.005",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          -5.699999809265137,
+          -2.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall north.006",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          -5.699999809265137,
+          -2.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall south.005",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          -10.5,
+          -7.299999713897705
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall south.006",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          -10.5,
+          -7.299999713897705
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Floor.006",
+      "vertices": 8,
+      "materials": [
+        "Carpet"
+      ],
+      "bounds": [
+        [
+          78.87261962890625,
+          87.12738037109375
+        ],
+        [
+          -10.627381324768066,
+          -2.3726186752319336
+        ],
+        [
+          -0.24382144212722778,
+          0.003821440041065216
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.003",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.003",
+        "knob-metal.003",
+        "Wood.005"
+      ],
+      "bounds": [
+        [
+          78.86714172363281,
+          79.15147399902344
+        ],
+        [
+          -7.316347599029541,
+          -5.707226276397705
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.004",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.004",
+        "knob-metal.004",
+        "Wood.006"
+      ],
+      "bounds": [
+        [
+          86.7988052368164,
+          87.08314514160156
+        ],
+        [
+          -7.316347599029541,
+          -5.707226276397705
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "North wall.006",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          -2.6999998092651367,
+          -2.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "R7 A ceiling light",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          80.65999603271484,
+          80.73999786376953
+        ],
+        [
+          -8.399999618530273,
+          -4.599999904632568
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 A ceiling light.001",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          82.95999908447266,
+          83.04000091552734
+        ],
+        [
+          -8.399999618530273,
+          -4.599999904632568
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 A ceiling light.002",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          85.26000213623047,
+          85.34000396728516
+        ],
+        [
+          -8.399999618530273,
+          -4.599999904632568
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 A skirting",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          -10.450000762939453,
+          -10.329999923706055
+        ],
+        [
+          0.0,
+          0.25999999046325684
+        ]
+      ]
+    },
+    {
+      "name": "R7 A skirting.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          -2.669999837875366,
+          -2.549999952316284
+        ],
+        [
+          0.0,
+          0.25999999046325684
+        ]
+      ]
+    },
+    {
+      "name": "South wall.006",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          -10.5,
+          -10.299999237060547
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Ceiling.013",
+      "vertices": 8,
+      "materials": [
+        "Acoustic Ceiling Tile"
+      ],
+      "bounds": [
+        [
+          78.89032745361328,
+          87.10967254638672
+        ],
+        [
+          2.3903307914733887,
+          10.609668731689453
+        ],
+        [
+          3.996641159057617,
+          4.243221282958984
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_B_06 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          78.94499969482422,
+          79.05500030517578
+        ],
+        [
+          5.637500286102295,
+          5.662499904632568
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "DOOR_B_07 latch strike",
+      "vertices": 56,
+      "materials": [
+        "R4 V13 machined steel"
+      ],
+      "bounds": [
+        [
+          86.94499969482422,
+          87.05500030517578
+        ],
+        [
+          5.637500286102295,
+          5.662499904632568
+        ],
+        [
+          0.934999942779541,
+          1.125
+        ]
+      ]
+    },
+    {
+      "name": "East lintel.012",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          5.699999809265137,
+          7.300000190734863
+        ],
+        [
+          2.4000000953674316,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East lintel.013",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          5.699999809265137,
+          7.300000190734863
+        ],
+        [
+          2.3807859420776367,
+          3.980785846710205
+        ]
+      ]
+    },
+    {
+      "name": "East wall north.012",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          7.299999713897705,
+          10.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall north.013",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          7.299999713897705,
+          10.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall south.012",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper",
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          78.9000015258789,
+          79.0999984741211
+        ],
+        [
+          2.5,
+          5.699999809265137
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "East wall south.013",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          86.9000015258789,
+          87.0999984741211
+        ],
+        [
+          2.5,
+          5.699999809265137
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "Floor.013",
+      "vertices": 8,
+      "materials": [
+        "Carpet"
+      ],
+      "bounds": [
+        [
+          79.0,
+          87.0
+        ],
+        [
+          2.5,
+          10.5
+        ],
+        [
+          -0.2041458785533905,
+          0.03585410863161087
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.001",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.001",
+        "knob-metal.001",
+        "Wood.003"
+      ],
+      "bounds": [
+        [
+          78.86714172363281,
+          79.15147399902344
+        ],
+        [
+          5.696053981781006,
+          7.30517578125
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "Hinges.002",
+      "vertices": 28555,
+      "materials": [
+        "lock metal.002",
+        "knob-metal.002",
+        "Wood.004"
+      ],
+      "bounds": [
+        [
+          86.89971160888672,
+          87.18404388427734
+        ],
+        [
+          5.696053981781006,
+          7.30517578125
+        ],
+        [
+          0.011154428124427795,
+          2.3938887119293213
+        ]
+      ]
+    },
+    {
+      "name": "North wall.013",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          10.299999237060547,
+          10.5
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "R7 B ceiling light",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          80.65999603271484,
+          80.73999786376953
+        ],
+        [
+          4.599999904632568,
+          8.399999618530273
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 B ceiling light.001",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          82.95999908447266,
+          83.04000091552734
+        ],
+        [
+          4.599999904632568,
+          8.399999618530273
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 B ceiling light.002",
+      "vertices": 56,
+      "materials": [
+        "R7 warm ceiling emission"
+      ],
+      "bounds": [
+        [
+          85.26000213623047,
+          85.34000396728516
+        ],
+        [
+          4.599999904632568,
+          8.399999618530273
+        ],
+        [
+          3.8575000762939453,
+          3.9025001525878906
+        ]
+      ]
+    },
+    {
+      "name": "R7 B skirting",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          2.549999952316284,
+          2.669999837875366
+        ],
+        [
+          0.0,
+          0.25999999046325684
+        ]
+      ]
+    },
+    {
+      "name": "R7 B skirting.001",
+      "vertices": 56,
+      "materials": [
+        "R4 R43 graphite"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          10.329999923706055,
+          10.450000762939453
+        ],
+        [
+          0.0,
+          0.25999999046325684
+        ]
+      ]
+    },
+    {
+      "name": "South wall.013",
+      "vertices": 8,
+      "materials": [
+        "Backrooms Wallpaper"
+      ],
+      "bounds": [
+        [
+          79.0999984741211,
+          86.9000015258789
+        ],
+        [
+          2.5,
+          2.6999998092651367
+        ],
+        [
+          0.0,
+          4.0
+        ]
+      ]
+    }
+  ],
+  "map_roundtrip_validation": [
+    {
+      "map": "Acoustic_Ceiling_Tile_BaseColor.png",
+      "max_error": 4.13060188293457e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Acoustic_Ceiling_Tile_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Backrooms_Wallpaper_BaseColor.png",
+      "max_error": 4.124641418457031e-05,
+      "linear_data": false
+    },
+    {
+      "map": "Backrooms_Wallpaper_MetallicSmoothness.png",
+      "max_error": 7.450580596923828e-08,
+      "linear_data": true
+    },
+    {
+      "map": "Backrooms_Wallpaper_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Carpet_MetallicSmoothness.png",
+      "max_error": 3.203749656677246e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Wood_003_BaseColor.png",
+      "max_error": 9.641051292419434e-06,
+      "linear_data": false
+    },
+    {
+      "map": "Wood_003_MetallicSmoothness.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    },
+    {
+      "map": "Wood_003_Normal.png",
+      "max_error": 7.68899917602539e-06,
+      "linear_data": true
+    }
+  ]
+}
