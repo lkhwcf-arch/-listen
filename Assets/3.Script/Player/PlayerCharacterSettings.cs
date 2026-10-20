@@ -16,6 +16,8 @@ namespace EscapeGame.Player
         public int CapsuleRadiusMm { get; }
         public int StepOffsetMm { get; }
         public int FovMilliDegrees { get; }
+        public int MouseSensitivityMilli { get; }
+        public int PitchLimitMilliDegrees { get; }
 
         public static PlayerCharacterSettings Select(CsvGameData data, int configId)
         {
@@ -40,6 +42,8 @@ namespace EscapeGame.Player
             CapsuleRadiusMm = units.CapsuleRadiusMm;
             StepOffsetMm = units.StepOffsetMm;
             FovMilliDegrees = units.FovMilliDegrees;
+            MouseSensitivityMilli = units.MouseSensitivityMilli;
+            PitchLimitMilliDegrees = units.PitchLimitMilliDegrees;
         }
 
         public static int ToMilliUnit(float value, string field) => CharacterStatUnits.ToMilliUnit(value, field);

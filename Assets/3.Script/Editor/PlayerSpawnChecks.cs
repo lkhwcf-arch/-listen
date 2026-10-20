@@ -52,6 +52,8 @@ namespace EscapeGame.Editor
                     if (settings.ModelFor(role) == null)
                         Check(rig.VisualRoot.GetChild(0).name.Contains(role == "A" ? "Cube" : "Cylinder"), "placeholder matches role");
                     Check(!rig.VisualRoot.GetComponentsInChildren<Collider>(true).Any(c => c.enabled), "view model has no active collisions");
+                    Check(rig.GetComponent<PlayerLookDriver>()?.IsReady == true, "mouse look initialized alongside movement");
+                    Check(Mathf.Abs(rig.GetComponent<CharacterController>().skinWidth - settings.SkinWidthMm / 1000f) < 0.0001f, "body uses explicit shared skin configuration");
                     Check(!camera.enabled && !listener.enabled, "previous camera and listener relinquish ownership");
                     bool duplicate = false;
                     try { LocalPlayerFactory.Spawn(plan, root.transform, settings); } catch (InvalidOperationException) { duplicate = true; }

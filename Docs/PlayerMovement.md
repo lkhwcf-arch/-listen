@@ -1,5 +1,8 @@
 # WASD 이동: Input System과 CHARACTER_STAT
 
+> 2026-10-20 후속 변경: 최신 R01/CSV 재배치 기준의 마우스 시점·공통 조작 잠금·충돌 표현 및 검토 결과는 [PlayerLookAndCollision.md](PlayerLookAndCollision.md)를 우선합니다. 이 문서의 이전 개수·카드 포함 경로·CSV 일치 기록은 당시 기준입니다.
+
+
 2026-10-20. 이번 검토 단위는 로컬 플레이어의 WASD·가감속·중력·바닥/벽 충돌입니다. 공통 스폰과 A 큐브/B 실린더는 유지합니다. 마우스 시점, 점프, 달리기, Closeup UI와 좌클릭 상호작용은 후속 단위입니다.
 
 ## 데이터와 단위

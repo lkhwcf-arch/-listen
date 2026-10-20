@@ -14,12 +14,14 @@ namespace EscapeGame.Player
         private long lastMs;
         private int maximumFrameMs, groundContactMm;
         private bool movementEnabled = true, focused = true;
+        private PlayerControlState controls;
+        private bool CanMove => movementEnabled && focused && (controls == null || controls.GameplayEnabled);
         public PlayerMovementMotor Motor => motor;
         public bool IsReady => motor != null && input != null && isActiveAndEnabled && controller != null && controller.enabled;
 
         // Factory가 비활성 오브젝트에 의존성을 주입한 뒤 활성화합니다. input의 수명은 이 Driver가 소유합니다.
         public void Initialize(PlayerCharacterSettings settings, IPlayerMoveInput input, IMillisecondClock clock,
-            int maximumFrameMs, int maximumFallSpeedMmPerSecond, int groundContactMm)
+            int maximumFrameMs, int maximumFallSpeedMmPerSecond, int groundContactMm, PlayerControlState controls = null)
         {
             if (this.input != null) throw new InvalidOperationException("이동 Driver는 한 번만 초기화합니다.");
             if (maximumFrameMs < 1 || maximumFrameMs > 100 || groundContactMm < 1 || groundContactMm > 100)
@@ -31,23 +33,24 @@ namespace EscapeGame.Player
             this.input = input ?? throw new ArgumentNullException(nameof(input));
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
             this.maximumFrameMs = maximumFrameMs; this.groundContactMm = groundContactMm;
+            this.controls = controls;
             focused = Application.isFocused;
         }
 
         public void SetMovementEnabled(bool enabled)
         {
             movementEnabled = enabled;
-            ResetInput(); // 추후 Closeup UI가 이 명령을 사용해 이동만 차단할 수 있습니다.
+            ResetInput(); // 이동 단독 검사/차단 명령. UI 전체 잠금은 공유 Controls.BlockForUi를 사용합니다.
         }
 
-        private void OnEnable() => ResetInput();
-        private void OnDisable() { input?.SetEnabled(false); motor?.Reset(); }
+        private void OnEnable() { if (controls != null) controls.Changed += ResetInput; ResetInput(); }
+        private void OnDisable() { if (controls != null) controls.Changed -= ResetInput; input?.SetEnabled(false); motor?.Reset(); }
         private void OnApplicationFocus(bool hasFocus) { focused = hasFocus; ResetInput(); }
         private void OnApplicationPause(bool paused) { focused = !paused && Application.isFocused; ResetInput(); }
         private void ResetInput()
         {
             if (input == null) return;
-            input.SetEnabled(isActiveAndEnabled && movementEnabled && focused);
+            input.SetEnabled(isActiveAndEnabled && CanMove);
             motor.Reset(); lastMs = clock.ElapsedMilliseconds;
         }
 
@@ -56,7 +59,7 @@ namespace EscapeGame.Player
             if (input == null) return;
             long now = clock.ElapsedMilliseconds;
             long elapsed = Math.Max(0, now - lastMs); lastMs = now;
-            if (!movementEnabled || !focused || Time.timeScale == 0 || !controller.enabled)
+            if (!CanMove || Time.timeScale == 0 || !controller.enabled)
             { motor.Reset(); return; }
             int elapsedMs = (int)Math.Min(elapsed, maximumFrameMs);
             if (elapsedMs == 0) return;

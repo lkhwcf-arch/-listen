@@ -20,6 +20,12 @@ namespace EscapeGame.Player
         [SerializeField] private int maximumMovementFrameMs = 100;
         [SerializeField] private int maximumFallSpeedMmPerSecond = 50000;
         [SerializeField] private int groundContactMm = 2;
+        [SerializeField] private int skinWidthMm = 30;
+        [SerializeField] private int lookMilliDegreesPerPixelAtUnitSensitivity = 100;
+        [SerializeField] private int modelCollisionMarginMm = 20;
+        public int SkinWidthMm => skinWidthMm;
+        public int LookMilliDegreesPerPixelAtUnitSensitivity => lookMilliDegreesPerPixelAtUnitSensitivity;
+        public int ModelCollisionMarginMm => modelCollisionMarginMm;
         public InputActionAsset InputActions => inputActions;
         public int MaximumMovementFrameMs => maximumMovementFrameMs;
         public int MaximumFallSpeedMmPerSecond => maximumFallSpeedMmPerSecond;
@@ -38,9 +44,13 @@ namespace EscapeGame.Player
                 modelPositionMm.z <= nearClipMm || modelSizeMm.x <= 0 || modelSizeMm.y <= 0 || modelSizeMm.z <= 0)
                 throw new InvalidOperationException("PlayerPresentation의 ID·클리핑·모델 크기 설정을 확인하세요.");
             if (inputActions == null || inputActions.FindAction("Player/Move", false) == null ||
+                inputActions.FindAction("Player/Look", false) == null || inputActions.FindAction("Player/Attack", false) == null ||
+                inputActions.FindAction("UI/Cancel", false) == null || skinWidthMm < 1 || skinWidthMm > 100 ||
+                lookMilliDegreesPerPixelAtUnitSensitivity < 1 || lookMilliDegreesPerPixelAtUnitSensitivity > 1000 ||
+                modelCollisionMarginMm < 1 || modelCollisionMarginMm > 100 ||
                 maximumMovementFrameMs < 1 || maximumMovementFrameMs > 100 || maximumFallSpeedMmPerSecond <= 0 ||
                 maximumFallSpeedMmPerSecond > 100000 || groundContactMm < 1 || groundContactMm > 100)
-                throw new InvalidOperationException("PlayerPresentation의 Player/Move 입력·정수 이동 어댑터 설정을 확인하세요.");
+                throw new InvalidOperationException("PlayerPresentation의 Player/Move·Look·Attack·UI/Cancel 및 이동·시점·충돌 어댑터 설정을 확인하세요.");
         }
     }
 }

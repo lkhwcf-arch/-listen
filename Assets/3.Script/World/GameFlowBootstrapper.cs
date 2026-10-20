@@ -19,7 +19,8 @@ namespace EscapeGame.World
         public bool WorldReady { get; set; }
         private EscapeGame.Player.PlayerSpawnDriver playerSpawn;
         public bool PlayerReady => playerSpawn != null && playerSpawn.Player != null &&
-            playerSpawn.Player.gameObject.activeInHierarchy && playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerMovementDriver>()?.IsReady == true;
+            playerSpawn.Player.gameObject.activeInHierarchy && playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerMovementDriver>()?.IsReady == true &&
+            playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerLookDriver>()?.IsReady == true;
         public bool IsGameplayReady => WorldReady && PlayerReady && SceneManager.GetActiveScene().isLoaded &&
             SceneManager.GetActiveScene().name == ingameScene;
         private void Awake()

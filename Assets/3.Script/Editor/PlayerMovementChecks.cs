@@ -62,8 +62,7 @@ namespace EscapeGame.Editor
                 Box("Wall", new Vector3(0, 1.5f, 2.5f), new Vector3(20, 3, 0.5f));
                 var player = new GameObject("TemporaryPlayer"); player.SetActive(false); player.transform.SetParent(root.transform, false);
                 var body = player.AddComponent<CharacterController>();
-                body.height = settings.CapsuleHeightMm / 1000f; body.radius = settings.CapsuleRadiusMm / 1000f;
-                body.center = Vector3.up * body.height / 2; body.stepOffset = settings.StepOffsetMm / 1000f; body.minMoveDistance = 0;
+                PlayerBodyConfiguration.Apply(body, settings, options.SkinWidthMm);
                 var driver = player.AddComponent<PlayerMovementDriver>(); var clock = new Clock();
                 driver.Initialize(settings, fake, clock, 100, options.MaximumFallSpeedMmPerSecond, options.GroundContactMm);
                 player.SetActive(true); Physics.SyncTransforms();

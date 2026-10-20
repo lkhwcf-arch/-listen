@@ -25,3 +25,6 @@ MonoBehaviour:
   maximumMovementFrameMs: 100
   maximumFallSpeedMmPerSecond: 50000
   groundContactMm: 2
+  skinWidthMm: 30
+  lookMilliDegreesPerPixelAtUnitSensitivity: 100
+  modelCollisionMarginMm: 20
