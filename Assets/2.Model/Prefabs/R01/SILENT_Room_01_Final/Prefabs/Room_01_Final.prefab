@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2464424279933302064}
   - component: {fileID: 677991424479161933}
   - component: {fileID: 8753765638502041938}
+  - component: {fileID: 9000069000069000}
   m_Layer: 0
   m_Name: Room_01_A_Structure
   m_TagString: Untagged
@@ -840,3 +841,25 @@ Transform:
   - {fileID: 2741598807823517175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &9000069000069000
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696575218228139095}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8944962927782983442, guid: e97958fc1906e7f489d6c8a51b09b52d, type: 3}

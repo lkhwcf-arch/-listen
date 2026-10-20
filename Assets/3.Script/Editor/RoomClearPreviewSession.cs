@@ -19,6 +19,8 @@ namespace EscapeGame.Editor
         private readonly Scene scene;
         private readonly Dictionary<int, GameObject> previews = new Dictionary<int, GameObject>();
         private readonly Dictionary<GameObject, Pose> borrowedPoses = new Dictionary<GameObject, Pose>();
+        private readonly CsvGameData data;
+        private EscapeGame.Player.FirstPersonPlayerRig player;
         private GameObject ownedRoot;
         private bool disposed;
         public DeveloperRoomProgression Progression { get; }
@@ -30,11 +32,24 @@ namespace EscapeGame.Editor
                 throw new InvalidOperationException("Ingame 씬이 활성화된 Play 모드에서 실행하세요.");
             this.assets = assets ?? throw new ArgumentNullException(nameof(assets));
             this.scene = scene;
+            this.data = data;
             plan = new RoomLoadPlan(data, role);
             Progression = new DeveloperRoomProgression(plan);
         }
 
         public void Start() => EnsureRoom(Progression.First);
+        public bool HasPlayer => player != null;
+        public void SpawnPlayer()
+        {
+            ValidateLifetime();
+            if (player != null) return;
+            var settings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation")
+                ?? throw new InvalidOperationException("PlayerPresentation 에셋이 필요합니다.");
+            var spawn = new EscapeGame.Player.PlayerSpawnPlan(data, Role, settings.SpawnPrefabId, settings.CharacterConfigId);
+            var room = FindPreview(Progression.First);
+            if (room == null) throw new InvalidOperationException("첫 방 미리보기가 없습니다.");
+            player = EscapeGame.Player.LocalPlayerFactory.Spawn(spawn, room.transform, settings);
+        }
         public GameObject FindPreview(RoomData room) => previews.TryGetValue(room.Id, out var value) ? value : null;
 
         public bool Clear(int roomNo)
@@ -112,6 +127,12 @@ namespace EscapeGame.Editor
         {
             if (disposed) return;
             disposed = true;
+            if (player != null)
+            {
+                player.gameObject.SetActive(false);
+                Object.DestroyImmediate(player.gameObject);
+                player = null;
+            }
             foreach (var entry in borrowedPoses)
                 if (entry.Key != null) entry.Key.transform.SetPositionAndRotation(entry.Value.position, entry.Value.rotation);
             borrowedPoses.Clear();

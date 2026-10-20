@@ -17,6 +17,7 @@ namespace EscapeGame.World
         public GameEntryService Service { get; private set; }
         public GameContentAssets Assets => assets;
         public bool WorldReady { get; set; }
+        private EscapeGame.Player.PlayerSpawnDriver playerSpawn;
         private void Awake()
         {
             var owners = FindObjectsByType<GameFlowBootstrapper>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -42,9 +43,24 @@ namespace EscapeGame.World
             if (operation == null) throw new InvalidOperationException("Ingame 씬이 빌드 목록에 없습니다.");
             // Unity 씬 로드는 시작 후 취소할 수 없습니다. 서비스 수명은 씬 전환 뒤에도 유지됩니다.
             while (!operation.isDone) await Task.Yield();
+            token.ThrowIfCancellationRequested();
+            // 플레이어 표현은 내부 오브젝트 로드/서버 ready와 별도 책임입니다.
+            var spawnHost = new GameObject("LocalPlayerSpawn");
+            SceneManager.MoveGameObjectToScene(spawnHost, SceneManager.GetActiveScene());
+            try
+            {
+                playerSpawn = spawnHost.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
+                playerSpawn.Initialize(Service.Data, Service.Role);
+            }
+            catch (Exception error)
+            {
+                Destroy(spawnHost);
+                Debug.LogError("[Player Spawn] " + error.Message);
+            }
         }
         private void OnDestroy()
         {
+            if (playerSpawn != null) Destroy(playerSpawn.gameObject);
             if (Service == null) return;
             Service.Changed -= OnEntryChanged;
             Service.Dispose();

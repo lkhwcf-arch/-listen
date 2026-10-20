@@ -213,3 +213,8 @@ Git에는 코드·CSV·프리팹·필요한 `.meta`·Packages·ProjectSettings·
 `Ingame` 씬을 Play한 뒤 `Tools > Game > Room Clear Test`를 엽니다. 역할 A/B를 고르고 미리보기를 시작하면 방별 클리어 버튼으로 CSV `Next`에 연결된 다음 방 외형을 생성하고 현재 방의 DoorPoint에 다음 방의 EntryPoint를 맞춰 연결합니다. 이전 방은 유지합니다. 도구는 Editor 폴더에만 존재하며 빌드에는 포함되지 않습니다.
 
 내부 오브젝트·앵커 스폰과 서버 클리어 상태는 이번 도구에서 처리하지 않습니다. 다음 프리팹이 없으면 클리어를 확정하지 않고 오류를 표시합니다. 창 닫기·Play 종료 시 생성한 미리보기만 정리합니다. 사용법과 코드 책임은 [개발자 방 클리어 안내](Docs/DeveloperRoomClear.md)를 따릅니다.
+
+
+## 1번 방 공통 앵커 플레이어 생성
+
+시트의 공통 스폰 행에서 AnchorID를 선택하고 같은 위치·회전으로 1인칭 플레이어를 생성합니다. A는 큐브, B는 실린더를 카메라 앞 손·무전기 대체 모델로 표시합니다. 스폰·모델 구조는 [플레이어 스폰 안내](Docs/PlayerSpawn.md)를 따릅니다. Input System의 기존 Player/Move와 CHARACTER_STAT을 연결한 WASD·정수 가감속·중력·구조 충돌을 추가했습니다. 설계·변경 파일·검토 순서는 [WASD 이동 안내](Docs/PlayerMovement.md)를 참고하세요. 마우스 시점·전용 클로즈업 UI·좌클릭 상호작용은 다음 단계입니다.

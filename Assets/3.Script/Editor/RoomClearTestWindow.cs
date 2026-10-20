@@ -47,6 +47,12 @@ namespace EscapeGame.Editor
                 if (GUILayout.Button("미리보기 종료 / 상태 초기화")) { Stop(); message = "생성한 미리보기와 클리어 상태를 초기화했습니다."; }
             EditorGUILayout.HelpBox(message, MessageType.Info);
             if (session == null) return;
+            using (new EditorGUI.DisabledScope(session.HasPlayer))
+                if (GUILayout.Button("플레이어 생성 (카메라 + 손·무전기 임시 모델)")) Execute(() =>
+                {
+                    session.SpawnPlayer();
+                    message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 시점·좌클릭 상호작용은 후속 단계입니다.";
+                });
             scroll = EditorGUILayout.BeginScrollView(scroll);
             var current = session;
             foreach (var room in current.Progression.Rooms.OrderBy(row => row.RoomNo))

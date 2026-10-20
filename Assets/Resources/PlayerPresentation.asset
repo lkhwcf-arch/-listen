@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf81630f55c740bf82214c1f20b4f6dc, type: 3}
+  m_Name: PlayerPresentation
+  m_EditorClassIdentifier: 
+  spawnPrefabId: 13001
+  characterConfigId: 16010
+  nearClipMm: 30
+  farClipMm: 200000
+  modelPositionMm: {x: 180, y: -200, z: 500}
+  modelSizeMm: {x: 180, y: 180, z: 180}
+  modelEulerMilliDegrees: {x: 0, y: 0, z: 0}
+  modelA: {fileID: 0}
+  modelB: {fileID: 0}
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  maximumMovementFrameMs: 100
+  maximumFallSpeedMmPerSecond: 50000
+  groundContactMm: 2

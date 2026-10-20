@@ -15,6 +15,7 @@ namespace EscapeGame.World
         private GameFlowBootstrapper owner;
         private RoomLoadPlan plan;
         private CsvGameData data;
+        private int[] externallyManagedPrefabIds = Array.Empty<int>();
         public event Action<RoomData, RoomSceneView> RoomLoaded;
         public event Action<int, string> RoomLoadFailed;
         private IReadOnlyDictionary<int, RoomSceneView> publishedRooms;
@@ -32,6 +33,8 @@ namespace EscapeGame.World
             }
             foreach (var room in sceneRooms) if (room != null) room.gameObject.SetActive(false);
             data = owner.Service.Data;
+            var playerSettings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation");
+            if (playerSettings != null) externallyManagedPrefabIds = new[] { playerSettings.SpawnPrefabId };
             plan = new RoomLoadPlan(data, owner.Service.Role);
             owner.Service.RoomsChanged += ApplyRooms;
             ApplyRooms(owner.Service.UnlockedRoomIds);
@@ -58,7 +61,7 @@ namespace EscapeGame.World
                         view = instance.GetComponent<RoomSceneView>() ?? instance.AddComponent<RoomSceneView>();
                         view.Configure(row.RoomNo);
                     }
-                    view.Load(row, plan, data, owner.Assets);
+                    view.Load(row, plan, data, owner.Assets, externallyManagedPrefabIds);
                     loaded.Add(id, view);
                     failures.Remove(id);
                     added = true;

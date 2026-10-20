@@ -17,11 +17,11 @@ namespace EscapeGame.World
         public bool IsLoaded { get; private set; }
         public void Configure(int number) { roomNo = number; anchorsRoot = transform; }
 
-        public void Load(RoomData room, RoomLoadPlan plan, CsvGameData data, GameContentAssets assets)
+        public void Load(RoomData room, RoomLoadPlan plan, CsvGameData data, GameContentAssets assets, IReadOnlyCollection<int> externallyManagedPrefabIds = null)
         {
             if (IsLoaded) return;
             if (anchorsRoot == null) anchorsRoot = transform;
-            var rows = plan.Anchors(room);
+            var rows = plan.Anchors(room).Where(row => externallyManagedPrefabIds == null || !externallyManagedPrefabIds.Contains(row.PrefabId)).ToArray();
             var requiredNames = new HashSet<string>(rows.Select(row => row.AnchorId), StringComparer.Ordinal);
             var anchors = anchorsRoot.GetComponentsInChildren<Transform>(true)
                 .Where(item => requiredNames.Contains(item.name)).ToDictionary(item => item.name, StringComparer.Ordinal);
