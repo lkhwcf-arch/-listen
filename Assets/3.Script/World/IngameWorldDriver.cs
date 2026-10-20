@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EscapeGame.Data.Tables;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace EscapeGame.World
 {
@@ -24,13 +23,24 @@ namespace EscapeGame.World
 
         private void Start()
         {
-            owner = FindFirstObjectByType<GameFlowBootstrapper>();
-            if (owner == null || owner.Service.Data == null)
+            if (owner != null) return;
+            var flow = FindFirstObjectByType<GameFlowBootstrapper>();
+            // Ingame 단독 Play에서는 개발자 방 미리보기를 허용합니다. 정상 입장은 Bootstrapper가 초기화합니다.
+            if (flow != null && flow.Service.Data != null) Initialize(flow);
+        }
+        public void Initialize(GameFlowBootstrapper flow)
+        {
+            if (flow == null || flow.Service.Data == null) throw new InvalidOperationException("방 로드에 등록된 게임 데이터가 필요합니다.");
+            if (owner != null)
             {
-                Debug.LogWarning("Join 씬에서 데이터 소스를 선택한 뒤 입장하세요.");
-                SceneManager.LoadScene("Join");
+                if (owner != flow) throw new InvalidOperationException("방 로더의 게임 소유자를 변경할 수 없습니다.");
                 return;
             }
+            var numbers = new HashSet<int>();
+            foreach (var room in sceneRooms)
+                if (room != null && (room.gameObject.scene != gameObject.scene || !numbers.Add(room.RoomNo)))
+                    throw new InvalidOperationException("씬 방 참조는 현재 씬에 속하며 방 번호가 중복되지 않아야 합니다.");
+            owner = flow;
             foreach (var room in sceneRooms) if (room != null) room.gameObject.SetActive(false);
             data = owner.Service.Data;
             var playerSettings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation");
@@ -38,6 +48,13 @@ namespace EscapeGame.World
             plan = new RoomLoadPlan(data, owner.Service.Role);
             owner.Service.RoomsChanged += ApplyRooms;
             ApplyRooms(owner.Service.UnlockedRoomIds);
+        }
+        public RoomSceneView RequireFirstRoom()
+        {
+            if (plan == null) throw new InvalidOperationException("방 로더를 먼저 초기화하세요.");
+            if (loaded.TryGetValue(plan.First.Id, out var room)) return room;
+            throw new InvalidOperationException("첫 방 준비 실패: " +
+                (failures.TryGetValue(plan.First.Id, out var reason) ? reason : "해금된 첫 방이 없습니다."));
         }
         private void ApplyRooms(IReadOnlyList<int> ids)
         {

@@ -20,13 +20,15 @@ function Copy-VerificationFiles([string]$relativePath, [string]$excludePattern =
 }
 Copy-VerificationFiles 'Assets/3.Script/Common'
 Copy-VerificationFiles 'Assets/3.Script/Data'
+Copy-VerificationFiles 'Assets/3.Script/Player'
 Copy-VerificationFiles 'Assets/3.Script/Session' '\\Presentation\\|SessionJoinTester'
 Copy-VerificationFiles 'Assets/3.Script/Networking'
-Copy-VerificationFiles 'Assets/3.Script/Generated/Protocol' '\.asmdef$|protocol\.manifest\.json$'
+Copy-VerificationFiles 'Assets/3.Script/Generated/Protocol' '\.asmdef(\.meta)?$|protocol\.manifest\.json$'
 Copy-VerificationFiles 'Assets/Plugins/Protobuf'
 Copy-VerificationFiles 'Assets/3.Script/World' 'GameEntryPresenter'
 Copy-VerificationFiles 'Assets/2.Model/Prefabs'
 Copy-VerificationFiles 'Assets/11.CSV'
+Copy-VerificationFiles 'Assets/10.Input'
 Copy-VerificationFiles 'Assets/Resources'
 foreach ($directory in @('Assets/Editor','Assets/1.Scene','ProjectSettings','Packages')) {
     New-Item -ItemType Directory -Force (Join-Path $verificationRoot $directory) | Out-Null
@@ -37,10 +39,16 @@ foreach ($file in @('Ingame.unity','Ingame.unity.meta')) {
     Copy-Item (Join-Path $projectRoot "Assets/1.Scene/$file") (Join-Path $verificationRoot "Assets/1.Scene/$file")
 }
 Copy-Item (Join-Path $projectRoot 'ProjectSettings/ProjectVersion.txt') (Join-Path $verificationRoot 'ProjectSettings/ProjectVersion.txt')
+foreach ($file in @('ProjectSettings.asset','DynamicsManager.asset')) {
+    Copy-Item (Join-Path $projectRoot ('ProjectSettings/' + $file)) (Join-Path $verificationRoot ('ProjectSettings/' + $file))
+}
 $manifest = Get-Content (Join-Path $projectRoot 'Packages/manifest.json') -Raw | ConvertFrom-Json
 $dependencies = @{}
 foreach ($property in $manifest.dependencies.PSObject.Properties) {
-    if ($property.Name.StartsWith('com.unity.modules.')) { $dependencies[$property.Name] = $property.Value }
+    if ($property.Name.StartsWith('com.unity.modules.') -or
+        $property.Name -in @('com.unity.inputsystem','com.unity.render-pipelines.universal')) {
+        $dependencies[$property.Name] = $property.Value
+    }
 }
 @{ dependencies = $dependencies } | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $verificationRoot 'Packages/manifest.json')
 $serverProcess = $null
@@ -57,6 +65,10 @@ try {
     $unity = Start-Process -FilePath $UnityPath -ArgumentList @('-batchmode','-nographics','-projectPath',
         ('"' + $verificationRoot + '"'),'-executeMethod','WorldVerification.Run','-logFile',
         ('"' + (Join-Path $verificationRoot 'verification.log') + '"')) -PassThru -Wait -WindowStyle Hidden
+    if ($unity.ExitCode -eq 2) {
+        Get-Content (Join-Path $verificationRoot 'verification.txt')
+        throw 'Unity 검사가 콘텐츠 미완성으로 중단되었습니다. B 정상 플레이·온라인 전체 시나리오 통과가 아닙니다.'
+    }
     if ($unity.ExitCode -ne 0) { throw "Unity verification failed. See $verificationRoot/verification.log" }
     Get-Content (Join-Path $verificationRoot 'verification.txt')
 }

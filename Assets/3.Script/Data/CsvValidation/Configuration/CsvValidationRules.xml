@@ -26,7 +26,7 @@
     <column values="Y,N" name="IsAnswer" />
     <unique columns="AnchorRef,CardNo" />
   </table>
-  <table key="ID" name="CHARACTER_STAT">
+  <table key="ID" name="CHARACTER_STAT" tag="character-stat">
     <column min="1" name="ID" type="Integer" />
     <column min="0" name="WalkSpeed" type="Number" />
     <column min="0" name="Acceleration" type="Number" />

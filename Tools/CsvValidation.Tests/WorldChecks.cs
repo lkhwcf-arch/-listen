@@ -19,7 +19,8 @@ static class WorldChecks
         var data = new CsvGameData(store);
         var a = new RoomLoadPlan(data, "A"); var b = new RoomLoadPlan(data, "B");
         Check(a.First.Id == 1001 && b.First.Id == 1002, "role first rooms");
-        Check(a.Anchors(a.First).Count == 8 && b.Anchors(b.First).Count == 14, "R01 active anchors");
+        var common = a.Anchors(a.First).Where(row => row.PlayerType == "ALL").Select(row => row.Id).ToArray();
+        Check(common.Length > 0 && common.SequenceEqual(b.Anchors(b.First).Where(row => row.PlayerType == "ALL").Select(row => row.Id)), "both roles receive the same declared common anchors");
         Check(a.Anchors(a.First).All(row => row.PlayerType != "B"), "A does not load B anchors");
         Check(b.Anchors(b.First).All(row => row.PlayerType != "A"), "B does not load A anchors");
         var local = new LocalRoomProgression(data);
@@ -51,6 +52,50 @@ static class WorldChecks
         using var bad = new GameEntryService(gateway, gateway, () => invalid, validator, _ => { sceneEntries++; return Task.CompletedTask; });
         await bad.EnterAsync(true, null, "B", default);
         Check(bad.Data == null && sceneEntries == 2, "invalid local data cannot enter scene");
+        foreach (bool useLocal in new[] { true, false })
+        {
+            var transitionGateway = new FakeSession(source);
+            using var screen = new CancellationTokenSource();
+            bool sceneFinished = false;
+            using var transition = new GameEntryService(transitionGateway, transitionGateway, () => source, validator, async owner =>
+            {
+                screen.Cancel(); // Join Screen.OnDisable이 씬 교체 도중 발생하는 순서를 재현합니다.
+                await Task.Yield();
+                owner.ThrowIfCancellationRequested();
+                sceneFinished = true;
+            });
+            await transition.EnterAsync(useLocal, "http://test", "A", screen.Token);
+            Check(sceneFinished && transition.Data != null && transitionGateway.Leaves == 0,
+                "screen teardown cannot roll back committed scene entry: local=" + useLocal);
+        }
+        using (var cancelled = new CancellationTokenSource())
+        {
+            cancelled.Cancel();
+            var cancelledGateway = new FakeSession(source);
+            int loads = 0;
+            using var cancelledEntry = new GameEntryService(cancelledGateway, cancelledGateway, () => source, validator,
+                _ => { loads++; return Task.CompletedTask; });
+            await cancelledEntry.EnterAsync(false, "http://test", null, cancelled.Token);
+            Check(cancelledGateway.Joins == 0 && loads == 0 && cancelledEntry.Data == null, "pre-commit cancellation never joins or loads a scene");
+        }
+        using (var ownerLifetime = new CancellationTokenSource())
+        {
+            var lostOwnerGateway = new FakeSession(source);
+            using var lostOwner = new GameEntryService(lostOwnerGateway, lostOwnerGateway, () => source, validator, owner =>
+            {
+                ownerLifetime.Cancel(); owner.ThrowIfCancellationRequested(); return Task.CompletedTask;
+            }, ownerLifetime.Token);
+            await lostOwner.EnterAsync(false, "http://test", null, default);
+            Check(lostOwner.Data == null && lostOwnerGateway.Leaves == 1, "game-owner shutdown still cancels and rolls back entry");
+        }
+        var failedSpawnGateway = new FakeSession(source);
+        using (var failedSpawn = new GameEntryService(failedSpawnGateway, failedSpawnGateway, () => source, validator,
+            _ => throw new InvalidOperationException("test player initialization failure")))
+        {
+            await failedSpawn.EnterAsync(false, "http://test", null, default);
+            Check(failedSpawn.Data == null && failedSpawnGateway.Leaves == 1 && failedSpawn.Message.Contains("player initialization"),
+                "player/room initialization failure is an entry failure and releases the seat");
+        }
         Console.WriteLine($"{count} world/entry checks passed.");
     }
 

@@ -32,6 +32,13 @@ void Cell(Dictionary<string, string> input, string sheet, int rowIndex, string c
         string.Join(",", document.Headers.Select(header => Quote(index == rowIndex && header == column ? value : row.Get(header))))));
 }
 Func<CsvValidationIssue, bool> At(string sheet, string column) => x => x.Sheet == sheet && x.Column == column && x.Severity == CsvValidationSeverity.Error;
+foreach (var sample in new[] { ("WalkSpeed", "0"), ("Acceleration", "0"), ("Deceleration", "0"),
+    ("WalkSpeed", "1000"), ("EyeHeight", "2"), ("CapsuleRadius", "1"), ("StepOffset", "1.8"), ("FOV", "179"), ("WalkSpeed", "1e100") })
+{
+    string expectedColumn = sample.Item1 == "CapsuleRadius" ? "CapsuleHeight" : sample.Item1;
+    Check("character profile " + sample.Item1 + "=" + sample.Item2,
+        input => Cell(input, "CHARACTER_STAT", 0, sample.Item1, sample.Item2), At("CHARACTER_STAT", expectedColumn));
+}
 Check("duplicate ID", x => Cell(x, "CARD", 1, "ID", "3001"), At("CARD", "ID"));
 Check("missing header", x => x["CARD"] = x["CARD"].Replace("\"TopMark\"", "\"Typo\""), At("CARD", "TopMark"));
 Check("invalid quote", x => x["CARD"] += "\n\"unclosed", x => x.Sheet == "CARD" && x.Code == CsvValidationCode.ParseError && x.Details.Contains("UnclosedQuote"));

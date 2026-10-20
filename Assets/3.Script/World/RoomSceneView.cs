@@ -9,7 +9,7 @@ namespace EscapeGame.World
 {
     public sealed class RoomSceneView : MonoBehaviour
     {
-        [Serializable] public sealed class EmbeddedBinding { public string anchorId; public string objectPath; }
+        [Serializable] public sealed class EmbeddedBinding { public string anchorId; public string objectPath; public bool hideWhenUnused; }
         [SerializeField, Min(1)] private int roomNo = 1;
         [SerializeField] private Transform anchorsRoot;
         [SerializeField] private EmbeddedBinding[] embedded = Array.Empty<EmbeddedBinding>();
@@ -43,7 +43,14 @@ namespace EscapeGame.World
                     operations.Add((row, anchor, assets.ResolvePrefab(plan.PrefabPath(row.PrefabId)), null));
                 }
             }
+            var visibility = embedded.Where(item => item.hideWhenUnused).Select(item =>
+            {
+                var target = string.IsNullOrEmpty(item.objectPath) ? transform : transform.Find(item.objectPath);
+                if (target == null || target == transform) throw new InvalidOperationException("역할별 포함 모델 경로를 확인하세요: " + item.objectPath);
+                return (target: target.gameObject, wasActive: target.gameObject.activeSelf, selected: requiredNames.Contains(item.anchorId));
+            }).ToArray();
             var created = new List<GameObject>();
+            bool wasActive = gameObject.activeSelf;
             gameObject.SetActive(false);
             try
             {
@@ -61,12 +68,15 @@ namespace EscapeGame.World
                     var binding = instance.GetComponent<AnchorInstance>() ?? instance.AddComponent<AnchorInstance>();
                     binding.Initialize(operation.row, data);
                 }
+                foreach (var item in visibility) item.target.SetActive(item.selected);
                 IsLoaded = true;
                 gameObject.SetActive(true);
             }
             catch
             {
                 foreach (var instance in created) Destroy(instance);
+                foreach (var item in visibility) item.target.SetActive(item.wasActive);
+                gameObject.SetActive(wasActive);
                 throw;
             }
         }

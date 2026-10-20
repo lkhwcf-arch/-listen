@@ -18,7 +18,7 @@
 | StepOffset | 0.3 | 300 mm | 작은 단차를 넘는 높이 |
 | FOV | 70 | 70000 millidegree | 기존 카메라 시야각 |
 
-Unity 1단위=1m를 기준으로 해석합니다. 공통 PlayerCharacterSettings에서 소수를 한 번 정수로 반올림합니다. 이동속도·가감속은 동작 가능한 양수와 고정소수점 안전 범위를 검사합니다. MouseSensitivity/PitchLimit/HeadBob/InteractDistance/CloseUpOpenMs는 이번 이동에서 사용하지 않습니다.
+Unity 1단위=1m를 기준으로 해석합니다. 공통 CharacterStatUnits에서 소수를 정수로 반올림하고 범위를 검증합니다. PlayerCharacterSettings는 설정 선택과 이 공통 정의 전달을 맡으며 CSV 검사도 같은 정수 정의를 사용합니다. 이동속도·가감속은 동작 가능한 양수와 고정소수점 안전 범위를 검사합니다. MouseSensitivity/PitchLimit/HeadBob/InteractDistance/CloseUpOpenMs는 이번 이동에서 사용하지 않습니다.
 
 ## 코드와 연결
 
@@ -78,4 +78,4 @@ Unity Vector/Transform/CharacterController와 Input System을 읽는 경계에�
 
 순수 검사: 프로젝트 루트에서 `dotnet run --project Tools/PlayerSpawn.Tests -- .` (.NET 8 SDK). 스폰·정수 이동 검사 45개를 같은 소스의 임시 net10 프로젝트에서 통과했습니다. Unity 6.2 참조 컴파일은 Editor/빌드 정의를 검사합니다. 실제 Play/키 입력/물리/메뉴 실행은 여기에서 통과했다고 간주하지 않습니다.
 
-온라인은 서버 CSV를 사용합니다. 서버와 로컬 테이블이 다르면 실제 이동·스폰 설정도 다르므로 먼저 개발자 로컬 미리보기로 검토하세요. 이번 작업은 서버 CSV를 수정하지 않습니다.
+온라인은 서버 CSV를 사용하며 현재 로컬 CSV와 내용이 일치합니다. 정상 진입의 방/플레이어 수명과 준비 판정은 [씬 진입 정합성 안내](EntryConsistency.md)를 따릅니다. B 역할은 LEDPanel 앵커가 아직 없어 정상 진입이 차단됩니다. B 이동·임시 모델 자체는 Room Clear Test의 기본 방 미리보기에서 확인할 수 있습니다.

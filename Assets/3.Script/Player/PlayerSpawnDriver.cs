@@ -10,7 +10,7 @@ namespace EscapeGame.Player
     {
         public FirstPersonPlayerRig Player { get; private set; }
         public event Action<FirstPersonPlayerRig> Spawned;
-        public void Initialize(CsvGameData data, string role)
+        public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null)
         {
             if (Player != null)
             {
@@ -20,9 +20,10 @@ namespace EscapeGame.Player
             var settings = Resources.Load<PlayerPresentationSettings>("PlayerPresentation")
                 ?? throw new InvalidOperationException("PlayerPresentation 설정 에셋이 필요합니다.");
             var plan = new PlayerSpawnPlan(data, role, settings.SpawnPrefabId, settings.CharacterConfigId);
-            var rooms = FindObjectsByType<RoomSceneView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+            var rooms = firstRoom != null ? new[] { firstRoom } : FindObjectsByType<RoomSceneView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(room => room.gameObject.scene == gameObject.scene && room.RoomNo == plan.Room.RoomNo).ToArray();
-            if (rooms.Length != 1) throw new InvalidOperationException("첫 방의 RoomSceneView가 정확히 하나 필요합니다.");
+            if (rooms.Length != 1 || rooms[0].gameObject.scene != gameObject.scene || rooms[0].RoomNo != plan.Room.RoomNo)
+                throw new InvalidOperationException("첫 방의 RoomSceneView가 현재 씬에 정확히 하나 필요합니다.");
             Player = LocalPlayerFactory.Spawn(plan, rooms[0].transform, settings);
             Spawned?.Invoke(Player);
         }

@@ -31,31 +31,17 @@ namespace EscapeGame.Player
         private PlayerCharacterSettings(CharacterStatData profile)
         {
             ProfileId = profile.Id;
-            WalkSpeedMmPerSecond = ToMilliUnit(profile.WalkSpeed, "WalkSpeed");
-            AccelerationMmPerSecondSquared = ToMilliUnit(profile.Acceleration, "Acceleration");
-            DecelerationMmPerSecondSquared = ToMilliUnit(profile.Deceleration, "Deceleration");
-            EyeHeightMm = ToMilliUnit(profile.EyeHeight, "EyeHeight");
-            CapsuleHeightMm = ToMilliUnit(profile.CapsuleHeight, "CapsuleHeight");
-            CapsuleRadiusMm = ToMilliUnit(profile.CapsuleRadius, "CapsuleRadius");
-            StepOffsetMm = ToMilliUnit(profile.StepOffset, "StepOffset");
-            FovMilliDegrees = ToMilliUnit(profile.Fov, "FOV");
-            if (EyeHeightMm <= 0 || EyeHeightMm >= CapsuleHeightMm || CapsuleRadiusMm <= 0 ||
-                CapsuleHeightMm < 2L * CapsuleRadiusMm || StepOffsetMm < 0 || StepOffsetMm >= CapsuleHeightMm ||
-                FovMilliDegrees <= 0 || FovMilliDegrees >= 179000)
-                throw new InvalidOperationException("캐릭터의 눈높이·캡슐·시야각 설정 범위를 확인하세요.");
-            // long 제곱·곱 연산의 안전 범위입니다. 게임 최고속도를 이 값으로 지정하는 것이 아닙니다.
-            if (WalkSpeedMmPerSecond <= 0 || WalkSpeedMmPerSecond > 100000 ||
-                AccelerationMmPerSecondSquared <= 0 || AccelerationMmPerSecondSquared > 1000000 ||
-                DecelerationMmPerSecondSquared <= 0 || DecelerationMmPerSecondSquared > 1000000)
-                throw new InvalidOperationException("이동 속도는 1..100000mm/s, 가감속은 1..1000000mm/s² 범위여야 합니다.");
+            var units = new CharacterStatUnits(profile);
+            WalkSpeedMmPerSecond = units.WalkSpeedMmPerSecond;
+            AccelerationMmPerSecondSquared = units.AccelerationMmPerSecondSquared;
+            DecelerationMmPerSecondSquared = units.DecelerationMmPerSecondSquared;
+            EyeHeightMm = units.EyeHeightMm;
+            CapsuleHeightMm = units.CapsuleHeightMm;
+            CapsuleRadiusMm = units.CapsuleRadiusMm;
+            StepOffsetMm = units.StepOffsetMm;
+            FovMilliDegrees = units.FovMilliDegrees;
         }
 
-        public static int ToMilliUnit(float value, string field)
-        {
-            double scaled = Math.Round((double)value * 1000, MidpointRounding.AwayFromZero);
-            if (double.IsNaN(scaled) || double.IsInfinity(scaled) || scaled > int.MaxValue || scaled < int.MinValue)
-                throw new InvalidOperationException("캐릭터 설정을 정수 단위로 변환할 수 없습니다: " + field);
-            return (int)scaled;
-        }
+        public static int ToMilliUnit(float value, string field) => CharacterStatUnits.ToMilliUnit(value, field);
     }
 }

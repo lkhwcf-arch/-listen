@@ -1,6 +1,6 @@
 # 2인 협동 방탈출 Unity 클라이언트
 
-기준일: **2026-10-19**. 현재 코드와 검증 결과를 기준으로 설명합니다. 이전 기획서와 차이가 있으면 현재 요구사항과 데이터 테이블을 우선합니다.
+기준일: **2026-10-20**. 현재 코드와 검증 결과를 기준으로 설명합니다. 이전 기획서와 차이가 있으면 현재 요구사항과 데이터 테이블을 우선합니다.
 
 두 클라이언트가 음성으로 단서를 주고받으며 퍼즐을 해결하는 Unity 6 프로젝트입니다. Join에서 환경 config에 등록한 서버로 자동 입장하거나 **클라이언트 테스트 A/B**를 선택하고, 검증한 CSV를 데이터 클래스로 주입한 뒤 Ingame에서 방을 구성합니다. 현재 콘텐츠 구현 범위는 **R01**이며, 다음 공간을 열어도 이미 로드한 공간은 유지합니다.
 
@@ -20,7 +20,7 @@
 2. Join을 열어 Play 모드로 들어갑니다.
 3. Join 활성화 시 config의 현재 환경 주소로 자동 입장합니다. 에디터는 `http://127.0.0.1:3000`, Development Build는 `http://192.168.1.34:3001`입니다. 주소 입력창은 없으며, 입장 버튼은 같은 config 설정으로 재시도합니다.
 4. 서버 없이 확인할 때는 `Assets/StreamingAssets/Configuration/connection.json`의 editor 환경 `autoConnect`를 false로 설정하고 **클라이언트 테스트 A/B**를 누릅니다. 로컬 버튼은 에디터에서만 표시하며 Development Build를 포함한 모든 빌드에서 제외합니다.
-5. CSV 검증과 클래스 주입이 끝나면 Ingame으로 이동하고 해당 역할의 R01을 로드합니다.
+5. CSV 검증과 클래스 주입이 끝나면 Ingame의 WorldRuntime에서 해당 역할의 R01을 로드하고 플레이어를 생성합니다. 현재 B는 R01_LEDPanelPoint 미배치로 정상 진입이 중단됩니다. 아래 현재 범위를 확인하세요.
 
 접속 설정은 [환경별 접속 설정 안내](Docs/ConnectionConfiguration.md)를 따릅니다. **Development Build 체크 = 테스트 주소, 체크 해제 = 안정화 주소**입니다. 안정화 주소는 아직 비어 있으므로 클라우드 주소 등록 전 일반 빌드는 검증에서 중단됩니다.
 
@@ -31,7 +31,7 @@
 | 서버 입장·A/B 역할·조회·ready·heartbeat·퇴장 | 기존 참가자 신분 복구, 다중 세션·영구 저장 |
 | CSV 메모리 등록·검증·23개 데이터 클래스·주입 | 새 시트 추가 시 스키마·모델 정의 |
 | 서버/로컬 소스 선택, Join → Ingame 수명 유지 | 완성된 메뉴와 Ingame 연결 종료 UI |
-| R01 역할별 스폰, 누적 해금 로더 | R02~R07 실제 프리팹·앵커·배치 완성 |
+| R01 로더 조립·공통 플레이어 스폰·WASD 정수 이동 | B LEDPanel 앵커 배치, R02~R07 콘텐츠·실제 이동 연결 |
 | 서버 슬롯 정답 비교와 해금 상태 반영 | 입력 UI·문 연출·오답 잠금·승패 규칙 |
 | Vivox 자동 연결 코드 | 두 PC 실제 음성 송수신·장치 검증 |
 
@@ -48,9 +48,10 @@
 | 서버 소스 | join으로 참가 토큰을 받은 뒤 `/data`에서 CSV를 받습니다. `SessionCoordinator`가 최초 상태 조회까지 같은 요청 경로에서 순차 처리해 자동 조회와의 경합을 방지합니다. |
 | 로컬 소스 | `GameContentAssets.ReadLocalData`가 빌드에 포함된 CSV TextAsset을 읽습니다. 기존 서버 참가 중이면 먼저 퇴장합니다. |
 | 공통 등록 | `CsvParser` → `CsvDataSet` → `CsvValidator` → `CsvDataStore.TryRegister` → `CsvGameData` 순서입니다. |
-| 수명 | `GameFlowBootstrapper`가 세션·음성 소유 객체와 함께 `DontDestroyOnLoad`로 유지됩니다. 등록한 정의와 역할을 씬 사이에 전달합니다. |
-| 방 구성 | `IngameWorldDriver`가 `RoomLoadPlan`과 `RoomSceneView`로 해금된 자기 역할의 방을 로드합니다. |
-| 준비 보고 | R01 로드로 `WorldReady`가 참이 된 뒤 `GameplayReadinessCheck`를 통과해야 ready를 보고합니다. |
+| 수명 | `GameFlowBootstrapper`가 DontDestroyOnLoad로 유지됩니다. 씬 로드 시작 전까지 화면 요청을 취소할 수 있고 시작 후에는 게임 소유 수명으로 넘겨 Join UI 제거가 입장을 취소하지 않게 합니다. |
+| 방 구성 | Ingame의 WorldRuntime에 IngameWorldDriver와 R01_Runtime 참조가 연결됩니다. Bootstrapper가 로더를 명시적으로 초기화하여 Start 실행 순서에 기대지 않습니다. |
+| 플레이어 | 로더가 준비한 첫 방을 PlayerSpawnDriver에 주입하고 R01_Player 앵커에 카메라·캡슐·입력/이동을 구성합니다. 실패하면 입장 실패로 전달합니다. |
+| 준비 보고 | `WorldReady && PlayerReady`와 현재 Ingame 씬을 함께 확인합니다. 방/플레이어 초기화 실패로 준비가 보고되지 않으며 이번 입장의 서버 자리를 정리합니다. |
 
 서버 동기화 실패 시 Join에서 오류를 표시하고 이번 입장에서 확보한 자리를 정리합니다. 서버 실패를 로컬 CSV로 대체하지 않습니다. 데이터 소스를 바꾸는 동안 이전 씬이 준비 완료를 보고하거나 이전 계획으로 새 스냅샷을 적용하지 않도록 구분합니다.
 
@@ -85,7 +86,8 @@ Assets/3.Script/
     Tables/                   23개 행 모델·공통 Room/Anchor·CsvGameData
     CsvValidation/            설정·규칙·결과·한국어 메시지
     Infrastructure/           파일·TextAsset 어댑터
-  World/                      입장 조정·방 계획·스폰·로컬 진행
+  World/                      입장 수명·방 로더·첫 방/플레이어 준비·로컬 진행
+  Player/                     스폰·입력 Adapter·정수 이동 상태·Unity 충돌
   Session/                    계약·코어·자동 Driver·화면
   Networking/                 HTTP·Protobuf·Gateway
   Voice/                      음성 계약·서비스·Vivox·화면
@@ -107,7 +109,7 @@ CSV는 **UTF-8, 쉼표 구분, 첫 번째 비어 있지 않은 레코드가 헤�
 | `CsvTableMapping<T>` | 시트 이름과 변환 함수를 한 번 정의하고 동일 시트/타입의 변환 캐시를 재사용합니다. |
 | `CsvGameData` | 전체 테이블을 읽기 전용 모델 목록으로 제공합니다. 새 스냅샷 등록 후에는 새 묶음을 주입합니다. |
 
-스키마 원본은 [CsvValidationRules.xml](Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml)입니다. 공통 방·앵커 profile을 재사용하고 시트 이름·컬럼 형식·참조 대상과 게임 관계 검사를 분리합니다. 서버는 대응 규칙을 `CsvSchema.ts`로 정의하므로 규칙 변경 시 양쪽을 맞춰 검사해야 합니다.
+스키마 원본은 [CsvValidationRules.xml](Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml)입니다. 공통 방·앵커 profile을 재사용하고 시트 이름·컬럼 형식·참조 대상과 게임 관계 검사를 분리합니다. 서버는 대응 규칙을 `CsvSchema.ts`와 전용 관계 규칙으로 정의하므로 변경 시 양쪽을 맞춰 검사해야 합니다. CHARACTER_STAT의 정수 변환·범위·눈높이/캡슐/단차 관계는 `CharacterStatUnits`를 CSV 등록과 실제 플레이어 생성에서 공유합니다.
 
 검사 범위는 CSV 문법·UTF-8, 필수/미등록 컬럼, 자료형·범위·Y/N, 키 중복, REGISTRY·테이블 참조, Next 순환·활성 방 시작점 1개·전체 활성 방 연결, ExitRule 허용값(SolvedEach/BothSolved), ROOM/ANCHOR 공통 ID 영역, Solver/Clue·입력 앵커 관계, 슬롯 수·순서, 사운드·설정값 관계입니다. 선택적인 Unity 리소스 경로 검사는 Editor 어댑터가 수행하며 미발견을 경고합니다. 런타임은 필요한 앵커·프리팹이 없으면 해당 방 로드를 완료하지 않습니다.
 
@@ -138,7 +140,7 @@ PuzzleSubmissionResult result = await flow.Service.SubmitPuzzleAsync(puzzleId, a
 5. `AnchorInstance`가 `AnchorData`와 `CsvGameData`를 보유하며, 기능 컴포넌트는 `IAnchorDataReceiver.Initialize`로 주입받습니다.
 6. 성공한 방만 등록하고 반복 스냅샷으로 방·프리팹을 중복 생성하지 않습니다.
 
-Ingame의 R01_Surface 아래 **R01_모델_Anchor**에 기존 앵커를 묶고, 다이얼 테이블 이름을 CSV의 `R01_Dial_table_Anchor`와 맞췄습니다. 바닥·벽·기본 구조는 이미 Surface에 들어 있어 `RoomSceneView`의 명시적인 embedded 바인딩으로 재사용합니다. R01 연결 행은 **A 8개 / B 14개**이며 재사용한 구조도 포함합니다.
+현재 Ingame은 **R01_Runtime → Room_01_Final** 구조입니다. 프리팹 루트 Transform 참조를 바로잡았고, 포함된 카드·천장·문 외형·서랍 4개는 RoomSceneView의 embedded 바인딩으로 재사용합니다. A 전용 카드는 CSV 역할 선택에 따라 B에서 숨깁니다. 현재 R01 활성 행은 A/B 각각 6개이며, 플레이어 스폰 행 1개는 전용 Factory가 처리합니다. B의 R01_LEDPanelPoint가 없어 B 첫 방은 실패 원인을 표시하고 준비를 차단합니다. 이 숫자는 현재 콘텐츠 현황이며 자동 검사는 개수를 고정하지 않고 선택된 행 ID와 실제 바인딩을 대조합니다.
 
 서버 모드는 서버 `RoomProgression`의 정답·Solver·해금·Playing 검사를 거친 `unlockedRoomIds`를 조회해 `RoomsChanged`로 반영합니다. 로컬 모드는 `LocalRoomProgression`을 사용합니다. `SolvedEach`는 해당 퍼즐, `BothSolved`는 같은 방 번호 양쪽 퍼즐 완료를 조건으로 문을 허가합니다. 정답 제출자는 자기 문과 Next를 먼저 허가받고, 상대는 자기 문 확인 때 허가받습니다. 이후 문 열기·닫기는 RoomPermissionService 캐시를 사용하며 추가 통신이 없습니다. Next=0이면 추가 방이 없습니다. ExitRule은 `RoomExitRules`에서 공통 해석하며 알 수 없는 값은 검증과 런타임에서 차단합니다. 활성 방은 시작점 하나에서 모두 연결되어야 하며, 비활성 방으로 끊긴 연결도 허용하지 않습니다.
 
@@ -176,22 +178,22 @@ Set-Location Tools/CsvValidation.Tests
 dotnet run -- ../..
 ```
 
-기존 154개 + 문 허가/Protobuf 검사 30개 = **184개 통과**입니다. 별도로 C# 클라와 TS 서버의 실제 Protobuf HTTP 검사 **18개 통과**를 확인했습니다. 실제 CSV 23개와 2,861개 셀을 검사합니다. 회귀 검사는 잘못된 방 연결·ExitRule·제출 결과 3종·통신 실패/취소 구분을 확인합니다. 접속 설정 검사는 실제 JSON 값·환경 선택·중복 자동 입장·취소·재시도·기존 입장/데이터/씬 전환 흐름을 확인합니다. 이번 환경에는 .NET 8 SDK가 없어 동일 소스의 임시 net10 프로젝트에서 실행했으며, 별도로 Unity 6.2 .NET Standard 2.1 참조 컴파일도 통과했습니다.
+현재 공통 순수 C# 검사 **198개**, 스폰·정수 이동 검사 **45개**가 통과했습니다. CSV **23개·3,121개 셀**, 오류 **0개**, 비활성 앵커 참조 경고 **52개**를 확인했습니다. 셀·앵커 개수는 콘텐츠 변경으로 달라질 수 있어 고정 성공 기준으로 사용하지 않습니다. 화면 제거 후 씬 진입 유지, 게임 소유자 취소, 초기화 실패 시 참가 자리 정리와 캐릭터 정수 검증을 포함합니다. .NET 8 SDK가 없어 같은 소스를 임시 net10 프로젝트에서 실행했습니다. Unity 6.2 런타임/에디터 도구/Windows 런타임 분리 참조 컴파일도 통과했습니다. 실제 Unity Play·빌드 검증과 구분합니다.
 
 별도 임시 Unity 프로젝트에서 Play 검사를 실행합니다. 원본 씬을 덮어쓰지 않고 결과·로그를 `Temp/WorldPlayVerification`에 보관합니다.
 
 ```powershell
-# 로컬 데이터·A/B R01·중복 방지·가상 후속 방: 27개
+# 현재 CSV 선택·씬/플레이어·중복 방지 검사. B 콘텐츠 누락 시 불완료 종료 코드 2
 ./Tools/WorldPlayVerification/Run.ps1
 
-# 서버 저장소에서 npm ci, npm run build를 마친 뒤 실제 HTTP까지: 33개
+# 서버 포함 시나리오는 B 콘텐츠 배치가 완료된 뒤 실행
 ./Tools/WorldPlayVerification/Run.ps1 -IncludeServer `
   -ServerRoot D:/acardemy/TSC_REST -NodePath C:/경로/node.exe
 ```
 
 NodePath는 Node.js 24 이상, UnityPath는 설치된 Unity 실행 파일을 지정합니다. 기본 UnityPath는 위 Unity 버전의 Windows 설치 경로입니다. 서버 포함 검사는 임시 포트 **3099**를 사용합니다.
 
-기존 검증 기록에는 R01 A/B 바인딩 수, 동일 데이터 주입, 반복 스냅샷, 미완성 R02 유지, 가상 후속 방 추가, 실제 서버 CSV 수신·ready·상대 해금 이벤트 **33개 통과**가 있습니다. 이번 수정 후 Play 재검증은 Unity 라이선스 클라이언트 연결 실패로 실행하지 못했으므로, 위 기록을 이번 수정의 Play 통과로 해석하지 않습니다. 임시 프로젝트는 게임 모듈과 Unity 내장 모듈 중심이며 실제 빌드의 UI·렌더링·Vivox·음성 장치 검사는 별도입니다.
+과거의 27/33개 Unity Play 및 18개 C#/TS HTTP 통과 기록은 당시 콘텐츠 기준입니다. 현재 Play 검사 도구는 Player/Input System/URP 의존성을 포함하고 CSV에서 기대 바인딩을 계산합니다. B 콘텐츠 미완성이면 정상 B 플레이·온라인 전체 시나리오를 통과로 표시하지 않고 종료 코드 2로 중단합니다. 이번 환경에서는 Unity Play/메뉴·렌더링·실제 충돌을 실행하지 않았습니다. 현재 참조·수명 검토는 아래 메뉴와 Docs/EntryConsistency.md를 따릅니다.
 
 ## 8. 도식과 추가 문서
 
@@ -218,3 +220,14 @@ Git에는 코드·CSV·프리팹·필요한 `.meta`·Packages·ProjectSettings·
 ## 1번 방 공통 앵커 플레이어 생성
 
 시트의 공통 스폰 행에서 AnchorID를 선택하고 같은 위치·회전으로 1인칭 플레이어를 생성합니다. A는 큐브, B는 실린더를 카메라 앞 손·무전기 대체 모델로 표시합니다. 스폰·모델 구조는 [플레이어 스폰 안내](Docs/PlayerSpawn.md)를 따릅니다. Input System의 기존 Player/Move와 CHARACTER_STAT을 연결한 WASD·정수 가감속·중력·구조 충돌을 추가했습니다. 설계·변경 파일·검토 순서는 [WASD 이동 안내](Docs/PlayerMovement.md)를 참고하세요. 마우스 시점·전용 클로즈업 UI·좌클릭 상호작용은 다음 단계입니다.
+
+## 씬 진입 정합성 검토
+
+수정 의도·파일별 기능·연결도·현재 제한은 [씬 진입 정합성 안내](Docs/EntryConsistency.md)에 있습니다.
+
+1. Play 종료 상태에서 **Tools > Game > Verify Ingame Wiring**: 씬 로더·첫 방·프리팹 루트·포함 모델 경로 검사.
+2. Join의 **클라이언트 테스트 A**로 실제 씬 진입을 확인합니다. UI가 사라진 뒤에도 데이터/역할/플레이어가 유지되어야 합니다.
+3. 정상 입장 후 **Tools > Game > Verify Gameplay Readiness**: 플레이어 비활성화 동안 준비가 해제되는지 검사.
+4. B 모델/이동만 확인할 때는 **Ingame 단독 Play > Room Clear Test**를 사용합니다. 정상 B 입장·두 PC Playing 검증은 LEDPanel 앵커 배치 후 별도 진행합니다.
+
+현재 서버 CSV와 로컬 CSV는 내용이 일치합니다. 다음 방의 공간 정렬은 아직 개발자 미리보기 도구에 연결되어 있으며, 실제 런타임 문/정답 UI와 방 이동 연결은 후속 범위입니다.

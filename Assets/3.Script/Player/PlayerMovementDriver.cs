@@ -15,6 +15,7 @@ namespace EscapeGame.Player
         private int maximumFrameMs, groundContactMm;
         private bool movementEnabled = true, focused = true;
         public PlayerMovementMotor Motor => motor;
+        public bool IsReady => motor != null && input != null && isActiveAndEnabled && controller != null && controller.enabled;
 
         // Factory가 비활성 오브젝트에 의존성을 주입한 뒤 활성화합니다. input의 수명은 이 Driver가 소유합니다.
         public void Initialize(PlayerCharacterSettings settings, IPlayerMoveInput input, IMillisecondClock clock,

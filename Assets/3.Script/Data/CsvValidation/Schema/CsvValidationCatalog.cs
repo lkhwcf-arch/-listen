@@ -122,6 +122,6 @@ namespace EscapeGame.Data.CsvValidation.Schema
     {
         public const string Registry = "registry", Room = "room", Anchor = "anchor", Prefab = "prefab",
             Puzzle = "puzzle", Slot = "slot", Console = "console", Sound = "sound", SoundLink = "sound-link",
-            Config = "config", Lock = "lock", Arrow = "arrow", Wire = "wire";
+            Config = "config", Lock = "lock", Arrow = "arrow", Wire = "wire", CharacterStat = "character-stat";
     }
 }

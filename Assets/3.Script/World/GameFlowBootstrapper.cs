@@ -18,6 +18,10 @@ namespace EscapeGame.World
         public GameContentAssets Assets => assets;
         public bool WorldReady { get; set; }
         private EscapeGame.Player.PlayerSpawnDriver playerSpawn;
+        public bool PlayerReady => playerSpawn != null && playerSpawn.Player != null &&
+            playerSpawn.Player.gameObject.activeInHierarchy && playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerMovementDriver>()?.IsReady == true;
+        public bool IsGameplayReady => WorldReady && PlayerReady && SceneManager.GetActiveScene().isLoaded &&
+            SceneManager.GetActiveScene().name == ingameScene;
         private void Awake()
         {
             var owners = FindObjectsByType<GameFlowBootstrapper>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -30,7 +34,8 @@ namespace EscapeGame.World
             if (assets == null) assets = Resources.Load<GameContentAssets>("GameContent");
             if (assets == null) throw new InvalidOperationException("GameContent 에셋이 필요합니다.");
             var session = GetComponent<SessionBootstrapper>().Service;
-            Service = new GameEntryService(session, (ISessionContentService)session, assets.ReadLocalData, assets.CreateValidator(), EnterSceneAsync);
+            Service = new GameEntryService(session, (ISessionContentService)session, assets.ReadLocalData,
+                assets.CreateValidator(), EnterSceneAsync, destroyCancellationToken);
             Service.Changed += OnEntryChanged;
             DontDestroyOnLoad(gameObject);
         }
@@ -44,18 +49,27 @@ namespace EscapeGame.World
             // Unity 씬 로드는 시작 후 취소할 수 없습니다. 서비스 수명은 씬 전환 뒤에도 유지됩니다.
             while (!operation.isDone) await Task.Yield();
             token.ThrowIfCancellationRequested();
-            // 플레이어 표현은 내부 오브젝트 로드/서버 ready와 별도 책임입니다.
+            // 실제 씬 로더를 명시적으로 조립합니다. Start 실행 순서에 기대지 않습니다.
+            var scene = SceneManager.GetActiveScene();
+            var worlds = System.Array.FindAll(FindObjectsByType<IngameWorldDriver>(FindObjectsInactive.Exclude, FindObjectsSortMode.None),
+                world => world.gameObject.scene == scene);
+            if (worlds.Length != 1) throw new InvalidOperationException("Ingame 씬에 활성 IngameWorldDriver가 정확히 하나 필요합니다.");
             var spawnHost = new GameObject("LocalPlayerSpawn");
-            SceneManager.MoveGameObjectToScene(spawnHost, SceneManager.GetActiveScene());
+            SceneManager.MoveGameObjectToScene(spawnHost, scene);
             try
             {
+                worlds[0].Initialize(this);
+                var firstRoom = worlds[0].RequireFirstRoom();
                 playerSpawn = spawnHost.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
-                playerSpawn.Initialize(Service.Data, Service.Role);
+                playerSpawn.Initialize(Service.Data, Service.Role, firstRoom);
+                if (!PlayerReady) throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
             }
             catch (Exception error)
             {
+                WorldReady = false;
                 Destroy(spawnHost);
-                Debug.LogError("[Player Spawn] " + error.Message);
+                Debug.LogError("[Game Entry] " + error.Message);
+                throw; // 입장 서비스가 실패 상태·참가 자리 정리를 수행합니다.
             }
         }
         private void OnDestroy()

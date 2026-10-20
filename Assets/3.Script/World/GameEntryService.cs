@@ -18,6 +18,9 @@ namespace EscapeGame.World
         private readonly Func<CsvDataSet> readLocal;
         private readonly CsvValidator validator;
         private readonly Func<CancellationToken, Task> enterScene;
+        private readonly CancellationTokenSource lifetime;
+        private readonly CancellationToken ownerToken;
+        private bool disposed;
         private LocalRoomProgression local;
         private readonly RoomPermissionService roomPermissions;
         public RoomPermissionService RoomPermissions => roomPermissions;
@@ -31,17 +34,23 @@ namespace EscapeGame.World
         public event Action Changed;
         public event Action<IReadOnlyList<int>> RoomsChanged;
         public GameEntryService(ISessionConnectionService session, ISessionContentService content,
-            Func<CsvDataSet> readLocal, CsvValidator validator, Func<CancellationToken, Task> enterScene)
+            Func<CsvDataSet> readLocal, CsvValidator validator, Func<CancellationToken, Task> enterScene,
+            CancellationToken ownerLifetime = default)
         {
             this.session = session; this.content = content; this.readLocal = readLocal;
             this.validator = validator; this.enterScene = enterScene;
+            lifetime = CancellationTokenSource.CreateLinkedTokenSource(ownerLifetime);
+            ownerToken = lifetime.Token;
             content.RoomsChanged += OnRoomsChanged;
             session.StateChanged += OnSessionStateChanged;
             roomPermissions = new RoomPermissionService(RequestRoomAsync);
         }
         public async Task EnterAsync(bool useLocal, string address, string testRole, CancellationToken token)
         {
+            if (disposed) throw new ObjectDisposedException(nameof(GameEntryService));
             if (IsBusy) return;
+            using var request = CancellationTokenSource.CreateLinkedTokenSource(token, ownerToken);
+            token = request.Token;
             roomPermissions.Reset();
             Data = null; local = null; pendingRooms = null;
             UnlockedRoomIds = Array.Empty<int>();
@@ -50,6 +59,7 @@ namespace EscapeGame.World
             bool entered = false;
             try
             {
+                token.ThrowIfCancellationRequested();
                 if (useLocal && session.State.IsJoined)
                 {
                     await session.LeaveAsync(token);
@@ -58,9 +68,9 @@ namespace EscapeGame.World
                 if (!useLocal && !session.State.IsJoined)
                 {
                     var join = await session.JoinAsync(address, token);
-                    token.ThrowIfCancellationRequested();
                     if (join.Outcome != SessionCommandOutcome.Completed) throw new InvalidOperationException("입장 실패: " + join.Code);
                     joinedHere = true;
+                    token.ThrowIfCancellationRequested();
                 }
                 var source = useLocal ? readLocal() : await content.DownloadDataAsync(token);
                 var store = new CsvDataStore();
@@ -74,7 +84,12 @@ namespace EscapeGame.World
                 local = useLocal ? new LocalRoomProgression(data) : null;
                 UnlockedRoomIds = useLocal ? local.UnlockedRoomIds : pendingRooms ?? Array.AsReadOnly(new[] { plan.First.Id });
                 Message = "데이터 등록 완료. Ingame 로딩 중"; Changed?.Invoke();
-                await enterScene(token);
+                // 커밋 경계: 로드 시작 전까지 화면 요청을 취소할 수 있습니다.
+                // 씬 전환이 시작되면 지속 게임 수명으로 넘겨 Join 화면 제거가 입장을 취소하지 않게 합니다.
+                token.ThrowIfCancellationRequested();
+                ownerToken.ThrowIfCancellationRequested();
+                await enterScene(ownerToken);
+                ownerToken.ThrowIfCancellationRequested();
                 entered = true;
             }
             catch (OperationCanceledException) { Message = "입장이 취소되었습니다."; }
@@ -131,9 +146,13 @@ namespace EscapeGame.World
         { if (!IsLocal && !state.IsJoined) roomPermissions.Reset(); }
         public void Dispose()
         {
+            if (disposed) return;
+            disposed = true;
+            lifetime.Cancel();
             content.RoomsChanged -= OnRoomsChanged;
             session.StateChanged -= OnSessionStateChanged;
             roomPermissions.Reset();
+            lifetime.Dispose();
         }
     }
 }

@@ -166,7 +166,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.World.RoomSceneView
   roomNo: 1
   anchorsRoot: {fileID: 372193019}
-  embedded: []
+  embedded:
+  - anchorId: R01A_CardsPoint
+    objectPath: Room_01_Final/ROOM_01_A/Room_01_A_Cards
+    hideWhenUnused: 1
+  - anchorId: R01_CeilingPoint
+    objectPath: Room_01_Final/ROOM_01_A/Ceiling.007
+    hideWhenUnused: 0
+  - anchorId: R01_DverPoint
+    objectPath: Room_01_Final/Door
+    hideWhenUnused: 0
+  - anchorId: R01_DrawerPoint
+    objectPath: Room_01_Final/Hemnes.Drawer
+    hideWhenUnused: 0
 --- !u!1 &1602747292
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,9 +449,55 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 47470909e5887bb40968d409f4034dff, type: 3}
 --- !u!4 &90000601 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2464424279933302064, guid: 47470909e5887bb40968d409f4034dff, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4170795664609762917, guid: 47470909e5887bb40968d409f4034dff, type: 3}
   m_PrefabInstance: {fileID: 90000600}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &90000700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90000701}
+  - component: {fileID: 90000702}
+  m_Layer: 0
+  m_Name: WorldRuntime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90000701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90000700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90000702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90000700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa175ef7cb264c62824ec1620c65863e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.World.IngameWorldDriver
+  sceneRooms:
+  - {fileID: 372193020}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -447,3 +505,4 @@ SceneRoots:
   - {fileID: 1602747294}
   - {fileID: 4116802835031814499}
   - {fileID: 372193019}
+  - {fileID: 90000701}

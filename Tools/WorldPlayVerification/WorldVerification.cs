@@ -54,18 +54,32 @@ public static class WorldVerification
             var world = UnityEngine.Object.FindFirstObjectByType<IngameWorldDriver>();
             Check(world.LoadedRooms.Count == 1,"A initial room loaded");
             var roomA = world.LoadedRooms[1001];
-            Check(roomA.GetComponentsInChildren<AnchorInstance>().Length == 8,"A R01 has exactly 8 CSV bindings");
-            Check(roomA.transform.Find("R01_모델_Anchor/R01_FloorCard_Anchor").childCount == 1,"A floor card spawned at authored anchor");
-            Check(roomA.transform.Find("R01_모델_Anchor/R01_Dial_table_Anchor").childCount == 0,"A does not spawn B dial table");
+            var settings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation");
+            var planA = new RoomLoadPlan(owner.Service.Data,"A");
+            var expectedA = planA.Anchors(planA.First).Where(row=>row.PrefabId!=settings.SpawnPrefabId).Select(row=>row.Id).OrderBy(id=>id);
+            Check(roomA.GetComponentsInChildren<AnchorInstance>(true).Select(item=>item.Definition.Id).OrderBy(id=>id).SequenceEqual(expectedA),"A R01 binds every selected non-player CSV row exactly once");
+            Check(owner.PlayerReady && owner.IsGameplayReady,"room readiness includes initialized local player");
+            Check(roomA.transform.Find("Room_01_Final/ROOM_01_A/Room_01_A_Cards")!=null,"authored prefab root and embedded card path resolve");
             Check(owner.GetComponent<SessionBootstrapper>().State.IsJoined == false,"local mode has no server participant");
 
             await owner.Service.EnterAsync(true,null,"B",default);
+            // 현재 B 전용 콘텐츠가 미완성이면 거짓 준비 완료 대신 명시적인 입장 실패를 검사합니다.
+            if (owner.Service.Data == null)
+            {
+                Check(!owner.IsGameplayReady && !owner.PlayerReady,"missing B content cannot report gameplay readiness");
+                Check(owner.Service.Message.Contains("R01_LEDPanelPoint"),"unfinished B content reports the missing authored anchor");
+                Debug.LogWarning("B 역할 정상 플레이 검증 보류: "+owner.Service.Message);
+                File.WriteAllText("verification.txt",checks+" Unity Play checks passed; INCOMPLETE: B gameplay and optional online scenario blocked by missing authored content.");
+                EditorApplication.Exit(2);
+                return;
+            }
             await WaitReady(owner);
             world = UnityEngine.Object.FindFirstObjectByType<IngameWorldDriver>();
             var roomB = world.LoadedRooms[1002];
-            Check(roomB.GetComponentsInChildren<AnchorInstance>().Length == 14,"B R01 has exactly 14 CSV bindings");
-            Check(roomB.transform.Find("R01_모델_Anchor/R01_Dial_table_Anchor").childCount == 1,"B dial table spawned at authored anchor");
-            Check(roomB.transform.Find("R01_모델_Anchor/PZ_R1_B_Dial_0_Anchor").childCount == 1,"B dial spawned at authored anchor");
+            var planB = new RoomLoadPlan(owner.Service.Data,"B");
+            var expectedB = planB.Anchors(planB.First).Where(row=>row.PrefabId!=settings.SpawnPrefabId).Select(row=>row.Id).OrderBy(id=>id);
+            Check(roomB.GetComponentsInChildren<AnchorInstance>(true).Select(item=>item.Definition.Id).OrderBy(id=>id).SequenceEqual(expectedB),"B R01 bindings follow the current CSV");
+            Check(!roomB.transform.Find("Room_01_Final/ROOM_01_A/Room_01_A_Cards").gameObject.activeSelf,"B does not display A-only embedded cards");
             foreach(var binding in roomB.GetComponentsInChildren<AnchorInstance>())
                 Check(object.ReferenceEquals(binding.Data,owner.Service.Data),"spawn receives registered data snapshot "+binding.Definition.Id);
             var apply = typeof(IngameWorldDriver).GetMethod("ApplyRooms",BindingFlags.Instance|BindingFlags.NonPublic);
@@ -83,14 +97,22 @@ public static class WorldVerification
             foreach(var anchor in plan.Anchors(row2)) { var node=new GameObject(anchor.AnchorId);node.transform.SetParent(template.transform,false); }
             var dummy = new GameObject("FutureObject"); dummy.SetActive(true);
             var field = typeof(GameContentAssets).GetField("prefabs",BindingFlags.Instance|BindingFlags.NonPublic);
-            var bindings = ((GameContentAssets.PrefabBinding[])field.GetValue(owner.Assets)).ToList();
+            var originalBindings = (GameContentAssets.PrefabBinding[])field.GetValue(owner.Assets);
+            string Normalize(string path)=>path.Replace('\\','/').Replace(".prefab","");
+            var overriddenPaths=plan.Anchors(row2).Select(anchor=>Normalize(plan.PrefabPath(anchor.PrefabId)))
+                .Append(Normalize(plan.PrefabPath(row2.RoomPrefabId))).ToHashSet(StringComparer.Ordinal);
+            var bindings = originalBindings.Where(item=>!overriddenPaths.Contains(Normalize(item.path))).ToList();
             foreach(int prefabId in plan.Anchors(row2).Select(anchor=>anchor.PrefabId).Distinct())
                 bindings.Add(new GameContentAssets.PrefabBinding{path=plan.PrefabPath(prefabId),prefab=dummy});
             bindings.Add(new GameContentAssets.PrefabBinding{path=plan.PrefabPath(row2.RoomPrefabId),prefab=template});
-            field.SetValue(owner.Assets,bindings.ToArray());
-            apply.Invoke(world,new object[]{owner.Service.UnlockedRoomIds});
-            Check(world.LoadedRooms.Count==2 && world.LoadedRooms[1002]==roomB,"future room loads additively from table without replacing R01");
-            Check(world.LoadedRooms[1004].GetComponentsInChildren<AnchorInstance>().Length==plan.Anchors(row2).Count,"future room uses same anchor injection");
+            try
+            {
+                field.SetValue(owner.Assets,bindings.ToArray());
+                apply.Invoke(world,new object[]{owner.Service.UnlockedRoomIds});
+                Check(world.LoadedRooms.Count==2 && world.LoadedRooms[1002]==roomB,"future room loads additively from table without replacing R01");
+                Check(world.LoadedRooms[1004].GetComponentsInChildren<AnchorInstance>().Length==plan.Anchors(row2).Count(anchor=>anchor.PrefabId!=settings.SpawnPrefabId),"future room uses same anchor injection");
+            }
+            finally { field.SetValue(owner.Assets,originalBindings);UnityEngine.Object.Destroy(template);UnityEngine.Object.Destroy(dummy); }
             if (Environment.GetEnvironmentVariable("WORLD_VERIFICATION_SERVER") == "1")
             {
                 await owner.Service.EnterAsync(false,"http://127.0.0.1:3099",null,default);
@@ -99,15 +121,16 @@ public static class WorldVerification
                 Check(owner.Service.Data.Source.Documents.Count==23,"Unity Protobuf/CSV roundtrip registers 23 server tables");
                 var second=(await Send("/sessions/join",null,null)).Joined;
                 await Send("/sessions/"+second.SessionId+"/ready",second.ParticipantToken,null);
-                var deadline=DateTime.UtcNow.AddSeconds(10);
-                while(owner.GetComponent<SessionBootstrapper>().State.Phase!=EscapeGame.Session.Contracts.ClientSessionPhase.Playing && DateTime.UtcNow<deadline)await Task.Yield();
+                var clock=new EscapeGame.Timing.StopwatchMillisecondClock();
+                long deadline=clock.ElapsedMilliseconds+10000;
+                while(owner.GetComponent<SessionBootstrapper>().State.Phase!=EscapeGame.Session.Contracts.ClientSessionPhase.Playing && clock.ElapsedMilliseconds<deadline)await Task.Yield();
                 Check(owner.GetComponent<SessionBootstrapper>().State.Phase==EscapeGame.Session.Contracts.ClientSessionPhase.Playing,"ready follows world load and both clients reach Playing");
                 Check((await owner.Service.SubmitPuzzleAsync(5001,answers,default)).Outcome == EscapeGame.Session.Contracts.PuzzleSubmissionOutcome.Rejected,"server rejects clue role without treating it as incorrect");
                 var command=new RoomCommandRequest { RoomNo=1 };command.Answers.Add(answers);
                 await Send("/sessions/"+second.SessionId+"/rooms/answer",second.ParticipantToken,command);
                 if (!await owner.Service.CheckRoomDoorAsync(1,default)) throw new Exception("Solved room door was denied.");
-                deadline=DateTime.UtcNow.AddSeconds(10);
-                while(!owner.Service.UnlockedRoomIds.Contains(1003) && DateTime.UtcNow<deadline)await Task.Yield();
+                deadline=clock.ElapsedMilliseconds+10000;
+                while(!owner.Service.UnlockedRoomIds.Contains(1003) && clock.ElapsedMilliseconds<deadline)await Task.Yield();
                 Check(owner.Service.UnlockedRoomIds.Contains(1003),"clue door check grants next room through state event");
                 world=UnityEngine.Object.FindFirstObjectByType<IngameWorldDriver>();
                 Check(world.LoadedRooms.ContainsKey(1001) && owner.WorldReady,"online unlock retains authored R01 while R02 is unfinished");
@@ -119,9 +142,10 @@ public static class WorldVerification
     }
     private static async Task WaitReady(GameFlowBootstrapper owner)
     {
-        var deadline=DateTime.UtcNow.AddSeconds(20);
-        while(!owner.WorldReady && DateTime.UtcNow<deadline)await Task.Yield();
-        if(!owner.WorldReady)throw new Exception("World did not become ready: "+owner.Service.Message);
+        var clock=new EscapeGame.Timing.StopwatchMillisecondClock();
+        long deadline=clock.ElapsedMilliseconds+20000;
+        while(!owner.IsGameplayReady && clock.ElapsedMilliseconds<deadline)await Task.Yield();
+        if(!owner.IsGameplayReady)throw new Exception("Room/player did not become ready: "+owner.Service.Message);
     }
     private static void Fail(Exception error) { Debug.LogException(error);File.WriteAllText("verification.txt",error.ToString());EditorApplication.Exit(1); }
     private static async Task<GameApiResponse> Send(string route,string token,IMessage body)
