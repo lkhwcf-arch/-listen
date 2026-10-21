@@ -19,6 +19,7 @@ MonoBehaviour:
   modelPositionMm: {x: 180, y: -200, z: 500}
   modelSizeMm: {x: 180, y: 180, z: 180}
   modelEulerMilliDegrees: {x: 0, y: 0, z: 0}
+  placeholderMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   modelA: {fileID: 0}
   modelB: {fileID: 0}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

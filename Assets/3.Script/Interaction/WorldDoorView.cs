@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EscapeGame.Data.Tables;
@@ -7,9 +8,12 @@ using UnityEngine;
 
 namespace EscapeGame.Interaction
 {
-    // CSV Door 기능을 가진 인스턴스만 구성합니다. 원래 프리팹의 피벗으로 문과 충돌체를 함께 회전합니다.
+    // CSV Door 기능과 프리팹의 DoorHinge를 연결합니다. 문짝과 충돌체가 경첩을 중심으로 함께 이동합니다.
     public sealed class WorldDoorView : MonoBehaviour, IAnchorDataReceiver
     {
+        public const string HingeName = "DoorHinge";
+        private Transform hinge;
+        private Vector3 closedPosition;
         private int roomNo, openAngleMilliDegrees;
         private Quaternion closedRotation;
         private DoorInteractionController controller;
@@ -19,7 +23,10 @@ namespace EscapeGame.Interaction
         {
             if (!(anchor is AnchorInteractData) || !anchor.Active || !new PrefabFeaturePlan(data, anchor.PrefabId).Has(FeatureScripts.Door))
                 throw new InvalidOperationException("활성 Door 앵커만 문으로 구성합니다.");
-            roomNo = anchor.RoomNo; closedRotation = transform.localRotation;
+            var points = GetComponentsInChildren<Transform>(true).Where(point => point != transform && point.name == HingeName).ToArray();
+            if (points.Length != 1) throw new InvalidOperationException("Door 프리팹에는 DoorHinge 기준점이 정확히 하나 필요합니다: " + anchor.PrefabId);
+            hinge = points[0];
+            roomNo = anchor.RoomNo; closedPosition = transform.localPosition; closedRotation = transform.localRotation;
         }
         public Task<bool> ToggleAsync(IRoomDoorService service, int angleMilliDegrees, CancellationToken token)
         {
@@ -36,7 +43,15 @@ namespace EscapeGame.Interaction
         }
         private void ApplyPose()
         {
-            transform.localRotation = IsOpen ? closedRotation * Quaternion.AngleAxis(openAngleMilliDegrees / 1000f, Vector3.up) : closedRotation;
+            // 닫힌 자세에서 다시 계산하여 개폐 오차가 누적되지 않도록 합니다.
+            transform.SetLocalPositionAndRotation(closedPosition, closedRotation);
+            if (IsOpen)
+            {
+                var parentWorld = transform.parent != null ? transform.parent.rotation : Quaternion.identity;
+                var openPosition = InteractionPresentationGeometry.DoorWorldPosition(transform.position, hinge.position, openAngleMilliDegrees);
+                var openRotation = parentWorld * InteractionPresentationGeometry.DoorLocalRotation(closedRotation, parentWorld, openAngleMilliDegrees);
+                transform.SetPositionAndRotation(openPosition, openRotation);
+            }
             Physics.SyncTransforms();
         }
         private void OnDestroy()

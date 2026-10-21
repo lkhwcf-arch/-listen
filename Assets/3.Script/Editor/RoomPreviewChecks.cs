@@ -87,6 +87,11 @@ namespace EscapeGame.Editor
                     var prop = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     prop.name = "검사용_소품_" + anchor.PrefabId;
                     prop.transform.SetParent(fixture.transform, false);
+                    if (new PrefabFeaturePlan(data, anchor.PrefabId).Has(FeatureScripts.Door))
+                    {
+                        var hinge = new GameObject(EscapeGame.Interaction.WorldDoorView.HingeName).transform;
+                        hinge.SetParent(prop.transform, false); hinge.localPosition = new Vector3(-.5f, 0, 0);
+                    }
                     bindings.Add(path, prop);
                 }
                 typeof(GameContentAssets).GetField("prefabs", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(assets,
@@ -111,8 +116,14 @@ namespace EscapeGame.Editor
                 var door = preview.GetComponentsInChildren<EscapeGame.Interaction.WorldDoorView>(true).Single();
                 var doorTarget = door.GetComponent<EscapeGame.Interaction.WorldInteractionTarget>();
                 var closedRotation = door.transform.localRotation;
+                var closedPosition = door.transform.localPosition;
+                var hingePoint = door.transform.Find(EscapeGame.Interaction.WorldDoorView.HingeName);
+                var hingeWorld = hingePoint.position;
                 Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && door.IsOpen, "생성된 방은 다음 방 준비와 독립적으로 문 열기 허가");
+                Check(Vector3.Distance(hingePoint.position, hingeWorld) < .0001f, "열린 뒤 경첩 월드 위치 유지");
+                Check(Vector3.Distance(door.transform.localPosition, closedPosition) > .1f, "문 중심이 경첩을 따라 이동");
                 Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && !door.IsOpen, "클리어 전에도 테스트 문 닫기");
+                Check(Vector3.Distance(door.transform.localPosition, closedPosition) < .0001f, "닫힌 문 위치 복원");
                 var entryPoint = nextTemplate.transform.Find($"R{next.RoomNo:00}_EntryPoint");
                 entryPoint.name = "누락_입구";
                 bool rejected = false;

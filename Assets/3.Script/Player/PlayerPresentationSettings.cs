@@ -14,6 +14,8 @@ namespace EscapeGame.Player
         [SerializeField] private Vector3Int modelPositionMm = new Vector3Int(180, -200, 500);
         [SerializeField] private Vector3Int modelSizeMm = new Vector3Int(180, 180, 180);
         [SerializeField] private Vector3Int modelEulerMilliDegrees;
+        [SerializeField] private Material placeholderMaterial;
+        public Material PlaceholderMaterial => placeholderMaterial;
         [SerializeField] private GameObject modelA;
         [SerializeField] private GameObject modelB;
         [SerializeField] private InputActionAsset inputActions;
@@ -43,6 +45,8 @@ namespace EscapeGame.Player
             if (spawnPrefabId <= 0 || characterConfigId <= 0 || nearClipMm <= 0 || farClipMm <= nearClipMm ||
                 modelPositionMm.z <= nearClipMm || modelSizeMm.x <= 0 || modelSizeMm.y <= 0 || modelSizeMm.z <= 0)
                 throw new InvalidOperationException("PlayerPresentation의 ID·클리핑·모델 크기 설정을 확인하세요.");
+            if ((modelA == null || modelB == null) && placeholderMaterial == null)
+                throw new InvalidOperationException("PlayerPresentation에 빌드용 임시 모델 머티리얼을 연결하세요.");
             if (inputActions == null || inputActions.FindAction("Player/Move", false) == null ||
                 inputActions.FindAction("Player/Look", false) == null || inputActions.FindAction("Player/Attack", false) == null ||
                 inputActions.FindAction("UI/Cancel", false) == null || skinWidthMm < 1 || skinWidthMm > 100 ||

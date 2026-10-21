@@ -38,11 +38,14 @@ namespace EscapeGame.Interaction
                 var lightObject = new GameObject("PreviewLight"); lightObject.transform.SetParent(root.transform, false);
                 var light = lightObject.AddComponent<Light>(); light.type = LightType.Directional; light.cullingMask = 1 << settings.PreviewLayer;
                 lightObject.transform.rotation = Quaternion.Euler(35, -30, 0);
-                int[] raw = target.Features.CloseupCameraOffsetMm(); var offset = new Vector3(raw[0], raw[1], raw[2]) / 1000f;
+                int[] raw = target.Features.CloseupCameraOffsetMm();
+                var forward = InteractionPresentationGeometry.HorizontalForward(worldCamera.transform.forward, worldCamera.transform.right);
+                var offset = InteractionPresentationGeometry.PreviewOffset(raw, worldCamera.transform.forward, worldCamera.transform.right);
                 float radius = bounds.extents.magnitude;
                 float distance = Mathf.Max(offset.magnitude, radius / Mathf.Sin(camera.fieldOfView * Mathf.Deg2Rad / 2) * 1.1f);
                 camera.nearClipPlane = Mathf.Max(.001f, distance - radius * 1.5f); camera.farClipPlane = distance + radius * 2 + 1;
-                camera.transform.position = bounds.center + offset.normalized * distance; camera.transform.LookAt(bounds.center, Mathf.Abs(offset.normalized.y) > .99f ? Vector3.forward : Vector3.up);
+                camera.transform.position = bounds.center + offset.normalized * distance; camera.transform.LookAt(bounds.center, Mathf.Abs(offset.normalized.y) > .99f ? forward : Vector3.up);
+                lightObject.transform.rotation = camera.transform.rotation * Quaternion.Euler(25, -25, 0);
                 root.SetActive(true);
             }
             catch { Dispose(); throw; }

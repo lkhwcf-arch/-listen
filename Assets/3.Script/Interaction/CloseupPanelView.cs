@@ -32,7 +32,7 @@ namespace EscapeGame.Interaction
             overlay.GetComponent<Image>().color = new Color(0, 0, 0, .8f);
             var panel = InteractionUiFactory.Rect("CloseupPanel", cover, 1120, 700, 0, 0); panel.gameObject.AddComponent<Image>().color = new Color(.09f, .12f, .16f);
             title = InteractionUiFactory.Text("Title", panel, settings.Font, "조작 화면", 1000, 64, 0, 282, 32);
-            var previewRect = InteractionUiFactory.Rect("ObjectPreview", panel, 540, 480, -240, 5); Preview = previewRect.gameObject.AddComponent<RawImage>(); Preview.raycastTarget = false;
+            var previewRect = InteractionUiFactory.Rect("ObjectPreview", panel, 480, 480, -240, 5); Preview = previewRect.gameObject.AddComponent<RawImage>(); Preview.raycastTarget = false;
             ContentRoot = InteractionUiFactory.Rect("Controls", panel, 420, 480, 300, 5);
             notice = InteractionUiFactory.Text("InputNotice", ContentRoot, settings.Font, "", 400, 240, 0, 0, 22);
             back = InteractionUiFactory.Button("Back", panel, settings.Font, "돌아가기", 240, 60, 0, -292); back.onClick.AddListener(OnBack);

@@ -1,0 +1,1637 @@
+{
+  "schemaVersion": 1,
+  "appliedDate": "2026-10-21",
+  "unity": "6000.2.8f1",
+  "platformSetting": "Standalone",
+  "verifiedBuildTarget": "StandaloneWindows64",
+  "baselineBytes": 4560218043,
+  "buildBytes": 2162477227,
+  "rules": {
+    "Default": "BC7",
+    "NormalMap": "BC5",
+    "maxSize": "이전 실제 기본값 유지"
+  },
+  "excluded": [
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/wood_floor_Normal.exr",
+      "type": "NormalMap",
+      "reason": "EXR 원본 별도 검토"
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/047a5b1e10859a88_Normal.exr",
+      "type": "NormalMap",
+      "reason": "EXR 원본 별도 검토"
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/reticle_reload_circle.png",
+      "type": "Sprite",
+      "reason": "UI 및 특수 텍스처 종류 유지"
+    },
+    {
+      "path": "Assets/Blocks/Vivox/Textures/icon_speaker.png",
+      "type": "Sprite",
+      "reason": "UI 및 특수 텍스처 종류 유지"
+    },
+    {
+      "path": "Assets/Blocks/Vivox/Textures/icon_speaker_active.png",
+      "type": "Sprite",
+      "reason": "UI 및 특수 텍스처 종류 유지"
+    },
+    {
+      "path": "Assets/Blocks/Vivox/Textures/icon_speaker_muted.png",
+      "type": "Sprite",
+      "reason": "UI 및 특수 텍스처 종류 유지"
+    },
+    {
+      "path": "Assets/Blocks/Vivox/Textures/send_button.png",
+      "type": "Sprite",
+      "reason": "UI 및 특수 텍스처 종류 유지"
+    }
+  ],
+  "applied": [
+    {
+      "path": "Assets/2.Model/Lock/Room_1/Textures/Digits_1to9_BaseColor_png_cbf7e7ce.png",
+      "guid": "7b7a9a661e9a889479fa74100cd91681",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_1/Textures/Digits_1to9_Normal_png_1e2da925.png",
+      "guid": "667cfe31f56623949bd233c82d7103a1",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_1/Textures/tripo_image_3fb9638d_0_1e99a19e.jpg",
+      "guid": "14613616005bf3443aa6dfd0baa7b5b4",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_1/Textures/tripo_image_3fb9638d_3_d72201e7.png",
+      "guid": "f6a22725ddc24d045a3ea1692fea1ca4",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_2/Textures/Dial_Panels_BaseColor_png_d526a3f8.png",
+      "guid": "2b2cacbb63aff2d4cb7c6663e705afb9",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_2/Textures/Dial_Panels_Normal_png_875c811f.png",
+      "guid": "04bbb3d02f10d2b4bbedc2f842ee4447",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_2/Textures/tripo_image_6283017a_0_3fd7710b.jpg",
+      "guid": "b1838245d24de7b4a92e9dc1cfd98b1a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_2/Textures/tripo_image_6283017a_3_d5ff1206.png",
+      "guid": "844c3c04b11db5f4498bc2e9efda22a0",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_3/Textures/tripo_image_1e4f2c85_0_caa93af4.jpg",
+      "guid": "f647335278cefe141916bb35314eecca",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_3/Textures/tripo_image_1e4f2c85_3_931f0f6b.png",
+      "guid": "d4efcd1be2b8c874e94361c903375b97",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_4/Unity/Padlock_4Dial_0to9/Textures/Color.jpg",
+      "guid": "56efd920536c3064db6fa33249caed95",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_4/Unity/Padlock_4Dial_0to9/Textures/Normal.png",
+      "guid": "cf71e1ae016024942a6c6b74b5fdb991",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_5/Unity/Padlock_5Dial_1to9/Textures/Color.jpg",
+      "guid": "661896073934e9949a2c567e62873a32",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_5/Unity/Padlock_5Dial_1to9/Textures/Normal.png",
+      "guid": "287700cc1d7183344a2259cd9e9d5e74",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_6/Textures/Dial_Panels_BaseColor_png_be2deba4.png",
+      "guid": "c5d3be42e042a5b4b8326a39494ae631",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_6/Textures/Dial_Panels_Normal_png_7806d4e6.png",
+      "guid": "ec1adc0cbb084874383d03e87d6770cb",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_6/Textures/tripo_image_d568ef81_0_6ff82187.jpg",
+      "guid": "e903f900b9809e947817fb030505568f",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_6/Textures/tripo_image_d568ef81_3_f8c42c02.png",
+      "guid": "83ecd413afc70f7429749aa2265c4dfa",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_7/Textures/Dial_Panels_BaseColor_png_2cfcf621.png",
+      "guid": "a1b662f09093c384180db3240d53034a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_7/Textures/Dial_Panels_Normal_png_053d6695.png",
+      "guid": "4d420beef50efc742b6eacc0b86e86fe",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_7/Textures/tripo_image_ad5e170a_0_f1426f2a.jpg",
+      "guid": "6bf8fc6fdff6c32448aaf0187ed7835c",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Lock/Room_7/Textures/tripo_image_ad5e170a_3_851dd625.png",
+      "guid": "152e1303aaa5e7141887c45552818efb",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Dark_Rough_Concrete_BaseColor.jpg",
+      "guid": "a7a57f696c1f8d745b4d5d5cd74ea824",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Dark_Rough_Concrete_Height.jpg",
+      "guid": "f2c2a00c2e8772c49a6792242102e59b",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Dark_Rough_Concrete_MetallicSmoothness.png",
+      "guid": "2372c9aa7a20a854883b851d5d9dd7bb",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Dark_Rough_Concrete_Normal.jpg",
+      "guid": "f1e1ba00dd0b1b846924b7f326e8f248",
+      "format": "BC5",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Grey_Troweled_Concrete_BaseColor.jpg",
+      "guid": "02e29efe969966543b9fb60d4ca820f3",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Grey_Troweled_Concrete_Height.jpg",
+      "guid": "cb20cdcd88adacd4c8527cebe3feb256",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Grey_Troweled_Concrete_MetallicSmoothness.png",
+      "guid": "e3bb7a2dc95053141a090090e6d678a7",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Grey_Troweled_Concrete_Normal.jpg",
+      "guid": "ad6be93e404ff1944acc8e24749a7428",
+      "format": "BC5",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Hemnes_Wood_Black_BaseColor.png",
+      "guid": "3e7f8a63ed5daca4fa3053da6c3ddbd5",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Hemnes_Wood_Black_MetallicSmoothness.png",
+      "guid": "7e3ca4090e170734185c3dea16e11d02",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Hemnes_Wood_Black_Normal.jpg",
+      "guid": "d69aaaf630e2c6742a453ca2da43fbfa",
+      "format": "BC5",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/palermo_MetallicSmoothness.png",
+      "guid": "378863e3bff568641a242b1731801e89",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Stainless_Steel_003_BaseColor.jpg",
+      "guid": "5e7e5cb2d5a02434db59aaf603591bac",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R01/SILENT_Room_01_Final/Textures/Stainless_Steel_003_MetallicSmoothness.png",
+      "guid": "0bb4d2b3b1e312543bca7d395548d4bc",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/AR3DMat_Carrara_Marble_Tiles_BaseColor.jpg",
+      "guid": "f824624c9305c2542817eeeb08fab481",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/AR3DMat_Carrara_Marble_Tiles_Normal.jpg",
+      "guid": "95ef5a3c90389cd4ab2a085cfc5a95bf",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Colored_Foam_Pads_BaseColor.jpg",
+      "guid": "bac49f33bd2a4ef4ab4ab621086f7336",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Colored_Foam_Pads_Normal.jpg",
+      "guid": "6995c434790f7b54583043d69a282dc5",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Metal_Cromo_006_BaseColor.png",
+      "guid": "0cba848ce669eb34781e0c9db7c01f80",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_R4_R12_warm_lime_plaster_Normal.png",
+      "guid": "15d346389c6a50846a55384a4982c503",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_vines_Texture_017_BaseColor.png",
+      "guid": "9c9c3c287e2389d41a14806aed16185b",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_vines_Texture_017_Normal.png",
+      "guid": "583ce7bf574a26b488db7c2158459a52",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_001_BaseColor.png",
+      "guid": "f75bccce7580b414eba547b914d71f98",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_001_Normal.png",
+      "guid": "2bf8e5612d799644fbec7f9d1c30b7b2",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_002_BaseColor.png",
+      "guid": "a9c3d13a481a0cf4faf24693d6d6a4b1",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_002_Normal.png",
+      "guid": "02db6dd9f5870dd49aa55a2598c00af4",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_003_BaseColor.png",
+      "guid": "07ba1e049abb29642bf1efa44547812e",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_003_Normal.png",
+      "guid": "2fc89ae4e8751c14dbf578c4397e40d9",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_BaseColor.png",
+      "guid": "5faf0796f1e8086429b3620938335dc2",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_A_Merged_-_Wood_material_Normal.png",
+      "guid": "8863130bffec553469797722cbca27b5",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_B_Merged_-_dark_moss_substrate_BaseColor.png",
+      "guid": "4cefbc00456187f4788735f403f4c093",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/R2_B_Merged_-_dark_moss_substrate_Normal.png",
+      "guid": "61ca4715ec36a804583c4195553617bd",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Realistic_White_Plaster_Wall_BaseColor.png",
+      "guid": "c8cc552c088dace4d8667e5d6643dc5f",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Realistic_White_Plaster_Wall_Normal.png",
+      "guid": "286f65e8f59593345a7e33c9dacd7425",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/Table_006_BaseColor.png",
+      "guid": "63d733c0106b0e742b485a82e026406e",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/tripo_mat_6187e4a4_BaseColor.jpg",
+      "guid": "aaf5ccc55bb1d8545a35f1dc4c355e34",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R02/SILENT_Room_02/Textures/tripo_mat_6187e4a4_Normal.png",
+      "guid": "bbd9c4945d4a38d41b0234a3038c35ba",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Colored_Foam_Pads_BaseColor.jpg",
+      "guid": "8a7c74c8a52957347a03f0b221dcef58",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Colored_Foam_Pads_Normal.jpg",
+      "guid": "7b3a9c02e9de4c441b6bee2fd8c59247",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Metal_panel_BaseColor.jpg",
+      "guid": "df2cb07aa0bef6242b14e894980c4b09",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Metal_panel_Normal.jpg",
+      "guid": "12dc969111f632a48aa3ebc7e6657f89",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/R3_-_console_graphite_Normal.png",
+      "guid": "76d7a45bd3a87fd41a0812d17d9880db",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/R3_-_markings_Normal.png",
+      "guid": "45697fd29dbeb1741917ea046502b72b",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_A_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "guid": "fe38554c9817e3e48995ce6a84e7c87a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_A_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "guid": "9ea94af2d9ae79a4cb2ece338b86ab62",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_A_Patterns_-_R3_-_markings_Normal.png",
+      "guid": "9c923fd134499b94ba9273b191fe8046",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_A_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "guid": "967569a39171c194ab0520bab12a5311",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_A_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "guid": "b2377c43b104d1443a75fc8c1aabe4f5",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_B_Patterns_-_R3_-_charcoal_paint_BaseColor.png",
+      "guid": "2f626212a1b37044ba24adda83d08844",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_B_Patterns_-_R3_-_cobalt_paint_BaseColor.png",
+      "guid": "219a2b68fe9a9bb4cb11c005201c3312",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_B_Patterns_-_R3_-_ochre_paint_BaseColor.png",
+      "guid": "5555f7bb7fe177e46bd23fed7518f3aa",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R03/SILENT_Room_03/Textures/Room_03_B_Patterns_-_R3_-_vermilion_paint_BaseColor.png",
+      "guid": "a8e24117ee3e7e340b5e0bf59203ac10",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Black_Painted_Wood_BaseColor.png",
+      "guid": "f68ff1431e98bd94091fb33ad99fb2d5",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Black_Painted_Wood_Normal.png",
+      "guid": "7b2ae11a2edf97845b5f3bd0e6f9bc6b",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Metal_panel_BaseColor.jpg",
+      "guid": "4e930b334e6cb22428ce7771cc260328",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Metal_panel_Normal.jpg",
+      "guid": "8ce60eca437942b46965e4d89018afd3",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Metal_plate_BaseColor.jpg",
+      "guid": "ef118d59460ca6f47a42d65c38db895b",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Metal_plate_Normal.jpg",
+      "guid": "4a02011a4f3df1c458538a08fd001bc0",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Sci-fi_Cables_BaseColor.tga",
+      "guid": "af6fb23f85ef80d408e8d0f5d0adde6f",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Sci-fi_Cables_Normal.png",
+      "guid": "aa6bd8b69e6bbb94986caaa98ea48c29",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Sci-Fi_Tech_Grid_Panels_BaseColor.jpg",
+      "guid": "ff7294ee6a2f96e4999cebb4458c66e5",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Sci-Fi_Tech_Grid_Panels_Normal.png",
+      "guid": "6438cc97f6bc00e44be1e9329d442200",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Stucco_wall_BaseColor.jpg",
+      "guid": "2fa4f982d92860948b53cc65a44fd190",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/Stucco_wall_Normal.png",
+      "guid": "fadd7c57e26ac8f4eb1b1b8077683d0a",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/tripo_mat_6e1f08b9_BaseColor.jpg",
+      "guid": "5e12897b8362ced47ac16d3986698be0",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R04/SILENT_Room_04/Textures/tripo_mat_6e1f08b9_Normal.png",
+      "guid": "520ca0121824d2c45bc30fc40d06143c",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Ceiling_Tiles_BaseColor.jpg",
+      "guid": "062f162790950604d9baa5b09eebb0ca",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Ceiling_Tiles_Normal.jpg",
+      "guid": "c40c04cf178056146969a31c8fd83274",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Desk_wood_BaseColor.jpg",
+      "guid": "20aac5dae5e014e4d89c5dbafb1ba0a0",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Desk_wood_Normal.jpg",
+      "guid": "ad5a4413671f5f2448bcd3741ba5fd36",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Frozen_white_metal_BaseColor.jpg",
+      "guid": "19964f17e7cb753459baecd52c252607",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Frozen_white_metal_Normal.jpg",
+      "guid": "be8111ae4b8ee554fba9ec30675ba916",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Room_05_A_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "guid": "1c1fdc5040c810b429d8bb20592bfd0d",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Room_05_A_Structure_-_R4_R6_mineral_wall_Normal.png",
+      "guid": "f009d1a1fe92aaf4185ac17680d281f6",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Room_05_B_Objects_-_R4_R5_chalkboard_BaseColor.png",
+      "guid": "dc038eeb755d6d24d9d1f5cb5565e52a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Simple_wood_BaseColor.jpg",
+      "guid": "09f07e714866ffb4b9da3895fd911148",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Simple_wood_Normal.jpg",
+      "guid": "2404602ab070c7e4b956ec6ea926d78b",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Stucco_wall_BaseColor.jpg",
+      "guid": "c22f18094e11d1c4ea0b0fc4921b35f4",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Stucco_wall_Normal.png",
+      "guid": "c95035c85fe6abc43bbf8a2e43570421",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_001_BaseColor.jpg",
+      "guid": "f66fd4b1755d92d45bd26c3e7670ae59",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_001_Normal.jpg",
+      "guid": "517d426e568cc1046af49ac6fe7cd592",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_002_BaseColor.jpg",
+      "guid": "28c08bc8d74dd7443942aa6528e035f6",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_002_Normal.jpg",
+      "guid": "7fe55fd42f218524f87ac229f7a3dc61",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_BaseColor.jpg",
+      "guid": "a5d8a398613c586429d045bf069756ef",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/wood_floor_BaseColor.jpg",
+      "guid": "19398dfcb30d29140aeb3d9fac810953",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R05/SILENT_Room_05/Textures/Wood_Normal.jpg",
+      "guid": "dbe9671de92ff9942a63506569e9e97a",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/Metal_plate_BaseColor.jpg",
+      "guid": "21ac3bc817ed87a4d9da912dd6108c95",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/Metal_plate_Normal.jpg",
+      "guid": "d4904cde5643acf4b97e4983940c42f2",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/Plastic_cable_BaseColor.jpg",
+      "guid": "fd58e7f66783e464987aeb74b9ae610d",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/Plastic_cable_Normal.jpg",
+      "guid": "1457ebe1eef7ae14992c0439fedbf802",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/R4_R6_mineral_wall_-_R6_preserved_mapping_Normal.png",
+      "guid": "9c6405a23b7db744d90d16cdb99ccccd",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_075bce52_BaseColor.jpg",
+      "guid": "0ce662e4ca48a25459a7a8eaee2ba89a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_075bce52_Normal.png",
+      "guid": "bf79389ba5049bc4d98afab07983b4d8",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_6187e4a4_006_BaseColor.jpg",
+      "guid": "839bfb1fcaae1874bb28c70de549d92a",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_6187e4a4_006_Normal.png",
+      "guid": "cd832c29fbdbf0f459598ed8bc2af5ab",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_795d782f_BaseColor.jpg",
+      "guid": "5efa3b6d936965444a648be7876ecbeb",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R06/SILENT_Room_06/Textures/tripo_mat_795d782f_Normal.png",
+      "guid": "5ec548b31f7ca4443a5e8986b394ef01",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R07/SILENT_Room_07/Textures/Backrooms_Wallpaper_BaseColor.png",
+      "guid": "e86fa73722a38d04dafcb514c26d7d9c",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R07/SILENT_Room_07/Textures/Backrooms_Wallpaper_Normal.png",
+      "guid": "00093eb23272c384d848c4646c048748",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R07/SILENT_Room_07/Textures/Carpet_BaseColor.jpg",
+      "guid": "89bc7738c345bac45aafff4326c56e16",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Prefabs/R07/SILENT_Room_07/Textures/Carpet_Normal.jpg",
+      "guid": "6332e003ea038e84ab15ebcfd81c15a1",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/2.Model/Room4/SILENT_Console/Textures/Console_BaseColor.jpg",
+      "guid": "ceea77cac0a2dc74581c2419ac92d920",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Room4/SILENT_Console/Textures/Console_MetallicSmoothness.png",
+      "guid": "cfd7d726a0936e047aae50592727fae0",
+      "format": "BC7",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/2.Model/Room4/SILENT_Console/Textures/Console_Normal.png",
+      "guid": "e0e9799ca58e0ee4286ecd43aa9d5540",
+      "format": "BC5",
+      "maxSize": 4096
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/07b0d85e0ec0f094_BaseColor.jpg",
+      "guid": "3f7ddc72d6c4a5d44a7d9211c6825b97",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/0a0a56c4bf800f59_BaseColor.png",
+      "guid": "eb6476ea3f58dfc448786739ade9bc1c",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/0b1f3e5325d80576_Normal.jpg",
+      "guid": "d64b3fea342dc6541b5e1a744114108d",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/0b5b7c484e111273_Normal.png",
+      "guid": "6a6ab0a1907123e4381327ada25da871",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/0cbd7ed82c3e3582_BaseColor.jpg",
+      "guid": "75e86fadf82403a4bb9a31dd0e1934e3",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/11105ce774032916_Normal.png",
+      "guid": "14784397f53ee544fb1f02571e136509",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/17d9b7936c991927_Normal.png",
+      "guid": "aa755964793d8d84d8acc149a86a15ee",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/1b85b6b0564700e2_BaseColor.png",
+      "guid": "2f583abf7d2553a458df26b3de395160",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/1cd096d0aea338a0_Normal.png",
+      "guid": "1ff0771d9b466ae468dabcd6744041b8",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/1eb908607011bd6f_BaseColor.jpg",
+      "guid": "0ea1f6ecb4a5d674892f6333bc7966b9",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/22b8fe68d3563c6d_BaseColor.png",
+      "guid": "29f852dab78cab14ab167017b876368e",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/240dfb0e3145e54f_BaseColor.png",
+      "guid": "473eb0612d376c94ab995c1d2977fbca",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/2545201d04978595_BaseColor.jpg",
+      "guid": "0822d5cf5895eaf41b33eeb2afab43ff",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/2558cd8b2db6cd94_Normal.png",
+      "guid": "a22fe32c43cd687499e3db04ca415bde",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/299230051af7a251_Normal.png",
+      "guid": "6c24540e18bc0e44498eb27a4f4aece1",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/2bdedaaa7ed9f1e5_Normal.jpg",
+      "guid": "3aace725855cb3e4ba5c212ce24ecb9a",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/34c0043725bdd84a_Normal.png",
+      "guid": "895dc75420334cb44ab7cd30558a6712",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/3e1b7aea01c93730_Normal.jpg",
+      "guid": "01dee2258efd77747a4abe825ea3124a",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/3f39185e1f69cdb9_Normal.jpg",
+      "guid": "e16e3ae0923230c4299fa473b2d2eb2c",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/416bc275bf384671_Normal.png",
+      "guid": "4339ac1d2dc29a1498b78444c234ad8d",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/43bfaaf06d5065de_Normal.jpg",
+      "guid": "c06129f99a16ff845aa777dcc81f686d",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/443ac3385db96701_BaseColor.png",
+      "guid": "7c84b65e50a1bdc4cbc60bba4e0c6fb3",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/50c119d8b72a5f49_BaseColor.jpg",
+      "guid": "baceeede39f98004387e04cd77aa2072",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/52afb8d435de77c7_Normal.jpg",
+      "guid": "33a97986973f971478fc67e8162428be",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/56b8402f056fd433_BaseColor.png",
+      "guid": "5ca93cacc1431934fb7984109a464aa7",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/56de81ca0b6face5_Normal.png",
+      "guid": "73a734ae123170141bfd022eab8381fd",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/59ef88cfb8c285cd_BaseColor.png",
+      "guid": "827e83f1901e59c40899ec5e00cff0c4",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/66383147e54b9d47_BaseColor.jpg",
+      "guid": "ed843a8cc9388e74dbb26ba1a3224bb0",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/6a2fbdc00fbd8af4_BaseColor.jpg",
+      "guid": "d713b46b01d549647a35f9897fdd4c62",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/6a5eaf653a09fa58_BaseColor.png",
+      "guid": "5804782ef3025b340b4c73d45a0f1663",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/6e8cd6b413069a0a_BaseColor.jpg",
+      "guid": "872d92e5c5e063f438bb755685aaa203",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/6f112d1b84d36465_BaseColor.jpg",
+      "guid": "3758a1ac07b4e01479bec0f5fe1cfc09",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/722eec40843f7c1a_Normal.jpg",
+      "guid": "d054f398956fb8f4b8fdcb06bb2fe514",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/72b5fac8a8e340cc_Normal.png",
+      "guid": "2b16e725dcdd82d49893c68557cb559b",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/78c0f959a6be4b7f_BaseColor.jpg",
+      "guid": "6fbafb6aaa6b25848ab06b8c34265916",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7a91329af8d79b4c_BaseColor.png",
+      "guid": "9550ab35841ffb245b8fc9ea76f9b834",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7b6df7499c605410_Normal.jpg",
+      "guid": "b9ee146db73d1854f905d4df719ba7f2",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7cea7365457a2722_BaseColor.jpg",
+      "guid": "329845829b0addc41b576a5d865eb5ce",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7f41a6196f0a4ba0_BaseColor.png",
+      "guid": "9340b8e711d2ffa42aca4a0040d69dbd",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7f47d2b9999b0694_Normal.jpg",
+      "guid": "2885a8f4eba7d1f4cb8443564647994f",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/7ff703ecc26eac74_Normal.jpg",
+      "guid": "0b01d597b6c75234b9de68d5c31778aa",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/803a79c84410ff64_BaseColor.png",
+      "guid": "c6d96d59e444b4c4ca62f9bcbf0a5a3f",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/8138ef65535551ea_BaseColor.jpg",
+      "guid": "60f3a1087e968da4698a5529cc579810",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/8504f76b01ea32c2_Normal.png",
+      "guid": "b9175cb45a3898447950a8df131d0067",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/8dc65dfbb4d71ec0_Emission.png",
+      "guid": "1cdb9f3d9182e6348bce6cea256d946f",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/98e3bf512141ebca_Normal.jpg",
+      "guid": "020159f7427aa364ea110f10b704ca4d",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/9a8d36452853f4e1_BaseColor.jpg",
+      "guid": "682e53dd404c5f14b885eb8afb692f0d",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/9bc56c9c6a63c21e_Normal.png",
+      "guid": "75f5ce8324459114d9d454006d4f17b6",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/9f2105f49bb8f713_Normal.png",
+      "guid": "b47865dc963d1bc4fa3e8ec1c257982d",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/a07cbf07301ed0eb_BaseColor.png",
+      "guid": "37f1521894c39124aaf11ea3bf958969",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/a0ed4ba366ffa0a8_Normal.png",
+      "guid": "8766f3efea28b304da341bb6652ebfb7",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/a8a7d2b33989968b_Normal.png",
+      "guid": "f12fbccccd69e9b4c95ae20540d672f0",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/ada8797dd7c2fce5_Normal.png",
+      "guid": "c1f3695990a350d4bacf1e18d43025a2",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/b29cd86bfed109ac_Normal.png",
+      "guid": "a610ec88a2ec5974a914f6416d8cb518",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/b423c3205b957f68_Emission.png",
+      "guid": "ac7ca129b44b4c6458f442453af7d305",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/b556432f7e7d48fe_BaseColor.jpg",
+      "guid": "ee61e5d2176ed6e43aeaef712b747f64",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/bacd2fe81f772b3e_Normal.png",
+      "guid": "1e6d5058a6f849144acba4b6a77bc2b7",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/bfd6ef00c826b011_Normal.png",
+      "guid": "64959c0eeb7f7934da8202ec47c80aab",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/c085a369581c0c35_Normal.png",
+      "guid": "0f663241021357e47b5d16c2fed2d146",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/c9e783fb85150bbc_BaseColor.jpg",
+      "guid": "a1423273e19cbbf40bfc853c8bfa8203",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/ca78549b09a16b46_BaseColor.jpg",
+      "guid": "d875adfb0d83700458f4e7b20d2ad8a5",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/ca9b92b643c30020_BaseColor.jpg",
+      "guid": "6f4059f152150a64bad54d0e55ba9f7d",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/cca7e4b99593c9fa_BaseColor.jpg",
+      "guid": "d3e071602a7482945b9a63c7b30615f8",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/d41cb53074c2bb86_BaseColor.png",
+      "guid": "239fa9ca5f3307f4da993fb1a2ad2481",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/d44985d922790cc3_BaseColor.png",
+      "guid": "46965f26c3a2a0941ab3a1d395dcbc38",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/d8d245a01d3b65bc_Normal.png",
+      "guid": "dc249230180bbaa41b8f137671dd2f65",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/dc6630ad6a7604a6_Normal.png",
+      "guid": "ad8d1bfc33549c2408b986d357ee9632",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/de6da8e92fd65762_BaseColor.png",
+      "guid": "d28e4f8190afc944f82f5e8ecaa11fd5",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/dee48aa36e4439d0_Emission.jpg",
+      "guid": "eb10eaba764075b459caad38ae3720dd",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/e3f502e257c27e76_BaseColor.jpg",
+      "guid": "b4c0ffc912de2e445945a4af68d78662",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/e48efa974cdea19e_BaseColor.jpg",
+      "guid": "57928468affe1bf47a4587e95f5cec1d",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/e6e3229e2e96ea46_Normal.png",
+      "guid": "b4737427eb96deb45a2e2b737658c4e7",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/e8058a232c44d317_BaseColor.jpg",
+      "guid": "5cea5e0cd3602bb498b611db1654caa9",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/ecf290bb29ac0a5e_Normal.jpg",
+      "guid": "6017cb095ab44c64c829ffee05cf2184",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/f492021ac55aa348_BaseColor.png",
+      "guid": "34d435203ab437d4ea7572bb7869efae",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/f5be0c41454f6590_Normal.jpg",
+      "guid": "c78544db6c7aee74d9fd1aa3006c46b1",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/f679adbb66d3361d_Normal.jpg",
+      "guid": "0cca50322c0552a438ab60b3a6387929",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/fc08f8692f8b5c4c_Normal.jpg",
+      "guid": "035333804c01e4a4aa5c8f91d6c32e69",
+      "format": "BC5",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M000_Grey_Troweled_Concrete_MetallicSmoothness.png",
+      "guid": "d4c9a5ceeb271c14d8fc1be3a5754207",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M001_Dark_Rough_Concrete_MetallicSmoothness.png",
+      "guid": "bfb943fe0e1269344a99490fed3ae738",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M013_Realistic_White_Plaster_Wall_MetallicSmoothness.png",
+      "guid": "adf02d65329c897498a74277a0db3632",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M014_Marble_Tiles_Flooring_MetallicSmoothness.png",
+      "guid": "e11ee04eba7d1c14ea5f5a4ad2379949",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M015_Wall_decor_panels_001_MetallicSmoothness.png",
+      "guid": "36d94bc60f579a44fbd1550257e8f48e",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M016_Colored_Foam_Pads_MetallicSmoothness.png",
+      "guid": "1daa2671cf16f204a97d90cbd9573b4f",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M017_Vintage_Rustic_Mexican_Ceramic_Floor_89_BaseColorAlpha.png",
+      "guid": "41110a1261b650240baab1575b575667",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M017_Vintage_Rustic_Mexican_Ceramic_Floor_89_MetallicSmoothness.png",
+      "guid": "a9feddca0864873489522c2de5800988",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M022_vines_Texture_017_MetallicSmoothness.png",
+      "guid": "d40746b9d0477e04cabe12d1187ea2f2",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M025_AR3DMat_Carrara_Marble_Tiles_MetallicSmoothness.png",
+      "guid": "1a25527fc318d934299e2aa475ac169c",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M076_Metal_panel_MetallicSmoothness.png",
+      "guid": "d8cea5cf157c7d64cb3ff1d11ebb9303",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M083_Sci-Fi_Tech_Grid_Panels_MetallicSmoothness.png",
+      "guid": "09c102699a21b9648a7eec552924b417",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M084_Metal_plate_MetallicSmoothness.png",
+      "guid": "b817b177221cf7541ae680bae63b6435",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M085_Sci-fi_Cables_MetallicSmoothness.png",
+      "guid": "9f67b458ae33ced4db5fcc1999fe16e2",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M086_Stucco_wall_MetallicSmoothness.png",
+      "guid": "88fdc5b15512db84da6455905311fb38",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M091_Black_Painted_Wood_MetallicSmoothness.png",
+      "guid": "a31d5067d8fe94c49b3b57a8e03171eb",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M092_Hemnes_Wood_Black_MetallicSmoothness.png",
+      "guid": "9940385a2e7793f41b2c63eb3d732549",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M094_tripo_mat_075bce52_003_MetallicSmoothness.png",
+      "guid": "132c231623d4a014b829cd4023a0fe2e",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M097_tripo_mat_6187e4a4_006_MetallicSmoothness.png",
+      "guid": "de4fbd85f4d74bd44bdbc61457150f96",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M116_tripo_mat_795d782f_MetallicSmoothness.png",
+      "guid": "7e2ef2546677e2e458bc0f62357a4bc6",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M130_Ceiling_Tiles_MetallicSmoothness.png",
+      "guid": "bba70a319dfe170439fc1cd33bf11fe7",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M131_wood_floor_MetallicSmoothness.png",
+      "guid": "cee278e00b0a7b54686813622342a89b",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M135_Simple_wood_MetallicSmoothness.png",
+      "guid": "c961ecfc22509454bbdadeb71e2d8890",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M136_Wood_002_MetallicSmoothness.png",
+      "guid": "4ee62b0f35b32db4cb40105f2718b8eb",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M137_Wood_001_MetallicSmoothness.png",
+      "guid": "ecf018d1038534445a09dcd9a410554f",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M148_Wood_MetallicSmoothness.png",
+      "guid": "e7da3f430c35f8a4197415ccf8a19661",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M151_Plastic_cable_MetallicSmoothness.png",
+      "guid": "373bd275dacfe0d4280ed48dbdf71de0",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M170_palermo_002_MetallicSmoothness.png",
+      "guid": "3d75c4bc35508f742b657df8431970e8",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M171_Stainless_Steel_005_MetallicSmoothness.png",
+      "guid": "99b0be39e56a52b4480307aa0188b01d",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M174_palermo_004_MetallicSmoothness.png",
+      "guid": "0e59f98af59de034db48c9db118ed9db",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M199_Metal_Cromo_006_MetallicSmoothness.png",
+      "guid": "f66e672b8c01a2741be88992c624b490",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M201_Desk_wood_MetallicSmoothness.png",
+      "guid": "8eb1ff3faa67ea2439cce856ac644af5",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M202_Frozen_white_metal_MetallicSmoothness.png",
+      "guid": "42c791b77d8b82c4ba98e967cfd3a0ed",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M203_Wood_material_BaseColorAlpha.png",
+      "guid": "4513bd3fa00ce8b4e899023e463592c1",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M203_Wood_material_MetallicSmoothness.png",
+      "guid": "80efce0fd7022dd4ca956f797b190c16",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M204_Metallic_black_MetallicSmoothness.png",
+      "guid": "ab5936541867b1544a59d18e922098b8",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M207_Wood_material_001_BaseColorAlpha.png",
+      "guid": "f1c75bb4aa09e334ba8d8abe5e8e685e",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M207_Wood_material_001_MetallicSmoothness.png",
+      "guid": "8a7d80f881755414b8a7939385c33710",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M209_Wood_material_002_BaseColorAlpha.png",
+      "guid": "5e5d47d421e6001498d2e13698201c8a",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M209_Wood_material_002_MetallicSmoothness.png",
+      "guid": "dcb8057969f59e14d93a7c5cee92031f",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M211_Wood_material_003_BaseColorAlpha.png",
+      "guid": "2a48d13a2f3696d4094bfb214470b19b",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M211_Wood_material_003_MetallicSmoothness.png",
+      "guid": "63ad7908b54597e42af0901a3acdc448",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/M237_tripo_mat_6e1f08b9_MetallicSmoothness.png",
+      "guid": "30e33e0db31420e4cb991919b3287d8e",
+      "format": "BC7",
+      "maxSize": 8192
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/R_07_Textures/2048_Steel_Diffuse_jpg_1eb9086070.jpg",
+      "guid": "24b4b84b2be4b884c921a271099b4408",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/R_07_Textures/Acoustic_Ceiling_Tile_normal_6db3f4fbc7.jpg",
+      "guid": "dda169288d5e68d4e86d91800fbecf25",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/R_07_Textures/carpet_13_albedo_820db0fd98.jpg",
+      "guid": "bca4a4b0622d6bc4daeaed7262905e18",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/4.Sprite/Texture/R_07_Textures/carpet_13_normal_f506a1e667.jpg",
+      "guid": "99f49b3aeb9d2754b8edfc5c7df9555e",
+      "format": "BC5",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_copy.png",
+      "guid": "6f32ef91cb40afc4aaa897ac7acc5ba7",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_machinegun.png",
+      "guid": "d2af5de8321b14ea895549be3e2482e2",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_pistol.png",
+      "guid": "3b5072ab3d04743bdb476633780e7d85",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_rocketlauncher.png",
+      "guid": "6b200ab23c0194d55bddae14c53d3069",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_shotgun.png",
+      "guid": "df27af4ba9765418b996241565443e0f",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_triangle.png",
+      "guid": "2e420d5e686954d1984835153e7faa8b",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/icon_x.png",
+      "guid": "147568b8dabcc45fbafca989d3e2b494",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/reticle_circularcross.png",
+      "guid": "c957e948b81d34cc38ace0a4d898348f",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/reticle_cross.png",
+      "guid": "ce642e64c261f4108a7153fa8cda2397",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/reticle_opencircular.png",
+      "guid": "f1ed4489e26334a3584296723c7c5b9b",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/reticle_tcross.png",
+      "guid": "3b472d971cf4e42188683834e6f05a4b",
+      "format": "BC7",
+      "maxSize": 2048
+    },
+    {
+      "path": "Assets/Blocks/Common/Content/textures/thumbnail.png",
+      "guid": "9d64ab3d9efdd44d3b35a50db335af8c",
+      "format": "BC7",
+      "maxSize": 1024
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+      "guid": "dffef66376be4fa480fb02b19edbe903",
+      "format": "BC7",
+      "maxSize": 512
+    }
+  ]
+}

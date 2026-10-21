@@ -65,10 +65,13 @@
 
 문은 CSV PREFAB → COMPONENT에 Door와 Interactable이 선언되고 클릭 가능한 Collider가 있어야 자동 구성됩니다. 생성된 미리보기 방의 문을 좌클릭하면 열고 닫습니다. 문 개폐 테스트는 다음 방 준비와 독립적이며, 개발자 도구에서 이미 개방된 방만 허가합니다. 다음 방으로 실제 이동하기 전에는 클리어 버튼으로 다음 방 생성·연결을 완료해야 합니다. 다음 방 준비 실패는 클리어를 확정하지 않지만 현재 방의 문 개폐 테스트는 계속할 수 있습니다.
 
-입력은 PlayerInteractionDriver의 공통 명령으로 들어갑니다. WorldDoorView는 DoorInteractionController의 완료 이벤트를 받아 문과 Collider를 원래 프리팹 피벗으로 함께 회전합니다. 기본 개방 각도는 InteractionPresentation 설정의 정수 90000 밀리도(90도)이며 즉시 회전하는 기본 연출입니다. CSV·원본 프리팹은 자동 수정하지 않습니다.
+입력은 PlayerInteractionDriver의 공통 명령으로 들어갑니다. WorldDoorView는 DoorInteractionController의 완료 이벤트를 받아 문과 Collider를 프리팹의 DoorHinge 기준점을 지나는 월드 Y축으로 함께 회전합니다. 모델 임포트 축을 부모 좌표계로 변환하며, [회전축·Closeup 수정 안내](InteractionPoseFix.md)를 참고합니다. 기본 개방 각도는 InteractionPresentation 설정의 정수 90000 밀리도(90도)이며 즉시 회전하는 기본 연출입니다. CSV·원본 프리팹은 자동 수정하지 않습니다.
 
 문 판정은 IRoomDoorService를 명시적으로 주입합니다. 실제 입장은 GameEntryService → RoomPermissionService → 온라인 Protobuf API 또는 기존 로컬 정답 판정으로 연결합니다. Room Clear Test는 Editor 폴더의 DeveloperRoomDoorService에서 개발자 개방 상태만 확인하며 서버 요청·실제 정답 상태를 변경하지 않습니다. 허가된 문의 이후 열기·닫기는 로컬에서 처리합니다. 미리보기를 종료하면 문 상태와 생성물도 정리됩니다.
 
 ### 문 조작 검증 결과 — 2026-10-21
 
 순수 문 상태·허가·중복 요청·취소·종료 검사 18개를 포함한 공통 회귀 검사 295개를 통과했습니다. Stable 주소 미설정과 등록 완료 상태를 구분하여 검사하며 실제 접속 설정은 변경하지 않았습니다. Unity Play의 미리보기 검사 48개를 통과했고 실제 A/B R01 프리팹에서 같은 플레이어 명령으로 문 열기·회전·닫기를 확인했습니다. B는 R02 생성·연결도 성공했습니다. A는 R02의 R2A_LOCK 누락으로 다음 방 생성이 계속 차단되지만 R01 문 개폐 테스트는 가능합니다. CSV와 원본 프리팹은 변경하지 않았습니다. 온라인 문 API는 기존 Facade에 연결했으며 이번 검사는 실제 온라인 세션에서의 문 허가 호출 검증과 구분합니다.
+
+
+최신 문 개폐는 [왼쪽 경첩 안내](DoorHingeFix.md)를 따릅니다. Door 프리팹에는 DoorHinge가 하나 필요하며 방 연결용 DoorPoint와 구분합니다. 새 미리보기 검사는 경첩 고정·중심 이동·위치 복원을 포함한 54개입니다.

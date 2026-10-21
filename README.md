@@ -285,3 +285,18 @@ Tools/Game/Room Clear Test는 Ingame 직접 Play 전용입니다. 방 외형만 
 ### 개발자 방 미리보기의 문 조작
 
 Room Clear Test의 플레이어도 CSV Door를 좌클릭하여 열고 닫습니다. 생성된 방의 문 개폐 테스트와 다음 방 생성은 분리합니다. 다음 방으로 이동하기 전에는 클리어 버튼으로 준비·연결을 완료해야 합니다. 개발자 문 판정은 에디터 전용 IRoomDoorService 어댑터로 분리하며 온라인 문은 기존 GameEntryService의 Protobuf 판정을 사용합니다. 공통 문 상태·회전과 정답 Closeup 입력을 분리합니다. 사용 순서는 [개발자 방 테스트 안내](Docs/DeveloperRoomClear.md)를 참고하십시오.
+
+
+### Stable 빌드 텍스처 압축
+
+최근 Stable 빌드에 포함된 일반 텍스처 170개에 BC7, 노멀맵 94개에 BC5를 적용했습니다. 원본 이미지·실제 해상도·게임 참조를 유지하고 Standalone 플랫폼의 압축 설정만 변경했습니다. Windows64 Stable 재빌드의 BuildReport 용량은 4.56GB에서 2.16GB로 약 52.6% 감소했습니다. UI 스프라이트 5개와 EXR 원본 2개는 보존했습니다. 적용 기준·의도·확인 결과·기획/아트 적용·테스트·복구는 [텍스처 압축 안내](Docs/TextureCompression.md), 파일별 변경은 [적용 목록](Docs/TextureCompressionApplied.json)을 참고합니다.
+
+
+### 문 월드 Y축·관찰자 기준 Closeup 수정
+
+임포트 모델의 로컬 Y축 대신 월드 Y축으로 문을 열고 닫습니다. Closeup은 클릭 당시 관찰자의 수평 방향과 CSV CamOffset을 조합해 보던 면을 유지하고, 미리보기 UI의 종횡비를 맞췄습니다. 큐브·실린더는 PlayerPresentation의 명시적 URP 머티리얼 참조를 사용합니다. 실제 A/B 문 높이 유지·자물쇠 앞면을 확인했고, 표현 검사 22개·공통 회귀 295개와 Windows Stable 빌드를 통과했습니다. 원인·코드 연결·정면 기준·표본 화면·새 빌드와 테스트 순서는 [문 회전과 Closeup 수정](Docs/InteractionPoseFix.md)을 참고합니다.
+
+
+### 왼쪽 경첩 기준 문 개폐
+
+문 프리팹의 DoorHinge 기준점을 고정하고 문짝 위치와 회전을 함께 계산합니다. 공통 Door와 R01_Door에 방 안쪽 기준 왼쪽 경첩을 연결했습니다. 실제 A/B 문에서 경첩 고정·중심 이동·닫힌 위치 복원을 확인했고 표현 검사 22개·Play 미리보기 54개와 Stable 빌드를 통과했습니다. 프리팹 기준점과 CSV 연결, 테스트·새 빌드는 [왼쪽 경첩 개폐 안내](Docs/DoorHingeFix.md)를 참고합니다.

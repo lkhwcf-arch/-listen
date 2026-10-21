@@ -63,8 +63,7 @@ namespace EscapeGame.Player
                 foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
                 {
                     renderer.shadowCastingMode = ShadowCastingMode.Off; renderer.receiveShadows = false;
-                    if (prefab == null && GraphicsSettings.currentRenderPipeline != null && GraphicsSettings.currentRenderPipeline.defaultMaterial != null)
-                        renderer.sharedMaterial = GraphicsSettings.currentRenderPipeline.defaultMaterial;
+                    if (prefab == null) renderer.sharedMaterial = settings.PlaceholderMaterial;
                 }
                 var rig = root.AddComponent<FirstPersonPlayerRig>();
                 rig.Initialize(plan.Role, camera, visual);
