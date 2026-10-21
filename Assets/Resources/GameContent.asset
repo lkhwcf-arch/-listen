@@ -66,6 +66,8 @@ MonoBehaviour:
     prefab: {fileID: 4998116800349599745, guid: d6bb90f43938b8448adc9535ab8b0c41, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
     prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
+  - path: Assets/2.Model/Prefabs/R01/R01_Lock.prefab
+    prefab: {fileID: 2218156962867798031, guid: 5257b3ca563d4cc68b65fb7db92e8251, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Other.prefab
     prefab: {fileID: 4628255994314197374, guid: 565dc61aa2fed5a4e8f1645fa27d01ea, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Structure.prefab
@@ -116,6 +118,8 @@ MonoBehaviour:
     prefab: {fileID: 8492463631510908357, guid: e40165c74519419438ee777396aef2e4, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_Ceiling.prefab
     prefab: {fileID: 6757279924745895227, guid: 46be19f28aae4dbca03f6a951b05b54e, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_Lock.prefab
+    prefab: {fileID: 274254685632734451, guid: e662a103b9cd4c6c8cdea57ed76f58a4, type: 3}
   - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_A_Objects.prefab
     prefab: {fileID: 1936810152016759318, guid: 34e1bbe6c144c29488e69ea7a6272de0, type: 3}
   - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_B_Objects.prefab
@@ -124,6 +128,8 @@ MonoBehaviour:
     prefab: {fileID: 3256338777305252405, guid: 5bc7fe6601fb3734fb11eb13a776568d, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_A_ArrowHint.prefab
     prefab: {fileID: 7894645164500779977, guid: 21eaf95b1f089d34686875b913f0a245, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/R03_ArrowConsole.prefab
+    prefab: {fileID: 8401773392103338776, guid: bc0a72dd7a434cf7ac106d6719bda09a, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_LEDPanel.prefab
     prefab: {fileID: 7862065315645223818, guid: 4d46db4e02e6ea048a98defdf0728d6d, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_Other.prefab
@@ -142,6 +148,8 @@ MonoBehaviour:
     prefab: {fileID: 6084880904258550954, guid: 1d64a3b4e56cf334493e63328e6d3de5, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_LEDPanel.prefab
     prefab: {fileID: 2216245801197772290, guid: a2f55785e4ecdae41b4c4198156f5b75, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_Lock.prefab
+    prefab: {fileID: 4327817852194348297, guid: a0e887adb69b40289dc635f959717ff4, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Machine.prefab
     prefab: {fileID: 3554719554352467143, guid: 41c99a0921ba30e4dabf7e3c9ef94f31, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Other.prefab
@@ -162,6 +170,8 @@ MonoBehaviour:
     prefab: {fileID: 5612625600057070950, guid: 9987cfe60e4153c45942023985e05589, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_LED_Display.prefab
     prefab: {fileID: 3509274666561409854, guid: 74f78599120547d4199eff22ac84990e, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_Lock.prefab
+    prefab: {fileID: 5305653595229960714, guid: 773c0790cefd402ea54cee4bb7b06708, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_Math.prefab
     prefab: {fileID: 1437722453080450001, guid: ada3e9f69f2d4c74bbc7e1c62b70b1d5, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_Other.prefab
@@ -186,6 +196,8 @@ MonoBehaviour:
     prefab: {fileID: 4318979577017197899, guid: 4710b06d1dbc18d418cffbbc16101a56, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_Light.prefab
     prefab: {fileID: 8317576321920579666, guid: 6103b59c1858822418af6acbbd0affff, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_Lock.prefab
+    prefab: {fileID: 776484605923237193, guid: 1cdb59d7929f4aedbfaf1049a1a51b6c, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_Other.prefab
     prefab: {fileID: 1199560009649290690, guid: 3bd38cd0768c23248b12640943ae97f8, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_Surface.prefab
@@ -200,6 +212,10 @@ MonoBehaviour:
     prefab: {fileID: 1975627259476554360, guid: afe69dbcc79b58a45be13bbc14cdd510, type: 3}
   - path: Assets/2.Model/Prefabs/R06/SILENT_Room_06/Prefabs/SILENT_Room_06_B_Objects.prefab
     prefab: {fileID: 4128219014400972881, guid: 917739c6593bdfd49a34a48dbd2f7aa8, type: 3}
+  - path: Assets/2.Model/Prefabs/R07/R07B_Lock.prefab
+    prefab: {fileID: 4036608185140197341, guid: 39e6390d7455404da1d6feaaa39a0331, type: 3}
+  - path: Assets/2.Model/Prefabs/R07/R07_Lock.prefab
+    prefab: {fileID: 4036608185140197341, guid: ef8e9d2e4a684fe2b5c84782139899d3, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Other.prefab
     prefab: {fileID: 5893446212883437637, guid: d4ada379c7fa8684ead4ddd19684be6f, type: 3}
   - path: Assets/2.Model/Prefabs/R07/R07_Surface.prefab
