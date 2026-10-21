@@ -9,7 +9,7 @@
     "autoConnect": true
   },
   "stableBuild": {
-    "serverBaseUrl": "",
+    "serverBaseUrl": "http://3.107.80.28:3000",
     "autoConnect": true
   }
 }
