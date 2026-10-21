@@ -37,6 +37,7 @@
     <Compile Include="../../Assets/3.Script/Interaction/CloseupController.cs" />
     <Compile Include="../../Assets/3.Script/World/RoomLoadPlan.cs" Link="World/RoomLoadPlan.cs" />
     <Compile Include="../../Assets/3.Script/World/LocalRoomProgression.cs" Link="World/LocalRoomProgression.cs" />
+    <Compile Include="../../Assets/3.Script/World/SessionStartGate.cs" />
     <Compile Include="../../Assets/3.Script/World/GameEntryService.cs" Link="World/GameEntryService.cs" />
     <Compile Include="../../Assets/3.Script/Session/Contracts/*.cs" Link="Session/%(Filename)%(Extension)" />
     <Compile Include="../../Assets/3.Script/Common/Csv/*.cs" Link="Csv/%(Filename)%(Extension)" />

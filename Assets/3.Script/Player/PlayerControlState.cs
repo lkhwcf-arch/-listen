@@ -7,10 +7,13 @@ namespace EscapeGame.Player
     {
         private bool active, focused = true, paused, captured;
         private int uiBlocks;
+        private bool gameplayAllowed = true;
         public bool PointerCaptured => captured;
-        public bool CanCapture => active && focused && !paused && uiBlocks == 0;
+        public bool CanCapture => gameplayAllowed && active && focused && !paused && uiBlocks == 0;
         public bool GameplayEnabled => CanCapture && captured;
         public event Action Changed;
+        // 외부 시작 조건을 공통 조작 상태에 반영합니다. 통신 타입이나 세션을 참조하지 않습니다.
+        public void SetGameplayAllowed(bool value) { if (gameplayAllowed == value) return; gameplayAllowed = value; if (!value) captured = false; Changed?.Invoke(); }
         public void SetActive(bool value) { if (active == value) return; active = value; if (!value) captured = false; Changed?.Invoke(); }
         public void SetFocused(bool value) { if (focused == value) return; focused = value; if (!value) captured = false; Changed?.Invoke(); }
         public void SetPaused(bool value) { if (paused == value) return; paused = value; if (value) captured = false; Changed?.Invoke(); }

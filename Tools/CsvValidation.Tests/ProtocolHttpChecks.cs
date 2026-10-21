@@ -21,7 +21,12 @@ static class ProtocolHttpChecks
         using var sessionA=new SessionClient(factoryA,default,Diagnostic);using var sessionB=new SessionClient(factoryB,default,Diagnostic);
         using var entryA=new GameEntryService(sessionA,sessionA,()=>throw new Exception("온라인 검사에서 로컬 대체 금지"),validator,_=>Task.CompletedTask);
         using var entryB=new GameEntryService(sessionB,sessionB,()=>throw new Exception("온라인 검사에서 로컬 대체 금지"),validator,_=>Task.CompletedTask);
-        await entryA.EnterAsync(false,address,null,default);await entryB.EnterAsync(false,address,null,default);
+        using var entryTimeout = new CancellationTokenSource(10000);
+        var enteringA = entryA.EnterAsync(false,address,null,entryTimeout.Token);
+        while (!sessionA.State.IsJoined) await Task.Delay(10, entryTimeout.Token);
+        await entryB.EnterAsync(false,address,null,entryTimeout.Token);
+        await sessionA.QueryAsync(entryTimeout.Token);
+        await enteringA;
         Check(entryA.Data!=null&&entryB.Data!=null,"두 클라이언트 입장과 바이너리 CSV 수신");
         Check(entryA.Role=="A"&&entryB.Role=="B","생성 열거형 역할 변환");
         Check(entryA.Data.Source.Documents.Count==23,"CSV 테이블 Protobuf HTTP 왕복");

@@ -88,6 +88,30 @@ static class WorldChecks
             await lostOwner.EnterAsync(false, "http://test", null, default);
             Check(lostOwner.Data == null && lostOwnerGateway.Leaves == 1, "game-owner shutdown still cancels and rolls back entry");
         }
+        var waitingGateway = new FakeSession(source) { JoinParticipants = 1 };
+        int waitingLoads = 0;
+        using (var waitingEntry = new GameEntryService(waitingGateway, waitingGateway, () => source, validator,
+            _ => { waitingLoads++; return Task.CompletedTask; }))
+        {
+            var entering = waitingEntry.EnterAsync(false, "http://test", null, default);
+            Check(!entering.IsCompleted && waitingLoads == 0 && waitingEntry.IsBusy && waitingEntry.Data != null,
+                "한 명 접속은 데이터를 등록한 뒤 Join에서 대기합니다.");
+            waitingGateway.PublishState(ClientSessionPhase.Loading, 2);
+            await entering;
+            Check(waitingLoads == 1 && waitingEntry.Data != null && !waitingEntry.StartGate.CanPlay,
+                "두 명 접속 시 씬을 한 번 로드하고 양쪽 준비 전에는 조작을 잠급니다.");
+            waitingGateway.PublishState(ClientSessionPhase.Playing, 2);
+            Check(waitingEntry.StartGate.CanPlay, "두 참가자 준비 후 조작을 허용합니다.");
+        }
+        using (var waitingCancellation = new CancellationTokenSource())
+        {
+            var cancelledWait = new FakeSession(source) { JoinParticipants = 1 };
+            using var cancelledEntry = new GameEntryService(cancelledWait, cancelledWait, () => source, validator,
+                _ => throw new Exception("취소한 대기에서 씬 로드 금지"));
+            var entering = cancelledEntry.EnterAsync(false, "http://test", null, waitingCancellation.Token);
+            waitingCancellation.Cancel(); await entering;
+            Check(cancelledEntry.Data == null && cancelledWait.Leaves == 1, "Join 대기 취소는 참가 자리를 반환합니다.");
+        }
         var failedSpawnGateway = new FakeSession(source);
         using (var failedSpawn = new GameEntryService(failedSpawnGateway, failedSpawnGateway, () => source, validator,
             _ => throw new InvalidOperationException("test player initialization failure")))
@@ -104,18 +128,20 @@ static class WorldChecks
         private readonly CsvDataSet data;
         public int Joins, Leaves, Downloads;
         public bool FailsDownload;
+        public int JoinParticipants = 2;
         public FakeSession(CsvDataSet data) => this.data = data;
         public SessionInfo State { get; private set; } = new SessionInfo(null,null,null,null,0,false);
         public bool IsBusy => false;
         public string ServerBaseUrl => "http://test";
-        public event Action<SessionInfo> StateChanged { add {} remove {} }
+        public event Action<SessionInfo> StateChanged;
+        public void PublishState(ClientSessionPhase phase, int participants) { State = new SessionInfo("s","p","B",phase,participants,false); StateChanged?.Invoke(State); }
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged { add {} remove {} }
         public event Action<SessionFailureCode> BackgroundFailed { add {} remove {} }
         public event Action<SessionFailureCode> Disconnected { add {} remove {} }
         public event Action<IReadOnlyList<int>> RoomsChanged;
         public void PublishRooms(int[] ids) => RoomsChanged?.Invoke(Array.AsReadOnly(ids));
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token)
-        { Joins++; State = new SessionInfo("s","p","B",ClientSessionPhase.Waiting,1,false); return Ok(); }
+        { Joins++; PublishState(JoinParticipants < 2 ? ClientSessionPhase.Waiting : ClientSessionPhase.Loading, JoinParticipants); return Ok(); }
         public Task<SessionCommandResult> LeaveAsync(CancellationToken token)
         { Leaves++; State = new SessionInfo(null,null,null,null,0,false); return Ok(); }
         public Task<CsvDataSet> DownloadDataAsync(CancellationToken token)
@@ -124,7 +150,7 @@ static class WorldChecks
         public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => Ok();
         public Task<SessionCommandResult> ReportSceneLoadedAsync(CancellationToken token) => Ok();
         public Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int id, string[] answers, CancellationToken token) => Task.FromResult(PuzzleSubmissionResult.FromDecision(false, false));
-        public void Disconnect(SessionFailureCode reason) { }
+        public void Disconnect(SessionFailureCode reason) { State = new SessionInfo("s","p","B",null,0,false,SessionConnectionStatus.Disconnected,reason); StateChanged?.Invoke(State); }
         private Task<SessionCommandResult> Ok() => Task.FromResult(SessionCommandResult.Completed());
     }
 }

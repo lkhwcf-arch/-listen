@@ -65,6 +65,10 @@ namespace EscapeGame.World
                 playerSpawn = spawnHost.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
                 playerSpawn.Initialize(Service.Data, Service.Role, firstRoom, Service);
                 if (!PlayerReady) throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
+                var interactionSettings = Resources.Load<EscapeGame.Interaction.InteractionPresentationSettings>("InteractionPresentation");
+                spawnHost.AddComponent<SessionGameplayDriver>().Initialize(Service.StartGate,
+                    playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerPointerDriver>(),
+                    playerSpawn.Player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>(), interactionSettings.Font);
             }
             catch (Exception error)
             {

@@ -38,7 +38,7 @@ namespace EscapeGame.Editor
 
         private void OnGUI()
         {
-            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 다음 방 입구를 현재 방 출구에 맞춰 연결합니다. 서버·실제 클리어·내부 앵커 스폰은 변경하지 않습니다.", MessageType.Info);
+            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 다음 방 입구를 현재 방 출구에 맞춰 연결합니다. 방과 내부 오브젝트를 로컬 CSV로 생성합니다. 서버의 실제 클리어 상태는 변경하지 않습니다.", MessageType.Info);
             using (new EditorGUI.DisabledScope(session != null))
                 roleIndex = EditorGUILayout.Popup("미리보기 역할", roleIndex, new[] { "A", "B" });
             using (new EditorGUI.DisabledScope(!Application.isPlaying || SceneManager.GetActiveScene().name != "Ingame" || session != null))
@@ -51,7 +51,7 @@ namespace EscapeGame.Editor
                 if (GUILayout.Button("플레이어 생성 (카메라 + 손·무전기 임시 모델)")) Execute(() =>
                 {
                     session.SpawnPlayer();
-                    message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 시점·좌클릭 상호작용은 후속 단계입니다.";
+                    message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 마우스로 시점을 회전할 수 있습니다. 정답 UI는 Join의 클라이언트 테스트에서 확인하세요.";
                 });
             scroll = EditorGUILayout.BeginScrollView(scroll);
             var current = session;
@@ -91,7 +91,7 @@ namespace EscapeGame.Editor
             catch { next.Dispose(); throw; }
             session = next;
             session.Progression.Changed += Repaint;
-            message = $"역할 {session.Role} / 첫 방 준비. 기존 씬의 방은 재사용합니다. CSV 경고 {report.WarningCount}개.";
+            message = $"역할 {session.Role} / 첫 방과 CSV 오브젝트 준비. 원본 씬의 방은 복제하여 사용합니다. CSV 경고 {report.WarningCount}개.";
         }
 
         private void Execute(Action action)

@@ -132,7 +132,7 @@ static class ConnectionConfigurationChecks
         public event Action<SessionFailureCode> Disconnected { add { } remove { } }
         public event Action<IReadOnlyList<int>> RoomsChanged { add { } remove { } }
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token)
-        { Joins++; LastAddress = address; State = new SessionInfo("s", "p", "B", ClientSessionPhase.Waiting, 1, false); return Task.FromResult(SessionCommandResult.Completed()); }
+        { Joins++; LastAddress = address; State = new SessionInfo("s", "p", "B", ClientSessionPhase.Loading, 2, false); return Task.FromResult(SessionCommandResult.Completed()); }
         public Task<SessionCommandResult> LeaveAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
         public Task<SessionCommandResult> QueryAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
         public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());

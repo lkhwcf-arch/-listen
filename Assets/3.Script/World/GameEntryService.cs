@@ -21,6 +21,8 @@ namespace EscapeGame.World
         private readonly CancellationTokenSource lifetime;
         private readonly CancellationToken ownerToken;
         private bool disposed;
+        private bool waitingForParticipants;
+        public SessionStartGate StartGate { get; }
         private LocalRoomProgression local;
         private readonly RoomPermissionService roomPermissions;
         public RoomPermissionService RoomPermissions => roomPermissions;
@@ -44,6 +46,8 @@ namespace EscapeGame.World
             content.RoomsChanged += OnRoomsChanged;
             session.StateChanged += OnSessionStateChanged;
             roomPermissions = new RoomPermissionService(RequestRoomAsync);
+            StartGate = new SessionStartGate(session);
+            StartGate.Changed += OnStartGateChanged;
         }
         public async Task EnterAsync(bool useLocal, string address, string testRole, CancellationToken token)
         {
@@ -52,6 +56,7 @@ namespace EscapeGame.World
             using var request = CancellationTokenSource.CreateLinkedTokenSource(token, ownerToken);
             token = request.Token;
             roomPermissions.Reset();
+            StartGate.SetLocalMode(useLocal);
             Data = null; local = null; pendingRooms = null;
             UnlockedRoomIds = Array.Empty<int>();
             IsBusy = true; Message = useLocal ? "로컬 CSV 검증 중" : "서버 접속 및 데이터 동기화 중"; Changed?.Invoke();
@@ -83,6 +88,13 @@ namespace EscapeGame.World
                 Data = data; Role = role; IsLocal = useLocal;
                 local = useLocal ? new LocalRoomProgression(data) : null;
                 UnlockedRoomIds = useLocal ? local.UnlockedRoomIds : pendingRooms ?? Array.AsReadOnly(new[] { plan.First.Id });
+                if (!useLocal)
+                {
+                    waitingForParticipants = true;
+                    Message = StartGate.Message; Changed?.Invoke();
+                    try { await StartGate.WaitForParticipantsAsync(token); }
+                    finally { waitingForParticipants = false; }
+                }
                 Message = "데이터 등록 완료. Ingame 로딩 중"; Changed?.Invoke();
                 // 커밋 경계: 로드 시작 전까지 화면 요청을 취소할 수 있습니다.
                 // 씬 전환이 시작되면 지속 게임 수명으로 넘겨 Join 화면 제거가 입장을 취소하지 않게 합니다.
@@ -149,6 +161,11 @@ namespace EscapeGame.World
             try { return RoomAnswerResult.Decision(await SubmitRoomAnswerAsync(roomNo, answers, request.Token)); }
             catch (EscapeGame.Session.SessionResultException error) { return RoomAnswerResult.Failed(error.Code); }
         }
+        private void OnStartGateChanged()
+        {
+            if (!waitingForParticipants) return;
+            Message = StartGate.Message; Changed?.Invoke();
+        }
         private void OnSessionStateChanged(SessionInfo state)
         { if (!IsLocal && !state.IsJoined) roomPermissions.Reset(); }
         public void Dispose()
@@ -159,6 +176,8 @@ namespace EscapeGame.World
             content.RoomsChanged -= OnRoomsChanged;
             session.StateChanged -= OnSessionStateChanged;
             roomPermissions.Reset();
+            StartGate.Changed -= OnStartGateChanged;
+            StartGate.Dispose();
             lifetime.Dispose();
         }
     }

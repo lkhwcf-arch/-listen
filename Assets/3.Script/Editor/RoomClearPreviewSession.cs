@@ -11,14 +11,15 @@ using Object = UnityEngine.Object;
 
 namespace EscapeGame.Editor
 {
-    // 에디터 미리보기의 생성물만 소유합니다. 기존 씬 모델은 빌려 쓰고 제거하지 않습니다.
+    // 원본 씬의 방은 숨겨 보존하고, CSV를 주입한 복제본과 플레이어만 소유합니다.
     public sealed class RoomClearPreviewSession : IDisposable
     {
         private readonly GameContentAssets assets;
         private readonly RoomLoadPlan plan;
         private readonly Scene scene;
         private readonly Dictionary<int, GameObject> previews = new Dictionary<int, GameObject>();
-        private readonly Dictionary<GameObject, Pose> borrowedPoses = new Dictionary<GameObject, Pose>();
+        private readonly Dictionary<int, (GameObject source, bool active)> hiddenTemplates = new Dictionary<int, (GameObject, bool)>();
+        private readonly int[] externallyManagedPrefabIds;
         private readonly CsvGameData data;
         private EscapeGame.Player.FirstPersonPlayerRig player;
         private GameObject ownedRoot;
@@ -28,27 +29,42 @@ namespace EscapeGame.Editor
 
         public RoomClearPreviewSession(GameContentAssets assets, CsvGameData data, string role, Scene scene)
         {
-            if (!Application.isEditor || !Application.isPlaying || scene.name != "Ingame")
+            if (!Application.isEditor || !Application.isPlaying || SceneManager.GetActiveScene().name != "Ingame" || !scene.IsValid() || !scene.isLoaded)
                 throw new InvalidOperationException("Ingame 씬이 활성화된 Play 모드에서 실행하세요.");
             this.assets = assets ?? throw new ArgumentNullException(nameof(assets));
             this.scene = scene;
             this.data = data;
             plan = new RoomLoadPlan(data, role);
             Progression = new DeveloperRoomProgression(plan);
+            var settings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation")
+                ?? throw new InvalidOperationException("PlayerPresentation 에셋이 필요합니다.");
+            externallyManagedPrefabIds = new[] { settings.SpawnPrefabId };
         }
 
-        public void Start() => EnsureRoom(Progression.First);
+        public void Start()
+        {
+            var flow = Object.FindFirstObjectByType<GameFlowBootstrapper>();
+            if (flow != null && flow.Service != null && flow.Service.Data != null)
+                throw new InvalidOperationException("실제 입장 세션과 미리보기를 함께 실행할 수 없습니다. Play를 종료하고 Ingame 씬에서 직접 Play하세요.");
+            EnsureRoom(Progression.First);
+        }
         public bool HasPlayer => player != null;
         public void SpawnPlayer()
         {
             ValidateLifetime();
             if (player != null) return;
-            var settings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation")
-                ?? throw new InvalidOperationException("PlayerPresentation 에셋이 필요합니다.");
-            var spawn = new EscapeGame.Player.PlayerSpawnPlan(data, Role, settings.SpawnPrefabId, settings.CharacterConfigId);
             var room = FindPreview(Progression.First);
             if (room == null) throw new InvalidOperationException("첫 방 미리보기가 없습니다.");
-            player = EscapeGame.Player.LocalPlayerFactory.Spawn(spawn, room.transform, settings);
+            var host = new GameObject("미리보기 플레이어 생성기");
+            SceneManager.MoveGameObjectToScene(host, scene);
+            host.transform.SetParent(ownedRoot.transform, false);
+            try
+            {
+                var driver = host.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
+                driver.Initialize(data, Role, room.GetComponent<RoomSceneView>());
+                player = driver.Player;
+            }
+            catch { Object.DestroyImmediate(host); throw; }
         }
         public GameObject FindPreview(RoomData room) => previews.TryGetValue(room.Id, out var value) ? value : null;
 
@@ -70,21 +86,18 @@ namespace EscapeGame.Editor
             var exit = RoomConnectionAlignment.FindExit(previous.transform, room.RoomNo);
             bool wasRegistered = FindPreview(next) != null;
             var candidate = EnsureRoom(next);
-            bool owned = ownedRoot != null && candidate.transform.IsChildOf(ownedRoot.transform);
             var original = new Pose(candidate.transform.position, candidate.transform.rotation);
             try
             {
                 var entry = RoomConnectionAlignment.FindEntry(candidate.transform, next.RoomNo);
                 RoomConnectionAlignment.Align(candidate.transform, entry, exit);
-                if (!owned && !borrowedPoses.ContainsKey(candidate)) borrowedPoses.Add(candidate, original);
             }
             catch
             {
                 candidate.transform.SetPositionAndRotation(original.position, original.rotation);
                 if (!wasRegistered)
                 {
-                    previews.Remove(next.Id);
-                    if (owned) Object.DestroyImmediate(candidate);
+                    ReleaseRoom(next.Id);
                 }
                 throw;
             }
@@ -95,25 +108,53 @@ namespace EscapeGame.Editor
             ValidateLifetime();
             if (FindPreview(row) != null) return FindPreview(row);
             var existing = Object.FindObjectsByType<RoomSceneView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-                .Where(view => view.gameObject.scene == scene && view.RoomNo == row.RoomNo).ToArray();
+                .Where(view => view.gameObject.scene == scene && view.RoomNo == row.RoomNo &&
+                    (ownedRoot == null || !view.transform.IsChildOf(ownedRoot.transform))).ToArray();
             if (existing.Length > 1) throw new InvalidOperationException("같은 방 번호의 RoomSceneView가 여러 개 있습니다: " + row.RoomNo);
-            if (existing.Length == 1)
-            {
-                previews[row.Id] = existing[0].gameObject;
-                return existing[0].gameObject;
-            }
-            string path = plan.PrefabPath(row.RoomPrefabId);
-            var prefab = assets.ResolvePrefab(path);
+            if (existing.Length == 1 && existing[0].IsLoaded)
+                throw new InvalidOperationException("게임 로더가 사용 중인 방입니다. Ingame 씬에서 직접 Play하고 미리보기를 시작하세요.");
             if (ownedRoot == null)
             {
                 ownedRoot = new GameObject("[Editor] Room Clear Preview") { hideFlags = HideFlags.DontSave };
                 SceneManager.MoveGameObjectToScene(ownedRoot, scene);
             }
-            // 방 외형만 생성합니다. RoomSceneView.Load와 내부 CSV 앵커 스폰은 호출하지 않습니다.
-            var instance = Object.Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, ownedRoot.transform);
-            instance.name = $"R{row.RoomNo:00}_{Role}_Preview";
-            previews[row.Id] = instance;
-            return instance;
+            GameObject template = existing.Length == 1 ? existing[0].gameObject : assets.ResolvePrefab(plan.PrefabPath(row.RoomPrefabId));
+            GameObject instance = null;
+            if (existing.Length == 1)
+            {
+                hiddenTemplates.Add(row.Id, (template, template.activeSelf));
+                template.SetActive(false);
+            }
+            try
+            {
+                instance = Object.Instantiate(template, template.transform.position, template.transform.rotation, ownedRoot.transform);
+                instance.name = $"R{row.RoomNo:00}_{Role}_Preview";
+                var view = instance.GetComponent<RoomSceneView>();
+                if (view == null) view = instance.AddComponent<RoomSceneView>();
+                if (existing.Length == 0) view.Configure(row.RoomNo);
+                // 실제 게임 로더를 재사용하여 역할별 CSV 선택·앵커 배치·기능 주입을 동일하게 처리합니다.
+                view.Load(row, plan, data, assets, externallyManagedPrefabIds);
+                previews.Add(row.Id, instance);
+                return instance;
+            }
+            catch
+            {
+                if (instance != null) Object.DestroyImmediate(instance);
+                RestoreTemplate(row.Id);
+                throw;
+            }
+        }
+        private void RestoreTemplate(int id)
+        {
+            if (!hiddenTemplates.TryGetValue(id, out var original)) return;
+            if (original.source != null) original.source.SetActive(original.active);
+            hiddenTemplates.Remove(id);
+        }
+        private void ReleaseRoom(int id)
+        {
+            if (previews.TryGetValue(id, out var instance) && instance != null) Object.DestroyImmediate(instance);
+            previews.Remove(id);
+            RestoreTemplate(id);
         }
 
         private void ValidateLifetime()
@@ -133,10 +174,8 @@ namespace EscapeGame.Editor
                 Object.DestroyImmediate(player.gameObject);
                 player = null;
             }
-            foreach (var entry in borrowedPoses)
-                if (entry.Key != null) entry.Key.transform.SetPositionAndRotation(entry.Value.position, entry.Value.rotation);
-            borrowedPoses.Clear();
             if (ownedRoot != null) Object.DestroyImmediate(ownedRoot);
+            foreach (int id in hiddenTemplates.Keys.ToArray()) RestoreTemplate(id);
             previews.Clear();
         }
     }

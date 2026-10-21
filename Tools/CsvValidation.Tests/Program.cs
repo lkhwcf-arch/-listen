@@ -2,15 +2,23 @@ using EscapeGame.Data.Csv;
 using EscapeGame.Data.CsvValidation;
 using EscapeGame.Data.CsvValidation.Contracts;
 
+if (args.Length == 1 && args[0] == "--session-start") { await SessionStartChecks.Run(); return; }
 if (args.Length == 3 && args[0] == "--http") { await ProtocolHttpChecks.Run(args[1], args[2]); return; }
-if (args.Length == 3 && args[0] == "--answers")
+if (args.Length == 3 && (args[0] == "--answers" || args[0] == "--entry"))
 {
     var sources = Directory.GetFiles(Path.GetFullPath(args[1]), "*.csv").ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
     string rules = File.ReadAllText(Path.Combine(Path.GetFullPath(args[2]), "Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml"));
     var errors = new TestValidator(rules).Validate(sources).Where(issue => issue.Severity == CsvValidationSeverity.Error).ToArray();
     if (errors.Length != 0) throw new Exception(string.Join("\n", errors.Select(issue=>issue.ToString())));
     Console.WriteLine("정답 입력 분리 검사 데이터: " + Path.GetFullPath(args[1]));
-    await PuzzleAnswerChecks.Run(sources, rules); return;
+    if (args[0] == "--entry")
+    {
+        await SessionStartChecks.Run();
+        await WorldChecks.Run(sources, rules);
+        await ConnectionConfigurationChecks.Run(Path.GetFullPath(args[2]), sources, rules);
+    }
+    else await PuzzleAnswerChecks.Run(sources, rules);
+    return;
 }
 
 string root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
