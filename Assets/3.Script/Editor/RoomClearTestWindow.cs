@@ -51,7 +51,7 @@ namespace EscapeGame.Editor
                 if (GUILayout.Button("플레이어 생성 (카메라 + 손·무전기 임시 모델)")) Execute(() =>
                 {
                     session.SpawnPlayer();
-                    message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 마우스로 시점을 회전할 수 있습니다. 정답 UI는 Join의 클라이언트 테스트에서 확인하세요.";
+                    message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 마우스로 시점을 회전할 수 있습니다. 생성된 방의 문은 좌클릭으로 열고 닫습니다. 다음 방 생성은 이 방 클리어 버튼을 사용하세요. 정답 UI는 Join의 클라이언트 테스트에서 확인하세요.";
                 });
             scroll = EditorGUILayout.BeginScrollView(scroll);
             var current = session;

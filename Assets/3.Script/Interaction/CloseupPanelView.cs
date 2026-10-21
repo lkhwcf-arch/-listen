@@ -48,7 +48,8 @@ namespace EscapeGame.Interaction
         public void Show(int roomNo) { title.text = roomNo + "번 방 · 조작 화면"; hint.text = ""; overlay.SetActive(true); }
         public void Hide() { Preview.texture = null; notice.text = ""; overlay.SetActive(false); }
         public void SetNotice(string message) => notice.text = message;
-        public void SetHint(bool available) => hint.text = available ? "좌클릭으로 살펴보기" : "";
+        public void SetHint(bool available) => SetHint(available ? "좌클릭으로 살펴보기" : "");
+        public void SetHint(string message) => hint.text = message;
         public void SetActive(bool active) => root.SetActive(active);
         public void Dispose()
         {

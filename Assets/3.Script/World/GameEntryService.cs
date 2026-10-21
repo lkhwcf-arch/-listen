@@ -11,7 +11,7 @@ using EscapeGame.Session.Contracts;
 namespace EscapeGame.World
 {
     // 데이터 소스 선택과 등록을 조정합니다. 씬 전환은 Unity 조립 지점이 주입합니다.
-    public sealed class GameEntryService : IRoomAnswerService, IDisposable
+    public sealed class GameEntryService : IRoomAnswerService, IRoomDoorService, IDisposable
     {
         private readonly ISessionConnectionService session;
         private readonly ISessionContentService content;
@@ -140,7 +140,12 @@ namespace EscapeGame.World
             RoomsChanged?.Invoke(UnlockedRoomIds);
         }
         public Task<bool> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token) => roomPermissions.SubmitAnswerAsync(roomNo, answers, token);
-        public Task<bool> CheckRoomDoorAsync(int roomNo, CancellationToken token) => roomPermissions.CheckDoorAsync(roomNo, token);
+        public async Task<bool> CheckRoomDoorAsync(int roomNo, CancellationToken token)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(GameEntryService));
+            using var request = CancellationTokenSource.CreateLinkedTokenSource(token, ownerToken);
+            return await roomPermissions.CheckDoorAsync(roomNo, request.Token);
+        }
         private async Task<RoomDecision> RequestRoomAsync(int roomNo, string[] answers, CancellationToken token)
         {
             if (Data == null) throw new InvalidOperationException("게임 데이터가 등록되지 않았습니다.");

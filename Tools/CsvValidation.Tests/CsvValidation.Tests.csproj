@@ -48,6 +48,8 @@
     <Compile Include="../../Assets/3.Script/Data/Tables/*.cs" Link="Tables/%(Filename)%(Extension)" />
     <Compile Include="../../Assets/3.Script/Data/Infrastructure/Utf8CsvFileSource.cs" Link="Infrastructure/Utf8CsvFileSource.cs" />
     <Compile Include="../../Assets/3.Script/World/IRoomAnswerService.cs" />
+    <Compile Include="../../Assets/3.Script/World/IRoomDoorService.cs" />
+    <Compile Include="../../Assets/3.Script/Interaction/DoorInteractionController.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/PuzzleInputPlan.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/PuzzleAnswerController.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/AnswerInputMessages.cs" />

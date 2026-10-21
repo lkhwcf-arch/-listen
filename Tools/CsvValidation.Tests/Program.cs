@@ -94,5 +94,6 @@ await ContentRegressionChecks.Run(original, catalogXml);
 
 await ConnectionConfigurationChecks.Run(root, original, catalogXml);
 await RoomPermissionChecks.Run();
+await DoorInteractionChecks.Run();
 InteractionChecks.Run(original, catalogXml);
 await PuzzleAnswerChecks.Run(original, catalogXml);

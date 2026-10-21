@@ -105,6 +105,14 @@ namespace EscapeGame.Editor
                 var player = Object.FindObjectsByType<FirstPersonPlayerRig>(FindObjectsInactive.Include, FindObjectsSortMode.None).Single(item => item.gameObject.scene == scene);
                 Check(player.GetComponent<PlayerMovementDriver>().IsReady && player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>().IsReady, "공통 플레이어 조립 경로 재사용");
                 checks += CheckGameplayGate(player, scene);
+                var pointer = player.GetComponent<PlayerPointerDriver>();
+                pointer.Controls.SetGameplayAllowed(true); pointer.Controls.SetActive(true); pointer.Controls.SetFocused(true); pointer.Controls.CapturePointer();
+                var interaction = player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>();
+                var door = preview.GetComponentsInChildren<EscapeGame.Interaction.WorldDoorView>(true).Single();
+                var doorTarget = door.GetComponent<EscapeGame.Interaction.WorldInteractionTarget>();
+                var closedRotation = door.transform.localRotation;
+                Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && door.IsOpen, "생성된 방은 다음 방 준비와 독립적으로 문 열기 허가");
+                Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && !door.IsOpen, "클리어 전에도 테스트 문 닫기");
                 var entryPoint = nextTemplate.transform.Find($"R{next.RoomNo:00}_EntryPoint");
                 entryPoint.name = "누락_입구";
                 bool rejected = false;
@@ -119,6 +127,9 @@ namespace EscapeGame.Editor
                 Check(rejected && session.FindPreview(next) == null && !session.Progression.IsCleared(first), "CSV 앵커 누락도 클리어 확정을 차단");
                 missing.name = required.AnchorId;
                 Check(session.Clear(first.RoomNo), "수정 후 재시도 성공");
+                Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && door.IsOpen, "개발자 클리어 후 실제 플레이어 명령으로 문 열기");
+                Check(Quaternion.Angle(closedRotation, door.transform.localRotation) > 1, "문과 충돌체를 가진 실제 Transform 회전");
+                Check(interaction.InteractAsync(doorTarget).GetAwaiter().GetResult() && !door.IsOpen && Quaternion.Angle(closedRotation, door.transform.localRotation) < .01f, "같은 문 재클릭으로 닫기와 원래 회전 복원");
                 var nextPreview = session.FindPreview(next);
                 Check(nextPreview.GetComponent<RoomSceneView>().IsLoaded &&
                     nextPreview.GetComponentsInChildren<AnchorInstance>(true).Length == plan.Anchors(next).Count(anchor => anchor.PrefabId != spawnPrefab), "다음 방 내부 소품 생성");

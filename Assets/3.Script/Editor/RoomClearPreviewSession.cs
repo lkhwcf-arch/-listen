@@ -21,6 +21,7 @@ namespace EscapeGame.Editor
         private readonly Dictionary<int, (GameObject source, bool active)> hiddenTemplates = new Dictionary<int, (GameObject, bool)>();
         private readonly int[] externallyManagedPrefabIds;
         private readonly CsvGameData data;
+        private readonly DeveloperRoomDoorService doors;
         private EscapeGame.Player.FirstPersonPlayerRig player;
         private GameObject ownedRoot;
         private bool disposed;
@@ -36,6 +37,7 @@ namespace EscapeGame.Editor
             this.data = data;
             plan = new RoomLoadPlan(data, role);
             Progression = new DeveloperRoomProgression(plan);
+            doors = new DeveloperRoomDoorService(Progression);
             var settings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation")
                 ?? throw new InvalidOperationException("PlayerPresentation 에셋이 필요합니다.");
             externallyManagedPrefabIds = new[] { settings.SpawnPrefabId };
@@ -61,7 +63,7 @@ namespace EscapeGame.Editor
             try
             {
                 var driver = host.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
-                driver.Initialize(data, Role, room.GetComponent<RoomSceneView>());
+                driver.Initialize(data, Role, room.GetComponent<RoomSceneView>(), doors: doors);
                 player = driver.Player;
             }
             catch { Object.DestroyImmediate(host); throw; }
@@ -168,6 +170,7 @@ namespace EscapeGame.Editor
         {
             if (disposed) return;
             disposed = true;
+            doors.Dispose();
             if (player != null)
             {
                 player.gameObject.SetActive(false);

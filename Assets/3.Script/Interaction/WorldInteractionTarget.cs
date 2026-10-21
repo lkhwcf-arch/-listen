@@ -35,6 +35,7 @@ namespace EscapeGame.Interaction
             var plan = new PrefabFeaturePlan(data, anchor.PrefabId);
             if (!(anchor is AnchorInteractData) || !plan.Has(FeatureScripts.Interactable)) return;
             if (instance.GetComponent<WorldInteractionTarget>() == null) instance.AddComponent<WorldInteractionTarget>();
+            if (plan.Has(FeatureScripts.Door) && instance.GetComponent<WorldDoorView>() == null) instance.AddComponent<WorldDoorView>();
             // AnchorInstance.Initialize가 구성 완료 후 모든 수신기에 같은 불변 데이터를 주입합니다.
         }
     }

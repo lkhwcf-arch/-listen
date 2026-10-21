@@ -44,7 +44,10 @@ static class ConnectionConfigurationChecks
             new System.Text.Json.JsonSerializerOptions { IncludeFields = true });
         Check(ClientConnectionSettings.Select(configured, ClientExecutionEnvironment.Editor).ServerBaseUrl == "http://127.0.0.1:3000", "distributed JSON contains editor endpoint");
         Check(ClientConnectionSettings.Select(configured, ClientExecutionEnvironment.TestBuild).ServerBaseUrl == "http://192.168.1.34:3001", "distributed JSON contains user LAN endpoint");
-        Throws<InvalidOperationException>(() => ClientConnectionSettings.Select(configured, ClientExecutionEnvironment.StableBuild), "distributed stable profile requires cloud setup");
+        if (string.IsNullOrWhiteSpace(configured.stableBuild?.serverBaseUrl))
+            Throws<InvalidOperationException>(() => ClientConnectionSettings.Select(configured, ClientExecutionEnvironment.StableBuild), "미설정 Stable 주소는 명시적으로 거부합니다");
+        else
+            Check(ClientConnectionSettings.Select(configured, ClientExecutionEnvironment.StableBuild).ServerBaseUrl == HttpServerAddress.Normalize(configured.stableBuild.serverBaseUrl), "등록한 Stable 주소를 그대로 선택합니다");
 
         int attempts = 0;
         var gate = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);

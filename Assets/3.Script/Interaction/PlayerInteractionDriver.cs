@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using EscapeGame.Player;
 using System.Linq;
 using EscapeGame.World;
@@ -17,17 +19,20 @@ namespace EscapeGame.Interaction
         private CloseupPreview preview;
         private TargetHighlight highlight;
         private IRoomAnswerService answers;
+        private IRoomDoorService doors;
+        private string doorNotice;
+        private bool interacting;
         private string role;
         private PuzzleAnswerController answerController;
         private PuzzleAnswerView answerView;
         public CloseupController Closeup { get; private set; }
         public WorldInteractionTarget Hovered { get; private set; }
         public bool IsReady => panel != null && finder != null && pointer != null && pointer.IsReady && isActiveAndEnabled;
-        public void Initialize(Camera view, PlayerPointerDriver pointer, int distanceMm, InteractionPresentationSettings settings, IRoomAnswerService answers = null, string role = null)
+        public void Initialize(Camera view, PlayerPointerDriver pointer, int distanceMm, InteractionPresentationSettings settings, IRoomAnswerService answers = null, string role = null, IRoomDoorService doors = null)
         {
             if (panel != null) throw new InvalidOperationException("상호작용은 한 번만 초기화합니다.");
             this.view = view; this.pointer = pointer; this.settings = settings; this.distanceMm = distanceMm;
-            this.answers = answers; this.role = role;
+            this.answers = answers; this.role = role; this.doors = doors ?? answers as IRoomDoorService;
             finder = new InteractionTargetFinder(transform);
             panel = new CloseupPanelView(gameObject.scene, settings);
             Closeup = new CloseupController(pointer.Controls.BlockForUi);
@@ -42,13 +47,37 @@ namespace EscapeGame.Interaction
             Closeup.Refresh();
             if (Closeup.IsOpen) { if (pointer.CancelPressed) Closeup.Close(); return; }
             var target = pointer.Controls.GameplayEnabled ? finder.Find(view.ViewportPointToRay(new Vector3(.5f, .5f, 0)), distanceMm) : null;
-            SetHovered(target); panel.SetHint(target != null && target.SupportsCloseup);
-            if (pointer.PrimaryPressed && target != null && target.SupportsCloseup)
-                try { Closeup.Open(target); } catch (Exception error) { Closeup.Close(); Debug.LogError("[클로즈업] " + error.Message); }
+            SetHovered(target);
+            var door = target != null ? target.GetComponent<WorldDoorView>() : null;
+            panel.SetHint(door != null ? doorNotice ?? (interacting ? "문 허가 확인 중" : door.IsOpen ? "좌클릭으로 문 닫기" : "좌클릭으로 문 열기") : target != null && target.SupportsCloseup ? "좌클릭으로 살펴보기" : "");
+            if (pointer.PrimaryPressed && target != null) HandlePrimary(target);
+        }
+        private async void HandlePrimary(WorldInteractionTarget target)
+        {
+            try { await InteractAsync(target, destroyCancellationToken); }
+            catch (OperationCanceledException) { }
+            catch (Exception error) { if (this != null) { doorNotice = "문을 조작하지 못했습니다. 연결 상태와 문 판정 설정을 확인해 주세요."; Debug.LogWarning("[상호작용] " + error.Message); } }
+        }
+        // 실제 좌클릭과 검사가 사용하는 같은 명령 경로입니다. UI·요청 중복과 조작 잠금을 공유합니다.
+        public async Task<bool> InteractAsync(WorldInteractionTarget target, CancellationToken token = default)
+        {
+            if (interacting || !IsReady || !pointer.Controls.GameplayEnabled || Closeup.IsOpen || target == null || !target.IsAvailable) return false;
+            token.ThrowIfCancellationRequested();
+            var door = target.GetComponent<WorldDoorView>();
+            if (door == null) { if (!target.SupportsCloseup) return false; Closeup.Open(target); return true; }
+            interacting = true; doorNotice = null;
+            try
+            {
+                bool changed = await door.ToggleAsync(doors, settings.DoorOpenAngleMilliDegrees, token);
+                if (this != null && !changed) doorNotice = "문 열기 조건이 충족되지 않았습니다. 방 클리어 상태를 확인해 주세요.";
+                return changed;
+            }
+            finally { interacting = false; }
         }
         private void SetHovered(WorldInteractionTarget target)
         {
             if (Hovered == target) return;
+            doorNotice = null;
             highlight?.Dispose(); highlight = null; Hovered = target;
             if (target != null) highlight = new TargetHighlight(target);
         }
