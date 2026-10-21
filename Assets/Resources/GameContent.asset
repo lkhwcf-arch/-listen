@@ -224,3 +224,7 @@ MonoBehaviour:
     prefab: {fileID: 2389970105685068966, guid: ba0335544ca1c71458a3795a7a8852c1, type: 3}
   - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/SILENT_Room_07_Objects.prefab
     prefab: {fileID: 8665118456540563358, guid: c4857b113a4db65449b9986d2e204586, type: 3}
+  - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Animated.prefab
+    prefab: {fileID: 5226624728530010210, guid: 49b93db312ca4b94d9556302c3e75d2f, type: 3}
+  - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Manual.prefab
+    prefab: {fileID: 6373095415919358604, guid: 7feb23acb85c68943941b889bda26b03, type: 3}

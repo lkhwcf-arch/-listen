@@ -1,0 +1,23 @@
+{
+  "source": "console_open.zip",
+  "models": [
+    "Console_Door_Manual.fbx",
+    "Console_Door_Animated.fbx"
+  ],
+  "surface": "Console_Surface",
+  "cut_material": "Console_CutMetal",
+  "cut_color": [
+    0.12,
+    0.085,
+    0.045,
+    1
+  ],
+  "open_angle": -126,
+  "textures": [
+    "Console_BaseColor.jpg",
+    "Console_Metallic.jpg",
+    "Console_Roughness.jpg",
+    "Console_Normal.png",
+    "Console_MetallicSmoothness.png"
+  ]
+}
