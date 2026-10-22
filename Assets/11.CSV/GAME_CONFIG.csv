@@ -1,6 +1,6 @@
 "ID","Value","Type","Unit"
 "16010","17001","int",""
-"16011","Video/Ending_SILENT.mp4","string","path"
+"16011","Assets/2.Model/EndingVideo/EndingVideo.mp4","string","path"
 "16030","0.75","float","m"
 "16031","1500","int","ms"
 "16032","0.6","float",""
