@@ -158,6 +158,8 @@ MonoBehaviour:
     prefab: {fileID: 232195569398558123, guid: a403a86a78170fb4cbdf24dde6217542, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Table.prefab
     prefab: {fileID: 8721365128282860039, guid: f00c16eb27529c14aa57fd5f9ec102d7, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/R04_CableConsole.prefab
+    prefab: {fileID: 1524759653793395584, guid: fb3db3e3f30c60943a8290e1c20cc712, type: 3}
   - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/R04_Ceiling.prefab
     prefab: {fileID: 8892864759288825393, guid: c0480f41d262444b886115596411eb3e, type: 3}
   - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/SILENT_Room_04_A_Objects.prefab
