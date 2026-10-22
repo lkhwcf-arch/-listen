@@ -2,13 +2,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RuntimeFrameworkVersion>8.0.0</RuntimeFrameworkVersion>
+    
     <TargetLatestRuntimePatch>false</TargetLatestRuntimePatch>
     <UseAppHost>false</UseAppHost>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <NuGetAudit>false</NuGetAudit><ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="../../Assets/3.Script/Data/ContentContract.cs" />
     <Reference Include="Google.Protobuf"><HintPath>../../Assets/Plugins/Protobuf/Google.Protobuf.dll</HintPath></Reference>
     <Compile Include="../../Assets/3.Script/Generated/Protocol/*.cs" />
     <Compile Include="../../Assets/3.Script/Networking/ProtobufApiResponseValidator.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="../../Assets/3.Script/World/IRoomAnswerService.cs" />
     <Compile Include="../../Assets/3.Script/World/IRoomDoorService.cs" />
     <Compile Include="../../Assets/3.Script/World/IRoomCompletionService.cs" />
+    <Compile Include="../../Assets/3.Script/World/IRoomCompletionConnection.cs" />
+    <Compile Include="../../Assets/3.Script/World/RoomInteractionService.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/DoorInteractionController.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/PuzzleInputPlan.cs" />
     <Compile Include="../../Assets/3.Script/Interaction/PuzzleAnswerController.cs" />

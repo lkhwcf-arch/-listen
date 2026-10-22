@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using EscapeGame.Session.Contracts;
 
@@ -14,6 +15,7 @@ namespace EscapeGame.Session
         public ClientSessionPhase? Phase { get; private set; }
         public bool IsSceneLoaded { get; private set; }
         public int ParticipantCount { get; private set; }
+        private int[] lastUnlockedRooms;
         public event Action<System.Collections.Generic.IReadOnlyList<int>> RoomsChanged;
         public event Action SnapshotApplied;
         public event Action Joined;
@@ -23,7 +25,7 @@ namespace EscapeGame.Session
         public void Clear()
         {
             SessionId = PlayerId = Role = ParticipantToken = null;
-            Phase = null;
+            Phase = null; lastUnlockedRooms = null;
             IsSceneLoaded = false;
             ParticipantCount = 0;
         }
@@ -115,7 +117,11 @@ namespace EscapeGame.Session
             ParticipantCount = snapshot.Players.Count;
 
             SnapshotApplied?.Invoke();
-            if (snapshot.UnlockedRoomIds != null) RoomsChanged?.Invoke(snapshot.UnlockedRoomIds);
+            if (snapshot.UnlockedRoomIds != null && (lastUnlockedRooms == null || !new HashSet<int>(lastUnlockedRooms).SetEquals(snapshot.UnlockedRoomIds)))
+            {
+                lastUnlockedRooms = snapshot.UnlockedRoomIds.ToArray();
+                RoomsChanged?.Invoke(Array.AsReadOnly(lastUnlockedRooms));
+            }
 
             if(prevPhase != nextPhase)
             {

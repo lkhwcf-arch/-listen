@@ -1,3 +1,4 @@
+using EscapeGame.Audio;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -18,8 +19,10 @@ namespace EscapeGame.Interaction
         private readonly List<(Button button, UnityAction click, bool editOnly)> bindings = new List<(Button, UnityAction, bool)>();
         private readonly Button submit;
         private bool disposed;
-        public PuzzleAnswerView(RectTransform parent, TMP_FontAsset font, PuzzleAnswerController controller)
+        private readonly Action<GameAudioCue> feedback;
+        public PuzzleAnswerView(RectTransform parent, TMP_FontAsset font, PuzzleAnswerController controller, Action<GameAudioCue> feedback = null)
         {
+            this.feedback = feedback;
             this.controller = controller ?? throw new ArgumentNullException(nameof(controller));
             root = InteractionUiFactory.Rect("PuzzleAnswer", parent, 420, 480, 0, 0);
             InteractionUiFactory.Text("InputTitle", root, font, controller.Plan.Kind == PuzzleInputKind.Dial ? "다이얼 정답 입력" : "버튼 순서 입력", 400, 38, 0, 220, 26);
@@ -41,14 +44,14 @@ namespace EscapeGame.Interaction
                 InteractionUiFactory.Text("SlotLabel", row, font, (i + 1) + (label.Length == 0 ? "" : " · " + AnswerInputMessages.Value(label)), 114, 40, -136, 0, 20);
                 if (controller.Plan.Kind == PuzzleInputKind.Dial)
                 {
-                    Bind(InteractionUiFactory.Button("Previous", row, font, "이전", 64, 40, -40, 0), () => controller.Cycle(slot, -1));
+                    Bind(InteractionUiFactory.Button("Previous", row, font, "이전", 64, 40, -40, 0), () => { controller.Cycle(slot, -1); feedback?.Invoke(GameAudioCue.DialTurn); });
                     values[i] = InteractionUiFactory.Text("Value", row, font, "", 112, 40, 50, 0, 24);
-                    Bind(InteractionUiFactory.Button("Next", row, font, "다음", 64, 40, 146, 0), () => controller.Cycle(slot, 1));
+                    Bind(InteractionUiFactory.Button("Next", row, font, "다음", 64, 40, 146, 0), () => { controller.Cycle(slot, 1); feedback?.Invoke(GameAudioCue.DialTurn); });
                 }
                 else
                 {
                     var selection = InteractionUiFactory.Button("SelectSlot", row, font, "", 250, 40, 54, 0);
-                    values[i] = selection.GetComponentInChildren<TMP_Text>(); Bind(selection, () => controller.SelectSlot(slot));
+                    values[i] = selection.GetComponentInChildren<TMP_Text>(); Bind(selection, () => { controller.SelectSlot(slot); feedback?.Invoke(GameAudioCue.Click); });
                 }
             }
             if (controller.Plan.Kind == PuzzleInputKind.Sequence)
@@ -64,11 +67,11 @@ namespace EscapeGame.Interaction
                     string value = controller.Plan.Choices[i];
                     var button = InteractionUiFactory.Button("Choice_" + i, choices, font, AnswerInputMessages.Value(value), 96, 40, 0, 0);
                     var rect = (RectTransform)button.transform; rect.anchorMin = rect.anchorMax = new Vector2(0, .5f); rect.anchoredPosition = new Vector2(48 + i * 102, 0);
-                    Bind(button, () => controller.Choose(value));
+                    Bind(button, () => { controller.Choose(value); feedback?.Invoke(GameAudioCue.Button); });
                 }
             }
             submit = InteractionUiFactory.Button("Submit", root, font, "정답 제출", 194, 48, -102, -158); Bind(submit, OnSubmit, false);
-            Bind(InteractionUiFactory.Button("Reset", root, font, "초기화", 194, 48, 102, -158), controller.Reset);
+            Bind(InteractionUiFactory.Button("Reset", root, font, "초기화", 194, 48, 102, -158), () => { controller.Reset(); feedback?.Invoke(GameAudioCue.Reset); });
             message = InteractionUiFactory.Text("AnswerStatus", root, font, "", 400, 82, 0, -220, 20);
             controller.Changed += Refresh; Refresh();
         }
@@ -84,7 +87,7 @@ namespace EscapeGame.Interaction
         private async void OnSubmit()
         {
             // Controller가 오류·취소를 정규화합니다. View 수명 종료 뒤의 결과는 반영하지 않습니다.
-            try { await controller.SubmitAsync(); } catch (Exception error) { if (!disposed) Debug.LogException(error); }
+            try { if (controller.CanSubmit) feedback?.Invoke(GameAudioCue.Confirm); await controller.SubmitAsync(); } catch (Exception error) { if (!disposed) Debug.LogException(error); }
         }
         private void Refresh()
         {

@@ -17,6 +17,8 @@ namespace EscapeGame.Interaction
         private int roomNo, openAngleMilliDegrees;
         private Quaternion closedRotation;
         private DoorInteractionController controller;
+        public Transform DoorAnchor { get; private set; }
+        public Bounds ClosedBoundsInAnchor { get; private set; }
         public bool IsOpen => controller != null && controller.IsOpen;
         public bool IsBusy => controller != null && controller.IsBusy;
         public void Initialize(AnchorData anchor, CsvGameData data)
@@ -26,6 +28,19 @@ namespace EscapeGame.Interaction
             var points = GetComponentsInChildren<Transform>(true).Where(point => point != transform && point.name == HingeName).ToArray();
             if (points.Length != 1) throw new InvalidOperationException("Door 프리팹에는 DoorHinge 기준점이 정확히 하나 필요합니다: " + anchor.PrefabId);
             hinge = points[0];
+            DoorAnchor = transform.parent != null ? transform.parent : transform;
+            bool hasBounds = false; Bounds closedBounds = default;
+            foreach (var renderer in GetComponentsInChildren<Renderer>(true))
+            {
+                var box = renderer.localBounds;
+                for (int i = 0; i < 8; i++)
+                {
+                    var corner = box.center + Vector3.Scale(box.extents, new Vector3((i & 1) == 0 ? -1 : 1, (i & 2) == 0 ? -1 : 1, (i & 4) == 0 ? -1 : 1));
+                    var point = DoorAnchor.InverseTransformPoint(renderer.transform.TransformPoint(corner));
+                    if (!hasBounds) { closedBounds = new Bounds(point, Vector3.zero); hasBounds = true; } else closedBounds.Encapsulate(point);
+                }
+            }
+            ClosedBoundsInAnchor = closedBounds;
             roomNo = anchor.RoomNo; closedPosition = transform.localPosition; closedRotation = transform.localRotation;
         }
         public Task<bool> ToggleAsync(IRoomDoorService service, int angleMilliDegrees, CancellationToken token)

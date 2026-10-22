@@ -1,6 +1,10 @@
 # 2인 협동 방탈출 Unity 클라이언트
 
-2026-10-22 엔딩 연결: A/B가 각자의 마지막 방 정답을 모두 맞히면 `GAME_CONFIG 16011`의 영상을 전체 화면으로 한 번 재생합니다. 먼저 맞힌 플레이어는 조작을 잠그고 상대를 기다리며 기존 서버 허가 API를 1초 간격으로 조회합니다. 영상 종료 뒤에는 마지막 화면·조작 잠금을 유지합니다. 결과 UI·Enter 종료는 후속 범위입니다. [설정·코드 구조·검사 가이드](Docs/EndingVideo.md).
+2026-10-22 보행·사운드·결과 연결: 실제 이동 거리에 따라 카메라 Y 흔들림과 발소리 1→2→3을 재생합니다. UI 효과음은 Closeup 전용이며, 열린 문 경계 통과 시 방별 배경음을 3초 동안 전환합니다. 양쪽 7번 방 정답 완료 후 영상이 실제 시작할 때 탈출 시간을 고정하고, 영상 종료 후 Result_UI에 표시합니다. 확인 버튼은 게임을 종료합니다. 사운드는 CSV 대신 Resources/GameFeedback 설정을 사용합니다. [설정·코드·테스트 가이드](Docs/GameFeedback.md), [리팩토링 규격·의도](Docs/RefactorConventions.md).
+
+조명·Light Probe 베이크와 R01_LEDPanel 전용 UI 소리는 보류입니다. 아래 오래된 단계별 기록의 미완료 항목과 충돌하면 이 갱신 내용과 실제 코드를 우선합니다.
+
+A/B 협동 엔딩의 조건과 기존 API 연결은 [엔딩 가이드](Docs/EndingVideo.md)를 따릅니다.
 
 기준일: **2026-10-21**. 현재 코드와 검증 결과를 기준으로 설명합니다. 이전 기획서와 차이가 있으면 현재 요구사항과 데이터 테이블을 우선합니다.
 
@@ -15,7 +19,7 @@
 | 게임 통신 | UnityWebRequest, HTTP + Google Protobuf 바이너리 |
 | 음성 | Vivox 16.12.1, Unity Authentication 3.4.1 |
 | UI / 렌더링 | uGUI·TextMeshPro / URP 17.2.0 |
-| 로컬 데이터 | [Assets/11.CSV](Assets/11.CSV), 23개 CSV |
+| 로컬 데이터 | [Assets/11.CSV](Assets/11.CSV), 원본 CSV 17개 / 활성 등록 14개 |
 | 서버 | 별도 저장소 TSC_REST, Node.js 24 이상 |
 
 1. Unity Hub에서 프로젝트를 열고 패키지 복원·컴파일을 마칩니다.

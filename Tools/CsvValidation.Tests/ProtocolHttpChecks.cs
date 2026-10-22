@@ -29,7 +29,7 @@ static class ProtocolHttpChecks
         await enteringA;
         Check(entryA.Data!=null&&entryB.Data!=null,"두 클라이언트 입장과 바이너리 CSV 수신");
         Check(entryA.Role=="A"&&entryB.Role=="B","생성 열거형 역할 변환");
-        Check(entryA.Data.Source.Documents.Count==23,"CSV 테이블 Protobuf HTTP 왕복");
+        Check(entryA.Data.Source.Documents.Count==entryA.Data.Registry.Count(row=>row.Active),"CSV 테이블 Protobuf HTTP 왕복");
         var inputPlan=PuzzleAnswerChecks.Plan(entryB.Data,5001,"B",FeatureScripts.Dial);
         using var input=new PuzzleAnswerController(inputPlan,(IRoomAnswerService)entryB);
         await input.SubmitAsync();

@@ -32,7 +32,6 @@ namespace EscapeGame.World
                 !string.Equals(slot.Answer, answers[index], StringComparison.OrdinalIgnoreCase)).Any())
                 return PuzzleSubmissionResult.FromDecision(true, false);
             solved.Add(puzzleId);
-            var rooms = data.RoomsA.Cast<RoomData>().Concat(data.RoomsB).Where(room => room.Active).ToArray();
             CheckDoor(role, plan.Find(puzzle.SolverRoom).RoomNo);
             return PuzzleSubmissionResult.FromDecision(true, true);
         }

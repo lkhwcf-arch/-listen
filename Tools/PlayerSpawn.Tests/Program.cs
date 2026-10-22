@@ -59,9 +59,16 @@ Check(new PlayerSpawnPlan(Load(Cell("ANCHOR_NONINTERACT", "2001", "AnchorID", "R
 Reject(() => new PlayerSpawnPlan(Load(Cell("CHARACTER_STAT", "17001", "EyeHeight", "2.0")), "A", 13001, 16010), "eye outside capsule rejected");
 Check(source["ANCHOR_NONINTERACT"].Contains("R01_Player"), "test mutations leave source snapshot unchanged");
 var profile = a.Character;
+Check(Math.Abs(profile.HeadBobMeters - .02f) < .00001f, "HeadBob amplitude comes from the character sheet");
 Check(profile.ProfileId == 17001 && profile.WalkSpeedMmPerSecond == 3000, "selected speed comes from GAME_CONFIG and CSV");
 Check(profile.AccelerationMmPerSecondSquared == 10000 && profile.DecelerationMmPerSecondSquared == 12000, "acceleration units normalized once");
-var fast = PlayerCharacterSettings.Select(Load(Cell("GAME_CONFIG", "16010", "Value", "17002")), 16010);
+var fastSource = Cell("GAME_CONFIG", "16010", "Value", "17002");
+var characterDoc = new CsvParser().Read(source["CHARACTER_STAT"], "CHARACTER_STAT");
+string QuoteProfile(string value) => "\"" + value.Replace("\"", "\"\"") + "\"";
+var originalProfile = characterDoc.Rows.First();
+fastSource["CHARACTER_STAT"] += "\n" + string.Join(",", characterDoc.Headers.Select(header => QuoteProfile(header switch
+{ "ID" => "17002", "WalkSpeed" => "4.5", "Acceleration" => "14", "Deceleration" => "16", _ => originalProfile.Get(header) })));
+var fast = PlayerCharacterSettings.Select(Load(fastSource), 16010);
 Check(fast.WalkSpeedMmPerSecond == 4500 && fast.AccelerationMmPerSecondSquared == 14000 && fast.DecelerationMmPerSecondSquared == 16000, "QA profile selection changes all movement values");
 Reject(() => PlayerCharacterSettings.Select(Load(Cell("CHARACTER_STAT", "17001", "Acceleration", "0")), 16010), "nonfunctional zero acceleration fails early");
 Reject(() => PlayerCharacterSettings.Select(Load(Cell("CHARACTER_STAT", "17001", "WalkSpeed", "1000")), 16010), "unsafe fixed point range rejected");
