@@ -1,5 +1,5 @@
 "ID","Path","Group","Components"
-"13001","Prefabs/System/PlayerSpawn","System","14009"
+"13001","Assets/2.Model/Prefabs/System/PlayerSpawn","System","14009"
 "13002","Assets/2.Model/Prefabs/Door","Shared","14001|14005"
 "13005","Assets/2.Model/Prefabs/R02/R02_Lock","Room2","14001|14002|14003"
 "13006","Assets/2.Model/Prefabs/R04/R04_Lock","Room4","14001|14002|14003"
