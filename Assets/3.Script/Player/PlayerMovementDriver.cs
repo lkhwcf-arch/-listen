@@ -17,6 +17,8 @@ namespace EscapeGame.Player
         private PlayerControlState controls;
         private bool CanMove => movementEnabled && focused && (controls == null || controls.GameplayEnabled);
         public PlayerMovementMotor Motor => motor;
+        // 실제 수평 이동 거리(m)·접지 결과를 충돌 처리 뒤에 통지합니다.
+        public event Action<float, bool> MotionApplied;
         public bool IsReady => motor != null && input != null && isActiveAndEnabled && controller != null && controller.enabled;
 
         // Factory가 비활성 오브젝트에 의존성을 주입한 뒤 활성화합니다. input의 수명은 이 Driver가 소유합니다.
@@ -69,10 +71,13 @@ namespace EscapeGame.Player
             // Unity Transform/충돌 API 경계에서만 m 및 float로 바꿉니다. 이동 방향은 플레이어의 Y 회전 기준입니다.
             var horizontal = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(step.RightMm, 0, step.ForwardMm);
             int upMm = grounded ? Math.Min(step.UpMm, -groundContactMm) : step.UpMm;
+            var previousPosition = transform.position;
             var flags = controller.Move((horizontal + Vector3.up * upMm) / 1000f);
             if ((flags & CollisionFlags.Below) != 0) motor.OnGrounded();
+            var actual = transform.position - previousPosition; actual.y = 0;
+            MotionApplied?.Invoke(actual.magnitude, grounded || (flags & CollisionFlags.Below) != 0);
         }
 
-        private void OnDestroy() { input?.Dispose(); input = null; }
+        private void OnDestroy() { input?.Dispose(); input = null; MotionApplied = null; }
     }
 }

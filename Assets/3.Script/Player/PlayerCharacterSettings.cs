@@ -8,6 +8,7 @@ namespace EscapeGame.Player
     public sealed class PlayerCharacterSettings
     {
         public int ProfileId { get; }
+        public float HeadBobMeters { get; }
         public int InteractDistanceMm { get; }
         public int WalkSpeedMmPerSecond { get; }
         public int AccelerationMmPerSecondSquared { get; }
@@ -34,6 +35,9 @@ namespace EscapeGame.Player
         private PlayerCharacterSettings(CharacterStatData profile)
         {
             ProfileId = profile.Id;
+            if (float.IsNaN(profile.HeadBob) || float.IsInfinity(profile.HeadBob) || profile.HeadBob < 0 || profile.HeadBob > .2f)
+                throw new InvalidOperationException("HeadBob는 0~0.2m 범위여야 합니다.");
+            HeadBobMeters = profile.HeadBob;
             var units = new CharacterStatUnits(profile);
             InteractDistanceMm = units.InteractDistanceMm;
             WalkSpeedMmPerSecond = units.WalkSpeedMmPerSecond;

@@ -133,10 +133,10 @@ internal static class MemoryPipelineChecks
         validator.Validate(diskStore.Data); validator.Validate(diskStore.Data);
         diskStore.MapTable("PUZZLE", row => new PuzzleData(row));
         await diskStore.InitializeAsync(LoadFiles, validator, CancellationToken.None);
-        Check(text.Reads.Count == 23 && text.Reads.Values.All(x => x == 1), "actual files are read once across initialization, validation and mapping");
+        Check(text.Reads.Count == paths.Length && text.Reads.Values.All(x => x == 1), "actual files are read once across initialization, validation and mapping");
         var documents = data.Documents.ToDictionary(x => x.Key, x => x.Value);
         var immutable = new CsvDataSet(documents); documents.Clear();
-        Check(immutable.Documents.Count == 23, "snapshot owns a read-only copy of the document registry");
+        Check(immutable.Documents.Count == original.Count, "snapshot owns a read-only copy of the document registry");
 
         string scratch = Path.Combine(root, "Temp/CsvValidationTests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(scratch);

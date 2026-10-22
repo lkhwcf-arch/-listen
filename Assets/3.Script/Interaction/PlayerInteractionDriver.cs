@@ -1,7 +1,9 @@
+using EscapeGame.Audio;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using EscapeGame.Player;
+using EscapeGame.Data.Tables;
 using System.Linq;
 using EscapeGame.World;
 using UnityEngine;
@@ -25,6 +27,9 @@ namespace EscapeGame.Interaction
         private string role;
         private PuzzleAnswerController answerController;
         private PuzzleAnswerView answerView;
+        private AnchorData feedbackTarget;
+        private AnswerInputPhase lastAnswerPhase;
+        public event Action<GameAudioCue, EscapeGame.Data.Tables.AnchorData> FeedbackEmitted;
         public CloseupController Closeup { get; private set; }
         public WorldInteractionTarget Hovered { get; private set; }
         public bool IsReady => panel != null && finder != null && pointer != null && pointer.IsReady && isActiveAndEnabled;
@@ -69,6 +74,7 @@ namespace EscapeGame.Interaction
             try
             {
                 bool changed = await door.ToggleAsync(doors, settings.DoorOpenAngleMilliDegrees, token);
+                if (this != null) FeedbackEmitted?.Invoke(changed ? (door.IsOpen ? GameAudioCue.DoorOpen : GameAudioCue.DoorClose) : GameAudioCue.DoorLocked, target.Anchor);
                 if (this != null && !changed) doorNotice = "문 열기 조건이 충족되지 않았습니다. 방 클리어 상태를 확인해 주세요.";
                 return changed;
             }
@@ -84,8 +90,14 @@ namespace EscapeGame.Interaction
         private void OnCloseupChanged()
         {
             ClearAnswer(); preview?.Dispose(); preview = null;
-            if (!Closeup.IsOpen) { panel.Hide(); return; }
+            if (!Closeup.IsOpen)
+            {
+                panel.Hide();
+                if (feedbackTarget != null) { FeedbackEmitted?.Invoke(GameAudioCue.CloseupClose, feedbackTarget); FeedbackEmitted?.Invoke(GameAudioCue.ClickClose, feedbackTarget); feedbackTarget = null; }
+                return;
+            }
             var target = (WorldInteractionTarget)Closeup.Target;
+            feedbackTarget = target.Anchor; FeedbackEmitted?.Invoke(GameAudioCue.Click, feedbackTarget); FeedbackEmitted?.Invoke(GameAudioCue.CloseupOpen, feedbackTarget);
             SetHovered(null);
             panel.SetNotice("");
             preview = new CloseupPreview(target, view, settings); panel.Preview.texture = preview.Texture; panel.Show(target.Anchor.RoomNo);
@@ -98,16 +110,24 @@ namespace EscapeGame.Interaction
             { panel.SetNotice("현재 역할에서는 이 퍼즐의 정답을 입력할 수 없습니다."); return; }
             var plan = PuzzleInputPlan.Create(target.Data, role, target.Anchor, target.Features);
             answerController = new PuzzleAnswerController(plan, answers, destroyCancellationToken, error => Debug.LogException(error));
-            answerView = new PuzzleAnswerView(panel.ContentRoot, settings.Font, answerController);
+            lastAnswerPhase = answerController.Phase; answerController.Changed += OnAnswerChanged;
+            answerView = new PuzzleAnswerView(panel.ContentRoot, settings.Font, answerController, trigger => FeedbackEmitted?.Invoke(trigger, target.Anchor));
+        }
+        private void OnAnswerChanged()
+        {
+            if (answerController == null || answerController.Phase == lastAnswerPhase) return;
+            lastAnswerPhase = answerController.Phase;
+            if (lastAnswerPhase == AnswerInputPhase.Correct || lastAnswerPhase == AnswerInputPhase.Incorrect)
+                FeedbackEmitted?.Invoke(lastAnswerPhase == AnswerInputPhase.Correct ? GameAudioCue.Correct : GameAudioCue.Wrong, feedbackTarget);
         }
         private void ClearAnswer()
         {
-            answerView?.Dispose(); answerView = null; answerController?.Dispose(); answerController = null;
+            answerView?.Dispose(); answerView = null; if (answerController != null) answerController.Changed -= OnAnswerChanged; answerController?.Dispose(); answerController = null;
         }
         private void OnDestroy()
         {
             if (Closeup != null) { Closeup.Changed -= OnCloseupChanged; if (panel != null) panel.CloseRequested -= Closeup.Close; Closeup.Dispose(); }
-            ClearAnswer(); highlight?.Dispose(); preview?.Dispose(); panel?.Dispose();
+            ClearAnswer(); highlight?.Dispose(); preview?.Dispose(); panel?.Dispose(); FeedbackEmitted = null;
         }
     }
 }

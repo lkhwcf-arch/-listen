@@ -11,7 +11,8 @@ namespace EscapeGame.Player
         private bool[] originallyEnabled;
         private Camera view;
         private Transform visual;
-        private Vector3 restPosition;
+        private Vector3 restPosition, restCenterInParent;
+        private float probeRadius;
         private int marginMm;
         public bool IsObstructed { get; private set; }
         public void Initialize(Camera view, Transform visual, int marginMm)
@@ -25,35 +26,33 @@ namespace EscapeGame.Player
             restPosition = visual.localPosition;
             renderers = visual.GetComponentsInChildren<Renderer>(true);
             originallyEnabled = new bool[renderers.Length];
-            for (int i = 0; i < renderers.Length; i++) originallyEnabled[i] = renderers[i].enabled;
+            bool hasBounds = false;
+            var bounds = new Bounds();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                originallyEnabled[i] = renderers[i].enabled;
+                if (!originallyEnabled[i]) continue;
+                if (!hasBounds) { bounds = renderers[i].bounds; hasBounds = true; }
+                else bounds.Encapsulate(renderers[i].bounds);
+            }
+            // 팔 전체를 원점 중심 구로 감싸면 눈까지 구에 포함되어 모델이 항상 숨겨집니다.
+            // 모델 중심과 두께를 초기화 시 캐시합니다. 애니메이션별 정밀 충돌 대신 표현 보정용 근사값입니다.
+            restCenterInParent = visual.parent.InverseTransformPoint(hasBounds ? bounds.center : visual.position);
+            probeRadius = hasBounds ? Mathf.Max(.001f, Mathf.Min(bounds.extents.x, bounds.extents.y, bounds.extents.z)) : .001f;
         }
         private void LateUpdate()
         {
             if (view == null || visual == null) return;
-            float radius = 0;
-            // 원점 중심의 보수적인 구: 회전된 큐브·손 모델도 보호합니다. 배열/메시를 매 프레임 생성하지 않습니다.
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                if (!originallyEnabled[i] || renderers[i] == null) continue;
-                var bounds = renderers[i].localBounds;
-                for (int corner = 0; corner < 8; corner++)
-                {
-                    var point = bounds.center + Vector3.Scale(bounds.extents, new Vector3(
-                        (corner & 1) == 0 ? -1 : 1, (corner & 2) == 0 ? -1 : 1, (corner & 4) == 0 ? -1 : 1));
-                    radius = Mathf.Max(radius, visual.InverseTransformPoint(renderers[i].transform.TransformPoint(point)).magnitude);
-                }
-            }
-            radius *= Mathf.Max(Mathf.Abs(visual.lossyScale.x), Mathf.Abs(visual.lossyScale.y), Mathf.Abs(visual.lossyScale.z));
-            radius += marginMm / 1000f;
-            var offset = visual.parent.TransformVector(restPosition);
+            var offset = visual.parent.TransformPoint(restCenterInParent) - view.transform.position;
             float distance = offset.magnitude;
-            if (distance < 0.001f) { SetVisible(false); return; }
+            if (distance < .001f) { SetVisible(false); return; }
+            float radius = probeRadius + marginMm / 1000f;
             var direction = offset / distance;
             float allowed = surfaces.AllowedDistance(view.transform.position, radius, direction, distance, marginMm / 1000f);
             float forward = Vector3.Dot(view.transform.forward, direction);
             bool visible = forward > 0 && allowed * forward - radius > view.nearClipPlane;
             IsObstructed = allowed < distance;
-            visual.localPosition = restPosition * (allowed / distance);
+            visual.localPosition = restPosition + visual.parent.InverseTransformVector(direction * (allowed - distance));
             SetVisible(visible);
         }
         private void SetVisible(bool visible)

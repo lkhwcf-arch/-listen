@@ -53,6 +53,7 @@ namespace EscapeGame.World
             token.ThrowIfCancellationRequested();
             // 실제 씬 로더를 명시적으로 조립합니다. Start 실행 순서에 기대지 않습니다.
             var scene = SceneManager.GetActiveScene();
+            long enteredAtMs = (long)(Time.realtimeSinceStartupAsDouble * 1000);
             var worlds = System.Array.FindAll(FindObjectsByType<IngameWorldDriver>(FindObjectsInactive.Exclude, FindObjectsSortMode.None),
                 world => world.gameObject.scene == scene);
             if (worlds.Length != 1) throw new InvalidOperationException("Ingame 씬에 활성 IngameWorldDriver가 정확히 하나 필요합니다.");
@@ -63,9 +64,16 @@ namespace EscapeGame.World
                 worlds[0].Initialize(this);
                 var firstRoom = worlds[0].RequireFirstRoom();
                 playerSpawn = spawnHost.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
-                playerSpawn.Initialize(Service.Data, Service.Role, firstRoom, Service);
+                playerSpawn.Initialize(Service.Data, Service.Role, firstRoom, Service, enteredAtMs: enteredAtMs);
+                playerSpawn.Feedback?.BindWorld(worlds[0]);
                 if (!PlayerReady) throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
                 var interactionSettings = Resources.Load<EscapeGame.Interaction.InteractionPresentationSettings>("InteractionPresentation");
+                try
+                {
+                    playerSpawn.Player.gameObject.AddComponent<EndingVideoDirector>().Initialize(playerSpawn.Player, Service.Data, Service.Role, Service, interactionSettings.Font, playerSpawn.RunClock);
+                }
+                catch (Exception endingError) { Debug.LogError("[엔딩 설정] " + endingError.Message + " 첫 방 플레이는 유지합니다."); }
+
                 spawnHost.AddComponent<SessionGameplayDriver>().Initialize(Service.StartGate,
                     playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerPointerDriver>(),
                     playerSpawn.Player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>(), interactionSettings.Font);

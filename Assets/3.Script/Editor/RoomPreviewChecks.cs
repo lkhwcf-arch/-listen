@@ -50,6 +50,7 @@ namespace EscapeGame.Editor
             var fixture = new GameObject("검사용 원본"); SceneManager.MoveGameObjectToScene(fixture, scene);
             fixture.SetActive(false);
             var assets = ScriptableObject.CreateInstance<GameContentAssets>();
+            typeof(GameContentAssets).GetField("placementMode", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(assets, RoomPlacementMode.ConnectionPoints);
             RoomClearPreviewSession session = null;
             try
             {

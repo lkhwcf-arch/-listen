@@ -16,12 +16,12 @@ MonoBehaviour:
   characterConfigId: 16010
   nearClipMm: 30
   farClipMm: 200000
-  modelPositionMm: {x: 180, y: -200, z: 500}
+  modelPositionMm: {x: 0, y: -350, z: 100}
   modelSizeMm: {x: 180, y: 180, z: 180}
-  modelEulerMilliDegrees: {x: 0, y: 0, z: 0}
+  modelEulerMilliDegrees: {x: 0, y: 180000, z: 0}
   placeholderMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  modelA: {fileID: 0}
-  modelB: {fileID: 0}
+  modelA: {fileID: 5848595614879087068, guid: 6812ab18aae51a9499b07d9d5ac8f620, type: 3}
+  modelB: {fileID: 3379955294202006677, guid: a52f45fce9064f74e8c102e6f8e77635, type: 3}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   maximumMovementFrameMs: 100
   maximumFallSpeedMmPerSecond: 50000

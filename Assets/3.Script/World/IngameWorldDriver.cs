@@ -56,13 +56,21 @@ namespace EscapeGame.World
             throw new InvalidOperationException("첫 방 준비 실패: " +
                 (failures.TryGetValue(plan.First.Id, out var reason) ? reason : "해금된 첫 방이 없습니다."));
         }
+        [ContextMenu("실패한 방 다시 불러오기")]
+        public void RetryFailedRooms()
+        {
+            if (owner == null) return;
+            failures.Clear(); ApplyRooms(owner.Service.UnlockedRoomIds);
+        }
         private void ApplyRooms(IReadOnlyList<int> ids)
         {
             if (!ReferenceEquals(data, owner.Service.Data)) return;
-            foreach (int id in ids)
+            var requested = new HashSet<int>(ids);
+            foreach (var row in plan.OrderedRooms)
             {
-                var row = plan.Find(id);
-                if (row == null || loaded.ContainsKey(id)) continue;
+                int id = row.Id;
+                if (!requested.Contains(id)) continue;
+                if (row == null || loaded.ContainsKey(id) || failures.ContainsKey(id)) continue;
                 RoomSceneView view = null;
                 bool instantiated = false;
                 bool added = false;
@@ -78,7 +86,10 @@ namespace EscapeGame.World
                         view = instance.GetComponent<RoomSceneView>() ?? instance.AddComponent<RoomSceneView>();
                         view.Configure(row.RoomNo);
                     }
-                    view.Load(row, plan, data, owner.Assets, externallyManagedPrefabIds);
+                    var previousRow = System.Linq.Enumerable.FirstOrDefault(plan.Rooms, candidate => candidate.Next == row.Id);
+                    RoomSceneView previous = null;
+                    if (previousRow != null) loaded.TryGetValue(previousRow.Id, out previous);
+                    RoomSceneAssembler.Prepare(view, row, plan, data, owner.Assets, externallyManagedPrefabIds, previous);
                     loaded.Add(id, view);
                     failures.Remove(id);
                     added = true;

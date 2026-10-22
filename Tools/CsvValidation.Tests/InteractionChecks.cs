@@ -24,7 +24,7 @@ internal static class InteractionChecks
         {
             var copy = new Dictionary<string, string>(original); change?.Invoke(copy);
             var fixture = new TestValidator(xml); var store = new CsvDataStore();
-            if (!store.TryRegister(fixture.Input(copy), new CsvValidator(fixture.Catalog), out var report)) throw new Exception(string.Join("\n", report.Issues));
+            if (!store.TryRegister(fixture.Input(copy), new CsvValidator(fixture.Catalog), out var report)) throw new InvalidOperationException(string.Join("\n", report.Issues));
             return new CsvGameData(store);
         }
         foreach (string invalid in new[] { "99999", "14001|14001", "14001||14005", "0", "-1", "1.5", "2147483648" })
