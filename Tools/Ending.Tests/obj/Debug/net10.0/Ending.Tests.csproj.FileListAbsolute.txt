@@ -1,0 +1,15 @@
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\bin\Debug\net10.0\Ending.Tests.exe
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\bin\Debug\net10.0\Ending.Tests.deps.json
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\bin\Debug\net10.0\Ending.Tests.runtimeconfig.json
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\bin\Debug\net10.0\Ending.Tests.dll
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\bin\Debug\net10.0\Ending.Tests.pdb
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.AssemblyInfoInputs.cache
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.AssemblyInfo.cs
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.csproj.CoreCompileInputs.cache
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.sourcelink.json
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.dll
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\refint\Ending.Tests.dll
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.pdb
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\Ending.Tests.genruntimeconfig.cache
+C:\Users\m\Desktop\listen\Tools\Ending.Tests\obj\Debug\net10.0\ref\Ending.Tests.dll

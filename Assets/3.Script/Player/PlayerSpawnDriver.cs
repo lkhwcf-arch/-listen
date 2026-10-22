@@ -32,6 +32,8 @@ namespace EscapeGame.Player
             {
                 spawned.gameObject.AddComponent<EscapeGame.Interaction.PlayerInteractionDriver>().Initialize(
                     spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings, answers, role, doors ?? answers as IRoomDoorService);
+                if (answers is IRoomCompletionService completion)
+                    spawned.gameObject.AddComponent<EndingVideoDirector>().Initialize(spawned, data, role, completion, interactionSettings.Font);
                 Player = spawned;
             }
             catch { spawned.gameObject.SetActive(false); Destroy(spawned.gameObject); throw; }

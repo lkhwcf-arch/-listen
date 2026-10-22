@@ -4,99 +4,121 @@ using EscapeGame.Data;
 using EscapeGame.Data.Tables;
 using EscapeGame.Interaction;
 using EscapeGame.Player;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Video;
 
 namespace EscapeGame.World
 {
-    // 마지막 방(ROOM.Next=0)의 문이 열리면 엔딩 영상을 전체 화면으로 한 번 재생합니다.
-    // 문 허가는 기존 문 판정(ExitRule)을 그대로 사용하고, 이 스크립트는 열린 결과만 관찰합니다.
+    // 자기 정답 이후 대기·조작 잠금·영상 표현을 조립합니다. 문 열림/출구 이동을 관찰하지 않습니다.
     public sealed class EndingVideoDirector : MonoBehaviour
     {
-        private const float ScanSeconds = .25f;
-        private float nextScan;
-        private WorldDoorView watched, played;
-        private GameObject root;
-        private VideoPlayer player;
-        private RenderTexture texture;
-        private IDisposable block;
-        public bool IsPlaying => root != null;
+        private FirstPersonPlayerRig rig;
+        private PlayerPointerDriver pointer;
+        private EndingVideoAssets assets;
+        private UnityEngine.Video.VideoClip clip;
+        private EndingCompletionController completion;
+        private EndingPlaybackController playback;
+        private EndingWaitingView waiting;
+        private IDisposable controlBlock;
+        private long retryAt;
+        private bool completed, subscribed;
+        private string reportedError, playbackError;
+        public EndingPlaybackPhase Phase => completed ? EndingPlaybackPhase.Completed : playback?.Phase ?? EndingPlaybackPhase.Idle;
+        public bool IsPlaying => Phase == EndingPlaybackPhase.Preparing || Phase == EndingPlaybackPhase.Playing;
+        public event Action VideoCompleted;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void Install()
+        public void Initialize(FirstPersonPlayerRig rig, CsvGameData data, string role, IRoomCompletionService service, TMP_FontAsset font)
         {
-            if (FindFirstObjectByType<EndingVideoDirector>() != null) return;
-            var host = new GameObject(nameof(EndingVideoDirector));
-            DontDestroyOnLoad(host);
-            host.AddComponent<EndingVideoDirector>();
+            if (this.rig != null) throw new InvalidOperationException("엔딩은 플레이어별로 한 번만 초기화합니다.");
+            if (rig == null || data == null || service == null || font == null) throw new ArgumentNullException(nameof(rig));
+            var terminal = new RoomLoadPlan(data, role).Rooms.Where(room => room.Next == 0).ToArray();
+            if (terminal.Length != 1 || terminal[0].ExitRule != RoomExitRules.BothSolved)
+                throw new InvalidOperationException("엔딩 방은 Next=0, ExitRule=BothSolved인 활성 방 하나여야 합니다.");
+            assets = Resources.Load<EndingVideoAssets>("EndingVideo")
+                ?? throw new InvalidOperationException("Resources/EndingVideo 에셋이 없습니다.");
+            assets.Validate();
+            var config = data.GameConfigs.SingleOrDefault(row => row.Id == EndingVideoAssets.ConfigId)
+                ?? throw new InvalidOperationException("GAME_CONFIG 16011 엔딩 영상 경로가 없습니다.");
+            clip = assets.Resolve(config.Value);
+            pointer = rig.GetComponent<PlayerPointerDriver>() ?? throw new InvalidOperationException("엔딩 조작 잠금에 플레이어 포인터가 필요합니다.");
+            this.rig = rig;
+            waiting = new EndingWaitingView(gameObject.scene, font);
+            completion = new EndingCompletionController(terminal[0].RoomNo, service, assets.CompletionPollIntervalMs);
+            if (isActiveAndEnabled) Observe();
         }
-        private void Update()
+        private void OnEnable() { if (completion != null) Observe(); }
+        private void Observe()
         {
-            if (root == null && texture != null) Clear(); // 재생 중 씬이 바뀐 경우
-            if (watched == null)
+            if (!subscribed) { completion.Changed += ApplyCompletion; subscribed = true; }
+            ApplyCompletion();
+        }
+        private void ApplyCompletion()
+        {
+            if (completed || completion.Phase == EndingCompletionPhase.Playing) return;
+            if (controlBlock == null)
             {
-                if (Time.unscaledTime < nextScan) return;
-                nextScan = Time.unscaledTime + ScanSeconds;
-                watched = FindObjectsByType<WorldDoorView>(FindObjectsSortMode.None).FirstOrDefault(IsFinalRoomDoor);
-                return;
+                controlBlock = pointer.Controls.BlockForUi();
+                rig.GetComponent<PlayerInteractionDriver>()?.Closeup?.Close();
             }
-            if (watched.IsOpen && watched != played && !IsPlaying) Play(watched);
+            if (completion.Phase == EndingCompletionPhase.WaitingForPartner)
+            {
+                waiting.Render(true, completion.LastError == null
+                    ? "정답을 맞혔습니다.\n다른 플레이어의 정답 입력을 기다리고 있습니다."
+                    : "다른 플레이어의 정답 완료를 확인하고 있습니다.\n연결 상태를 확인한 뒤 다시 시도합니다.");
+                if (completion.LastError != null && reportedError != completion.LastError)
+                { reportedError = completion.LastError; Debug.LogWarning("[엔딩 대기] " + completion.LastError); }
+            }
+            else if (playback == null && NowMs >= retryAt) StartVideo();
         }
-        private static bool IsFinalRoomDoor(WorldDoorView door)
+        private void LateUpdate()
         {
-            var target = door.GetComponent<WorldInteractionTarget>();
-            if (target == null || target.Anchor == null || target.Data == null) return false;
-            return target.Data.RoomsA.Cast<RoomData>().Concat(target.Data.RoomsB)
-                .Any(room => room.Active && room.Next == 0 && room.RoomNo == target.Anchor.RoomNo);
+            if (completion == null || completed) return;
+            long now = NowMs;
+            completion.Tick(now);
+            if (playback != null)
+            {
+                playback.Tick(now);
+                if (playback.Phase == EndingPlaybackPhase.Failed) PlaybackFailed(playback.Error);
+            }
+            if (completion.Phase == EndingCompletionPhase.Ready && playback == null && now >= retryAt) StartVideo();
         }
-        private void Play(WorldDoorView door)
+        private void StartVideo()
         {
-            played = door;
-            var config = door.GetComponent<WorldInteractionTarget>().Data.GameConfigs.FirstOrDefault(row => row.Id == EndingVideoAssets.ConfigId);
-            var assets = Resources.Load<EndingVideoAssets>("EndingVideo");
-            VideoClip clip;
             try
             {
-                if (config == null) throw new InvalidOperationException("GAME_CONFIG 16011 엔딩 영상 경로가 없습니다.");
-                if (assets == null) throw new InvalidOperationException("Resources/EndingVideo 에셋이 없습니다.");
-                clip = assets.Resolve(config.Value);
+                playback = new EndingPlaybackController(new EndingVideoView(clip, gameObject.scene), assets.PrepareTimeoutMs);
+                playback.Completed += OnCompleted;
+                waiting.Render(false, ""); playback.Start(NowMs);
+                Debug.Log("[엔딩] 두 플레이어의 마지막 방 정답 완료를 확인했습니다. 영상 준비 중입니다.");
             }
-            catch (Exception error) { Debug.LogWarning("[엔딩] " + error.Message); return; }
-
-            var pointer = FindFirstObjectByType<PlayerPointerDriver>();
-            if (pointer != null && pointer.Controls != null) block = pointer.Controls.BlockForUi();
-            texture = new RenderTexture(clip.width > 0 ? (int)clip.width : 1920, clip.height > 0 ? (int)clip.height : 1080, 0);
-
-            root = new GameObject("EndingVideoCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(Image));
-            var canvas = root.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 5000;
-            var scaler = root.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize; scaler.referenceResolution = new Vector2(1920, 1080);
-            root.GetComponent<Image>().color = Color.black;
-            var screen = new GameObject("EndingVideo", typeof(RectTransform), typeof(RawImage), typeof(AspectRatioFitter));
-            screen.transform.SetParent(root.transform, false);
-            screen.GetComponent<RawImage>().texture = texture;
-            var fitter = screen.GetComponent<AspectRatioFitter>();
-            fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent; fitter.aspectRatio = (float)texture.width / texture.height;
-
-            player = root.AddComponent<VideoPlayer>();
-            player.playOnAwake = false; player.isLooping = false; player.clip = clip;
-            player.renderMode = VideoRenderMode.RenderTexture; player.targetTexture = texture;
-            player.audioOutputMode = VideoAudioOutputMode.Direct;
-            player.loopPointReached += OnFinished;
-            player.Play();
+            catch (Exception error) { PlaybackFailed(error.Message); }
         }
-        // 결과 화면 연결 전까지는 영상이 끝나면 조작을 돌려줍니다.
-        private void OnFinished(VideoPlayer source) => Clear();
-        private void Clear()
+        private void PlaybackFailed(string message)
         {
-            if (player != null) player.loopPointReached -= OnFinished;
-            if (root != null) Destroy(root);
-            if (texture != null) { texture.Release(); Destroy(texture); }
-            block?.Dispose();
-            root = null; player = null; texture = null; block = null;
+            if (playbackError != message) { playbackError = message; Debug.LogWarning("[엔딩] 영상 재생 실패: " + message); }
+            ClearPlayback(); retryAt = NowMs + assets.RetryIntervalMs;
+            waiting.Render(true, "엔딩 영상을 재생하지 못했습니다.\n잠시 후 다시 시도합니다.");
         }
-        private void OnDestroy() => Clear();
+        private void OnCompleted()
+        {
+            completed = true;
+            Debug.Log("[엔딩] 영상 재생이 완료되었습니다. 결과 UI 연결 전까지 마지막 화면과 조작 잠금을 유지합니다.");
+            VideoCompleted?.Invoke();
+        }
+        private static long NowMs => (long)(Time.realtimeSinceStartupAsDouble * 1000);
+        private void ClearPlayback()
+        {
+            if (playback != null) { playback.Completed -= OnCompleted; playback.Dispose(); playback = null; }
+        }
+        private void OnDisable()
+        {
+            if (subscribed) { completion.Changed -= ApplyCompletion; subscribed = false; }
+            ClearPlayback(); waiting?.Render(false, ""); controlBlock?.Dispose(); controlBlock = null;
+        }
+        private void OnDestroy()
+        {
+            completion?.Dispose(); ClearPlayback(); waiting?.Dispose(); controlBlock?.Dispose();
+            VideoCompleted = null;
+        }
     }
 }

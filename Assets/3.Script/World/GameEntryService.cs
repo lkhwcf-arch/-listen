@@ -11,7 +11,7 @@ using EscapeGame.Session.Contracts;
 namespace EscapeGame.World
 {
     // 데이터 소스 선택과 등록을 조정합니다. 씬 전환은 Unity 조립 지점이 주입합니다.
-    public sealed class GameEntryService : IRoomAnswerService, IRoomDoorService, IDisposable
+    public sealed class GameEntryService : IRoomAnswerService, IRoomCompletionService, IDisposable
     {
         private readonly ISessionConnectionService session;
         private readonly ISessionContentService content;
@@ -35,6 +35,8 @@ namespace EscapeGame.World
         public IReadOnlyList<int> UnlockedRoomIds { get; private set; } = Array.Empty<int>();
         public event Action Changed;
         public event Action<IReadOnlyList<int>> RoomsChanged;
+        public event Action<int> RoomSolved;
+        public bool HasDoorPermission(int roomNo) => roomPermissions.HasPermission(roomNo);
         public GameEntryService(ISessionConnectionService session, ISessionContentService content,
             Func<CsvDataSet> readLocal, CsvValidator validator, Func<CancellationToken, Task> enterScene,
             CancellationToken ownerLifetime = default)
@@ -121,16 +123,23 @@ namespace EscapeGame.World
         {
             if (Data == null) throw new InvalidOperationException("게임 데이터가 등록되지 않았습니다.");
             token.ThrowIfCancellationRequested();
+            var submittedData = Data;
+            PuzzleSubmissionResult result;
             if (IsLocal)
             {
-                var result = local.Submit(Role, puzzleId, answers);
+                result = local.Submit(Role, puzzleId, answers);
                 if (result.Correct) OnRoomsChanged(local.UnlockedRoomIds);
-                return result;
             }
             else
             {
-                return await content.SubmitPuzzleAsync(puzzleId, answers, token);
+                result = await content.SubmitPuzzleAsync(puzzleId, answers, token);
             }
+            if (!disposed && ReferenceEquals(submittedData, Data) && result.Correct)
+            {
+                var room = new RoomLoadPlan(Data, Role).Rooms.FirstOrDefault(row => row.PuzzleId == puzzleId);
+                if (room != null) RoomSolved?.Invoke(room.RoomNo);
+            }
+            return result;
         }
         private void OnRoomsChanged(IReadOnlyList<int> ids)
         {
@@ -139,7 +148,16 @@ namespace EscapeGame.World
             UnlockedRoomIds = pendingRooms;
             RoomsChanged?.Invoke(UnlockedRoomIds);
         }
-        public Task<bool> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token) => roomPermissions.SubmitAnswerAsync(roomNo, answers, token);
+        public async Task<bool> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(GameEntryService));
+            using var request = CancellationTokenSource.CreateLinkedTokenSource(token, ownerToken);
+            var submittedData = Data;
+            bool correct = await roomPermissions.SubmitAnswerAsync(roomNo, answers, request.Token);
+            request.Token.ThrowIfCancellationRequested();
+            if (correct && ReferenceEquals(submittedData, Data)) RoomSolved?.Invoke(roomNo);
+            return correct;
+        }
         public async Task<bool> CheckRoomDoorAsync(int roomNo, CancellationToken token)
         {
             if (disposed) throw new ObjectDisposedException(nameof(GameEntryService));
@@ -184,6 +202,7 @@ namespace EscapeGame.World
             StartGate.Changed -= OnStartGateChanged;
             StartGate.Dispose();
             lifetime.Dispose();
+            RoomSolved = null;
         }
     }
 }
