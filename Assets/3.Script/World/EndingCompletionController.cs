@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 
 namespace EscapeGame.World
 {
-    public enum EndingCompletionPhase { Playing, WaitingForPartner, Ready }
+    public enum EndingCompletionPhase { Playing, WaitingForPartner, Ready, Disconnected }
 
     // 자기 정답을 확인한 뒤에만 서버의 협동 완료 판정을 재조회합니다. 문 개폐와 무관합니다.
     public sealed class EndingCompletionController : IDisposable
     {
         private readonly int finalRoomNo, pollIntervalMs;
         private readonly IRoomCompletionService service;
+        private readonly IRoomCompletionConnection connection;
         private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
         private readonly CancellationToken token;
         private long lastTick, nextPoll;
@@ -23,6 +24,13 @@ namespace EscapeGame.World
             if (finalRoomNo < 1 || pollIntervalMs < 1) throw new ArgumentOutOfRangeException(nameof(finalRoomNo));
             this.finalRoomNo = finalRoomNo; this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.pollIntervalMs = pollIntervalMs; token = lifetime.Token; service.RoomSolved += OnSolved;
+            connection = service as IRoomCompletionConnection;
+            if (connection != null) connection.AvailabilityChanged += OnAvailabilityChanged;
+        }
+        private void OnAvailabilityChanged()
+        {
+            if (disposed || Phase != EndingCompletionPhase.WaitingForPartner || connection.IsAvailable) return;
+            Phase = EndingCompletionPhase.Disconnected; lifetime.Cancel(); Changed?.Invoke();
         }
         private void OnSolved(int roomNo)
         {
@@ -60,6 +68,7 @@ namespace EscapeGame.World
         {
             if (disposed) return;
             disposed = true; service.RoomSolved -= OnSolved;
+            if (connection != null) connection.AvailabilityChanged -= OnAvailabilityChanged;
             lifetime.Cancel(); lifetime.Dispose(); Changed = null;
         }
     }

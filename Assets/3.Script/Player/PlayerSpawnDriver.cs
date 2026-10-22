@@ -10,7 +10,9 @@ namespace EscapeGame.Player
     {
         public FirstPersonPlayerRig Player { get; private set; }
         public event Action<FirstPersonPlayerRig> Spawned;
-        public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null, IRoomAnswerService answers = null, IRoomDoorService doors = null)
+        public EscapeGame.Audio.GameFeedbackDriver Feedback { get; private set; }
+        public EscapeRunClock RunClock { get; private set; }
+        public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null, IRoomAnswerService answers = null, IRoomDoorService doors = null, long? enteredAtMs = null)
         {
             if (Player != null)
             {
@@ -27,14 +29,20 @@ namespace EscapeGame.Player
             var interactionSettings = Resources.Load<EscapeGame.Interaction.InteractionPresentationSettings>("InteractionPresentation")
                 ?? throw new InvalidOperationException("InteractionPresentation 설정 에셋이 필요합니다.");
             interactionSettings.Validate();
+            RunClock = new EscapeRunClock(enteredAtMs ?? (long)(Time.realtimeSinceStartupAsDouble * 1000));
             var spawned = LocalPlayerFactory.Spawn(plan, rooms[0].transform, settings);
             try
             {
                 spawned.gameObject.AddComponent<EscapeGame.Interaction.PlayerInteractionDriver>().Initialize(
                     spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings, answers, role, doors ?? answers as IRoomDoorService);
-                if (answers is IRoomCompletionService completion)
-                    spawned.gameObject.AddComponent<EndingVideoDirector>().Initialize(spawned, data, role, completion, interactionSettings.Font);
                 Player = spawned;
+                var feedbackAssets = Resources.Load<EscapeGame.Data.GameFeedbackAssets>("GameFeedback");
+                if (feedbackAssets != null)
+                {
+                    Feedback = spawned.gameObject.AddComponent<EscapeGame.Audio.GameFeedbackDriver>();
+                    Feedback.Initialize(spawned, data, role, feedbackAssets, rooms[0]);
+                }
+                else Debug.LogWarning("[게임 표현] GameFeedback 설정이 없어 보행 연출·게임 효과음을 생략합니다.");
             }
             catch { spawned.gameObject.SetActive(false); Destroy(spawned.gameObject); throw; }
             Spawned?.Invoke(Player);

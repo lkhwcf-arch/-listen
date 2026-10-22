@@ -65,6 +65,7 @@ namespace EscapeGame.Editor
                 var driver = host.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
                 driver.Initialize(data, Role, room.GetComponent<RoomSceneView>(), doors: doors);
                 player = driver.Player;
+                foreach (var preview in previews.Values) driver.Feedback?.RegisterRoom(preview.GetComponent<RoomSceneView>());
             }
             catch { Object.DestroyImmediate(host); throw; }
         }
@@ -83,26 +84,8 @@ namespace EscapeGame.Editor
 
         private void ConnectNext(RoomData room, RoomData next)
         {
-            var previous = FindPreview(room);
-            if (previous == null) throw new InvalidOperationException("현재 방 미리보기가 없습니다. 미리보기를 다시 시작하세요.");
-            var exit = RoomConnectionAlignment.FindExit(previous.transform, room.RoomNo);
-            bool wasRegistered = FindPreview(next) != null;
-            var candidate = EnsureRoom(next);
-            var original = new Pose(candidate.transform.position, candidate.transform.rotation);
-            try
-            {
-                var entry = RoomConnectionAlignment.FindEntry(candidate.transform, next.RoomNo);
-                RoomConnectionAlignment.Align(candidate.transform, entry, exit);
-            }
-            catch
-            {
-                candidate.transform.SetPositionAndRotation(original.position, original.rotation);
-                if (!wasRegistered)
-                {
-                    ReleaseRoom(next.Id);
-                }
-                throw;
-            }
+            if (FindPreview(room) == null) throw new InvalidOperationException("현재 방 미리보기가 없습니다.");
+            EnsureRoom(next); // 실제 게임과 같은 RoomSceneAssembler에서 배치·조립합니다.
         }
 
         private GameObject EnsureRoom(RoomData row)
@@ -135,8 +118,11 @@ namespace EscapeGame.Editor
                 if (view == null) view = instance.AddComponent<RoomSceneView>();
                 if (existing.Length == 0) view.Configure(row.RoomNo);
                 // 실제 게임 로더를 재사용하여 역할별 CSV 선택·앵커 배치·기능 주입을 동일하게 처리합니다.
-                view.Load(row, plan, data, assets, externallyManagedPrefabIds);
+                var previousRow = plan.Rooms.FirstOrDefault(candidate => candidate.Next == row.Id);
+                var previous = previousRow == null ? null : FindPreview(previousRow)?.GetComponent<RoomSceneView>();
+                RoomSceneAssembler.Prepare(view, row, plan, data, assets, externallyManagedPrefabIds, previous);
                 previews.Add(row.Id, instance);
+                if (player != null) player.GetComponent<EscapeGame.Audio.GameFeedbackDriver>()?.RegisterRoom(view);
                 return instance;
             }
             catch

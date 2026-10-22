@@ -22,11 +22,15 @@ if (args.Length == 3 && (args[0] == "--answers" || args[0] == "--entry"))
 }
 
 string root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
-var original = Directory.GetFiles(Path.Combine(root, "Assets", "11.CSV"), "*.csv")
+var actual = Directory.GetFiles(Path.Combine(root, "Assets", "11.CSV"), "*.csv").ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
+var original = Directory.GetFiles(Path.Combine(root, "Tools", "CsvValidation.Tests", "Fixtures", "Content"), "*.csv")
     .ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
 int passed = 0;
 string catalogXml = File.ReadAllText(Path.Combine(root, "Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml"));
 TestValidator CreateValidator() => new TestValidator(catalogXml);
+var actualReport = CreateValidator().Validate(actual);
+if (actualReport.Any(issue => issue.Severity == CsvValidationSeverity.Error)) throw new Exception("실제 콘텐츠 검증 실패: " + string.Join("\n", actualReport));
+Console.WriteLine($"실제 콘텐츠: {actual.Count}개 파일, 오류 0개. 고정 코퍼스로 규칙 검사를 계속합니다.");
 var baseline = CreateValidator().Validate(original);
 foreach (var issue in baseline) Console.WriteLine(issue);
 if (baseline.Any(x => x.Severity == CsvValidationSeverity.Error)) throw new Exception("현재 데이터 기본 검사 실패");
@@ -97,3 +101,5 @@ await RoomPermissionChecks.Run();
 await DoorInteractionChecks.Run();
 InteractionChecks.Run(original, catalogXml);
 await PuzzleAnswerChecks.Run(original, catalogXml);
+
+await RefactorChecks.Run(original, catalogXml);

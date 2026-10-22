@@ -58,6 +58,7 @@ namespace EscapeGame.Player
                     if (plan.UsesCylinder) size.y /= 2; // Unity의 기본 Cylinder 높이는 2입니다.
                     model.transform.localScale = size;
                 }
+                foreach (var animator in model.GetComponentsInChildren<Animator>(true)) animator.applyRootMotion = false;
                 foreach (var collider in model.GetComponentsInChildren<Collider>(true))
                 { collider.enabled = false; Object.Destroy(collider); }
                 foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
@@ -82,6 +83,8 @@ namespace EscapeGame.Player
                 try { pointerDriver.Initialize(pointer, controls); look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver); }
                 catch { pointer.Dispose(); throw; }
                 root.AddComponent<ViewModelObstructionDriver>().Initialize(camera, visual, settings.ModelCollisionMarginMm);
+                var feedback = Resources.Load<EscapeGame.Data.GameFeedbackAssets>("GameFeedback");
+                if (feedback != null) root.AddComponent<PlayerGaitDriver>().Initialize(camera.transform, movement, pointerDriver, plan.Character, feedback);
                 root.SetActive(true);
                 return rig;
             }

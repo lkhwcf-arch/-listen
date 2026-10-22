@@ -104,14 +104,25 @@ foreach (bool aFirst in new[] { true, false })
     Check(first.Phase == EndingCompletionPhase.Ready && second.Phase == EndingCompletionPhase.Ready,
         "후행 정답 확정 후 양쪽 엔딩 준비");
 }
+rooms = new FakeRooms();
+using (var ending = new EndingCompletionController(7, rooms, 1000))
+{
+    var pending = new TaskCompletionSource<bool>(); rooms.Query = () => pending.Task;
+    rooms.Solve(7, false); ending.Tick(0); rooms.Disconnect(); pending.SetResult(true); ending.Tick(5000);
+    Check(ending.Phase == EndingCompletionPhase.Disconnected && rooms.Requests == 1, "종료된 연결을 무한 조회하거나 늦은 true로 엔딩 처리하지 않음");
+    Check(rooms.LastToken.IsCancellationRequested, "연결 종료가 진행 중 완료 조회를 취소");
+}
 Reject(() => new EndingCompletionController(0, new FakeRooms(), 1000), "잘못된 마지막 방 거부");
 Reject(() => new EndingCompletionController(7, new FakeRooms(), 0), "잘못된 조회 간격 거부");
 Console.WriteLine($"엔딩 협동 완료·재생 수명 검사 {checks}개 통과");
 
-sealed class FakeRooms : IRoomCompletionService
+sealed class FakeRooms : IRoomCompletionService, IRoomCompletionConnection
 {
     public event Action<int> RoomSolved;
     public bool Permitted;
+    public bool IsAvailable { get; private set; } = true;
+    public event Action AvailabilityChanged;
+    public void Disconnect() { IsAvailable = false; AvailabilityChanged?.Invoke(); }
     public int Requests;
     public CancellationToken LastToken;
     public int Subscribers => RoomSolved?.GetInvocationList().Length ?? 0;

@@ -793,7 +793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "<u>\u3139</u>\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc3e48ef0b151e444b6f356b0e2d5b06, type: 2}
   m_sharedMaterial: {fileID: -7775850230741766978, guid: fc3e48ef0b151e444b6f356b0e2d5b06, type: 2}
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6431183100780160824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

@@ -16,7 +16,11 @@ namespace EscapeGame.Data
         [SerializeField] private TextAsset[] csvFiles;
         [SerializeField] private TextAsset validationRules;
         [SerializeField] private PrefabBinding[] prefabs;
+        [SerializeField] private EscapeGame.World.RoomPlacementMode placementMode;
+        public EscapeGame.World.RoomPlacementMode PlacementMode => placementMode;
+        private Dictionary<string, GameObject> prefabIndex;
 
+        private void OnValidate() => prefabIndex = null;
         public CsvValidator CreateValidator() => new CsvValidator(CsvValidationCatalog.Read(validationRules.text));
         public CsvDataSet ReadLocalData()
         {
@@ -28,8 +32,8 @@ namespace EscapeGame.Data
         public GameObject ResolvePrefab(string path)
         {
             string normalized = Normalize(path);
-            var binding = prefabs.FirstOrDefault(entry => Normalize(entry.path) == normalized);
-            return binding?.prefab != null ? binding.prefab
+            if (prefabIndex == null) prefabIndex = prefabs.ToDictionary(entry => Normalize(entry.path), entry => entry.prefab, StringComparer.Ordinal);
+            return prefabIndex.TryGetValue(normalized, out var prefab) && prefab != null ? prefab
                 : throw new InvalidOperationException("빌드에 등록된 프리팹이 없습니다: " + path);
         }
         private static string Normalize(string path) => path.Replace('\\', '/').Replace(".prefab", "");

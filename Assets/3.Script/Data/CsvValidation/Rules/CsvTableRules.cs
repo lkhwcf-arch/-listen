@@ -110,6 +110,7 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 context.Token.ThrowIfCancellationRequested();
                 string name = row.Get("Sheet");
                 var table = context.Find(name);
+                if (CsvValidationContext.Active(row) && table != null && table.Definition == null) context.Add(CsvValidationCode.UnknownSchema, registry.Name, row.SourceLine, "Sheet", name);
                 if (CsvValidationContext.Active(row) && table == null)
                 {
                     if (row.Get("Required") == "Y") context.Add(CsvValidationCode.MissingTable, registry.Name, row.SourceLine, "Sheet", name);

@@ -38,7 +38,7 @@ namespace EscapeGame.Editor
 
         private void OnGUI()
         {
-            EditorGUILayout.HelpBox("개발자 전용: CSV Next를 따라 다음 방 입구를 현재 방 출구에 맞춰 연결합니다. 방과 내부 오브젝트를 로컬 CSV로 생성합니다. 서버의 실제 클리어 상태는 변경하지 않습니다.", MessageType.Info);
+            EditorGUILayout.HelpBox("개발자 전용: CSV Next와 GameContent의 배치 정책에 따라 다음 방을 구성합니다. 방과 내부 오브젝트를 로컬 CSV로 생성합니다. 서버의 실제 클리어 상태는 변경하지 않습니다.", MessageType.Info);
             using (new EditorGUI.DisabledScope(session != null))
                 roleIndex = EditorGUILayout.Popup("미리보기 역할", roleIndex, new[] { "A", "B" });
             using (new EditorGUI.DisabledScope(!Application.isPlaying || SceneManager.GetActiveScene().name != "Ingame" || session != null))
@@ -48,7 +48,7 @@ namespace EscapeGame.Editor
             EditorGUILayout.HelpBox(message, MessageType.Info);
             if (session == null) return;
             using (new EditorGUI.DisabledScope(session.HasPlayer))
-                if (GUILayout.Button("플레이어 생성 (카메라 + 손·무전기 임시 모델)")) Execute(() =>
+                if (GUILayout.Button("플레이어 생성 (카메라 + A/B 손 모델)")) Execute(() =>
                 {
                     session.SpawnPlayer();
                     message = "플레이어 생성 완료. Game 뷰를 클릭하고 WASD로 이동하세요. 마우스로 시점을 회전할 수 있습니다. 생성된 방의 문은 좌클릭으로 열고 닫습니다. 다음 방 생성은 이 방 클리어 버튼을 사용하세요. 정답 UI는 Join의 클라이언트 테스트에서 확인하세요.";

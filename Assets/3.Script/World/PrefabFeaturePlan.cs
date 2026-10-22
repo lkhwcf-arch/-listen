@@ -11,7 +11,7 @@ namespace EscapeGame.World
     {
         public const string Interactable = "Interactable", Closeup = "CloseUpUI", Dial = "DialLock", Console = "ButtonConsole",
             Door = "Door", Sign = "LetterSign", Screen = "ScreenText", Spawn = "Spawn";
-        public static bool IsKnown(string script) => new[] { Interactable, Closeup, Dial, Console, Door, Sign, Screen, Spawn }.Contains(script);
+        public static bool IsKnown(string script) => EscapeGame.Data.ContentContract.Features.Contains(script);
     }
     public sealed class PrefabFeaturePlan
     {

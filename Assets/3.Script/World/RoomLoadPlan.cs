@@ -12,6 +12,21 @@ namespace EscapeGame.World
         private readonly RoomData[] rooms;
         public string Role { get; }
         public IReadOnlyList<RoomData> Rooms => Array.AsReadOnly(rooms);
+        private IReadOnlyList<RoomData> ordered;
+        public IReadOnlyList<RoomData> OrderedRooms
+        {
+            get
+            {
+                if (ordered != null) return ordered;
+                var list = new List<RoomData>(); var seen = new HashSet<int>(); var row = First;
+                while (row != null)
+                {
+                    if (!seen.Add(row.Id)) throw new InvalidOperationException("방 연결에 순환이 있습니다.");
+                    list.Add(row); row = row.Next == 0 ? null : Find(row.Next) ?? throw new InvalidOperationException("다음 방이 없습니다.");
+                }
+                return ordered = list.AsReadOnly();
+            }
+        }
         public RoomLoadPlan(CsvGameData data, string role)
         {
             this.data = data ?? throw new ArgumentNullException(nameof(data));

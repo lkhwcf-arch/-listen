@@ -14,6 +14,7 @@ namespace EscapeGame.World
         private VideoPlayer player;
         private RenderTexture texture;
         public event Action Prepared;
+        public event Action PlaybackStarted;
         public event Action Finished;
         public event Action<string> Failed;
         public EndingVideoView(VideoClip clip, Scene scene)
@@ -47,12 +48,20 @@ namespace EscapeGame.World
                     player.controlledAudioTrackCount = 1; player.EnableAudioTrack(0, true);
                     player.SetDirectAudioMute(0, false); player.SetDirectAudioVolume(0, 1);
                 }
-                player.prepareCompleted += OnPrepared; player.loopPointReached += OnFinished; player.errorReceived += OnError;
+                player.started += OnStarted; player.prepareCompleted += OnPrepared; player.loopPointReached += OnFinished; player.errorReceived += OnError;
             }
             catch { Dispose(); throw; }
         }
+        public void SetVisible(bool visible)
+        {
+            if (root == null) return;
+            root.SetActive(visible);
+            if (!visible && player != null && player.isPlaying) player.Pause();
+            else if (visible && player != null && player.isPaused && player.frame < (long)player.frameCount - 1) player.Play();
+        }
         public void Prepare() => player.Prepare();
         public void Play() => player.Play();
+        private void OnStarted(VideoPlayer source) => PlaybackStarted?.Invoke();
         private void OnPrepared(VideoPlayer source) => Prepared?.Invoke();
         private void OnFinished(VideoPlayer source) { source.Pause(); Finished?.Invoke(); }
         private void OnError(VideoPlayer source, string message) => Failed?.Invoke(message);
@@ -60,12 +69,12 @@ namespace EscapeGame.World
         {
             if (player != null)
             {
-                player.prepareCompleted -= OnPrepared; player.loopPointReached -= OnFinished; player.errorReceived -= OnError;
+                player.started -= OnStarted; player.prepareCompleted -= OnPrepared; player.loopPointReached -= OnFinished; player.errorReceived -= OnError;
                 player.Stop(); player.targetTexture = null;
             }
             if (root != null) { root.SetActive(false); Object.Destroy(root); }
             if (texture != null) { texture.Release(); Object.Destroy(texture); }
-            root = null; player = null; texture = null; Prepared = null; Finished = null; Failed = null;
+            root = null; player = null; texture = null; Prepared = null; Finished = null; Failed = null; PlaybackStarted = null;
         }
     }
 }

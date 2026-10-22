@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26bf66c1b3040ee9b5dc8c695623082, type: 3}
+  m_Name: GameFeedback
+  m_EditorClassIdentifier:
+  effects:
+  - cue: 0
+    clips:
+    - {fileID: 8300000, guid: 318c57222bf7d81448e4a3865a8a43e5, type: 3}
+    - {fileID: 8300000, guid: 5adb7f5f74240b14bab5663f3ad8f294, type: 3}
+    - {fileID: 8300000, guid: c19a71d8c07bcb94f8b612689e873cf7, type: 3}
+    volume: 0.5
+    cooldownMs: 0
+    closeupOnly: 0
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 1
+    clips:
+    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    volume: 0.6
+    cooldownMs: 80
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 2
+    clips:
+    - {fileID: 8300000, guid: fd201658047446e40917a2b24f761eb8, type: 3}
+    volume: 0.6
+    cooldownMs: 80
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 3
+    clips:
+    - {fileID: 8300000, guid: ada0b5f6e7b831340bf021d6482679d7, type: 3}
+    volume: 0.5
+    cooldownMs: 0
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 4
+    clips:
+    - {fileID: 8300000, guid: d20d545d02051c845ba3d12013bc4058, type: 3}
+    volume: 0.5
+    cooldownMs: 0
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 5
+    clips:
+    - {fileID: 8300000, guid: 7df50630f3944b349925d173c96ef444, type: 3}
+    volume: 0.5
+    cooldownMs: 50
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 6
+    clips:
+    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    volume: 0.6
+    cooldownMs: 100
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 7
+    clips:
+    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    volume: 0.6
+    cooldownMs: 50
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 8
+    clips:
+    - {fileID: 8300000, guid: fd201658047446e40917a2b24f761eb8, type: 3}
+    volume: 0.5
+    cooldownMs: 80
+    closeupOnly: 1
+    spatial: 0
+    minDistance: 1
+    maxDistance: 15
+  - cue: 9
+    clips:
+    - {fileID: 8300000, guid: 5497e830bcc6fa444852cd68714b9280, type: 3}
+    volume: 0.8
+    cooldownMs: 0
+    closeupOnly: 0
+    spatial: 1
+    minDistance: 1
+    maxDistance: 15
+  - cue: 11
+    clips:
+    - {fileID: 8300000, guid: fd7c7ee202f5a1a49b0e2fa4573bcd6f, type: 3}
+    volume: 0.6
+    cooldownMs: 500
+    closeupOnly: 0
+    spatial: 1
+    minDistance: 1
+    maxDistance: 15
+  ambient:
+  - roomNo: 1
+    clip: {fileID: 8300000, guid: 6d57b91c7d685734eadce5a9ed75bcf5, type: 3}
+    volume: 0.4
+  - roomNo: 2
+    clip: {fileID: 8300000, guid: 0f26093b88f4ad4458d731e9c11ce853, type: 3}
+    volume: 0.4
+  - roomNo: 3
+    clip: {fileID: 8300000, guid: 5b65dd9d8d36e2b409bcecd4a6e90a64, type: 3}
+    volume: 0.4
+  - roomNo: 4
+    clip: {fileID: 8300000, guid: c4cdd1471b13f1f4c8083a97b19e1875, type: 3}
+    volume: 0.4
+  - roomNo: 5
+    clip: {fileID: 8300000, guid: 3a2e82b27238d7c41aed937d582b60d7, type: 3}
+    volume: 0.4
+  - roomNo: 6
+    clip: {fileID: 8300000, guid: 2034a938cad2dec44865d5710c6eda63, type: 3}
+    volume: 0.4
+  - roomNo: 7
+    clip: {fileID: 8300000, guid: e5e947cde01911a40b8eb5847b33e8d3, type: 3}
+    volume: 0.4
+  resultPrefab: {fileID: 4519609632475661383, guid: 11d37a31193fdcb4b9e2ab43607bd881, type: 3}
+  stepDistanceMeters: 0.75
+  headBobReturnSeconds: 0.12
+  ambientFadeSeconds: 3
+  effectVoices: 12
+  doorwayMarginMeters: 0.05
+  maximumCrossingSegmentMeters: 2
