@@ -31,6 +31,20 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 5b2faad7ca32ee4429528a58d3ce054d, type: 3}
   validationRules: {fileID: 4900000, guid: 5e83be8417a447cd9fe0a7b1e0affbc3, type: 3}
   prefabs:
+  - path: Assets/2.Model/Light/Room1_Light.prefab
+    prefab: {fileID: 6587490186878970284, guid: 699d8308978e86a42b29c9031cbab4e1, type: 3}
+  - path: Assets/2.Model/Light/Room2_Light.prefab
+    prefab: {fileID: 8559864466698538361, guid: 0f080e20469332448970accd27e18e06, type: 3}
+  - path: Assets/2.Model/Light/Room3_Light.prefab
+    prefab: {fileID: 8823156517942314824, guid: b4bed28d72813ad4d9fa4cf5e2aa6eae, type: 3}
+  - path: Assets/2.Model/Light/Room4_Light.prefab
+    prefab: {fileID: 1867192861964215788, guid: f55b8e6bea6872a44a3ad7f7a878b4c3, type: 3}
+  - path: Assets/2.Model/Light/Room5_Light.prefab
+    prefab: {fileID: 843963257283641893, guid: 10928ce911e49bb44b60623d471e3b95, type: 3}
+  - path: Assets/2.Model/Light/Room6_Light.prefab
+    prefab: {fileID: 2211374324442554834, guid: b7ef6fc078bedc44794f76fb686a6916, type: 3}
+  - path: Assets/2.Model/Light/Room7_Light.prefab
+    prefab: {fileID: 7389200296970974870, guid: e6962b78c6eecdc42a62aae191df2a44, type: 3}
   - path: Assets/2.Model/Prefabs/Door.prefab
     prefab: {fileID: 987553494092161001, guid: db8fdac6b4fdc094ebd48319d7088a69, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
