@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 09430c07ee0a20e4dbdc8ded39891f1b, type: 3}
   - {fileID: 4900000, guid: 8b31de202510c584197f75d2112a5c0b, type: 3}
   - {fileID: 4900000, guid: 23a6289e5b6ebf64b98a2a94b38ab754, type: 3}
+  - {fileID: 4900000, guid: 4928837aa75045b4bb3eb4032631620e, type: 3}
   - {fileID: 4900000, guid: 32ca774e5ade0bb4598cfc6febaffc7c, type: 3}
   - {fileID: 4900000, guid: 5b2faad7ca32ee4429528a58d3ce054d, type: 3}
   validationRules: {fileID: 4900000, guid: 5e83be8417a447cd9fe0a7b1e0affbc3, type: 3}
@@ -111,6 +112,8 @@ MonoBehaviour:
     prefab: {fileID: 2389970105685068966, guid: ba0335544ca1c71458a3795a7a8852c1, type: 3}
   - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/SILENT_Room_07_Objects.prefab
     prefab: {fileID: 8665118456540563358, guid: c4857b113a4db65449b9986d2e204586, type: 3}
+  - path: Assets/2.Model/Prefabs/UI/Result_UI.prefab
+    prefab: {fileID: 4519609632475661383, guid: 11d37a31193fdcb4b9e2ab43607bd881, type: 3}
   - path: Assets/2.Model/Prefabs/Walkie_Talkie/walkie_talkie_3d_model.prefab
     prefab: {fileID: 806023210055348069, guid: 46918562f76249d4b852c7fe55e25faa, type: 3}
   - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Animated.prefab
