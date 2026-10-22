@@ -33,6 +33,10 @@ MonoBehaviour:
   prefabs:
   - path: Assets/2.Model/Prefabs/Door.prefab
     prefab: {fileID: 987553494092161001, guid: db8fdac6b4fdc094ebd48319d7088a69, type: 3}
+  - path: Assets/2.Model/Prefabs/Player/Arms_A_Model.prefab
+    prefab: {fileID: 5848595614879087068, guid: 6812ab18aae51a9499b07d9d5ac8f620, type: 3}
+  - path: Assets/2.Model/Prefabs/Player/Arms_B_Model.prefab
+    prefab: {fileID: 3379955294202006677, guid: a52f45fce9064f74e8c102e6f8e77635, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_LEDPanel.prefab
     prefab: {fileID: 6167955269303453932, guid: c0ce0056b86bb1940aa67a474b44a49d, type: 3}
   - path: Assets/2.Model/Prefabs/R01/R01_Lock.prefab
@@ -93,6 +97,8 @@ MonoBehaviour:
     prefab: {fileID: 2389970105685068966, guid: ba0335544ca1c71458a3795a7a8852c1, type: 3}
   - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/SILENT_Room_07_Objects.prefab
     prefab: {fileID: 8665118456540563358, guid: c4857b113a4db65449b9986d2e204586, type: 3}
+  - path: Assets/2.Model/Prefabs/Walkie_Talkie/walkie_talkie_3d_model.prefab
+    prefab: {fileID: 806023210055348069, guid: 46918562f76249d4b852c7fe55e25faa, type: 3}
   - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Animated.prefab
     prefab: {fileID: 5226624728530010210, guid: 49b93db312ca4b94d9556302c3e75d2f, type: 3}
   - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Manual.prefab
