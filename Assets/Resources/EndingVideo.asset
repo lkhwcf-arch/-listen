@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EndingVideo
   m_EditorClassIdentifier: 
   path: Assets/2.Model/EndingVideo/EndingVideo.mp4
-  clip: {fileID: 32900000, guid: 74fb40d21926b87489ab2443ab63e5a1, type: 3}
+  clip: {fileID: 32900000, guid: 162ae8789604d854ebced8f722b8cb74, type: 3}
