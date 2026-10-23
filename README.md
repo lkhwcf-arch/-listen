@@ -19,7 +19,7 @@
 
 ## 2. 접속·준비·게임 진입
 
-[Start_UI·WaitingRoom_UI 연결·코드·검사 가이드](Docs/JoinMenu.md)를 참고합니다.
+[Start_UI·WaitingRoom_UI 연결·코드·검사 가이드](Docs/JoinMenu.md)를 참고합니다. 서버 없이 타이틀부터 확인하는 순서는 [로컬 플레이 테스트 가이드](Docs/LocalPlayTestGuide.md)를 따릅니다.
 
 접속 주소는 [connection.json](Assets/StreamingAssets/Configuration/connection.json)으로 선택합니다. Join에 주소 입력창은 없습니다.
 
