@@ -19,6 +19,8 @@
 
 ## 2. 접속·준비·게임 진입
 
+[Start_UI·WaitingRoom_UI 연결·코드·검사 가이드](Docs/JoinMenu.md)를 참고합니다.
+
 접속 주소는 [connection.json](Assets/StreamingAssets/Configuration/connection.json)으로 선택합니다. Join에 주소 입력창은 없습니다.
 
 | 환경 | 선택 조건 | 현재 설정 |
@@ -27,10 +29,10 @@
 | TestBuild | Development Build 체크 | http://192.168.1.34:3001 |
 | StableBuild | Development Build 해제 | config에 등록된 클라우드 주소 |
 
-1. Unity에서 Join 씬을 열고 Play를 실행합니다. 활성 환경의 autoConnect=true이면 자동 입장합니다.
-2. 온라인은 두 참가자가 모이면 각 Ingame을 로드하고 역할별 첫 방·플레이어·필수 입력/충돌 준비를 확인합니다.
+1. Unity에서 Join 씬을 열고 Play하면 Start_UI가 표시됩니다. **탈출하기**를 누르면 config 주소로 입장합니다. 새 메뉴는 autoConnect 값과 관계없이 버튼 입력을 기다립니다.
+2. 최신 서버 상태에 한 명이면 WaitingRoom_UI를 생성합니다. 이미 두 명이면 대기 UI를 생성하지 않고 Ingame으로 진행합니다. 먼저 입장한 사람도 상대가 오면 기존 대기 화면에서 씬 전환으로 이어집니다.
 3. 각 클라가 ready를 보고하고 서버가 두 참가자의 ready를 확인해 Playing을 보내야 대기 UI·조작 잠금이 해제됩니다.
-4. 서버 없이 확인하려면 editor.autoConnect=false로 실행한 뒤 **클라이언트 테스트 A/B**를 누릅니다. 이 버튼은 에디터 전용이고 모든 빌드에서 제외됩니다.
+4. 서버 없이 확인하려면 Start_UI의 **클라이언트 테스트 A/B**를 누릅니다. 새 메뉴에서는 autoConnect=false 변경이 필요 없습니다. 이 버튼은 에디터 전용이고 모든 빌드에서 제외됩니다.
 
 서버 실패를 로컬 데이터/정답 판정으로 대체하지 않습니다. 안정화 빌드 주소는 현재 등록되어 있으며 config를 변경하면 재실행/새 빌드에 반영합니다. 자세한 선택·검증은 [접속 설정 안내](Docs/ConnectionConfiguration.md)를 봅니다.
 
@@ -84,6 +86,7 @@ GameContentBuilder가 활성 REGISTRY와 선언된 PREFAB 참조를 빌드 자�
 
 | 메뉴 | 목적 |
 |---|---|
+| Tools → Game → 시작·대기 UI 연결 검사 / 표시 검사 | Join 씬 참조 검사 / Play에서 격리 UI 생성 분기 검사 |
 | Tools → CSV → 검사기 | 현재 CSV 형식·참조 검증 |
 | Tools → Game → Room Clear Test | 방 클리어·방/오브젝트·플레이어 개발자 확인 |
 | Tools → Game → 데이터 기반 상호작용 검사 | 기능 선언/대상 검증 |
@@ -95,13 +98,13 @@ GameContentBuilder가 활성 REGISTRY와 선언된 PREFAB 참조를 빌드 자�
 
 | 2026-10-23 자동 검사 | 결과 |
 |---|---|
-| CSV·입장·접속·문·정답·상호작용 핵심 순수 C# | **312개 통과** |
+| CSV·입장·시작 메뉴·접속·문·정답·상호작용 핵심 순수 C# | **329개 통과** |
 | 플레이어 스폰·이동·시점·조작 | **78개 통과** |
 | 보행·사운드·문 경계·탈출 시간 | **48개 통과** |
 | 엔딩 협동 완료·재생 수명 | **41개 통과** |
-| 실제 C# ↔ Node HTTP/Protobuf | **22개 통과** |
+| 실제 C# ↔ Node HTTP/Protobuf | **24개 통과** |
 | 서버 전체 회귀 | **176개 통과** |
-| Unity DLL 참조 전체 Editor/런타임 분리 컴파일 | 각각 오류 0·기존 필드 정적 경고 58개 |
+| Unity DLL 참조 전체 Editor/런타임 분리 컴파일 | 각각 오류 0·SerializeField/호환 DTO 필드 정적 경고 64개 |
 | 현재 클라 CSV | 원본 14개/활성 14개·오류 0개 |
 
 고정 23시트 코퍼스는 현재 콘텐츠와 별개로 검증 규칙/필드 보존을 검사합니다. net8 검사 소스는 설치된 net10 SDK의 임시 프로젝트로 검사했고 기존 대상 설정은 바꾸지 않았습니다.

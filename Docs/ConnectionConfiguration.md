@@ -1,6 +1,6 @@
-# 환경별 서버 주소와 자동 입장
+# 환경별 서버 주소와 Join 입장
 
-2026-10-23 갱신. 환경별 접속 설정과 자동 입장 안내입니다. 플레이어·Closeup·정답/문 API·HTTP Protobuf·협동 엔딩은 현재 코드에 연결되어 있습니다. 전체 구조와 이번 검사 결과는 [종합 점검](ArchitectureReview.md)을 봅니다.
+2026-10-23 갱신. 환경별 접속 설정과 시작 메뉴 입장 안내입니다. 최신 메뉴 연결은 [Join 메뉴 가이드](JoinMenu.md)를 봅니다. 플레이어·Closeup·정답/문 API·HTTP Protobuf·협동 엔딩은 현재 코드에 연결되어 있습니다. 전체 구조와 이번 검사 결과는 [종합 점검](ArchitectureReview.md)을 봅니다.
 
 ## 설정 위치와 실행 환경
 
@@ -14,14 +14,15 @@
 
 에디터는 Development Build 체크 여부와 관계없이 editor 설정을 선택합니다. 현재 stableBuild 주소는 등록되어 있습니다. 주소를 바꿀 때 stableBuild.serverBaseUrl을 갱신하고 재실행/새 빌드에 반영합니다. 빈 주소는 검증 오류이며 다른 환경으로 대체하지 않습니다. config에 토큰이나 비밀 키를 저장하지 않습니다.
 
-각 환경의 `autoConnect`가 true면 Join 화면 활성화 시 자동 입장을 한 번 시도합니다. 서버가 꺼져 있거나 정원이 찬 경우 기존 오류를 표시하며, 입장 버튼으로 같은 설정에 재시도할 수 있습니다. 자동 재시도 루프는 추가하지 않았습니다. 주소 입력창은 없으며 접속 주소는 config에서만 읽습니다.
+현재 Join의 Start_UI는 **탈출하기 버튼**으로 입장을 요청합니다. autoConnect 값과 관계없이 버튼 입력을 기다립니다. 이 설정은 기존 개발/호환 화면의 자동 실행용으로 보존하며 새 Join에서는 ConfiguredServerConnection.StartAsync를 호출하지 않습니다. 오류 후 탈출하기로 같은 config 주소에 재시도합니다. 주소 입력창·별도 자동 재시도 루프는 없습니다.
 
-서버 없이 CSV를 검사하려면 editor 환경의 autoConnect를 false로 바꾸고 로컬 A/B 버튼을 사용합니다. 로컬 A/B 버튼은 에디터에서만 표시합니다. Join 씬의 버튼에는 `EditorOnly` 태그를 지정하여 Development Build를 포함한 모든 빌드에서 오브젝트를 제외합니다. View도 에디터 여부로 표시를 제한합니다. 이미 실행한 앱이 설정 파일을 계속 감시하는 기능은 없으며 수정 후 재실행합니다. 안정화 빌드는 클라우드 주소를 설정하고 Development Build를 해제합니다.
+서버 없이 CSV를 검사하려면 Start_UI의 로컬 A/B 버튼을 사용합니다. 새 Join에서는 autoConnect를 변경할 필요가 없습니다. 로컬 A/B 버튼은 에디터에서만 표시합니다. Join 씬의 버튼에는 `EditorOnly` 태그를 지정하여 Development Build를 포함한 모든 빌드에서 오브젝트를 제외합니다. View도 에디터 여부로 표시를 제한합니다. 이미 실행한 앱이 설정 파일을 계속 감시하는 기능은 없으며 수정 후 재실행합니다. 안정화 빌드는 클라우드 주소를 설정하고 Development Build를 해제합니다.
 
 ## 바뀐 코드와 의도
 
 | 파일 | 기능과 의도 |
 |---|---|
+| `Session/Presentation/JoinMenuScreen.cs` | config를 읽고 Presenter를 조립합니다. 자동 시작 대신 탈출하기 입력을 기다립니다. |
 | `Configuration/ClientConnectionSettings.cs` | JSON 문서·프로필과 불변 실행 설정을 분리합니다. schemaVersion=1을 확인하고 현재 환경의 프로필만 선택·검증합니다. 알 수 없는 환경이나 빈 주소를 거절합니다. |
 | `Common/Networking/HttpServerAddress.cs` | 주소 검증·공백/끝 슬래시 정리를 공통화합니다. config와 실제 HTTP 클라이언트가 같은 계약을 사용합니다. HTTP/HTTPS만 허용하고 사용자 정보·query·fragment는 거절합니다. |
 | `Configuration/ConfiguredServerConnection.cs` | 자동 입장과 버튼 재시도의 공통 명령입니다. 최초 자동 실행은 한 번이며 진행 중인 접속과 중복 실행하지 않습니다. 취소·실패 후 명시적인 재시도를 지원합니다. |
@@ -58,7 +59,7 @@ Unity 6000.2.8f1의 .NET Standard 2.1·UnityEngine·UnityEditor·uGUI·TMP 참�
 
 1. 로컬 개발 서버를 127.0.0.1:3000에 실행하고 Join을 Play합니다. 입력이나 버튼 클릭 없이 입장과 Ingame 전환을 확인합니다.
 2. 에디터 서버를 끈 뒤 Play하면 접속 오류가 표시되는지 확인합니다. 서버를 켜고 입장 버튼으로 재시도합니다.
-3. 로컬 A/B 검사는 editor.autoConnect=false로 바꾸고 Play한 뒤 선택합니다. 검사 후 true로 돌립니다.
+3. 로컬 A/B 검사는 Join Play 후 Start_UI의 해당 버튼을 선택합니다. 새 메뉴에서는 config의 autoConnect를 바꾸지 않아도 됩니다.
 4. Docker 테스트 서버가 호스트 3001 포트를 공개한 상태에서 Development Build를 체크해 Windows 테스트 빌드를 만듭니다.
 5. 새 빌드의 Join 화면에 주소 입력창과 로컬 테스트 버튼이 없는지 확인합니다. 두 PC에서 192.168.1.34:3001로 자동 입장하는지 확인합니다. 해당 IP와 포트의 접근 가능 여부는 LAN·방화벽 설정에 따릅니다.
 6. 등록된 stableBuild 주소를 확인한 뒤 Development Build를 해제해 기존 stable 폴더에 빌드합니다. 빈 주소 거부 검사는 별도 설정 사본으로 확인합니다.

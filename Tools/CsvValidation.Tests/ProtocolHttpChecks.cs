@@ -8,6 +8,8 @@ using EscapeGame.Session.Contracts;
 using EscapeGame.World;
 using EscapeGame.Interaction;
 using Google.Protobuf;
+using EscapeGame.Configuration;
+using EscapeGame.Session.Presentation;
 
 static class ProtocolHttpChecks
 {
@@ -22,9 +24,16 @@ static class ProtocolHttpChecks
         using var entryA=new GameEntryService(sessionA,sessionA,()=>throw new Exception("온라인 검사에서 로컬 대체 금지"),validator,_=>Task.CompletedTask);
         using var entryB=new GameEntryService(sessionB,sessionB,()=>throw new Exception("온라인 검사에서 로컬 대체 금지"),validator,_=>Task.CompletedTask);
         using var entryTimeout = new CancellationTokenSource(10000);
-        var enteringA = entryA.EnterAsync(false,address,null,entryTimeout.Token);
-        while (!sessionA.State.IsJoined) await Task.Delay(10, entryTimeout.Token);
-        await entryB.EnterAsync(false,address,null,entryTimeout.Token);
+        var settings=ClientConnectionSettings.Select(new ClientConnectionDocument {schemaVersion=1,
+            editor=new ClientConnectionProfile {serverBaseUrl=address,autoConnect=true}},ClientExecutionEnvironment.Editor);
+        var menuA=new MenuView();var menuB=new MenuView();
+        using var presenterA=new GameEntryPresenter(entryA,menuA,settings,entryTimeout.Token);
+        using var presenterB=new GameEntryPresenter(entryB,menuB,settings,entryTimeout.Token);
+        var enteringA = presenterA.JoinAsync();
+        while (!entryA.IsWaitingForParticipants) await Task.Delay(10, entryTimeout.Token);
+        Check(menuA.WaitingCreations==1,"실제 HTTP 첫 참가자는 최신 한 명 상태로 대기 표시");
+        await presenterB.JoinAsync();
+        Check(menuB.WaitingCreations==0,"실제 HTTP 두 번째 참가자는 대기 UI 생성 요청 없이 씬 진입");
         await sessionA.QueryAsync(entryTimeout.Token);
         await enteringA;
         Check(entryA.Data!=null&&entryB.Data!=null,"두 클라이언트 입장과 바이너리 CSV 수신");
@@ -60,6 +69,17 @@ static class ProtocolHttpChecks
         sessionA.Disconnect(SessionFailureCode.ConnectionFailed);Check(!entryA.RoomPermissions.HasPermission(1),"연결 종료 시 허가 캐시 해제");
         await sessionB.LeaveAsync(default);
         Console.WriteLine($"{checks} 개 C#·서버 Protobuf HTTP 통합 검사 통과.");
+    }
+    private sealed class MenuView:IGameEntryView
+    {
+        public int WaitingCreations;
+        private bool waiting;
+        public event Action JoinRequested{add{}remove{}}
+        public event Action LeaveRequested{add{}remove{}}
+        public event Action<string> LocalRequested{add{}remove{}}
+        public void ShowDisconnected(string message){}
+        public void Render(SessionConnectionPresentation value)
+        {if(value.ShowWaitingRoom&&!waiting)WaitingCreations++;waiting=value.ShowWaitingRoom;}
     }
     private sealed class HttpFactory:ISessionGatewayFactory,IDisposable
     {

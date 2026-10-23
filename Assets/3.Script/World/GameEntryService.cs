@@ -22,6 +22,7 @@ namespace EscapeGame.World
         private readonly CancellationToken ownerToken;
         private bool disposed;
         private bool waitingForParticipants;
+        public bool IsWaitingForParticipants => waitingForParticipants;
         public SessionStartGate StartGate { get; }
         private LocalRoomProgression local;
         private readonly RoomInteractionService interactions;
@@ -33,7 +34,7 @@ namespace EscapeGame.World
         public string Role { get; private set; }
         public bool IsLocal { get; private set; }
         public bool IsBusy { get; private set; }
-        public string Message { get; private set; } = "접속 설정을 확인하고 있습니다.";
+        public string Message { get; private set; } = "탈출하기를 눌러 게임에 입장하세요.";
         public IReadOnlyList<int> UnlockedRoomIds { get; private set; } = Array.Empty<int>();
         public event Action Changed;
         public event Action<IReadOnlyList<int>> RoomsChanged;
@@ -94,8 +95,10 @@ namespace EscapeGame.World
                 UnlockedRoomIds = useLocal ? local.UnlockedRoomIds : pendingRooms ?? Array.AsReadOnly(new[] { plan.First.Id });
                 if (!useLocal)
                 {
-                    waitingForParticipants = true;
-                    Message = StartGate.Message; Changed?.Invoke();
+                    // DownloadDataAsync는 같은 요청 수명에서 최신 snapshot까지 반영합니다.
+                    // 이미 두 명이면 대기 화면을 알리지 않고 씬 로딩으로 진행합니다.
+                    waitingForParticipants = !StartGate.CanEnterScene;
+                    if (waitingForParticipants) { Message = StartGate.Message; Changed?.Invoke(); }
                     try { await StartGate.WaitForParticipantsAsync(token); }
                     finally { waitingForParticipants = false; }
                 }

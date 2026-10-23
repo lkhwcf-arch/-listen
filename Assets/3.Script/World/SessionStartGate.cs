@@ -16,6 +16,7 @@ namespace EscapeGame.World
         public bool IsLocal { get; private set; }
         public bool CanEnterScene { get; private set; }
         public bool CanPlay { get; private set; }
+        public int ParticipantCount => state?.ParticipantCount ?? 0;
         public string Message { get; private set; }
         public event Action Changed;
 

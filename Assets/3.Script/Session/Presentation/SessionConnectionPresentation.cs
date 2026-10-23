@@ -10,9 +10,10 @@ namespace EscapeGame.Session.Presentation
         public bool CanLeave { get; }
         public bool IsLeaving { get; }
         public bool CanEditAddress { get; }
+        public bool ShowWaitingRoom { get; }
 
         public SessionConnectionPresentation(string status, string role, string participants,
-            string message, bool canJoin, bool canEditAddress, bool canLeave = false, bool isLeaving = false)
+            string message, bool canJoin, bool canEditAddress, bool canLeave = false, bool isLeaving = false, bool showWaitingRoom = false)
         {
             CanLeave = canLeave;
             IsLeaving = isLeaving;
@@ -22,6 +23,7 @@ namespace EscapeGame.Session.Presentation
             Message = message;
             CanJoin = canJoin;
             CanEditAddress = canEditAddress;
+            ShowWaitingRoom = showWaitingRoom;
         }
     }
 }

@@ -1,5 +1,7 @@
 # 점진적 리팩토링과 향후 구현 규격
 
+2026-10-23 추가: Join은 [Start_UI·WaitingRoom_UI 메뉴](JoinMenu.md)로 연결했습니다. config 주소 선택과 두 ready 조건은 유지하며 탈출하기로 입장하고, 이미 두 명이면 Join 대기 UI 생성을 생략합니다. 이 문서의 이전 구조 점검 검사 수와 최신 메뉴 검사 수는 구분하며 최신 결과는 README/JoinMenu를 따릅니다.
+
 기준일: 2026-10-23. [상세 점검·수정 근거](ClientArchitectureReview.md), [종합 도식](ArchitectureReview.md)를 함께 봅니다. 실제 반영 코드와 보류 범위를 구분합니다.
 
 ## 1. 계층과 의도

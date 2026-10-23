@@ -103,3 +103,4 @@ InteractionChecks.Run(original, catalogXml);
 await PuzzleAnswerChecks.Run(original, catalogXml);
 
 await RefactorChecks.Run(original, catalogXml);
+await JoinMenuChecks.Run(original, catalogXml);

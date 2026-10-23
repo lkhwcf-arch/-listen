@@ -1535,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1169430334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,6 +2427,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121721379}
   m_CullTransparentMesh: 1
+--- !u!1 &95001000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95001001}
+  - component: {fileID: 95001002}
+  - component: {fileID: 95001003}
+  m_Layer: 5
+  m_Name: JoinMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &95001001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95001000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &95001002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95001000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3fa3c87786f41bb8534c447fb5d4c45, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.Session.Presentation.JoinMenuView
+  startPrefab: {fileID: 9133411040361741635, guid: 20ea1be6c4aecce40baf1a815e22a104, type: 3}
+  waitingRoomPrefab: {fileID: 1227544450726734839, guid: 592ab55c8d9e42e4b7b917d30ea5baa9, type: 3}
+  font: {fileID: 11400000, guid: fc3e48ef0b151e444b6f356b0e2d5b06, type: 2}
+  localTestATemplate: {fileID: 90000404}
+  localTestBTemplate: {fileID: 1214301204}
+--- !u!114 &95001003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95001000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e12c0c3e0454d03b2b61942b6317e82, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.Session.Presentation.JoinMenuScreen
+  bootstrapper: {fileID: 90000101}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2438,3 +2501,4 @@ SceneRoots:
   - {fileID: 2041672871}
   - {fileID: 1169430337}
   - {fileID: 1453312800}
+  - {fileID: 95001001}

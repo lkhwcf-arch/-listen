@@ -54,7 +54,7 @@ namespace EscapeGame.World
             // 실제 씬 로더를 명시적으로 조립합니다. Start 실행 순서에 기대지 않습니다.
             var scene = SceneManager.GetActiveScene();
             long enteredAtMs = (long)(Time.realtimeSinceStartupAsDouble * 1000);
-            var worlds = System.Array.FindAll(FindObjectsByType<IngameWorldDriver>(FindObjectsInactive.Exclude, FindObjectsSortMode.None),
+            var worlds = Array.FindAll(FindObjectsByType<IngameWorldDriver>(FindObjectsInactive.Exclude, FindObjectsSortMode.None),
                 world => world.gameObject.scene == scene);
             if (worlds.Length != 1) throw new InvalidOperationException("Ingame 씬에 활성 IngameWorldDriver가 정확히 하나 필요합니다.");
             var spawnHost = new GameObject("LocalPlayerSpawn");
