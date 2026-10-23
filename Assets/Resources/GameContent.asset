@@ -59,6 +59,8 @@ MonoBehaviour:
     prefab: {fileID: 8217652443546526269, guid: 47470909e5887bb40968d409f4034dff, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_Ceiling.prefab
     prefab: {fileID: 6757279924745895227, guid: 46be19f28aae4dbca03f6a951b05b54e, type: 3}
+  - path: Assets/2.Model/Prefabs/R02/R02_LEDPanel.prefab
+    prefab: {fileID: 3822141622805929318, guid: 0da720c8d06bc9040bbf0d363f3cf8e9, type: 3}
   - path: Assets/2.Model/Prefabs/R02/R02_Lock.prefab
     prefab: {fileID: 274254685632734451, guid: e662a103b9cd4c6c8cdea57ed76f58a4, type: 3}
   - path: Assets/2.Model/Prefabs/R02/SILENT_Room_02/Prefabs/SILENT_Room_02_A_Objects.prefab
@@ -69,12 +71,16 @@ MonoBehaviour:
     prefab: {fileID: 3256338777305252405, guid: 5bc7fe6601fb3734fb11eb13a776568d, type: 3}
   - path: Assets/2.Model/Prefabs/R03/R03_ArrowConsole.prefab
     prefab: {fileID: 8401773392103338776, guid: bc0a72dd7a434cf7ac106d6719bda09a, type: 3}
+  - path: Assets/2.Model/Prefabs/R03/R03_LEDPanel.prefab
+    prefab: {fileID: 5993877508519746850, guid: 8aa4d495a56476b4e992a025bcc0eed6, type: 3}
   - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_A_Objects.prefab
     prefab: {fileID: 6360090126742825279, guid: e6ca440c221840ad8b3b177678ded684, type: 3}
   - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_B_Objects.prefab
     prefab: {fileID: 109024024339181593, guid: a8ece4fd424d4741b82552a978c584e0, type: 3}
   - path: Assets/2.Model/Prefabs/R03/SILENT_Room_03/Prefabs/SILENT_Room_03_Structure.prefab
     prefab: {fileID: 7973185079025619643, guid: 5485ed8e8bd04f86b7288c7bc516f282, type: 3}
+  - path: Assets/2.Model/Prefabs/R04/R04_LEDPanel.prefab
+    prefab: {fileID: 587578473670414491, guid: d2cc5e711b08dc443bfc7386d29e7e72, type: 3}
   - path: Assets/2.Model/Prefabs/R04/R04_Lock.prefab
     prefab: {fileID: 4327817852194348297, guid: a0e887adb69b40289dc635f959717ff4, type: 3}
   - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/R04_CableConsole.prefab
@@ -85,6 +91,8 @@ MonoBehaviour:
     prefab: {fileID: 5637324553495372359, guid: c29a98761ea78a04d96997d92c559926, type: 3}
   - path: Assets/2.Model/Prefabs/R04/SILENT_Room_04/Prefabs/SILENT_Room_04_Structure.prefab
     prefab: {fileID: 8535515597128227431, guid: 35e3645b38378e6469028d98f7ae2324, type: 3}
+  - path: Assets/2.Model/Prefabs/R05/R05_LEDPanel.prefab
+    prefab: {fileID: 1389487657098134389, guid: 2ac4a31e2a3dadf4c9be7857302e0c27, type: 3}
   - path: Assets/2.Model/Prefabs/R05/R05_Lock.prefab
     prefab: {fileID: 5305653595229960714, guid: 773c0790cefd402ea54cee4bb7b06708, type: 3}
   - path: Assets/2.Model/Prefabs/R05/SILENT_Room_05/Prefabs/SILENT_Room_05_A_Objects.prefab
@@ -93,6 +101,8 @@ MonoBehaviour:
     prefab: {fileID: 2839626933346654313, guid: 3549c702eca1e264080bd6b6e7ee79e4, type: 3}
   - path: Assets/2.Model/Prefabs/R05/SILENT_Room_05/Prefabs/SILENT_Room_05_Structure.prefab
     prefab: {fileID: 797878500515357392, guid: 7646846adb37c7d4d9806fe9cf226dc8, type: 3}
+  - path: Assets/2.Model/Prefabs/R06/R06_LEDPanel.prefab
+    prefab: {fileID: 8017048188652874278, guid: c19c398fface979408841c207e592353, type: 3}
   - path: Assets/2.Model/Prefabs/R06/R06_Lock.prefab
     prefab: {fileID: 776484605923237193, guid: 1cdb59d7929f4aedbfaf1049a1a51b6c, type: 3}
   - path: Assets/2.Model/Prefabs/R06/SILENT_Room_06/Prefabs/SILENT_Room_06_A_Objects.prefab
@@ -109,15 +119,4 @@ MonoBehaviour:
     prefab: {fileID: 2389970105685068966, guid: ba0335544ca1c71458a3795a7a8852c1, type: 3}
   - path: Assets/2.Model/Prefabs/R07/SILENT_Room_07/Prefabs/SILENT_Room_07_Objects.prefab
     prefab: {fileID: 8665118456540563358, guid: c4857b113a4db65449b9986d2e204586, type: 3}
-  - path: Assets/2.Model/Prefabs/System/PlayerSpawn.prefab
-    prefab: {fileID: 8011715131135286559, guid: 992c5171c95a46f89c9167dc2d8f8101, type: 3}
-  - path: Assets/2.Model/Prefabs/UI/Result_UI.prefab
-    prefab: {fileID: 4519609632475661383, guid: 11d37a31193fdcb4b9e2ab43607bd881, type: 3}
-  - path: Assets/2.Model/Prefabs/UI/Start_UI.prefab
-    prefab: {fileID: 9133411040361741635, guid: 20ea1be6c4aecce40baf1a815e22a104, type: 3}
-  - path: Assets/2.Model/Prefabs/Walkie_Talkie/walkie_talkie_3d_model.prefab
-    prefab: {fileID: 806023210055348069, guid: 46918562f76249d4b852c7fe55e25faa, type: 3}
-  - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Animated.prefab
-    prefab: {fileID: 5226624728530010210, guid: 49b93db312ca4b94d9556302c3e75d2f, type: 3}
-  - path: Assets/2.Model/Room4/SILENT_Console/Prefabs/Console_Door_Manual.prefab
-    prefab: {fileID: 6373095415919358604, guid: 7feb23acb85c68943941b889bda26b03, type: 3}
+  placementMode: 0
