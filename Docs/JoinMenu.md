@@ -70,6 +70,8 @@ WaitingRoom 프리팹 에셋 참조는 존재하지만 두 번째 사용자에�
 
 ## 5. 에디터·빌드·실패 수명
 
+서버 없이 타이틀부터 시작하는 실제 조작 순서와 단독 협동 진행의 제한은 [로컬 플레이 테스트 가이드](LocalPlayTestGuide.md)를 참고합니다.
+
 에디터의 클라이언트 테스트 A/B 버튼은 Start_UI 아래에 기존 EditorOnly 버튼을 복제해 연결합니다. **빌드에서는 생성하지 않습니다.** 서버 없이 로컬 데이터로 입장할 수 있으며 새 Join 메뉴에서는 autoConnect=false로 바꿀 필요가 없습니다.
 
 새 Join 메뉴는 config.autoConnect 값과 관계없이 탈출하기를 기다립니다. 이 값과 ConfiguredServerConnection.StartAsync는 기존 개발/호환 화면의 동작을 위해 남겨 두었습니다. 접속 주소의 환경 선택은 계속 config를 따릅니다.
