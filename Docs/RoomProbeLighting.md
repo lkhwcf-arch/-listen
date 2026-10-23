@@ -86,3 +86,12 @@ Unity 동작 근거: [라이트 프로브 설명](https://docs.unity3d.com/6000.
 첫 방 플레이어 위치에서 실제 프로브 조명 값이 반환됐고 A 역할 화면도 캡처했습니다. 현재 앵커·색·강도 값으로 구운 결과이며 밝은 전등 연출의 품질 확정은 아닙니다. 현재 실내는 어둡게 보이므로 기획 의도에 맞는 밝기·색 조정 후 다시 베이크합니다. 앵커 위치는 이번 작업에서 변경하지 않았습니다.
 
 검사 중 생성한 플레이 상태·위치 이동·정답은 로컬 임시 상태이며 종료 시 정리했습니다. 온라인 두 참가자 검사·새 stable 빌드·실제 스피커 청취·전체 7개 방 보행 통과는 이번 확인 범위에 포함하지 않습니다.
+
+
+## 플레이어 빌드 호환성 수정 — 2026-10-23
+
+`MeshRenderer.receiveGI`는 편집기 전용 속성입니다. 실행 코드에서 이 속성을 직접 호출하면 편집기 플레이는 가능해도 Windows 플레이어 빌드에서 CS1061 오류가 발생합니다. `RoomProbeLightingDriver.ApplyReceivers`의 해당 호출을 `UNITY_EDITOR` 조건 안으로 제한했습니다. 실행 파일은 `Renderer.lightProbeUsage = LightProbeUsage.BlendProbes`로 기존 역할별 프로브를 사용합니다. 베이크 준비 도구는 원래 편집기 코드이므로 유지합니다.
+
+기존 외부 실행 코드 컴파일 검사도 편집기용 엔진 참조를 사용해 이 차이를 검출하지 못했습니다. 편집기 컴파일·플레이 검사와 실제 플레이어 빌드의 성공을 구분하고, 플레이어용 엔진 참조 검사와 실제 빌드 결과를 함께 확인해야 합니다. 라이트 위치·프리팹·CSV·저장된 베이크 데이터는 이 수정에서 변경하지 않습니다.
+
+공식 기준: [MeshRenderer.receiveGI](https://docs.unity3d.com/6000.2/Documentation/ScriptReference/MeshRenderer-receiveGI.html), [Renderer.lightProbeUsage](https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Renderer-lightProbeUsage.html).

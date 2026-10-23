@@ -53,8 +53,11 @@ namespace EscapeGame.World
             foreach (var renderer in root.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.lightProbeUsage = LightProbeUsage.BlendProbes;
+#if UNITY_EDITOR
+                // 베이크 수신 방식 선택은 편집기 전용입니다. 실행 파일은 위의 프로브 보간 설정을 사용합니다.
                 if (renderer is MeshRenderer mesh)
                     mesh.receiveGI = ReceiveGI.LightProbes;
+#endif
             }
         }
         public void BindWorld(IngameWorldDriver value)
