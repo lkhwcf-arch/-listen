@@ -26,7 +26,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 1
     clips:
-    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    - {fileID: 8300000, guid: 949a4e6f4caeb0445a1736d6e8aa73fb, type: 3}
     volume: 0.6
     cooldownMs: 80
     closeupOnly: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 2
     clips:
-    - {fileID: 8300000, guid: fd201658047446e40917a2b24f761eb8, type: 3}
+    - {fileID: 8300000, guid: 2d028c7a698cecc4b8713ccff663c382, type: 3}
     volume: 0.6
     cooldownMs: 80
     closeupOnly: 1
@@ -44,7 +44,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 3
     clips:
-    - {fileID: 8300000, guid: ada0b5f6e7b831340bf021d6482679d7, type: 3}
+    - {fileID: 8300000, guid: 67013c7c089ce744b9f4ec6c74529a37, type: 3}
     volume: 0.5
     cooldownMs: 0
     closeupOnly: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 4
     clips:
-    - {fileID: 8300000, guid: d20d545d02051c845ba3d12013bc4058, type: 3}
+    - {fileID: 8300000, guid: eca1a518897c92849a9bfd8a9eddbdeb, type: 3}
     volume: 0.5
     cooldownMs: 0
     closeupOnly: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 5
     clips:
-    - {fileID: 8300000, guid: 7df50630f3944b349925d173c96ef444, type: 3}
+    - {fileID: 8300000, guid: 90e70b8004fe60d41ad61b2bf1c6fcda, type: 3}
     volume: 0.5
     cooldownMs: 50
     closeupOnly: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 6
     clips:
-    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    - {fileID: 8300000, guid: 949a4e6f4caeb0445a1736d6e8aa73fb, type: 3}
     volume: 0.6
     cooldownMs: 100
     closeupOnly: 1
@@ -80,7 +80,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 7
     clips:
-    - {fileID: 8300000, guid: 2f616939fcf3ee345901fb04e42bf04b, type: 3}
+    - {fileID: 8300000, guid: 949a4e6f4caeb0445a1736d6e8aa73fb, type: 3}
     volume: 0.6
     cooldownMs: 50
     closeupOnly: 1
@@ -89,7 +89,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 8
     clips:
-    - {fileID: 8300000, guid: fd201658047446e40917a2b24f761eb8, type: 3}
+    - {fileID: 8300000, guid: 2d028c7a698cecc4b8713ccff663c382, type: 3}
     volume: 0.5
     cooldownMs: 80
     closeupOnly: 1
@@ -98,7 +98,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 9
     clips:
-    - {fileID: 8300000, guid: 5497e830bcc6fa444852cd68714b9280, type: 3}
+    - {fileID: 8300000, guid: fb72d07d1fe07bd47bf7d9ef37d9d44b, type: 3}
     volume: 0.8
     cooldownMs: 0
     closeupOnly: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     maxDistance: 15
   - cue: 11
     clips:
-    - {fileID: 8300000, guid: fd7c7ee202f5a1a49b0e2fa4573bcd6f, type: 3}
+    - {fileID: 8300000, guid: 4e938e1479d3f3b4b8deaaad89b9ab0d, type: 3}
     volume: 0.6
     cooldownMs: 500
     closeupOnly: 0
@@ -116,25 +116,25 @@ MonoBehaviour:
     maxDistance: 15
   ambient:
   - roomNo: 1
-    clip: {fileID: 8300000, guid: 6d57b91c7d685734eadce5a9ed75bcf5, type: 3}
+    clip: {fileID: 8300000, guid: 84257844f64ad6846a2fd3339710ebbd, type: 3}
     volume: 0.4
   - roomNo: 2
-    clip: {fileID: 8300000, guid: 0f26093b88f4ad4458d731e9c11ce853, type: 3}
+    clip: {fileID: 8300000, guid: 409fcc2fb1878fd489e78c132339678e, type: 3}
     volume: 0.4
   - roomNo: 3
-    clip: {fileID: 8300000, guid: 5b65dd9d8d36e2b409bcecd4a6e90a64, type: 3}
+    clip: {fileID: 8300000, guid: 207426ef149d13d4aa1ea0f82c3cb191, type: 3}
     volume: 0.4
   - roomNo: 4
-    clip: {fileID: 8300000, guid: c4cdd1471b13f1f4c8083a97b19e1875, type: 3}
+    clip: {fileID: 8300000, guid: f2794c34f57c80e419b6784ec58e29bf, type: 3}
     volume: 0.4
   - roomNo: 5
-    clip: {fileID: 8300000, guid: 3a2e82b27238d7c41aed937d582b60d7, type: 3}
+    clip: {fileID: 8300000, guid: 7079872a0eafc3c4faca3b1e5607f79e, type: 3}
     volume: 0.4
   - roomNo: 6
-    clip: {fileID: 8300000, guid: 2034a938cad2dec44865d5710c6eda63, type: 3}
+    clip: {fileID: 8300000, guid: 33eea683eba956a45bc438c85657c183, type: 3}
     volume: 0.4
   - roomNo: 7
-    clip: {fileID: 8300000, guid: e5e947cde01911a40b8eb5847b33e8d3, type: 3}
+    clip: {fileID: 8300000, guid: 62e87c50d286a2947bb1fa919e765905, type: 3}
     volume: 0.4
   resultPrefab: {fileID: 4519609632475661383, guid: 11d37a31193fdcb4b9e2ab43607bd881, type: 3}
   stepDistanceMeters: 0.75
