@@ -13,6 +13,9 @@ namespace EscapeGame.Session
         [SerializeField, Min(1)]
         private int pollingIntervalMs = 1000;
 
+        [SerializeField, Min(1)]
+        private int playingPollingIntervalMs = 5000;
+
         private ISessionConnectionService service;
         private IMillisecondClock clock;
         private SessionPollingController polling;
@@ -34,6 +37,8 @@ namespace EscapeGame.Session
 
         public void ValidateConfiguration()
         {
+            if (playingPollingIntervalMs <= 0)
+                throw new ArgumentOutOfRangeException(nameof(playingPollingIntervalMs), "게임 중 조회 간격은 1ms 이상이어야 합니다.");
             if (pollingIntervalMs <= 0)
                 throw new ArgumentOutOfRangeException(nameof(pollingIntervalMs), "조회 간격은 1ms 이상이어야 합니다.");
         }
@@ -47,7 +52,8 @@ namespace EscapeGame.Session
         {
             if (lifetime != null) return;
             polling = new SessionPollingController(service,
-                new MillisecondInterval(clock, pollingIntervalMs));
+                new MillisecondInterval(clock, pollingIntervalMs),
+                new MillisecondInterval(clock, playingPollingIntervalMs));
             polling.ConnectionFailed += OnConnectionFailed;
             polling.ConnectionRecovered += OnConnectionRecovered;
             polling.Stopped += OnStopped;
