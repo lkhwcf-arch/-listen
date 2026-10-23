@@ -58,6 +58,8 @@ RoomLoadPlan은 한 데이터 스냅샷의 역할별 방·첫 방·ID/프리팹 
 
 ## 4. 연결된 게임 기능
 
+Closeup 종료 수명 보완(2026-10-23): 씬/Play 종료에서 Canvas가 플레이어보다 먼저 파괴되는 순서를 처리하고, 정답 UI의 늦은 갱신·반복 Dispose를 보호했습니다. 수정 이유와 회귀 검사 순서는 [상호작용 테스트 가이드](Docs/InteractionTestGuide.md)를 참고합니다.
+
 | 기능 | 현재 코드 동작 | 주요 가이드 |
 |---|---|---|
 | 플레이어 | 공통 시트 스폰, A/B 손 프리팹 직접 참조, WASD·마우스 시점·캡슐/조작 잠금 | [스폰](Docs/PlayerSpawn.md), [이동](Docs/PlayerMovement.md), [시점/충돌](Docs/PlayerLookAndCollision.md) |
