@@ -11,6 +11,7 @@ namespace EscapeGame.Player
         public FirstPersonPlayerRig Player { get; private set; }
         public event Action<FirstPersonPlayerRig> Spawned;
         public EscapeGame.Audio.GameFeedbackDriver Feedback { get; private set; }
+        public RoomProbeLightingDriver Lighting { get; private set; }
         public EscapeRunClock RunClock { get; private set; }
         public void Initialize(CsvGameData data, string role, RoomSceneView firstRoom = null, IRoomAnswerService answers = null, IRoomDoorService doors = null, long? enteredAtMs = null)
         {
@@ -36,6 +37,12 @@ namespace EscapeGame.Player
                 spawned.gameObject.AddComponent<EscapeGame.Interaction.PlayerInteractionDriver>().Initialize(
                     spawned.PlayerCamera, spawned.GetComponent<PlayerPointerDriver>(), plan.Character.InteractDistanceMm, interactionSettings, answers, role, doors ?? answers as IRoomDoorService);
                 Player = spawned;
+                var lighting = Resources.Load<EscapeGame.Data.RoomProbeLightingSettings>("RoomProbeLighting");
+                if (lighting != null)
+                {
+                    Lighting = spawned.gameObject.AddComponent<RoomProbeLightingDriver>();
+                    Lighting.Initialize(role, lighting); Lighting.RegisterRoom(rooms[0]); Lighting.RegisterPlayer(spawned.gameObject);
+                }
                 var feedbackAssets = Resources.Load<EscapeGame.Data.GameFeedbackAssets>("GameFeedback");
                 if (feedbackAssets != null)
                 {

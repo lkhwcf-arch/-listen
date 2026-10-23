@@ -74,7 +74,7 @@ Closeup 종료 수명 보완(2026-10-23): 씬/Play 종료에서 Canvas가 플레
 
 Result_UI 생성 성공 후 영상 포트/RenderTexture는 해제하고 결과 UI만 유지합니다. 사운드 큐의 직렬화 번호는 고정하며 배경음은 전환/최초 선택/재활성화 때 갱신합니다. 같은 월드 재연결은 중복 구독하지 않습니다.
 
-조명/Light Probe와 R01_LEDPanel 전용 소리는 **보류**입니다. 기존 앵커 스폰 구조를 사용하며 ROOM_LIGHT_SPAWNTABLE은 사용하지 않습니다. 실제 앵커 누락을 임의 위치로 대체하지 않습니다. [조명 안내](Docs/UnityBakedLightingGuide.md)는 향후 작업 참고이며 구현 완료 선언이 아닙니다.
+방 조명은 기존 CSV 앵커 스폰을 사용하고, A/B별 베이크 프로브를 저장·복원하는 경로를 추가했습니다. [프로브 조명 작업·검사 가이드](Docs/RoomProbeLighting.md)를 따릅니다. ROOM_LIGHT_SPAWNTABLE은 사용하지 않습니다. R01_LEDPanel 전용 소리는 보류입니다. [기존 조명 안내](Docs/UnityBakedLightingGuide.md)의 초기 조사와 최신 구현 상태는 구분합니다.
 
 ## 5. 빌드·리소스·계약 자동화
 

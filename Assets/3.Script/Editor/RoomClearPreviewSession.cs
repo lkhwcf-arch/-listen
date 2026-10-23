@@ -65,7 +65,11 @@ namespace EscapeGame.Editor
                 var driver = host.AddComponent<EscapeGame.Player.PlayerSpawnDriver>();
                 driver.Initialize(data, Role, room.GetComponent<RoomSceneView>(), doors: doors);
                 player = driver.Player;
-                foreach (var preview in previews.Values) driver.Feedback?.RegisterRoom(preview.GetComponent<RoomSceneView>());
+                foreach (var preview in previews.Values)
+                {
+                    var view = preview.GetComponent<RoomSceneView>();
+                    driver.Feedback?.RegisterRoom(view); driver.Lighting?.RegisterRoom(view);
+                }
             }
             catch { Object.DestroyImmediate(host); throw; }
         }
@@ -123,6 +127,7 @@ namespace EscapeGame.Editor
                 RoomSceneAssembler.Prepare(view, row, plan, data, assets, externallyManagedPrefabIds, previous);
                 previews.Add(row.Id, instance);
                 if (player != null) player.GetComponent<EscapeGame.Audio.GameFeedbackDriver>()?.RegisterRoom(view);
+                if (player != null) player.GetComponent<RoomProbeLightingDriver>()?.RegisterRoom(view);
                 return instance;
             }
             catch

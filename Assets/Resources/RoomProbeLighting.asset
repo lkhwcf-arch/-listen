@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa259cc05d2644eb89d04e6fe512de55, type: 3}
+  m_Name: RoomProbeLighting
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeGame.Data.RoomProbeLightingSettings
+  probesA: {fileID: 25800000, guid: f47eaff65039d7646bbeb2fb8a716910, type: 2}
+  probesB: {fileID: 25800000, guid: 63be19b311fcdeb43b953ce3f2bdc117, type: 2}
+  disableSceneDirectionalLights: 1
