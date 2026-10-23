@@ -85,8 +85,9 @@ namespace EscapeGame.World
             completion.Tick(now);
             if (playback != null)
             {
-                playback.Tick(now);
-                if (playback.Phase == EndingPlaybackPhase.Failed) PlaybackFailed(playback.Error);
+                var activePlayback = playback;
+                activePlayback.Tick(now);
+                if (ReferenceEquals(playback, activePlayback) && activePlayback.Phase == EndingPlaybackPhase.Failed) PlaybackFailed(activePlayback.Error);
             }
             if (completion.Phase == EndingCompletionPhase.Ready && playback == null && now >= retryAt) StartVideo();
         }
@@ -131,7 +132,8 @@ namespace EscapeGame.World
                 var font = Resources.Load<InteractionPresentationSettings>("InteractionPresentation").Font;
                 if (!runClock.ElapsedMs.HasValue) throw new InvalidOperationException("영상 재생 시작 시각이 기록되지 않았습니다.");
                 resultView = new EndingResultView(feedback?.ResultPrefab, gameObject.scene, font, runClock.ElapsedMs.Value, QuitGame);
-                videoView?.SetVisible(false);
+                // 결과 UI가 표시된 뒤에는 마지막 영상 프레임·디코더를 보유하지 않습니다.
+                ClearPlayback();
                 Debug.Log("[엔딩] 결과 표시 / 탈출 시간 " + EscapeRunClock.Format(runClock.ElapsedMs.Value));
             }
             catch (Exception error) { Debug.LogError("[엔딩 결과] " + error.Message); waiting.Render(true, "결과 화면을 표시하지 못했습니다. 설정을 확인해 주세요."); }
@@ -141,7 +143,9 @@ namespace EscapeGame.World
         private void ClearPlayback()
         {
             if (videoView != null) videoView.PlaybackStarted -= OnVideoStarted;
-            if (playback != null) { playback.Completed -= OnCompleted; playback.Dispose(); playback = null; videoView = null; }
+            if (playback != null) { playback.Completed -= OnCompleted; playback.Dispose(); playback = null; }
+            else videoView?.Dispose();
+            videoView = null;
         }
         private void OnDisable()
         {

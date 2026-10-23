@@ -19,6 +19,15 @@ static class WorldChecks
         var data = new CsvGameData(store);
         var a = new RoomLoadPlan(data, "A"); var b = new RoomLoadPlan(data, "B");
         Check(a.First.Id == 1001 && b.First.Id == 1002, "role first rooms");
+        Check(ReferenceEquals(a.Rooms, a.Rooms) && ReferenceEquals(a.Anchors(a.First), a.Anchors(a.First)), "immutable room and anchor views are reused");
+        Check(a.Find(a.First.Id) == a.First && a.Find(-1) == null, "indexed room lookup preserves missing-ID behavior");
+        var cachedAnchors = a.Anchors(a.First);
+        long before = GC.GetAllocatedBytesForCurrentThread();
+        int checksum = 0;
+        for (int i = 0; i < 10000; i++) checksum += a.Rooms.Count + a.First.Id + a.Find(1001).RoomNo + a.Anchors(a.First).Count;
+        long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+        Check(allocated == 0 && checksum > 0, "10000 warmed immutable lookups allocate no managed bytes");
+        Console.WriteLine($"방 조회 할당 검사: 10000회, {allocated} bytes (.NET 순수 모델, Unity Profiler 측정 아님)");
         var common = a.Anchors(a.First).Where(row => row.PlayerType == "ALL").Select(row => row.Id).ToArray();
         Check(common.Length > 0 && common.SequenceEqual(b.Anchors(b.First).Where(row => row.PlayerType == "ALL").Select(row => row.Id)), "both roles receive the same declared common anchors");
         Check(a.Anchors(a.First).All(row => row.PlayerType != "B"), "A does not load B anchors");

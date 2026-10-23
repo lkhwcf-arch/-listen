@@ -114,6 +114,14 @@ using (var ending = new EndingCompletionController(7, rooms, 1000))
 }
 Reject(() => new EndingCompletionController(0, new FakeRooms(), 1000), "잘못된 마지막 방 거부");
 Reject(() => new EndingCompletionController(7, new FakeRooms(), 0), "잘못된 조회 간격 거부");
+video = new FakeVideo();
+var releaseOnResult = new EndingPlaybackController(video, 1000);
+releaseOnResult.Completed += releaseOnResult.Dispose;
+releaseOnResult.Start(0); video.Ready(); video.Finish();
+Check(video.Disposed && video.SubscriberCount == 0 && releaseOnResult.Phase == EndingPlaybackPhase.Completed,
+    "결과 UI 전환 콜백 중 영상 포트 정리 허용·완료 상태 유지");
+video.Finish(); video.Error("late"); releaseOnResult.Tick(5000); releaseOnResult.Dispose();
+Check(video.Disposals == 1, "완료 후 늦은 콜백·중복 정리는 영상을 두 번 해제하지 않음");
 Console.WriteLine($"엔딩 협동 완료·재생 수명 검사 {checks}개 통과");
 
 sealed class FakeRooms : IRoomCompletionService, IRoomCompletionConnection
@@ -138,7 +146,7 @@ sealed class FakeVideo : IEndingVideoPlayback
     public event Action Prepared;
     public event Action Finished;
     public event Action<string> Failed;
-    public int Prepares, Plays;
+    public int Prepares, Plays, Disposals;
     public bool Disposed, ThrowPrepare, ThrowPlay;
     public int SubscriberCount => (Prepared?.GetInvocationList().Length ?? 0) + (Finished?.GetInvocationList().Length ?? 0) + (Failed?.GetInvocationList().Length ?? 0);
     public void Prepare() { Prepares++; if (ThrowPrepare) throw new Exception("prepare"); }
@@ -146,6 +154,6 @@ sealed class FakeVideo : IEndingVideoPlayback
     public void Ready() => Prepared?.Invoke();
     public void Finish() => Finished?.Invoke();
     public void Error(string message) => Failed?.Invoke(message);
-    public void Dispose() => Disposed = true;
+    public void Dispose() { Disposed = true; Disposals++; }
 }
 

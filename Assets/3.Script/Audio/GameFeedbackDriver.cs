@@ -29,7 +29,7 @@ namespace EscapeGame.Audio
         private AmbientCrossfade fade;
         private int voiceCursor, currentRoom;
         private Vector3 previous;
-        private bool suspended;
+        private bool suspended, ambientDirty;
         public int CurrentRoomNo => plan?.Find(currentRoom)?.RoomNo ?? 0;
         public event Action<int> RoomEntered;
         public void Initialize(FirstPersonPlayerRig rig, CsvGameData data, string role, GameFeedbackAssets settings, RoomSceneView first)
@@ -47,7 +47,14 @@ namespace EscapeGame.Audio
             RegisterRoom(first); EnterRoom(plan.First.Id, true);
         }
         public void BindWorld(IngameWorldDriver world)
-        { this.world = world; world.RoomLoaded += OnRoomLoaded; foreach (var room in world.LoadedRooms.Values) RegisterRoom(room); }
+        {
+            if (world == null) throw new ArgumentNullException(nameof(world));
+            if (ReferenceEquals(this.world, world)) return;
+            if (!ReferenceEquals(this.world, null)) throw new InvalidOperationException("게임 효과의 월드 소유자는 한 번만 연결합니다. 다른 입장에는 새 플레이어를 생성해 주세요.");
+            this.world = world;
+            world.RoomLoaded += OnRoomLoaded;
+            foreach (var room in world.LoadedRooms.Values) RegisterRoom(room);
+        }
         private void OnRoomLoaded(RoomData row, RoomSceneView view) => RegisterRoom(view);
         public void RegisterRoom(RoomSceneView view)
         {
@@ -87,7 +94,7 @@ namespace EscapeGame.Audio
             if (!immediate && currentRoom == roomId) return;
             currentRoom = roomId; int index = -1;
             for (int i = 0; i < settings.Ambient.Count; i++) if (settings.Ambient[i].roomNo == CurrentRoomNo) { index = i; break; }
-            fade.Select(index, immediate); RoomEntered?.Invoke(CurrentRoomNo);
+            fade.Select(index, immediate); ambientDirty = true; RoomEntered?.Invoke(CurrentRoomNo);
             Debug.Log($"[방 배경음] {CurrentRoomNo}번 방 / 전환 {settings.AmbientFadeSeconds:0.##}초");
         }
         private void LateUpdate()
@@ -107,18 +114,24 @@ namespace EscapeGame.Audio
                     }
                 }
                 else foreach (var boundary in boundaries) boundary.Reset();
-                fade.Tick(Time.unscaledDeltaTime);
-                for (int i = 0; i < loops.Length; i++)
-                {
-                    float gain = fade.Gain(i);
-                    if (gain <= 0) { if (loops[i] != null && loops[i].isPlaying) loops[i].Stop(); continue; }
-                    if (loops[i] == null) { loops[i] = MakeSource("방 배경음_" + settings.Ambient[i].roomNo); loops[i].clip = settings.Ambient[i].clip; loops[i].loop = true; }
-                    loops[i].volume = settings.Ambient[i].volume * gain;
-                    if (!loops[i].isPlaying) loops[i].Play();
-                }
+                bool gainsChanged = fade.Tick(Time.unscaledDeltaTime);
+                if (gainsChanged || ambientDirty) ApplyAmbient();
             }
             previous = current;
         }
+        private void ApplyAmbient()
+        {
+            ambientDirty = false;
+            for (int i = 0; i < loops.Length; i++)
+            {
+                float gain = fade.Gain(i);
+                if (gain <= 0) { if (loops[i] != null && loops[i].isPlaying) loops[i].Stop(); continue; }
+                if (loops[i] == null) { loops[i] = MakeSource("방 배경음_" + settings.Ambient[i].roomNo); loops[i].clip = settings.Ambient[i].clip; loops[i].loop = true; }
+                loops[i].volume = settings.Ambient[i].volume * gain;
+                if (!loops[i].isPlaying) loops[i].Play();
+            }
+        }
+        private void OnEnable() => ambientDirty = true;
         public void SuspendForEnding()
         {
             suspended = true;

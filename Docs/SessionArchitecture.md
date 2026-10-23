@@ -1,5 +1,7 @@
 # 세션 역할 경계
 
+2026-10-23 갱신. [종합 점검](ArchitectureReview.md)과 [최신 구현 규격](RefactorConventions.md)을 함께 봅니다. 게임 요청/응답은 HTTP+Protobuf이며 health/OpenAPI 등 운영 경로의 JSON과 구분합니다.
+
 현재는 같은 Unity 프로젝트에서 개발합니다. 별도 프로젝트/DLL 배포는 구성하지 않습니다.
 
 ## 공개 계약
@@ -20,7 +22,7 @@
 | Unity 연결 | 씬 준비, Update, 수명 | 공개 계약, 공통 시간/준비 검사 |
 | SessionClient/Coordinator | 상태 소유, 인증 정보, 요청 순서 | 공개 계약, ISessionGateway |
 | HTTP Gateway | HTTP 결과/DTO를 내부 데이터와 오류로 변환 | ISessionGateway, API Client |
-| API Client | UnityWebRequest, HTTP 경로/헤더, JSON | Unity, Wire DTO/검증 |
+| API Client | 생성 HTTP 계약·Google Protobuf, 경로/헤더·전송/응답 검증 | UnityWebRequest 전송 어댑터, 생성 메시지 |
 | Bootstrapper | 구체 구현 구성 및 종료 | 각 구현의 조립 지점 |
 
 UI/Unity 자동화 -> 공개 계약 <- SessionClient -> ISessionGateway <- HttpSessionGateway
@@ -50,7 +52,7 @@ UI/Unity 자동화 -> 공개 계약 <- SessionClient -> ISessionGateway <- HttpS
 
 향후 어셈블리/라이브러리 분리 시 이 계약을 유지하고 구현을 옮깁니다. 전송 교체, P2P/호스트 권한, 전용 서버 전환에는 각각 동기화와 권한 설계가 추가로 필요합니다.
 
-정상 퇴장과 Vivox 자동 연결은 구현했습니다. 기존 참가자의 재접속/복구, Protobuf 실통신 전환, 클라우드 자동 배포는 후속 작업입니다.
+정상 퇴장·Vivox 자동 연결·HTTP/Protobuf 실통신은 구현했습니다. 클라우드 배포 도구도 서버 저장소에 있습니다. 기존 참가자의 신분 복구와 다중 세션은 후속 범위입니다.
 
 
 ## 생존 확인과 연결 종료
@@ -71,7 +73,7 @@ UI/Unity 자동화 -> 공개 계약 <- SessionClient -> ISessionGateway <- HttpS
 - PlayerSettings.runInBackground를 활성화하여 다른 창으로 전환해도 생존 확인 Update가 진행되도록 합니다. OS 절전/강제 일시정지까지 보장하지 않습니다.
 - 별도 알림창은 SessionDisconnectDialog Factory가 기존 Canvas와 TMP 폰트로 생성하며 화면 수치의 float는 Unity 표시 API에만 사용합니다.
 
-정상 퇴장 API와 Vivox 자동 연결은 구현했습니다. 기존 세션 재접속/복구와 Protobuf 실통신 전환은 후속 작업입니다.
+정상 퇴장 API·Vivox 자동 연결·Protobuf 실통신은 구현했습니다. 기존 세션 신분 복구는 후속 범위입니다.
 
 
 ## 정상 퇴장과 음성 연결
@@ -84,7 +86,7 @@ VoiceChatService가 연결과 정리를 직렬화하고, VivoxVoiceGateway만 Un
 
 음성 화면은 IVoiceChatService.StateChanged를 구독하는 별도 Presenter입니다. 게임 접속 Presenter와 HTTP 서비스는 Vivox를 알지 못합니다. 음성 실패가 게임 연결 상태를 직접 변경하지 않습니다.
 
-VoiceBootstrapper는 SampleScene의 SessionJointest 한 곳에만 연결했습니다. 같은 Editor의 SessionJointest_2는 게임 인원 검사 전용입니다. Unity Authentication 익명 인증을 사용하고 서버가 시작마다 발급하는 고유 세션 ID에서 채널명을 계산합니다. 채널명 계산에는 서버 접속 IP를 사용하지 않습니다.
+현재 VoiceBootstrapper는 Join 씬의 게임 수명 객체에 연결되어 있습니다. 과거 SampleScene/SessionJointest 검사는 초기 개발 기록입니다. Unity Authentication 익명 인증을 사용하고 서버가 시작마다 발급하는 고유 세션 ID에서 채널명을 계산합니다. 채널명 계산에는 서버 접속 IP를 사용하지 않습니다.
 
 에디터에서 실제 Vivox 초기화/인증/로그인/AudioOnly 채널 입장, 정상 퇴장/재입장, 서버 중단 후 음성 종료를 확인했습니다. 두 PC 간 실제 음성 송수신과 새 Windows 빌드는 사용자 검토 항목입니다.
 

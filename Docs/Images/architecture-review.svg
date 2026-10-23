@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1190" viewBox="0 0 1440 1190">
+<rect width="100%" height="100%" fill="#f2f5f9"/>
+<text x="50" y="63" font-family="Malgun Gothic, sans-serif" font-size="38" fill="#233246" font-weight="700">서버·클라이언트 구조 점검과 수정</text>
+<text x="52" y="108" font-family="Malgun Gothic, sans-serif" font-size="24" fill="#233246" font-weight="400">2026-10-23 · 판정 권한과 표현 분리 유지 · 확인된 낭비와 수명만 보강</text>
+<rect x="50" y="140" width="410" height="155" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="70" y="181" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#4a55a0" font-weight="700">데이터·계약 원본</text>
+<text x="70" y="219" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">CSV + 활성 REGISTRY</text>
+<text x="70" y="251" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">proto / OpenAPI / content-contract</text>
+<rect x="515" y="140" width="410" height="155" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="535" y="181" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#4a55a0" font-weight="700">서버: 판정 권한</text>
+<text x="535" y="219" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">세션·정답·문 허가·누적 해금</text>
+<text x="535" y="251" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">검증된 정의·번들 캐시</text>
+<rect x="980" y="140" width="410" height="155" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="1000" y="181" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#4a55a0" font-weight="700">클라: 상태와 표현</text>
+<text x="1000" y="219" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">환경 config → 입장 → 타입 등록</text>
+<text x="1000" y="251" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">방·플레이어·UI·영상·사운드</text>
+<path d="M460,217 L515,217" stroke="#657d93" stroke-width="4"/><polygon points="515,217 503,210 503,224" fill="#657d93"/>
+<path d="M925,217 L980,217" stroke="#657d93" stroke-width="4"/><polygon points="980,217 968,210 968,224" fill="#657d93"/>
+<text x="50" y="354" font-family="Malgun Gothic, sans-serif" font-size="29" fill="#233246" font-weight="700">기능 계층과 상태 변화</text>
+<rect x="50" y="380" width="410" height="180" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="70" y="421" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#24647f" font-weight="700">입력 → 명령</text>
+<text x="70" y="459" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">좌클릭 대상 / Closeup</text>
+<text x="70" y="491" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">정답·문 요청: 방 번호 + 값</text>
+<text x="70" y="523" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">실제 이동 → 보행·문턱 감지</text>
+<rect x="515" y="380" width="410" height="180" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="535" y="421" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#24647f" font-weight="700">판정 → 상태 → 이벤트</text>
+<text x="535" y="459" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">HTTP Protobuf → 서버 판정</text>
+<text x="535" y="491" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">클라 상태·허가 캐시 반영</text>
+<text x="535" y="523" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">RoomSolved / RoomsChanged</text>
+<rect x="980" y="380" width="410" height="180" rx="16" fill="#ffffff" stroke="#cbd6e3" stroke-width="2"/>
+<text x="1000" y="421" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#24647f" font-weight="700">결과의 독립 소비자</text>
+<text x="1000" y="459" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">다음 방 조립·문 로컬 개폐</text>
+<text x="1000" y="491" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">협동 완료 → 영상 → Result_UI</text>
+<text x="1000" y="523" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">Stepped·RoomLoaded → 사운드</text>
+<path d="M460,468 L515,468" stroke="#657d93" stroke-width="4"/><polygon points="515,468 503,461 503,475" fill="#657d93"/>
+<path d="M925,468 L980,468" stroke="#657d93" stroke-width="4"/><polygon points="980,468 968,461 968,475" fill="#657d93"/>
+<text x="50" y="619" font-family="Malgun Gothic, sans-serif" font-size="29" fill="#233246" font-weight="700">이번 수정: 왜 필요한가 → 어떻게 바꿨는가</text>
+<rect x="50" y="645" width="640" height="140" rx="16" fill="#eaf5f0" stroke="#cbd6e3" stroke-width="2"/>
+<text x="70" y="686" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#17694f" font-weight="700">① 데이터 정책·고정 정의 조회</text>
+<text x="70" y="724" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">활성 시트만 TS/C# 런타임 주입</text>
+<text x="70" y="756" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">방 목록·첫 방·ID·앵커 결과 재사용</text>
+<rect x="750" y="645" width="640" height="140" rx="16" fill="#eaf5f0" stroke="#cbd6e3" stroke-width="2"/>
+<text x="770" y="686" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#17694f" font-weight="700">② 배경음과 이벤트 수명</text>
+<text x="770" y="724" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">전환 중·최초 선택·재활성화 때만 갱신</text>
+<text x="770" y="756" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">월드 중복 구독 방지 / 사운드 ID 고정</text>
+<rect x="50" y="815" width="640" height="140" rx="16" fill="#eaf5f0" stroke="#cbd6e3" stroke-width="2"/>
+<text x="70" y="856" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#17694f" font-weight="700">③ 결과 표시 뒤 영상 자원 해제</text>
+<text x="70" y="894" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">Result_UI 생성 성공 → 재생 포트 Dispose</text>
+<text x="70" y="926" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">영상 정지·구독 해제·텍스처 해제</text>
+<rect x="750" y="815" width="640" height="140" rx="16" fill="#eaf5f0" stroke="#cbd6e3" stroke-width="2"/>
+<text x="770" y="856" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#17694f" font-weight="700">④ 문서와 실제 구현 통일</text>
+<text x="770" y="894" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">서버·클라 README / 상세·종합 점검 문서</text>
+<text x="770" y="926" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#233246" font-weight="400">현재 구현·과거 기록·미검증 항목 구분</text>
+<text x="50" y="1022" font-family="Malgun Gothic, sans-serif" font-size="27" fill="#233246" font-weight="700">검증 범위</text>
+<text x="50" y="1063" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#233246" font-weight="400">서버·C# 회귀 / 실제 HTTP Protobuf / Unity DLL 참조 분리 컴파일</text>
+<text x="50" y="1103" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#233246" font-weight="400">순수 모델 조회 1만 회: 24,240,000 → 0바이트 (초기화 제외)</text>
+<text x="50" y="1143" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#805623" font-weight="400">Unity Play·GPU/메모리·실제 출력·두 PC/클라우드는 이번 실행 미검증</text>
+</svg>

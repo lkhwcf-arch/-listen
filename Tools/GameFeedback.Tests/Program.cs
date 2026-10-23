@@ -44,4 +44,17 @@ clock.FreezeAtVideoStart(127345); Check(clock.ElapsedMs==122345,"씬 진입부�
 clock.FreezeAtVideoStart(999999); Check(clock.ElapsedMs==122345,"영상 재시작에도 첫 시작 기록 유지");
 Check(EscapeRunClock.Format(clock.ElapsedMs.Value)=="00:02:02","시분초 표시");
 Check(EscapeRunClock.Format(27L*3600000)=="27:00:00","하루가 넘어도 시간 유지");
+var idle = new AmbientCrossfade(7,3);
+Check(!idle.IsTransitioning && !idle.Tick(.016), "선택 전 불필요한 전환 없음");
+idle.Select(0,true); Check(!idle.IsTransitioning && !idle.Tick(.016), "즉시 선택 뒤 반복 볼륨 갱신 없음");
+idle.Select(1); Check(idle.IsTransitioning && idle.Tick(1.5), "전환 중에는 변경을 알려 어댑터 갱신");
+Check(idle.Tick(1.5) && !idle.IsTransitioning, "마지막 프레임은 정확한 최종 볼륨 적용");
+Check(!idle.Tick(.016) && Near(idle.Gain(1),1), "전환 완료 후 변경 없음");
+idle.Select(0); Check(!idle.Tick(0) && idle.IsTransitioning, "0초 프레임은 전환을 소모하지 않음");
+bool invalidTime = false; try { idle.Tick(double.NaN); } catch (ArgumentOutOfRangeException) { invalidTime=true; }
+Check(invalidTime, "대기 중에도 잘못된 시간 거부");
+var expected = new[] { GameAudioCue.Footstep, GameAudioCue.Click, GameAudioCue.ClickClose, GameAudioCue.CloseupOpen, GameAudioCue.CloseupClose,
+    GameAudioCue.DialTurn, GameAudioCue.Confirm, GameAudioCue.Button, GameAudioCue.Reset, GameAudioCue.DoorOpen, GameAudioCue.DoorClose,
+    GameAudioCue.DoorLocked, GameAudioCue.Correct, GameAudioCue.Wrong };
+Check(expected.Select(cue => (int)cue).SequenceEqual(Enumerable.Range(0,14)), "기존 에셋 사운드 ID 0~13 보존");
 Console.WriteLine($"보행·사운드·크로스페이드·문 경계·탈출 시간 검사 {count}개 통과");

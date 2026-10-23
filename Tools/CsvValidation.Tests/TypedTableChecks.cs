@@ -116,6 +116,26 @@ internal static class TypedTableChecks
         optional.Remove("SOUND"); optional.Remove("SOUND_LINK");
         var optionalData = new CsvGameData(Store(optional));
         Check(optionalData.Sounds.Count == 0 && optionalData.SoundLinks.Count == 0 && optionalData.Puzzles.Count == 8, "missing optional tables produce empty collections");
+        var inactive = new Dictionary<string, string>(original);
+        var registry = new CsvParser().Read(inactive["REGISTRY"]);
+        string Quote(string value) => "\"" + value.Replace("\"", "\"\"") + "\"";
+        inactive["REGISTRY"] = string.Join(",", registry.Headers.Select(Quote)) + "\n" + string.Join("\n", registry.Rows.Select(row =>
+            string.Join(",", registry.Headers.Select(column => Quote(column == "Active" && (row.Get("Sheet") == "SOUND" || row.Get("Sheet") == "SOUND_LINK") ? "N" : row.Get(column))))));
+        var inactiveStore = Store(inactive);
+        var inactiveData = new CsvGameData(inactiveStore);
+        Check(inactiveData.Sounds.Count == 0 && inactiveData.SoundLinks.Count == 0 && inactiveData.Source.GetDocument("SOUND").Rows.Count > 0,
+            "explicitly inactive tables keep raw validation input but publish no runtime rows");
+        Check(!inactiveStore.TryGetTable(SoundData.Table, out _) && !inactiveStore.TryGetTable(SoundLinkData.Table, out _),
+            "inactive tables do not allocate typed mapping caches");
+        inactiveStore.MapTable(SoundData.Table);
+        Check(new CsvGameData(inactiveStore).Sounds.Count == 0, "explicit tool mapping does not override inactive runtime policy");
+        inactive["REGISTRY"] = string.Join(",", registry.Headers.Select(Quote)) + "\n" + string.Join("\n", registry.Rows
+            .Where(row => row.Get("Sheet") != "SOUND" && row.Get("Sheet") != "SOUND_LINK")
+            .Select(row => string.Join(",", registry.Headers.Select(column => Quote(row.Get(column))))));
+        var unregistered = Store(inactive);
+        var unregisteredData = new CsvGameData(unregistered);
+        Check(unregisteredData.Sounds.Count == 0 && unregisteredData.SoundLinks.Count == 0 && !unregistered.TryGetTable(SoundData.Table, out _),
+            "unregistered known tables are not exposed as runtime definitions");
         var oldPuzzles = data.Puzzles;
         store.TryRegister(fixture.Input(original), validator, out _);
         var replacement = new CsvGameData(store);

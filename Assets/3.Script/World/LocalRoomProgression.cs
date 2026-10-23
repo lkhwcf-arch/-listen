@@ -11,6 +11,7 @@ namespace EscapeGame.World
     public sealed class LocalRoomProgression
     {
         private readonly CsvGameData data;
+        private readonly RoomLoadPlan planA, planB;
         private readonly HashSet<int> solved = new HashSet<int>();
         private readonly HashSet<int> unlocked = new HashSet<int>();
         private readonly HashSet<int> permitted = new HashSet<int>();
@@ -18,12 +19,13 @@ namespace EscapeGame.World
         public LocalRoomProgression(CsvGameData data)
         {
             this.data = data;
-            unlocked.Add(new RoomLoadPlan(data, "A").First.Id);
-            unlocked.Add(new RoomLoadPlan(data, "B").First.Id);
+            planA = new RoomLoadPlan(data, "A"); planB = new RoomLoadPlan(data, "B");
+            unlocked.Add(planA.First.Id);
+            unlocked.Add(planB.First.Id);
         }
         public PuzzleSubmissionResult Submit(string role, int puzzleId, string[] answers)
         {
-            var plan = new RoomLoadPlan(data, role);
+            var plan = Plan(role);
             var puzzle = data.Puzzles.FirstOrDefault(row => row.Id == puzzleId && row.Active);
             if (puzzle == null || plan.Find(puzzle.SolverRoom) == null || !unlocked.Contains(puzzle.SolverRoom))
                 return PuzzleSubmissionResult.FromDecision(false, false);
@@ -37,7 +39,7 @@ namespace EscapeGame.World
         }
         public RoomDecision DecideRoom(string role, int roomNo, string[] answers)
         {
-            var room = new RoomLoadPlan(data, role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
+            var room = Plan(role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
             if (room == null) throw new EscapeGame.Session.SessionResultException(SessionFailureCode.RoomNotFound);
             bool value;
             if (answers == null) value = CheckDoor(role, roomNo);
@@ -51,7 +53,7 @@ namespace EscapeGame.World
         }
         public bool CheckDoor(string role, int roomNo)
         {
-            var room = new RoomLoadPlan(data, role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
+            var room = Plan(role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
             if (room == null || !unlocked.Contains(room.Id)) return false;
             if (permitted.Contains(room.Id)) return true;
             var rooms = data.RoomsA.Cast<RoomData>().Concat(data.RoomsB).Where(row => row.Active);
@@ -61,5 +63,7 @@ namespace EscapeGame.World
             if (room.Next != 0) unlocked.Add(room.Next);
             return true;
         }
+        private RoomLoadPlan Plan(string role) => role == "A" ? planA : role == "B" ? planB
+            : throw new ArgumentException("역할은 A 또는 B입니다.", nameof(role));
     }
 }
