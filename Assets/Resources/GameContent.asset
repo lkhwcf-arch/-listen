@@ -27,8 +27,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 09430c07ee0a20e4dbdc8ded39891f1b, type: 3}
   - {fileID: 4900000, guid: 8b31de202510c584197f75d2112a5c0b, type: 3}
   - {fileID: 4900000, guid: 23a6289e5b6ebf64b98a2a94b38ab754, type: 3}
-  - {fileID: 4900000, guid: 32ca774e5ade0bb4598cfc6febaffc7c, type: 3}
-  - {fileID: 4900000, guid: 5b2faad7ca32ee4429528a58d3ce054d, type: 3}
   validationRules: {fileID: 4900000, guid: 5e83be8417a447cd9fe0a7b1e0affbc3, type: 3}
   prefabs:
   - path: Assets/2.Model/Light/Room1_Light.prefab
