@@ -15,7 +15,7 @@ Bootstrapper: 생성·의존성·씬 수명
  │   └─ CSV 방·앵커·프리팹·컴포넌트 정의
  └─ PlayerSpawnDriver → LocalPlayerFactory
      ├─ 이동·시점·상호작용 Driver
-     ├─ PlayerGaitDriver / GameFeedbackDriver
+     ├─ PlayerGaitDriver / PlayerHandAnimationDriver / GameFeedbackDriver
      └─ EndingVideoDirector → 영상·결과 View
 ```
 
@@ -64,3 +64,6 @@ RoomLoadPlan은 한 CsvGameData 스냅샷에 종속되는 불변 정의 계획�
 7. 네트워크로 보내야 하는 상태와 로컬 표현을 구별하고, 서버 권한 변경은 별도 설계합니다.
 
 이번 변경은 assembly 전체 분리나 네트워크 라이브러리 완성이 아닙니다. asmdef 경계 정리·구형 DTO 삭제·모든 콘텐츠의 Unity Play 검증·프로파일링은 후속 범위입니다. 2026-10-23 조명 작업 재개 후의 프로브 베이크·복원·자원 소유권은 [프로브 조명 안내](RoomProbeLighting.md)를 따릅니다. 지정된 조명 앵커 위치는 유지합니다.
+
+
+2026-10-23 손 애니메이션·입력 수명 보완: 이동 완료 결과를 관찰하는 손 어댑터를 추가했습니다. 비활성 객체의 초기화 실패는 파괴 콜백만으로 정리하지 않고, Factory가 활성화 성공 전 입력 자원을 직접 소유·해제합니다. 정상 활성화 후에는 각 Driver가 소유합니다. 반복 정리에 안전한 입력 임대와 모델을 직접 파괴하지 않는 표현 어댑터 규격은 [손 애니메이션 안내](PlayerHandAnimation.md)를 따릅니다.

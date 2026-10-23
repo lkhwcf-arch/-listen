@@ -28,6 +28,9 @@ namespace EscapeGame.Player
             var root = new GameObject("LocalPlayer_" + plan.Role);
             root.SetActive(false);
             SceneManager.MoveGameObjectToScene(root, scene);
+            // 비활성 객체의 파괴 콜백에 기대지 않고, 활성화 성공 전까지 입력 자원을 직접 정리합니다.
+            InputSystemMoveInput pendingMoveInput = null;
+            InputSystemPointerInput pendingPointerInput = null;
             try
             {
                 root.transform.SetPositionAndRotation(anchors[0].position, anchors[0].rotation);
@@ -62,7 +65,8 @@ namespace EscapeGame.Player
                         size.y /= 2; // Unity의 기본 Cylinder 높이는 2입니다.
                     model.transform.localScale = size;
                 }
-                foreach (var animator in model.GetComponentsInChildren<Animator>(true))
+                var animators = model.GetComponentsInChildren<Animator>(true);
+                foreach (var animator in animators)
                     animator.applyRootMotion = false;
                 foreach (var collider in model.GetComponentsInChildren<Collider>(true))
                 {
@@ -80,41 +84,40 @@ namespace EscapeGame.Player
                 rig.Initialize(plan.Role, camera, visual);
                 var controls = new PlayerControlState();
                 var movement = root.AddComponent<PlayerMovementDriver>();
-                var input = new InputSystemMoveInput(settings.InputActions);
-                try
-                {
-                    movement.Initialize(plan.Character, input, new EscapeGame.Timing.StopwatchMillisecondClock(),
-                        settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
-                }
-                catch
-                {
-                    input.Dispose();
-                    throw;
-                }
+                pendingMoveInput = new InputSystemMoveInput(settings.InputActions);
+                movement.Initialize(plan.Character, pendingMoveInput, new EscapeGame.Timing.StopwatchMillisecondClock(),
+                    settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
+                var animatedHands = animators.Where(animator => animator.runtimeAnimatorController != null).ToArray();
+                if (animatedHands.Length != 0)
+                    root.AddComponent<PlayerHandAnimationDriver>().Initialize(animatedHands, movement, controls,
+                        settings.HandAnimationSpeedParameter);
                 var pointerDriver = root.AddComponent<PlayerPointerDriver>();
                 var look = root.AddComponent<PlayerLookDriver>();
-                var pointer = new InputSystemPointerInput(settings.InputActions);
-                try
-                {
-                    pointerDriver.Initialize(pointer, controls);
-                    look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver);
-                }
-                catch
-                {
-                    pointer.Dispose();
-                    throw;
-                }
+                pendingPointerInput = new InputSystemPointerInput(settings.InputActions);
+                pointerDriver.Initialize(pendingPointerInput, controls);
+                look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver);
                 root.AddComponent<ViewModelObstructionDriver>().Initialize(camera, visual, settings.ModelCollisionMarginMm);
                 var feedback = Resources.Load<EscapeGame.Data.GameFeedbackAssets>("GameFeedback");
                 if (feedback != null)
                     root.AddComponent<PlayerGaitDriver>().Initialize(camera.transform, movement, pointerDriver, plan.Character, feedback);
                 root.SetActive(true);
+                // 정상 활성화 이후에는 각 입력 Driver가 수명을 소유합니다.
+                pendingMoveInput = null;
+                pendingPointerInput = null;
                 return rig;
             }
             catch
             {
                 root.SetActive(false);
-                Object.Destroy(root);
+                try
+                {
+                    pendingPointerInput?.Dispose();
+                    pendingMoveInput?.Dispose();
+                }
+                finally
+                {
+                    Object.Destroy(root);
+                }
                 throw;
             }
         }

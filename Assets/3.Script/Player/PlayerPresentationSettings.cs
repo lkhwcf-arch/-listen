@@ -18,6 +18,8 @@ namespace EscapeGame.Player
         public Material PlaceholderMaterial => placeholderMaterial;
         [SerializeField] private GameObject modelA;
         [SerializeField] private GameObject modelB;
+        [SerializeField] private string handAnimationSpeedParameter = "Speed";
+        public string HandAnimationSpeedParameter => handAnimationSpeedParameter;
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private int maximumMovementFrameMs = 100;
         [SerializeField] private int maximumFallSpeedMmPerSecond = 50000;
@@ -47,6 +49,8 @@ namespace EscapeGame.Player
                 throw new InvalidOperationException("PlayerPresentation의 ID·클리핑·모델 크기 설정을 확인하세요.");
             if ((modelA == null || modelB == null) && placeholderMaterial == null)
                 throw new InvalidOperationException("PlayerPresentation에 빌드용 임시 모델 머티리얼을 연결하세요.");
+            if (string.IsNullOrWhiteSpace(handAnimationSpeedParameter))
+                throw new InvalidOperationException("PlayerPresentation의 손 애니메이션 이동 속도 파라미터 이름을 확인하세요.");
             if (inputActions == null || inputActions.FindAction("Player/Move", false) == null ||
                 inputActions.FindAction("Player/Look", false) == null || inputActions.FindAction("Player/Attack", false) == null ||
                 inputActions.FindAction("UI/Cancel", false) == null || skinWidthMm < 1 || skinWidthMm > 100 ||

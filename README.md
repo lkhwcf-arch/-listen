@@ -78,6 +78,8 @@ Result_UI 생성 성공 후 영상 포트/RenderTexture는 해제하고 결과 U
 
 방 조명은 기존 CSV 앵커 스폰을 사용하고, A/B별 베이크 프로브를 저장·복원하는 경로를 추가했습니다. [프로브 조명 작업·검사 가이드](Docs/RoomProbeLighting.md)를 따릅니다. ROOM_LIGHT_SPAWNTABLE은 사용하지 않습니다. R01_LEDPanel 전용 소리는 보류입니다. [기존 조명 안내](Docs/UnityBakedLightingGuide.md)의 초기 조사와 최신 구현 상태는 구분합니다.
 
+손 모델은 A/B 공통 제어기의 대기·걷기 동작을 실제 이동 결과에 연결했습니다. 설정과 수명은 [손 애니메이션 안내](Docs/PlayerHandAnimation.md)를 참고합니다.
+
 ## 5. 빌드·리소스·계약 자동화
 
 Windows Build Profiles에서 시작 씬 Join을 포함합니다. Development Build는 테스트 주소, 해제하면 stableBuild 주소를 사용합니다. **기존 stable 출력 폴더를 계속 사용**하고 실행 파일·Data·DLL 등 빌드 결과 전체를 함께 전달합니다. 임의 새 출력 폴더 규칙은 추가하지 않았습니다.

@@ -6,6 +6,7 @@ namespace EscapeGame.Player
     // 입력 기능마다 원본 액션을 켜고 끄지 않도록 복제·바인딩·해제를 공통화합니다.
     public sealed class InputActionLease : IDisposable
     {
+        private bool disposed;
         public InputAction Action
         {
             get;
@@ -19,6 +20,8 @@ namespace EscapeGame.Player
         }
         public void SetEnabled(bool enabled)
         {
+            if (disposed)
+                return;
             if (enabled)
                 Action.Enable();
             else
@@ -26,6 +29,9 @@ namespace EscapeGame.Player
         }
         public void Dispose()
         {
+            if (disposed)
+                return;
+            disposed = true;
             Action.Disable();
             Action.Dispose();
         }

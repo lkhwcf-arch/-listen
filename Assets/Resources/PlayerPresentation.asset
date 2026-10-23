@@ -29,3 +29,4 @@ MonoBehaviour:
   skinWidthMm: 30
   lookMilliDegreesPerPixelAtUnitSensitivity: 100
   modelCollisionMarginMm: 20
+  handAnimationSpeedParameter: Speed
