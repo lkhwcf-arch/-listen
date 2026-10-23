@@ -15,12 +15,15 @@ namespace EscapeGame.Audio
             var axes = new[] { anchorToWorld.MultiplyVector(Vector3.right), anchorToWorld.MultiplyVector(Vector3.up), anchorToWorld.MultiplyVector(Vector3.forward) };
             int up = 0;
             for (int i = 1; i < 3; i++)
-                if (Mathf.Abs(Vector3.Dot(axes[i].normalized, Vector3.up)) > Mathf.Abs(Vector3.Dot(axes[up].normalized, Vector3.up))) up = i;
+                if (Mathf.Abs(Vector3.Dot(axes[i].normalized, Vector3.up)) > Mathf.Abs(Vector3.Dot(axes[up].normalized, Vector3.up)))
+                    up = i;
             int thin = -1;
             for (int i = 0; i < 3; i++)
-                if (i != up && (thin < 0 || closedBounds.size[i] * axes[i].magnitude < closedBounds.size[thin] * axes[thin].magnitude)) thin = i;
+                if (i != up && (thin < 0 || closedBounds.size[i] * axes[i].magnitude < closedBounds.size[thin] * axes[thin].magnitude))
+                    thin = i;
             normal = Vector3.ProjectOnPlane(axes[thin], Vector3.up).normalized;
-            if (normal.sqrMagnitude < .9f) throw new InvalidOperationException("문 앞뒤 방향을 계산할 수 없습니다. 문 모델의 축·크기를 확인하세요.");
+            if (normal.sqrMagnitude < .9f)
+                throw new InvalidOperationException("문 앞뒤 방향을 계산할 수 없습니다. 문 모델의 축·크기를 확인하세요.");
             right = Vector3.Cross(Vector3.up, normal).normalized;
             center = anchorToWorld.MultiplyPoint3x4(closedBounds.center);
             for (int i = 0; i < 8; i++)
@@ -35,7 +38,8 @@ namespace EscapeGame.Audio
         public void Reset() => crossing.Reset();
         public bool Crossed(Vector3 previous, Vector3 current, bool open)
         {
-            var a = previous - center; var b = current - center;
+            var a = previous - center;
+            var b = current - center;
             return crossing.Tick(Vector3.Dot(a, right), a.y, Vector3.Dot(a, normal),
                 Vector3.Dot(b, right), b.y, Vector3.Dot(b, normal), halfWidth, halfHeight, open);
         }

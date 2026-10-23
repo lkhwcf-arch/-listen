@@ -2,12 +2,21 @@ using System;
 
 namespace EscapeGame.Session.Contracts
 {
-    public enum SessionCommandOutcome { Completed, Cancelled, Failed }
+    public enum SessionCommandOutcome
+    {
+        Completed, Cancelled, Failed
+    }
 
     public sealed class SessionCommandResult
     {
-        public SessionCommandOutcome Outcome { get; }
-        public SessionFailureCode Code { get; }
+        public SessionCommandOutcome Outcome
+        {
+            get;
+        }
+        public SessionFailureCode Code
+        {
+            get;
+        }
         private SessionCommandResult(SessionCommandOutcome outcome, SessionFailureCode code)
         {
             Outcome = outcome;

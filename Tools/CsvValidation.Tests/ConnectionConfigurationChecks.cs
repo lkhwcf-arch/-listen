@@ -11,10 +11,27 @@ static class ConnectionConfigurationChecks
     internal static async Task Run(string root, Dictionary<string, string> original, string catalogXml)
     {
         int count = 0;
-        void Check(bool ok, string name) { if (!ok) throw new Exception("FAIL: " + name); count++; }
+        void Check(bool ok, string name)
+        {
+            if (!ok)
+                throw new Exception("FAIL: " + name);
+            count++;
+        }
         void Throws<T>(Action action, string name) where T : Exception
-        { bool caught = false; try { action(); } catch (T) { caught = true; } Check(caught, name); }
-        var document = new ClientConnectionDocument {
+        {
+            bool caught = false;
+            try
+            {
+                action();
+            }
+            catch (T)
+            {
+                caught = true;
+            }
+            Check(caught, name);
+        }
+        var document = new ClientConnectionDocument
+        {
             schemaVersion = 1,
             editor = new ClientConnectionProfile { serverBaseUrl = " http://127.0.0.1:3000/ ", autoConnect = true },
             testBuild = new ClientConnectionProfile { serverBaseUrl = "http://192.168.1.34:3001", autoConnect = true },
@@ -52,31 +69,52 @@ static class ConnectionConfigurationChecks
         int attempts = 0;
         var gate = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
         string usedAddress = null;
-        var connection = new ConfiguredServerConnection(test, async (address, token) => {
-            attempts++; usedAddress = address; await gate.Task;
+        var connection = new ConfiguredServerConnection(test, async (address, token) =>
+        {
+            attempts++;
+            usedAddress = address;
+            await gate.Task;
         });
         var running = connection.StartAsync(default);
         await connection.StartAsync(default);
         await connection.ConnectAsync(default);
         Check(attempts == 1 && usedAddress == test.ServerBaseUrl, "automatic and button requests cannot overlap");
-        gate.SetResult(true); await running;
+        gate.SetResult(true);
+        await running;
         await connection.StartAsync(default);
         Check(attempts == 1, "completed startup never auto-joins again");
         await connection.ConnectAsync(default);
         Check(attempts == 2, "explicit retry reuses selected address");
-        using var cancellation = new CancellationTokenSource(); cancellation.Cancel();
+        using var cancellation = new CancellationTokenSource();
+        cancellation.Cancel();
         bool cancelled = false;
-        try { await connection.ConnectAsync(cancellation.Token); } catch (OperationCanceledException) { cancelled = true; }
+        try
+        {
+            await connection.ConnectAsync(cancellation.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            cancelled = true;
+        }
         Check(cancelled && attempts == 2, "cancelled request never sends join");
         bool fail = true;
         var retry = new ConfiguredServerConnection(test, (_, _) => fail ? Task.FromException(new IOException("test")) : Task.CompletedTask);
-        try { await retry.StartAsync(default); } catch (IOException) { }
-        fail = false; await retry.ConnectAsync(default);
+        try
+        {
+            await retry.StartAsync(default);
+        }
+        catch (IOException) { }
+        fail = false;
+        await retry.ConnectAsync(default);
         Check(true, "fault releases request gate for explicit retry");
         document.editor = new ClientConnectionProfile { serverBaseUrl = "http://offline.test", autoConnect = false };
         int manualCalls = 0;
         var manualSettings = ClientConnectionSettings.Select(document, ClientExecutionEnvironment.Editor);
-        var manual = new ConfiguredServerConnection(manualSettings, (_, _) => { manualCalls++; return Task.CompletedTask; });
+        var manual = new ConfiguredServerConnection(manualSettings, (_, _) =>
+        {
+            manualCalls++;
+            return Task.CompletedTask;
+        });
         await manual.StartAsync(default);
         Check(manualCalls == 0, "autoConnect false keeps local test selection available");
         await manual.ConnectAsync(default);
@@ -86,7 +124,8 @@ static class ConnectionConfigurationChecks
         var view = new FakeView();
         using (var presenter = new SessionConnectionPresenter(service, view, test, default))
         {
-            await presenter.StartAsync(); await presenter.StartAsync();
+            await presenter.StartAsync();
+            await presenter.StartAsync();
             Check(service.Joins == 1 && service.LastAddress == test.ServerBaseUrl, "session presenter joins configured endpoint once");
             Check(!view.Last.CanEditAddress, "session presenter never enables address editing");
         }
@@ -100,10 +139,15 @@ static class ConnectionConfigurationChecks
         view = new FakeView();
         int entered = 0;
         using var entry = new GameEntryService(service, service, () => throw new Exception("local fallback"),
-            new CsvValidator(fixture.Catalog), _ => { entered++; return Task.CompletedTask; });
+            new CsvValidator(fixture.Catalog), _ =>
+            {
+                entered++;
+                return Task.CompletedTask;
+            });
         using (var presenter = new GameEntryPresenter(entry, view, test, default))
         {
-            await presenter.StartAsync(); await presenter.StartAsync();
+            await presenter.StartAsync();
+            await presenter.StartAsync();
             Check(service.Joins == 1 && service.Downloads == 1 && entered == 1, "game entry presenter preserves join/data/scene sequence");
             Check(service.LastAddress == test.ServerBaseUrl && entry.Role == "B" && !entry.IsLocal, "game entry injects configured address and server role");
             Check(!view.Last.CanEditAddress, "game entry never enables address editing");
@@ -119,14 +163,20 @@ static class ConnectionConfigurationChecks
         public event Action<string> LocalRequested { add { } remove { } }
         public void RequestJoin() => JoinRequested?.Invoke();
         public void Render(SessionConnectionPresentation presentation) => Last = presentation;
-        public void ShowDisconnected(string message) { }
+        public void ShowDisconnected(string message)
+        {
+        }
     }
     private sealed class FakeSession : ISessionConnectionService, ISessionContentService
     {
         public int Joins, Downloads;
         public string LastAddress;
         public CsvDataSet Source;
-        public SessionInfo State { get; private set; } = new SessionInfo(null, null, null, null, 0, false);
+        public SessionInfo State
+        {
+            get;
+            private set;
+        } = new SessionInfo(null, null, null, null, 0, false);
         public bool IsBusy => false;
         public string ServerBaseUrl => LastAddress;
         public event Action<SessionInfo> StateChanged { add { } remove { } }
@@ -135,13 +185,24 @@ static class ConnectionConfigurationChecks
         public event Action<SessionFailureCode> Disconnected { add { } remove { } }
         public event Action<IReadOnlyList<int>> RoomsChanged { add { } remove { } }
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token)
-        { Joins++; LastAddress = address; State = new SessionInfo("s", "p", "B", ClientSessionPhase.Loading, 2, false); return Task.FromResult(SessionCommandResult.Completed()); }
+        {
+            Joins++;
+            LastAddress = address;
+            State = new SessionInfo("s", "p", "B", ClientSessionPhase.Loading, 2, false);
+            return Task.FromResult(SessionCommandResult.Completed());
+        }
         public Task<SessionCommandResult> LeaveAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
         public Task<SessionCommandResult> QueryAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
         public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
         public Task<SessionCommandResult> ReportSceneLoadedAsync(CancellationToken token) => Task.FromResult(SessionCommandResult.Completed());
-        public Task<CsvDataSet> DownloadDataAsync(CancellationToken token) { Downloads++; return Task.FromResult(Source); }
+        public Task<CsvDataSet> DownloadDataAsync(CancellationToken token)
+        {
+            Downloads++;
+            return Task.FromResult(Source);
+        }
         public Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int id, string[] answers, CancellationToken token) => throw new NotSupportedException();
-        public void Disconnect(SessionFailureCode reason) { }
+        public void Disconnect(SessionFailureCode reason)
+        {
+        }
     }
 }

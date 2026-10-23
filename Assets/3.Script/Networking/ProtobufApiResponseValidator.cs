@@ -15,7 +15,8 @@ namespace EscapeGame.Networking
             if (reply.OutcomeCase == GameApiResponse.OutcomeOneofCase.Failure)
             {
                 var code = reply.Failure.Code;
-                if (Status(code) != status) throw new SessionResultException(SessionFailureCode.InvalidResponse);
+                if (Status(code) != status)
+                    throw new SessionResultException(SessionFailureCode.InvalidResponse);
                 throw new SessionResultException(Map(code));
             }
             if (status != operation.SuccessStatus || reply.OutcomeCase != operation.Outcome)

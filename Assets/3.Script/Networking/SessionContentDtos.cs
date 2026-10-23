@@ -5,7 +5,8 @@ using EscapeGame.Data.Csv;
 
 namespace EscapeGame.Networking
 {
-    [Serializable] internal sealed class CsvBundleDto
+    [Serializable]
+    internal sealed class CsvBundleDto
     {
         public bool success;
         public string code;
@@ -27,6 +28,15 @@ namespace EscapeGame.Networking
             return new CsvDataSet(documents);
         }
     }
-    [Serializable] internal sealed class CsvTextDto { public string name; public string csv; }
-    [Serializable] internal sealed class PuzzleSubmissionDto { public string[] answers; }
+    [Serializable]
+    internal sealed class CsvTextDto
+    {
+        public string name;
+        public string csv;
+    }
+    [Serializable]
+    internal sealed class PuzzleSubmissionDto
+    {
+        public string[] answers;
+    }
 }

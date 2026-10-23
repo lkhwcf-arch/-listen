@@ -23,15 +23,35 @@ namespace EscapeGame.Networking
         public Task<SessionRoomDecisionData> DecideRoomAsync(string id, string token, int roomNo, string[] answers, CancellationToken ct)
             => ExecuteAsync(() => api.DecideRoomAsync(id, token, roomNo, answers, ct));
         private static async Task ExecuteAsync(Func<Task> operation)
-        { await ExecuteAsync(async () => { await operation(); return true; }); }
+        {
+            await ExecuteAsync(async () =>
+            {
+                await operation();
+                return true;
+            });
+        }
         private static async Task<T> ExecuteAsync<T>(Func<Task<T>> operation)
         {
-            try { return await operation(); }
-            catch (OperationCanceledException) { throw; }
-            catch (SessionResultException) { throw; }
-            catch (SessionTransportException error) { throw new SessionResultException(SessionFailureCode.ConnectionFailed, error); }
+            try
+            {
+                return await operation();
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (SessionResultException)
+            {
+                throw;
+            }
+            catch (SessionTransportException error)
+            {
+                throw new SessionResultException(SessionFailureCode.ConnectionFailed, error);
+            }
             catch (Exception error) when (error is ArgumentException || error is InvalidOperationException)
-            { throw new SessionResultException(SessionFailureCode.InvalidResponse, error); }
+            {
+                throw new SessionResultException(SessionFailureCode.InvalidResponse, error);
+            }
         }
     }
 }

@@ -21,19 +21,26 @@ public static class PadlockSetup
             if (Path.GetFileName(candidate) == "PadlockSetup.cs")
             {
                 string folder = Path.GetDirectoryName(Path.GetDirectoryName(candidate)).Replace('\\', '/');
-                if (File.Exists(folder + "/" + ModelName + ".fbx")) { script = candidate; break; }
+                if (File.Exists(folder + "/" + ModelName + ".fbx"))
+                {
+                    script = candidate;
+                    break;
+                }
             }
         }
-        if (script == null) throw new InvalidOperationException("Keep PadlockSetup.cs in Editor beside the model folder.");
+        if (script == null)
+            throw new InvalidOperationException("Keep PadlockSetup.cs in Editor beside the model folder.");
         string root = Path.GetDirectoryName(Path.GetDirectoryName(script)).Replace('\\', '/');
         bool urp = GraphicsSettings.currentRenderPipeline != null &&
                    GraphicsSettings.currentRenderPipeline.GetType().Name.Contains("Universal");
         if (GraphicsSettings.currentRenderPipeline != null && !urp)
             throw new InvalidOperationException("This utility supports URP and Built-in. For HDRP, assign the included maps to HDRP/Lit manually.");
         Shader shader = Shader.Find(urp ? "Universal Render Pipeline/Lit" : "Standard");
-        if (shader == null) throw new InvalidOperationException("The active pipeline's Lit shader was not found.");
+        if (shader == null)
+            throw new InvalidOperationException("The active pipeline's Lit shader was not found.");
         string matDir = root + "/Materials";
-        if (!AssetDatabase.IsValidFolder(matDir)) AssetDatabase.CreateFolder(root, "Materials");
+        if (!AssetDatabase.IsValidFolder(matDir))
+            AssetDatabase.CreateFolder(root, "Materials");
 
         Texture2D color = ImportTexture(root + "/Textures/Color.jpg", true, false);
         Texture2D normal = ImportTexture(root + "/Textures/Normal.png", false, true);
@@ -43,11 +50,12 @@ public static class PadlockSetup
             Color.white, new Color(.014f,.016f,.019f), new Color(.36f,.39f,.42f),
             new Color(.72f,.67f,.54f), new Color(.34f,.24f,.11f), new Color(.008f,.009f,.011f)
         };
-        float[] metallic = {1f, .2f, .8f, 0f, .68f, 0f};
-        float[] roughness = {.5f, .64f, .34f, .52f, .39f, .56f};
+        float[] metallic = { 1f, .2f, .8f, 0f, .68f, 0f };
+        float[] roughness = { .5f, .64f, .34f, .52f, .39f, .56f };
         string modelPath = root + "/" + ModelName + ".fbx";
         ModelImporter importer = AssetImporter.GetAtPath(modelPath) as ModelImporter;
-        if (importer == null) throw new InvalidOperationException("Model importer unavailable: " + modelPath);
+        if (importer == null)
+            throw new InvalidOperationException("Model importer unavailable: " + modelPath);
         importer.importAnimation = false;
         importer.importCameras = false;
         importer.importLights = false;
@@ -58,7 +66,11 @@ public static class PadlockSetup
         {
             string path = matDir + "/" + names[i] + ".mat";
             Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
-            if (material == null) { material = new Material(shader); AssetDatabase.CreateAsset(material, path); }
+            if (material == null)
+            {
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, path);
+            }
             material.shader = shader;
             // Blender's constant inputs are linear; Unity material color inputs use sRGB values.
             Color tint = i == 0 ? Color.white : colors[i].gamma;
@@ -74,7 +86,8 @@ public static class PadlockSetup
                 material.EnableKeyword(urp ? "_METALLICSPECGLOSSMAP" : "_METALLICGLOSSMAP");
                 material.SetFloat("_BumpScale", 1f);
                 material.SetFloat(urp ? "_Smoothness" : "_GlossMapScale", 1f);
-                if (material.HasProperty("_SmoothnessTextureChannel")) material.SetFloat("_SmoothnessTextureChannel", 0f);
+                if (material.HasProperty("_SmoothnessTextureChannel"))
+                    material.SetFloat("_SmoothnessTextureChannel", 0f);
                 material.DisableKeyword("_SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A");
             }
             else
@@ -90,12 +103,16 @@ public static class PadlockSetup
         importer.SaveAndReimport();
         GameObject model = AssetDatabase.LoadAssetAtPath<GameObject>(modelPath);
         MeshFilter[] filters = model.GetComponentsInChildren<MeshFilter>(true);
-        if (filters.Length != 7) throw new InvalidOperationException("Expected 7 meshes; found " + filters.Length);
+        if (filters.Length != 7)
+            throw new InvalidOperationException("Expected 7 meshes; found " + filters.Length);
         foreach (string n in new[] { "Body", "Dial_01", "Dial_02", "Dial_03", "Dial_04", "Dial_05", "Shackle" })
         {
             int count = 0;
-            foreach (MeshFilter f in filters) if (f.name == n && f.sharedMesh != null) count++;
-            if (count != 1) throw new InvalidOperationException("Expected one independent mesh named " + n);
+            foreach (MeshFilter f in filters)
+                if (f.name == n && f.sharedMesh != null)
+                    count++;
+            if (count != 1)
+                throw new InvalidOperationException("Expected one independent mesh named " + n);
         }
         Selection.activeObject = model;
         EditorGUIUtility.PingObject(model);
@@ -105,7 +122,8 @@ public static class PadlockSetup
     static Texture2D ImportTexture(string path, bool srgb, bool normal)
     {
         TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
-        if (importer == null) throw new FileNotFoundException("Missing texture", path);
+        if (importer == null)
+            throw new FileNotFoundException("Missing texture", path);
         importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
         importer.sRGBTexture = srgb;
         importer.alphaSource = TextureImporterAlphaSource.FromInput;

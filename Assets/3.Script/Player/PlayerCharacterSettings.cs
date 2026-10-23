@@ -7,23 +7,63 @@ namespace EscapeGame.Player
     // CSV 정의를 한 번 선택·정규화합니다. 스폰과 이동이 같은 프로필을 공유합니다.
     public sealed class PlayerCharacterSettings
     {
-        public int ProfileId { get; }
-        public float HeadBobMeters { get; }
-        public int InteractDistanceMm { get; }
-        public int WalkSpeedMmPerSecond { get; }
-        public int AccelerationMmPerSecondSquared { get; }
-        public int DecelerationMmPerSecondSquared { get; }
-        public int EyeHeightMm { get; }
-        public int CapsuleHeightMm { get; }
-        public int CapsuleRadiusMm { get; }
-        public int StepOffsetMm { get; }
-        public int FovMilliDegrees { get; }
-        public int MouseSensitivityMilli { get; }
-        public int PitchLimitMilliDegrees { get; }
+        public int ProfileId
+        {
+            get;
+        }
+        public float HeadBobMeters
+        {
+            get;
+        }
+        public int InteractDistanceMm
+        {
+            get;
+        }
+        public int WalkSpeedMmPerSecond
+        {
+            get;
+        }
+        public int AccelerationMmPerSecondSquared
+        {
+            get;
+        }
+        public int DecelerationMmPerSecondSquared
+        {
+            get;
+        }
+        public int EyeHeightMm
+        {
+            get;
+        }
+        public int CapsuleHeightMm
+        {
+            get;
+        }
+        public int CapsuleRadiusMm
+        {
+            get;
+        }
+        public int StepOffsetMm
+        {
+            get;
+        }
+        public int FovMilliDegrees
+        {
+            get;
+        }
+        public int MouseSensitivityMilli
+        {
+            get;
+        }
+        public int PitchLimitMilliDegrees
+        {
+            get;
+        }
 
         public static PlayerCharacterSettings Select(CsvGameData data, int configId)
         {
-            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             var config = data.GameConfigs.SingleOrDefault(row => row.Id == configId)
                 ?? throw new InvalidOperationException("캐릭터 설정 선택 행이 없습니다: " + configId);
             int profileId = config.AsInt();

@@ -12,16 +12,32 @@ static class ContentRegressionChecks
     internal static async Task Run(Dictionary<string, string> original, string xml)
     {
         int count = 0;
-        void Check(bool ok, string label) { if (!ok) throw new Exception("FAIL: " + label); count++; }
+        void Check(bool ok, string label)
+        {
+            if (!ok)
+                throw new Exception("FAIL: " + label);
+            count++;
+        }
         void Throws<T>(Action action, string label) where T : Exception
         {
             bool caught = false;
-            try { action(); } catch (T) { caught = true; }
+            try
+            {
+                action();
+            }
+            catch (T)
+            {
+                caught = true;
+            }
             Check(caught, label);
         }
         var fixture = new TestValidator(xml);
         Dictionary<string, string> Mutate(Action<Dictionary<string, string>> change)
-        { var copy = new Dictionary<string, string>(original, StringComparer.Ordinal); change(copy); return copy; }
+        {
+            var copy = new Dictionary<string, string>(original, StringComparer.Ordinal);
+            change(copy);
+            return copy;
+        }
         void Cell(Dictionary<string, string> input, int rowIndex, string column, string value)
         {
             var doc = new CsvParser().Read(input["ROOM_A"]);
@@ -33,12 +49,25 @@ static class ContentRegressionChecks
             issue.Severity == CsvValidationSeverity.Error && issue.Sheet == "ROOM_A" && issue.Code == code);
         var disconnected = Mutate(input => Cell(input, 0, "Next", "0"));
         Check(Has(disconnected, CsvValidationCode.RoomStartCount), "split start rejected before entry");
-        Check(Has(Mutate(input => { for (int i = 0; i < 7; i++) Cell(input, i, "Active", "N"); }), CsvValidationCode.RoomStartCount), "no active start rejected");
-        Check(Has(Mutate(input => { Cell(input, 0, "Next", "0"); Cell(input, 6, "Next", "1003"); }), CsvValidationCode.RoomDisconnected), "disconnected cycle rejected despite single start");
+        Check(Has(Mutate(input =>
+        {
+            for (int i = 0; i < 7; i++)
+                Cell(input, i, "Active", "N");
+        }), CsvValidationCode.RoomStartCount), "no active start rejected");
+        Check(Has(Mutate(input =>
+        {
+            Cell(input, 0, "Next", "0");
+            Cell(input, 6, "Next", "1003");
+        }), CsvValidationCode.RoomDisconnected), "disconnected cycle rejected despite single start");
         Check(Has(Mutate(input => Cell(input, 1, "Active", "N")), CsvValidationCode.RoomStartCount), "inactive middle room cannot split start");
         Check(Has(Mutate(input => Cell(input, 6, "Active", "N")), CsvValidationCode.RoomDisconnected), "inactive terminal breaks active chain");
         Check(Has(Mutate(input => Cell(input, 0, "ExitRule", "BothSolvd")), CsvValidationCode.InvalidValue), "unknown exit rule rejected by schema");
-        var oneRoom = Mutate(input => { Cell(input, 0, "Next", "0"); for (int i = 1; i < 7; i++) Cell(input, i, "Active", "N"); });
+        var oneRoom = Mutate(input =>
+        {
+            Cell(input, 0, "Next", "0");
+            for (int i = 1; i < 7; i++)
+                Cell(input, i, "Active", "N");
+        });
         Check(!fixture.Validate(oneRoom).Any(issue => issue.Severity == CsvValidationSeverity.Error), "one active terminal room is valid");
         Check(!RoomExitRules.RequiresBothPuzzles(RoomExitRules.SolvedEach) && RoomExitRules.RequiresBothPuzzles(RoomExitRules.BothSolved), "shared exit policy keeps both supported meanings");
         Throws<ArgumentException>(() => RoomExitRules.RequiresBothPuzzles("BothSolvd"), "runtime policy cannot silently replace unknown exit rule");
@@ -81,14 +110,27 @@ static class ContentRegressionChecks
         }
         gateway.Fail = true;
         bool failed = false;
-        try { await service.SubmitPuzzleAsync(5001, answers, default); }
-        catch (SessionResultException error) { failed = error.Code == SessionFailureCode.ConnectionFailed; }
+        try
+        {
+            await service.SubmitPuzzleAsync(5001, answers, default);
+        }
+        catch (SessionResultException error)
+        {
+            failed = error.Code == SessionFailureCode.ConnectionFailed;
+        }
         Check(failed, "transport error is not converted into incorrect answer");
         gateway.Fail = false;
-        using var cancel = new CancellationTokenSource(); cancel.Cancel();
+        using var cancel = new CancellationTokenSource();
+        cancel.Cancel();
         bool cancelled = false;
-        try { await service.SubmitPuzzleAsync(5001, answers, cancel.Token); }
-        catch (OperationCanceledException) { cancelled = true; }
+        try
+        {
+            await service.SubmitPuzzleAsync(5001, answers, cancel.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            cancelled = true;
+        }
         Check(cancelled, "cancelled submission is not converted into incorrect answer");
         Console.WriteLine($"{count} content regression checks passed.");
     }
@@ -113,7 +155,8 @@ static class ContentRegressionChecks
         public Task<CsvDataSet> DownloadDataAsync(string session, string participant, CancellationToken token) => throw new NotSupportedException();
         public Task<SessionPuzzleSubmissionData> SubmitPuzzleAsync(string session, string participant, int id, string[] answers, CancellationToken token)
         {
-            if (Fail) throw new SessionResultException(SessionFailureCode.ConnectionFailed);
+            if (Fail)
+                throw new SessionResultException(SessionFailureCode.ConnectionFailed);
             return Task.FromResult(new SessionPuzzleSubmissionData(Snapshot, Decision));
         }
     }

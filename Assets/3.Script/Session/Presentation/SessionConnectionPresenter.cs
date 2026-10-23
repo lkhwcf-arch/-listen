@@ -35,41 +35,63 @@ namespace EscapeGame.Session.Presentation
         public Task JoinAsync() => connection.ConnectAsync(token);
         private async Task JoinCoreAsync(string address, CancellationToken connectionToken)
         {
-            if (disposed || token.IsCancellationRequested || joining || leaving || service.State.IsJoined || service.IsBusy) return;
-            joining = true; failure = SessionFailureCode.None; Render();
+            if (disposed || token.IsCancellationRequested || joining || leaving || service.State.IsJoined || service.IsBusy)
+                return;
+            joining = true;
+            failure = SessionFailureCode.None;
+            Render();
             var result = await service.JoinAsync(address, connectionToken);
             joining = false;
-            if (disposed || token.IsCancellationRequested) return;
-            ObserveResult(result); Render();
+            if (disposed || token.IsCancellationRequested)
+                return;
+            ObserveResult(result);
+            Render();
         }
         public async Task LeaveAsync()
         {
-            if (disposed || token.IsCancellationRequested || joining || leaving || !service.State.IsJoined) return;
-            leaving = true; failure = SessionFailureCode.None; Render();
+            if (disposed || token.IsCancellationRequested || joining || leaving || !service.State.IsJoined)
+                return;
+            leaving = true;
+            failure = SessionFailureCode.None;
+            Render();
             var result = await service.LeaveAsync(token);
             leaving = false;
-            if (disposed || token.IsCancellationRequested) return;
-            ObserveResult(result); Render();
+            if (disposed || token.IsCancellationRequested)
+                return;
+            ObserveResult(result);
+            Render();
         }
         private void ObserveResult(SessionCommandResult result)
         {
-            if (result.Outcome != SessionCommandOutcome.Failed) return;
+            if (result.Outcome != SessionCommandOutcome.Failed)
+                return;
             failure = result.Code;
             ErrorObserved?.Invoke(result.Code);
         }
-        private void OnStateChanged(SessionInfo state) { failure = SessionFailureCode.None; Render(); }
+        private void OnStateChanged(SessionInfo state)
+        {
+            failure = SessionFailureCode.None;
+            Render();
+        }
         private void OnDisconnected(SessionFailureCode code)
         {
-            if (disposed || token.IsCancellationRequested) return;
+            if (disposed || token.IsCancellationRequested)
+                return;
             failure = code;
             view.ShowDisconnected(SessionErrorMessages.Describe(code));
-            ErrorObserved?.Invoke(code); Render();
+            ErrorObserved?.Invoke(code);
+            Render();
         }
         private void OnBackgroundFailed(SessionFailureCode code)
-        { failure = code; ErrorObserved?.Invoke(code); Render(); }
+        {
+            failure = code;
+            ErrorObserved?.Invoke(code);
+            Render();
+        }
         private void Render()
         {
-            if (disposed || token.IsCancellationRequested) return;
+            if (disposed || token.IsCancellationRequested)
+                return;
             var state = service.State;
             bool exiting = leaving || state.ConnectionStatus == SessionConnectionStatus.Leaving;
             bool disconnected = state.ConnectionStatus == SessionConnectionStatus.Disconnected;
@@ -96,7 +118,8 @@ namespace EscapeGame.Session.Presentation
         }
         public void Dispose()
         {
-            if (disposed) return;
+            if (disposed)
+                return;
             disposed = true;
             view.JoinRequested -= OnJoinRequested;
             view.LeaveRequested -= OnLeaveRequested;

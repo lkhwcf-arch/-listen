@@ -17,7 +17,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     float Read(string field)
                     {
                         if (float.TryParse(row.Get(field), NumberStyles.Float, CultureInfo.InvariantCulture, out float value) &&
-                            !float.IsNaN(value) && !float.IsInfinity(value)) return value;
+                            !float.IsNaN(value) && !float.IsInfinity(value))
+                            return value;
                         throw new CharacterStatValueException(field, "유한한 float32 값이 필요합니다.");
                     }
                     try
@@ -26,7 +27,9 @@ namespace EscapeGame.Data.CsvValidation.Rules
                         _ = Read("HeadBob");
                     }
                     catch (CharacterStatValueException error)
-                    { context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, error.Column, row.Get(error.Column), error.Message); }
+                    {
+                        context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, error.Column, row.Get(error.Column), error.Message);
+                    }
                 }
         }
     }

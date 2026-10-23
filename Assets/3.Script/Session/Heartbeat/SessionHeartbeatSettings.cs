@@ -3,9 +3,18 @@ namespace EscapeGame.Session
 {
     public sealed class SessionHeartbeatSettings
     {
-        public int IntervalMs { get; }
-        public int ConnectionTimeoutMs { get; }
-        public int RequestTimeoutMs { get; }
+        public int IntervalMs
+        {
+            get;
+        }
+        public int ConnectionTimeoutMs
+        {
+            get;
+        }
+        public int RequestTimeoutMs
+        {
+            get;
+        }
         public SessionHeartbeatSettings(int intervalMs, int connectionTimeoutMs, int requestTimeoutMs)
         {
             if (intervalMs <= 0 || connectionTimeoutMs <= intervalMs || requestTimeoutMs <= 0 || requestTimeoutMs >= intervalMs)

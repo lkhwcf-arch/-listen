@@ -17,7 +17,8 @@ namespace EscapeGame.Session.Presentation
 
         private async void OnEnable()
         {
-            if (view == null) view = GetComponent<SessionConnectionView>();
+            if (view == null)
+                view = GetComponent<SessionConnectionView>();
             if (bootstrapper == null || view == null)
                 throw new InvalidOperationException("접속 화면에 Bootstrapper와 View를 연결하세요.");
             view.ValidateConfiguration();

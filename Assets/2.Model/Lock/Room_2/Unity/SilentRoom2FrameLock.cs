@@ -63,10 +63,16 @@ public class SilentRoom2FrameLock : MonoBehaviour
             enabled = false;
             return;
         }
-        if (interactionCamera == null) interactionCamera = Camera.main;
+        if (interactionCamera == null)
+            interactionCamera = Camera.main;
         for (int i = 0; i < 4; i++)
         {
-            if (dials[i] == null) { enabled = false; Debug.LogError("Missing Dial_0" + (i + 1), this); return; }
+            if (dials[i] == null)
+            {
+                enabled = false;
+                Debug.LogError("Missing Dial_0" + (i + 1), this);
+                return;
+            }
             dialStart[i] = dials[i].localRotation;
             digits[i] = Mathf.Clamp(initialDigits[i], 1, 9);
             stepCounts[i] = digits[i] - 1;
@@ -89,7 +95,8 @@ public class SilentRoom2FrameLock : MonoBehaviour
 
     private void Update()
     {
-        if (unlocked || Time.time < cooldownUntil || interactionCamera == null) return;
+        if (unlocked || Time.time < cooldownUntil || interactionCamera == null)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             selectedDial = PickDial();
@@ -102,37 +109,54 @@ public class SilentRoom2FrameLock : MonoBehaviour
             dragRemainder += mouseY - previousMouseY;
             previousMouseY = mouseY;
             while (dragRemainder >= dragPixelsPerStep)
-            { NudgeDial(selectedDial, 1); dragRemainder -= dragPixelsPerStep; }
+            {
+                NudgeDial(selectedDial, 1);
+                dragRemainder -= dragPixelsPerStep;
+            }
             while (dragRemainder <= -dragPixelsPerStep)
-            { NudgeDial(selectedDial, -1); dragRemainder += dragPixelsPerStep; }
+            {
+                NudgeDial(selectedDial, -1);
+                dragRemainder += dragPixelsPerStep;
+            }
         }
         int hovered = PickDial();
         float scroll = Input.mouseScrollDelta.y;
-        if (scroll != 0f && hovered >= 0) NudgeDial(hovered, scroll > 0f ? 1 : -1);
-        if (selectedDial >= 0 && Input.GetKeyDown(KeyCode.UpArrow)) NudgeDial(selectedDial, 1);
-        if (selectedDial >= 0 && Input.GetKeyDown(KeyCode.DownArrow)) NudgeDial(selectedDial, -1);
-        if (Input.GetMouseButtonUp(0)) { dragRemainder = 0f; }
+        if (scroll != 0f && hovered >= 0)
+            NudgeDial(hovered, scroll > 0f ? 1 : -1);
+        if (selectedDial >= 0 && Input.GetKeyDown(KeyCode.UpArrow))
+            NudgeDial(selectedDial, 1);
+        if (selectedDial >= 0 && Input.GetKeyDown(KeyCode.DownArrow))
+            NudgeDial(selectedDial, -1);
+        if (Input.GetMouseButtonUp(0))
+        {
+            dragRemainder = 0f;
+        }
     }
 
     private int PickDial()
     {
         Ray ray = interactionCamera.ScreenPointToRay(Input.mousePosition);
-        if (!Physics.Raycast(ray, out RaycastHit hit, 5f)) return -1;
+        if (!Physics.Raycast(ray, out RaycastHit hit, 5f))
+            return -1;
         for (int i = 0; i < 4; i++)
-            if (hit.transform == dials[i] || hit.transform.IsChildOf(dials[i])) return i;
+            if (hit.transform == dials[i] || hit.transform.IsChildOf(dials[i]))
+                return i;
         return -1;
     }
 
     // Call these from the lock close-up UI's Up / Down buttons (delta +1/-1).
     public void NudgeDial(int dialIndex, int delta)
     {
-        if (unlocked || Time.time < cooldownUntil || dialIndex < 0 || dialIndex >= 4 || delta == 0) return;
+        if (unlocked || Time.time < cooldownUntil || dialIndex < 0 || dialIndex >= 4 || delta == 0)
+            return;
         int direction = delta > 0 ? 1 : -1;
         stepCounts[dialIndex] += direction;
         digits[dialIndex] = 1 + ((stepCounts[dialIndex] % 9 + 9) % 9);
-        if (dialMoves[dialIndex] != null) StopCoroutine(dialMoves[dialIndex]);
+        if (dialMoves[dialIndex] != null)
+            StopCoroutine(dialMoves[dialIndex]);
         dialMoves[dialIndex] = StartCoroutine(AnimateDial(dialIndex));
-        if (checkWhenAllDialsStop) StartCoroutine(DelayedCheck());
+        if (checkWhenAllDialsStop)
+            StartCoroutine(DelayedCheck());
     }
 
     private IEnumerator AnimateDial(int index)
@@ -155,13 +179,16 @@ public class SilentRoom2FrameLock : MonoBehaviour
     private IEnumerator DelayedCheck()
     {
         yield return new WaitForSeconds(stepDuration + 0.02f);
-        if (!unlocked && Time.time >= cooldownUntil && IsCorrect()) Unlock();
+        if (!unlocked && Time.time >= cooldownUntil && IsCorrect())
+            Unlock();
     }
 
     public void Submit()
     {
-        if (unlocked || Time.time < cooldownUntil) return;
-        if (IsCorrect()) Unlock();
+        if (unlocked || Time.time < cooldownUntil)
+            return;
+        if (IsCorrect())
+            Unlock();
         else
         {
             cooldownUntil = Time.time + wrongAnswerCooldown;
@@ -171,8 +198,11 @@ public class SilentRoom2FrameLock : MonoBehaviour
 
     private bool IsCorrect()
     {
-        if (combination == null || combination.Length != 4) return false;
-        for (int i = 0; i < 4; i++) if (digits[i] != combination[i]) return false;
+        if (combination == null || combination.Length != 4)
+            return false;
+        for (int i = 0; i < 4; i++)
+            if (digits[i] != combination[i])
+                return false;
         return true;
     }
 

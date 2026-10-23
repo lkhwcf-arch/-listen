@@ -17,7 +17,8 @@ namespace EscapeGame.Voice
         {
             get
             {
-                if (service == null) service = new VoiceChatService(new VivoxVoiceGateway(),
+                if (service == null)
+                    service = new VoiceChatService(new VivoxVoiceGateway(),
                     exception => Debug.LogWarning("음성 내부 진단: " + exception.GetType().Name + ": " + exception.Message));
                 return service;
             }
@@ -28,28 +29,55 @@ namespace EscapeGame.Voice
             try
             {
                 await stopping;
-                if (this == null || !isActiveAndEnabled || current != activation) return;
-                if (sessionBootstrapper == null) sessionBootstrapper = GetComponent<SessionBootstrapper>();
-                if (sessionBootstrapper == null) { Debug.LogError("VoiceBootstrapper에 SessionBootstrapper를 연결하세요."); return; }
+                if (this == null || !isActiveAndEnabled || current != activation)
+                    return;
+                if (sessionBootstrapper == null)
+                    sessionBootstrapper = GetComponent<SessionBootstrapper>();
+                if (sessionBootstrapper == null)
+                {
+                    Debug.LogError("VoiceBootstrapper에 SessionBootstrapper를 연결하세요.");
+                    return;
+                }
                 coordinator = new SessionVoiceCoordinator(sessionBootstrapper.Service, Service);
             }
-            catch (System.Exception exception) { Debug.LogWarning("음성 시작 실패: " + exception.GetType().Name); }
+            catch (System.Exception exception)
+            {
+                Debug.LogWarning("음성 시작 실패: " + exception.GetType().Name);
+            }
         }
         private void OnDisable()
         {
             activation++;
             service?.StopTransmission();
-            if (coordinator != null) { stopping = ObserveStopAsync(coordinator); coordinator = null; }
+            if (coordinator != null)
+            {
+                stopping = ObserveStopAsync(coordinator);
+                coordinator = null;
+            }
         }
         private async Task ObserveStopAsync(SessionVoiceCoordinator current)
         {
-            try { await current.StopAsync(); }
-            catch (System.Exception exception) { Debug.LogWarning("음성 정리 실패: " + exception.GetType().Name); }
+            try
+            {
+                await current.StopAsync();
+            }
+            catch (System.Exception exception)
+            {
+                Debug.LogWarning("음성 정리 실패: " + exception.GetType().Name);
+            }
         }
         private async void OnDestroy()
         {
-            try { await stopping; if (service != null) await service.ShutdownAsync(); }
-            catch (System.Exception exception) { Debug.LogWarning("음성 종료 실패: " + exception.GetType().Name); }
+            try
+            {
+                await stopping;
+                if (service != null)
+                    await service.ShutdownAsync();
+            }
+            catch (System.Exception exception)
+            {
+                Debug.LogWarning("음성 종료 실패: " + exception.GetType().Name);
+            }
         }
     }
 }

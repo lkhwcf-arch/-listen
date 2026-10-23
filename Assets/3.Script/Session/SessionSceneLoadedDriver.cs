@@ -33,24 +33,30 @@ namespace EscapeGame.Session
         public void Initialize(ISessionConnectionService service,
             IMillisecondClock clock, CancellationToken ownerLifetime)
         {
-            if (this.service != null) throw new InvalidOperationException("이미 초기화되었습니다.");
-            if (service == null) throw new ArgumentNullException(nameof(service));
-            if (clock == null) throw new ArgumentNullException(nameof(clock));
+            if (this.service != null)
+                throw new InvalidOperationException("이미 초기화되었습니다.");
+            if (service == null)
+                throw new ArgumentNullException(nameof(service));
+            if (clock == null)
+                throw new ArgumentNullException(nameof(clock));
             ValidateConfiguration();
             this.service = service;
             this.clock = clock;
             this.ownerLifetime = ownerLifetime;
-            if (isActiveAndEnabled) StartReporting();
+            if (isActiveAndEnabled)
+                StartReporting();
         }
 
         private void OnEnable()
         {
-            if (service != null) StartReporting();
+            if (service != null)
+                StartReporting();
         }
 
         private void StartReporting()
         {
-            if (lifetime != null) return;
+            if (lifetime != null)
+                return;
             var flow = GetComponent<EscapeGame.World.GameFlowBootstrapper>();
             IReadinessCheck sceneReadiness = flow != null
                 ? new EscapeGame.World.GameplayReadinessCheck(flow)
@@ -69,7 +75,8 @@ namespace EscapeGame.Session
         // 활성 컴포넌트의 Start 이후 호출됩니다. 입장 응답만으로 준비 완료를 판정하지 않습니다.
         private void Update()
         {
-            if (lifetime != null) reporting.Tick(lifetime.Token);
+            if (lifetime != null)
+                reporting.Tick(lifetime.Token);
         }
 
         private void OnDisable()

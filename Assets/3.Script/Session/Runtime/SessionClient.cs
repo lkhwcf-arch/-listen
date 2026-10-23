@@ -21,32 +21,54 @@ namespace EscapeGame.Session
         private bool disposed;
         private int connectionVersion;
 
-        public SessionInfo State { get; private set; }
+        public SessionInfo State
+        {
+            get;
+            private set;
+        }
         public bool IsBusy => runner.IsBusy || runner.IsHeartbeatRunning;
-        public string ServerBaseUrl { get; private set; }
+        public string ServerBaseUrl
+        {
+            get;
+            private set;
+        }
         public event Action<System.Collections.Generic.IReadOnlyList<int>> RoomsChanged
-        { add { state.RoomsChanged += value; } remove { state.RoomsChanged -= value; } }
+        {
+            add
+            {
+                state.RoomsChanged += value;
+            }
+            remove
+            {
+                state.RoomsChanged -= value;
+            }
+        }
         public async Task<EscapeGame.Data.CsvDataSet> DownloadDataAsync(CancellationToken token)
         {
             EscapeGame.Data.CsvDataSet data = null;
             var result = await ExecuteAsync(async ct => data = await RequireCoordinator().DownloadDataAsync(ct), token, true);
-            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
-            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            if (result.Outcome == SessionCommandOutcome.Cancelled)
+                throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed)
+                throw new SessionResultException(result.Code);
             return data;
         }
         public async Task<PuzzleSubmissionResult> SubmitPuzzleAsync(int puzzleId, string[] answers, CancellationToken token)
         {
             PuzzleSubmissionResult submission = null;
             var result = await ExecuteAsync(async ct => submission = await RequireCoordinator().SubmitPuzzleAsync(puzzleId, answers, ct), token, true);
-            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
-            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            if (result.Outcome == SessionCommandOutcome.Cancelled)
+                throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed)
+                throw new SessionResultException(result.Code);
             return submission;
         }
 
         public event Action<SessionInfo> StateChanged;
         public Task<RoomDecision> SubmitRoomAnswerAsync(int roomNo, string[] answers, CancellationToken token)
         {
-            if (answers == null) throw new ArgumentNullException(nameof(answers));
+            if (answers == null)
+                throw new ArgumentNullException(nameof(answers));
             return DecideRoomAsync(roomNo, answers, token);
         }
         public Task<RoomDecision> CheckRoomDoorAsync(int roomNo, CancellationToken token) => DecideRoomAsync(roomNo, null, token);
@@ -54,8 +76,10 @@ namespace EscapeGame.Session
         {
             RoomDecision decision = null;
             var result = await ExecuteAsync(async ct => decision = await RequireCoordinator().DecideRoomAsync(roomNo, answers, ct), token, true);
-            if (result.Outcome == SessionCommandOutcome.Cancelled) throw new OperationCanceledException(token);
-            if (result.Outcome != SessionCommandOutcome.Completed) throw new SessionResultException(result.Code);
+            if (result.Outcome == SessionCommandOutcome.Cancelled)
+                throw new OperationCanceledException(token);
+            if (result.Outcome != SessionCommandOutcome.Completed)
+                throw new SessionResultException(result.Code);
             return decision;
         }
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
@@ -76,8 +100,10 @@ namespace EscapeGame.Session
 
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token) => ExecuteAsync(async ct =>
         {
-            if (state.IsJoined || leaving) throw new InvalidOperationException("이미 입장했습니다.");
-            if (IsBusy) throw new SessionResultException(SessionFailureCode.Busy);
+            if (state.IsJoined || leaving)
+                throw new InvalidOperationException("이미 입장했습니다.");
+            if (IsBusy)
+                throw new SessionResultException(SessionFailureCode.Busy);
             var normalized = address?.Trim();
             var gateway = gatewayFactory.Create(normalized);
             connectionLifetime?.Dispose();
@@ -100,9 +126,12 @@ namespace EscapeGame.Session
 
         public async Task<SessionCommandResult> LeaveAsync(CancellationToken token)
         {
-            if (disposed) return SessionCommandResult.Cancelled();
-            if (leaving) return SessionCommandResult.Failed(SessionFailureCode.Busy);
-            if (!state.IsJoined) return SessionCommandResult.Failed(SessionFailureCode.InvalidState);
+            if (disposed)
+                return SessionCommandResult.Cancelled();
+            if (leaving)
+                return SessionCommandResult.Failed(SessionFailureCode.Busy);
+            if (!state.IsJoined)
+                return SessionCommandResult.Failed(SessionFailureCode.InvalidState);
             var current = coordinator;
             leaving = true;
             connectionVersion++;
@@ -115,7 +144,8 @@ namespace EscapeGame.Session
             coordinator = null;
             leaving = disconnected = false;
             disconnectReason = lastBackgroundFailure = SessionFailureCode.None;
-            if (!disposed) PublishState();
+            if (!disposed)
+                PublishState();
             if (result.Code == SessionFailureCode.InvalidParticipant || result.Code == SessionFailureCode.SessionNotFound)
                 return SessionCommandResult.Completed();
             if (result.Outcome == SessionCommandOutcome.Failed)
@@ -127,7 +157,8 @@ namespace EscapeGame.Session
         {
             if (reason == SessionFailureCode.None || !Enum.IsDefined(typeof(SessionFailureCode), reason))
                 throw new ArgumentOutOfRangeException(nameof(reason));
-            if (disposed || disconnected || leaving || !state.IsJoined) return;
+            if (disposed || disconnected || leaving || !state.IsJoined)
+                return;
             disconnected = true;
             disconnectReason = reason;
             connectionVersion++;
@@ -148,7 +179,8 @@ namespace EscapeGame.Session
         private async Task<SessionCommandResult> ExecuteAsync(Func<CancellationToken, Task> command,
             CancellationToken token, bool authenticated)
         {
-            if (disposed) return SessionCommandResult.Cancelled();
+            if (disposed)
+                return SessionCommandResult.Cancelled();
             int version = connectionVersion;
             using var linked = authenticated && connectionLifetime != null
                 ? CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token, connectionLifetime.Token)
@@ -158,22 +190,28 @@ namespace EscapeGame.Session
             // 이전 연결의 늦은 결과는 현재 상태나 알림을 덮어쓰지 않습니다.
             if (authenticated && version != connectionVersion)
             {
-                if (!disposed && disconnected) PublishState();
+                if (!disposed && disconnected)
+                    PublishState();
                 return SessionCommandResult.Cancelled();
             }
             if (result.Outcome == SessionCommandOutcome.Failed && result.Code != SessionFailureCode.Busy)
             {
                 if (!authenticated || lastBackgroundFailure != result.Code)
                 {
-                    if (detail != null) diagnostic?.Invoke(detail);
-                    if (authenticated && IsTerminalParticipantFailure(result.Code)) Disconnect(result.Code);
-                    else if (authenticated) BackgroundFailed?.Invoke(result.Code);
+                    if (detail != null)
+                        diagnostic?.Invoke(detail);
+                    if (authenticated && IsTerminalParticipantFailure(result.Code))
+                        Disconnect(result.Code);
+                    else if (authenticated)
+                        BackgroundFailed?.Invoke(result.Code);
                 }
-                if (authenticated) lastBackgroundFailure = result.Code;
+                if (authenticated)
+                    lastBackgroundFailure = result.Code;
             }
             else if (authenticated && result.Outcome == SessionCommandOutcome.Completed)
                 lastBackgroundFailure = SessionFailureCode.None;
-            if (!disposed && disconnected) PublishState();
+            if (!disposed && disconnected)
+                PublishState();
             return result;
         }
 
@@ -187,12 +225,17 @@ namespace EscapeGame.Session
                 ? SessionConnectionStatus.Connected : SessionConnectionStatus.NotConnected,
             disconnectReason);
 
-        private void PublishState() { State = CaptureState(); StateChanged?.Invoke(State); }
+        private void PublishState()
+        {
+            State = CaptureState();
+            StateChanged?.Invoke(State);
+        }
         private void PublishPhase(ClientSessionPhase? previous, ClientSessionPhase current) => PhaseChanged?.Invoke(previous, current);
 
         public void Dispose()
         {
-            if (disposed) return;
+            if (disposed)
+                return;
             disposed = true;
             lifetime.Cancel();
             connectionLifetime?.Dispose();

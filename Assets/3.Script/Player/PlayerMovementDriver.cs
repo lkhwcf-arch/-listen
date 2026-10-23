@@ -25,7 +25,8 @@ namespace EscapeGame.Player
         public void Initialize(PlayerCharacterSettings settings, IPlayerMoveInput input, IMillisecondClock clock,
             int maximumFrameMs, int maximumFallSpeedMmPerSecond, int groundContactMm, PlayerControlState controls = null)
         {
-            if (this.input != null) throw new InvalidOperationException("이동 Driver는 한 번만 초기화합니다.");
+            if (this.input != null)
+                throw new InvalidOperationException("이동 Driver는 한 번만 초기화합니다.");
             if (maximumFrameMs < 1 || maximumFrameMs > 100 || groundContactMm < 1 || groundContactMm > 100)
                 throw new ArgumentOutOfRangeException("프레임 제한·접지 보정 범위를 확인하세요.");
             if (Physics.gravity.x != 0 || Physics.gravity.z != 0)
@@ -34,7 +35,8 @@ namespace EscapeGame.Player
             motor = new PlayerMovementMotor(settings, PlayerCharacterSettings.ToMilliUnit(Physics.gravity.y, "Physics.gravity.y"), maximumFallSpeedMmPerSecond);
             this.input = input ?? throw new ArgumentNullException(nameof(input));
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
-            this.maximumFrameMs = maximumFrameMs; this.groundContactMm = groundContactMm;
+            this.maximumFrameMs = maximumFrameMs;
+            this.groundContactMm = groundContactMm;
             this.controls = controls;
             focused = Application.isFocused;
         }
@@ -45,39 +47,74 @@ namespace EscapeGame.Player
             ResetInput(); // 이동 단독 검사/차단 명령. UI 전체 잠금은 공유 Controls.BlockForUi를 사용합니다.
         }
 
-        private void OnEnable() { if (controls != null) controls.Changed += ResetInput; ResetInput(); }
-        private void OnDisable() { if (controls != null) controls.Changed -= ResetInput; input?.SetEnabled(false); motor?.Reset(); }
-        private void OnApplicationFocus(bool hasFocus) { focused = hasFocus; ResetInput(); }
-        private void OnApplicationPause(bool paused) { focused = !paused && Application.isFocused; ResetInput(); }
+        private void OnEnable()
+        {
+            if (controls != null)
+                controls.Changed += ResetInput;
+            ResetInput();
+        }
+        private void OnDisable()
+        {
+            if (controls != null)
+                controls.Changed -= ResetInput;
+            input?.SetEnabled(false);
+            motor?.Reset();
+        }
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            focused = hasFocus;
+            ResetInput();
+        }
+        private void OnApplicationPause(bool paused)
+        {
+            focused = !paused && Application.isFocused;
+            ResetInput();
+        }
         private void ResetInput()
         {
-            if (input == null) return;
+            if (input == null)
+                return;
             input.SetEnabled(isActiveAndEnabled && CanMove);
-            motor.Reset(); lastMs = clock.ElapsedMilliseconds;
+            motor.Reset();
+            lastMs = clock.ElapsedMilliseconds;
         }
 
         private void Update()
         {
-            if (input == null) return;
+            if (input == null)
+                return;
             long now = clock.ElapsedMilliseconds;
-            long elapsed = Math.Max(0, now - lastMs); lastMs = now;
+            long elapsed = Math.Max(0, now - lastMs);
+            lastMs = now;
             if (!CanMove || Time.timeScale == 0 || !controller.enabled)
-            { motor.Reset(); return; }
+            {
+                motor.Reset();
+                return;
+            }
             int elapsedMs = (int)Math.Min(elapsed, maximumFrameMs);
-            if (elapsedMs == 0) return;
+            if (elapsedMs == 0)
+                return;
             bool grounded = controller.isGrounded;
-            if (grounded) motor.OnGrounded();
+            if (grounded)
+                motor.OnGrounded();
             var step = motor.Tick(input.Read(), elapsedMs);
             // Unity Transform/충돌 API 경계에서만 m 및 float로 바꿉니다. 이동 방향은 플레이어의 Y 회전 기준입니다.
             var horizontal = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(step.RightMm, 0, step.ForwardMm);
             int upMm = grounded ? Math.Min(step.UpMm, -groundContactMm) : step.UpMm;
             var previousPosition = transform.position;
             var flags = controller.Move((horizontal + Vector3.up * upMm) / 1000f);
-            if ((flags & CollisionFlags.Below) != 0) motor.OnGrounded();
-            var actual = transform.position - previousPosition; actual.y = 0;
+            if ((flags & CollisionFlags.Below) != 0)
+                motor.OnGrounded();
+            var actual = transform.position - previousPosition;
+            actual.y = 0;
             MotionApplied?.Invoke(actual.magnitude, grounded || (flags & CollisionFlags.Below) != 0);
         }
 
-        private void OnDestroy() { input?.Dispose(); input = null; MotionApplied = null; }
+        private void OnDestroy()
+        {
+            input?.Dispose();
+            input = null;
+            MotionApplied = null;
+        }
     }
 }

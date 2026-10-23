@@ -31,8 +31,10 @@ namespace EscapeGame.Editor
         public RoomData NextForClear(int roomNo)
         {
             var room = FindRoom(roomNo);
-            if (!unlocked.Contains(room.Id)) throw new InvalidOperationException("아직 개방되지 않은 방입니다: " + roomNo);
-            if (cleared.Contains(room.Id) || room.Next == 0) return null;
+            if (!unlocked.Contains(room.Id))
+                throw new InvalidOperationException("아직 개방되지 않은 방입니다: " + roomNo);
+            if (cleared.Contains(room.Id) || room.Next == 0)
+                return null;
             return plan.Find(room.Next) ?? throw new InvalidOperationException("Next에 연결된 활성 방이 없습니다: " + room.Next);
         }
 
@@ -40,8 +42,10 @@ namespace EscapeGame.Editor
         {
             var next = NextForClear(roomNo);
             var room = FindRoom(roomNo);
-            if (!cleared.Add(room.Id)) return false;
-            if (next != null) unlocked.Add(next.Id);
+            if (!cleared.Add(room.Id))
+                return false;
+            if (next != null)
+                unlocked.Add(next.Id);
             Changed?.Invoke();
             return true;
         }

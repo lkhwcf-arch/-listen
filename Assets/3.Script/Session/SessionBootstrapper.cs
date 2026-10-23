@@ -16,7 +16,14 @@ namespace EscapeGame.Session
         private SessionHeartbeatDriver heartbeatDriver;
         private SessionClient client;
 
-        public ISessionConnectionService Service { get { EnsureInitialized(); return client; } }
+        public ISessionConnectionService Service
+        {
+            get
+            {
+                EnsureInitialized();
+                return client;
+            }
+        }
         public SessionInfo State => Service.State;
         public bool IsBusy => Service.IsBusy;
         public string ServerBaseUrl => Service.ServerBaseUrl;
@@ -25,13 +32,17 @@ namespace EscapeGame.Session
 
         private void EnsureInitialized()
         {
-            if (client != null) return;
-            if (pollingDriver == null) pollingDriver = GetComponent<SessionPollingDriver>();
-            if (sceneLoadedDriver == null) sceneLoadedDriver = GetComponent<SessionSceneLoadedDriver>();
+            if (client != null)
+                return;
+            if (pollingDriver == null)
+                pollingDriver = GetComponent<SessionPollingDriver>();
+            if (sceneLoadedDriver == null)
+                sceneLoadedDriver = GetComponent<SessionSceneLoadedDriver>();
             if (pollingDriver == null || sceneLoadedDriver == null)
                 throw new InvalidOperationException("자동 조회와 준비 보고 컴포넌트를 연결하세요.");
             heartbeatDriver = GetComponent<SessionHeartbeatDriver>();
-            if (heartbeatDriver == null) throw new InvalidOperationException("SessionHeartbeatDriver를 연결하세요.");
+            if (heartbeatDriver == null)
+                throw new InvalidOperationException("SessionHeartbeatDriver를 연결하세요.");
             var heartbeatSettings = heartbeatDriver.Settings;
             pollingDriver.ValidateConfiguration();
             sceneLoadedDriver.ValidateConfiguration();

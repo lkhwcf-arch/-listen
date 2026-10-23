@@ -5,14 +5,35 @@ namespace EscapeGame.Data.Tables
     // SOUND_LINK.csv의 한 행을 나타내는 읽기 전용 정의입니다.
     public sealed class SoundLinkData
     {
-        public static CsvTableMapping<SoundLinkData> Table { get; } = new CsvTableMapping<SoundLinkData>
+        public static CsvTableMapping<SoundLinkData> Table
+        {
+            get;
+        } = new CsvTableMapping<SoundLinkData>
             ("SOUND_LINK", row => new SoundLinkData(row));
-        public int Id { get; }
-        public string Trigger { get; }
-        public string TargetSheet { get; }
-        public int TargetId { get; }
-        public int SoundId { get; }
-        public bool Active { get; }
+        public int Id
+        {
+            get;
+        }
+        public string Trigger
+        {
+            get;
+        }
+        public string TargetSheet
+        {
+            get;
+        }
+        public int TargetId
+        {
+            get;
+        }
+        public int SoundId
+        {
+            get;
+        }
+        public bool Active
+        {
+            get;
+        }
 
         public SoundLinkData(CsvRow row)
         {

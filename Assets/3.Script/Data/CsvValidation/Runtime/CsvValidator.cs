@@ -23,16 +23,23 @@ namespace EscapeGame.Data.CsvValidation.Runtime
                 new CsvSchemaRule(), new CsvReferenceRule(), new CsvRoomRule(),
                 new CsvPuzzleRule(), new CsvValueRelationRule(), new CsvCharacterStatRule(), new CsvPrefabComponentRule(), new ContentFeatureRule()
             };
-            if (resources != null) defaults.Add(new CsvResourceRule(resources));
-            if (additionalRules != null) defaults.AddRange(additionalRules);
+            if (resources != null)
+                defaults.Add(new CsvResourceRule(resources));
+            if (additionalRules != null)
+                defaults.AddRange(additionalRules);
             rules = Array.AsReadOnly(defaults.ToArray());
         }
         public CsvValidationReport Validate(CsvDataSet data, CancellationToken token = default)
         {
-            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             token.ThrowIfCancellationRequested();
             var context = new CsvValidationContext(data, catalog, token);
-            foreach (var rule in rules) { token.ThrowIfCancellationRequested(); rule.Validate(context); }
+            foreach (var rule in rules)
+            {
+                token.ThrowIfCancellationRequested();
+                rule.Validate(context);
+            }
             token.ThrowIfCancellationRequested();
             return new CsvValidationReport(data, context.CaptureIssues());
         }
@@ -52,20 +59,35 @@ namespace EscapeGame.Data.CsvValidation.Runtime
 
     public sealed class CsvValidationTable
     {
-        public string Name { get; }
-        public CsvDocument Document { get; }
-        public CsvTableDefinition Definition { get; }
-        public bool IsUsable { get; }
+        public string Name
+        {
+            get;
+        }
+        public CsvDocument Document
+        {
+            get;
+        }
+        public CsvTableDefinition Definition
+        {
+            get;
+        }
+        public bool IsUsable
+        {
+            get;
+        }
         public IEnumerable<CsvRow> Rows => IsUsable ? Document.Rows : Enumerable.Empty<CsvRow>();
         private readonly Dictionary<string, CsvRow> index = new Dictionary<string, CsvRow>(StringComparer.Ordinal);
         public string Key => Definition?.Key ?? (Document.Headers.Contains("ID") ? "ID" : null);
         public CsvValidationTable(string name, CsvDocument document, CsvTableDefinition definition)
         {
-            Name = name; Document = document; Definition = definition;
+            Name = name;
+            Document = document;
+            Definition = definition;
             IsUsable = definition == null || definition.Columns.All(x => document.Headers.Contains(x.Name));
             if (IsUsable && Key != null)
                 foreach (var row in document.Rows)
-                    if (!index.ContainsKey(row.Get(Key))) index.Add(row.Get(Key), row);
+                    if (!index.ContainsKey(row.Get(Key)))
+                        index.Add(row.Get(Key), row);
         }
         public CsvRow Find(string key) => key != null && index.TryGetValue(key, out var row) ? row : null;
     }
@@ -74,12 +96,22 @@ namespace EscapeGame.Data.CsvValidation.Runtime
     public sealed class CsvValidationContext
     {
         private readonly List<CsvValidationIssue> issues;
-        public CsvValidationCatalog Catalog { get; }
-        public IReadOnlyList<CsvValidationTable> Tables { get; }
-        public CancellationToken Token { get; }
+        public CsvValidationCatalog Catalog
+        {
+            get;
+        }
+        public IReadOnlyList<CsvValidationTable> Tables
+        {
+            get;
+        }
+        public CancellationToken Token
+        {
+            get;
+        }
         public CsvValidationContext(CsvDataSet input, CsvValidationCatalog catalog, CancellationToken token)
         {
-            Catalog = catalog; Token = token;
+            Catalog = catalog;
+            Token = token;
             Tables = Array.AsReadOnly(input.Documents.OrderBy(x => x.Key, StringComparer.Ordinal)
                 .Select(x => new CsvValidationTable(x.Key, x.Value, Catalog.Find(x.Key))).ToArray());
             issues = new List<CsvValidationIssue>(input.LoadIssues);
@@ -94,11 +126,14 @@ namespace EscapeGame.Data.CsvValidation.Runtime
         public void Reference(CsvValidationTable table, CsvRow row, string column, IEnumerable<CsvValidationTable> targets, string sentinel = null)
         {
             string value = row.Get(column);
-            if (value.Length == 0 || value == sentinel) return;
+            if (value.Length == 0 || value == sentinel)
+                return;
             var candidates = targets.ToArray();
             CsvRow match = candidates.Select(x => x.Find(value)).FirstOrDefault(x => x != null);
-            if (match == null) Add(CsvValidationCode.MissingReference, table.Name, row.SourceLine, column, value, string.Join(", ", candidates.Select(x => x.Name)));
-            else if (Active(row) && !Active(match)) Warn(CsvValidationCode.InactiveReference, table.Name, row.SourceLine, column, value);
+            if (match == null)
+                Add(CsvValidationCode.MissingReference, table.Name, row.SourceLine, column, value, string.Join(", ", candidates.Select(x => x.Name)));
+            else if (Active(row) && !Active(match))
+                Warn(CsvValidationCode.InactiveReference, table.Name, row.SourceLine, column, value);
         }
         public static bool Active(CsvRow row) => !row.TryGet("Active", out var value) || value == "Y";
         public static string[] List(string value) => value == "-" || value.Length == 0 ? Array.Empty<string>() : value.Split(',').Select(x => x.Trim()).ToArray();

@@ -41,8 +41,10 @@ namespace EscapeGame.Session.Presentation
         private void OnDisable()
         {
             lifetime?.Cancel();
-            presenter?.Dispose(); presenter = null;
-            lifetime?.Dispose(); lifetime = null;
+            presenter?.Dispose();
+            presenter = null;
+            lifetime?.Dispose();
+            lifetime = null;
         }
     }
 }

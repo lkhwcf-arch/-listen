@@ -32,8 +32,10 @@ namespace EscapeGame.World
 
         public void Initialize(FirstPersonPlayerRig rig, CsvGameData data, string role, IRoomCompletionService service, TMP_FontAsset font, EscapeRunClock runClock = null)
         {
-            if (this.rig != null) throw new InvalidOperationException("엔딩은 플레이어별로 한 번만 초기화합니다.");
-            if (rig == null || data == null || service == null || font == null) throw new ArgumentNullException(nameof(rig));
+            if (this.rig != null)
+                throw new InvalidOperationException("엔딩은 플레이어별로 한 번만 초기화합니다.");
+            if (rig == null || data == null || service == null || font == null)
+                throw new ArgumentNullException(nameof(rig));
             var terminal = new RoomLoadPlan(data, role).Rooms.Where(room => room.Next == 0).ToArray();
             if (terminal.Length != 1 || terminal[0].ExitRule != RoomExitRules.BothSolved)
                 throw new InvalidOperationException("엔딩 방은 Next=0, ExitRule=BothSolved인 활성 방 하나여야 합니다.");
@@ -48,48 +50,76 @@ namespace EscapeGame.World
             this.runClock = runClock ?? new EscapeRunClock(NowMs);
             waiting = new EndingWaitingView(gameObject.scene, font);
             completion = new EndingCompletionController(terminal[0].RoomNo, service, assets.CompletionPollIntervalMs);
-            if (isActiveAndEnabled) Observe();
+            if (isActiveAndEnabled)
+                Observe();
         }
-        private void OnEnable() { if (completion != null) Observe(); }
+        private void OnEnable()
+        {
+            if (completion != null)
+                Observe();
+        }
         private void Observe()
         {
-            if (!subscribed) { completion.Changed += ApplyCompletion; subscribed = true; }
+            if (!subscribed)
+            {
+                completion.Changed += ApplyCompletion;
+                subscribed = true;
+            }
             ApplyCompletion();
         }
         private void ApplyCompletion()
         {
-            if (completion.Phase == EndingCompletionPhase.Playing) return;
+            if (completion.Phase == EndingCompletionPhase.Playing)
+                return;
             if (controlBlock == null)
             {
                 controlBlock = pointer.Controls.BlockForUi();
                 rig.GetComponent<PlayerInteractionDriver>()?.Closeup?.Close();
             }
-            if (completed) { if (resultView != null) resultView.SetVisible(true); else videoView?.SetVisible(true); return; }
+            if (completed)
+            {
+                if (resultView != null)
+                    resultView.SetVisible(true);
+                else
+                    videoView?.SetVisible(true);
+                return;
+            }
             if (completion.Phase == EndingCompletionPhase.Disconnected)
-            { waiting.Render(true, "서버 연결이 종료되었습니다.\n게임을 종료한 뒤 다시 입장해 주세요."); return; }
-            if (playback != null) videoView?.SetVisible(true);
+            {
+                waiting.Render(true, "서버 연결이 종료되었습니다.\n게임을 종료한 뒤 다시 입장해 주세요.");
+                return;
+            }
+            if (playback != null)
+                videoView?.SetVisible(true);
             if (completion.Phase == EndingCompletionPhase.WaitingForPartner)
             {
                 waiting.Render(true, completion.LastError == null
                     ? "정답을 맞혔습니다.\n다른 플레이어의 정답 입력을 기다리고 있습니다."
                     : "다른 플레이어의 정답 완료를 확인하고 있습니다.\n연결 상태를 확인한 뒤 다시 시도합니다.");
                 if (completion.LastError != null && reportedError != completion.LastError)
-                { reportedError = completion.LastError; Debug.LogWarning("[엔딩 대기] " + completion.LastError); }
+                {
+                    reportedError = completion.LastError;
+                    Debug.LogWarning("[엔딩 대기] " + completion.LastError);
+                }
             }
-            else if (completion.Phase == EndingCompletionPhase.Ready && playback == null && NowMs >= retryAt) StartVideo();
+            else if (completion.Phase == EndingCompletionPhase.Ready && playback == null && NowMs >= retryAt)
+                StartVideo();
         }
         private void LateUpdate()
         {
-            if (completion == null || completed) return;
+            if (completion == null || completed)
+                return;
             long now = NowMs;
             completion.Tick(now);
             if (playback != null)
             {
                 var activePlayback = playback;
                 activePlayback.Tick(now);
-                if (ReferenceEquals(playback, activePlayback) && activePlayback.Phase == EndingPlaybackPhase.Failed) PlaybackFailed(activePlayback.Error);
+                if (ReferenceEquals(playback, activePlayback) && activePlayback.Phase == EndingPlaybackPhase.Failed)
+                    PlaybackFailed(activePlayback.Error);
             }
-            if (completion.Phase == EndingCompletionPhase.Ready && playback == null && now >= retryAt) StartVideo();
+            if (completion.Phase == EndingCompletionPhase.Ready && playback == null && now >= retryAt)
+                StartVideo();
         }
         private void StartVideo()
         {
@@ -99,15 +129,24 @@ namespace EscapeGame.World
                 videoView.PlaybackStarted += OnVideoStarted;
                 playback = new EndingPlaybackController(videoView, assets.PrepareTimeoutMs);
                 playback.Completed += OnCompleted;
-                waiting.Render(false, ""); playback.Start(NowMs);
+                waiting.Render(false, "");
+                playback.Start(NowMs);
                 Debug.Log("[엔딩] 두 플레이어의 마지막 방 정답 완료를 확인했습니다. 영상 준비 중입니다.");
             }
-            catch (Exception error) { PlaybackFailed(error.Message); }
+            catch (Exception error)
+            {
+                PlaybackFailed(error.Message);
+            }
         }
         private void PlaybackFailed(string message)
         {
-            if (playbackError != message) { playbackError = message; Debug.LogWarning("[엔딩] 영상 재생 실패: " + message); }
-            ClearPlayback(); retryAt = NowMs + assets.RetryIntervalMs;
+            if (playbackError != message)
+            {
+                playbackError = message;
+                Debug.LogWarning("[엔딩] 영상 재생 실패: " + message);
+            }
+            ClearPlayback();
+            retryAt = NowMs + assets.RetryIntervalMs;
             waiting.Render(true, "엔딩 영상을 재생하지 못했습니다.\n잠시 후 다시 시도합니다.");
         }
         private void OnVideoStarted()
@@ -130,31 +169,55 @@ namespace EscapeGame.World
             {
                 var feedback = Resources.Load<GameFeedbackAssets>("GameFeedback");
                 var font = Resources.Load<InteractionPresentationSettings>("InteractionPresentation").Font;
-                if (!runClock.ElapsedMs.HasValue) throw new InvalidOperationException("영상 재생 시작 시각이 기록되지 않았습니다.");
+                if (!runClock.ElapsedMs.HasValue)
+                    throw new InvalidOperationException("영상 재생 시작 시각이 기록되지 않았습니다.");
                 resultView = new EndingResultView(feedback?.ResultPrefab, gameObject.scene, font, runClock.ElapsedMs.Value, QuitGame);
                 // 결과 UI가 표시된 뒤에는 마지막 영상 프레임·디코더를 보유하지 않습니다.
                 ClearPlayback();
                 Debug.Log("[엔딩] 결과 표시 / 탈출 시간 " + EscapeRunClock.Format(runClock.ElapsedMs.Value));
             }
-            catch (Exception error) { Debug.LogError("[엔딩 결과] " + error.Message); waiting.Render(true, "결과 화면을 표시하지 못했습니다. 설정을 확인해 주세요."); }
+            catch (Exception error)
+            {
+                Debug.LogError("[엔딩 결과] " + error.Message);
+                waiting.Render(true, "결과 화면을 표시하지 못했습니다. 설정을 확인해 주세요.");
+            }
             VideoCompleted?.Invoke();
         }
         private static long NowMs => (long)(Time.realtimeSinceStartupAsDouble * 1000);
         private void ClearPlayback()
         {
-            if (videoView != null) videoView.PlaybackStarted -= OnVideoStarted;
-            if (playback != null) { playback.Completed -= OnCompleted; playback.Dispose(); playback = null; }
-            else videoView?.Dispose();
+            if (videoView != null)
+                videoView.PlaybackStarted -= OnVideoStarted;
+            if (playback != null)
+            {
+                playback.Completed -= OnCompleted;
+                playback.Dispose();
+                playback = null;
+            }
+            else
+                videoView?.Dispose();
             videoView = null;
         }
         private void OnDisable()
         {
-            if (subscribed) { completion.Changed -= ApplyCompletion; subscribed = false; }
-            videoView?.SetVisible(false); resultView?.SetVisible(false); waiting?.Render(false, ""); controlBlock?.Dispose(); controlBlock = null;
+            if (subscribed)
+            {
+                completion.Changed -= ApplyCompletion;
+                subscribed = false;
+            }
+            videoView?.SetVisible(false);
+            resultView?.SetVisible(false);
+            waiting?.Render(false, "");
+            controlBlock?.Dispose();
+            controlBlock = null;
         }
         private void OnDestroy()
         {
-            completion?.Dispose(); ClearPlayback(); resultView?.Dispose(); waiting?.Dispose(); controlBlock?.Dispose();
+            completion?.Dispose();
+            ClearPlayback();
+            resultView?.Dispose();
+            waiting?.Dispose();
+            controlBlock?.Dispose();
             VideoCompleted = null;
         }
     }

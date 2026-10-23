@@ -17,7 +17,8 @@ namespace EscapeGame.Data.Csv
 
         public async Task<CsvDocument> LoadAsync(string sourceName, CancellationToken token)
         {
-            if (string.IsNullOrWhiteSpace(sourceName)) throw new ArgumentException("CSV 경로 또는 이름이 필요합니다.", nameof(sourceName));
+            if (string.IsNullOrWhiteSpace(sourceName))
+                throw new ArgumentException("CSV 경로 또는 이름이 필요합니다.", nameof(sourceName));
             token.ThrowIfCancellationRequested();
             string text = await source.ReadTextAsync(sourceName, token);
             token.ThrowIfCancellationRequested();

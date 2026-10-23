@@ -27,7 +27,8 @@ namespace EscapeGame.Interaction
 
         public static Vector3 PreviewOffset(int[] offsetMm, Vector3 viewForward, Vector3 viewRight)
         {
-            if (offsetMm == null || offsetMm.Length != 3) throw new ArgumentException("미리보기 오프셋은 정수 mm 3개여야 합니다.");
+            if (offsetMm == null || offsetMm.Length != 3)
+                throw new ArgumentException("미리보기 오프셋은 정수 mm 3개여야 합니다.");
             var forward = HorizontalForward(viewForward, viewRight);
             var right = Vector3.Cross(Vector3.up, forward).normalized;
             return (right * offsetMm[0] + Vector3.up * offsetMm[1] + forward * offsetMm[2]) / 1000f;

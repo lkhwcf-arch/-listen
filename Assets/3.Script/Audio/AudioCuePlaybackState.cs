@@ -15,13 +15,17 @@ namespace EscapeGame.Audio
             bool closingTransition, long nowMs, out int clipIndex)
         {
             clipIndex = -1;
-            if (nowMs < 0 || cooldownMs < 0) throw new ArgumentOutOfRangeException();
+            if (nowMs < 0 || cooldownMs < 0)
+                throw new ArgumentOutOfRangeException();
             bool closing = closingTransition && (cue == GameAudioCue.ClickClose || cue == GameAudioCue.CloseupClose);
             if (clipCount <= 0 || ((closeupOnly || IsUi(cue)) && !closeupVisible && !closing) ||
-                (availableAt.TryGetValue(cue, out var next) && nowMs < next)) return false;
+                (availableAt.TryGetValue(cue, out var next) && nowMs < next))
+                return false;
             int cursor = cursors.TryGetValue(cue, out var current) ? current : 0;
-            clipIndex = cursor % clipCount; cursors[cue] = (clipIndex + 1) % clipCount;
-            availableAt[cue] = checked(nowMs + cooldownMs); return true;
+            clipIndex = cursor % clipCount;
+            cursors[cue] = (clipIndex + 1) % clipCount;
+            availableAt[cue] = checked(nowMs + cooldownMs);
+            return true;
         }
     }
 }

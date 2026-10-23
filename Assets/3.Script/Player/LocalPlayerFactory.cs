@@ -12,11 +12,14 @@ namespace EscapeGame.Player
     {
         public static FirstPersonPlayerRig Spawn(PlayerSpawnPlan plan, Transform roomRoot, PlayerPresentationSettings settings)
         {
-            if (!Application.isPlaying) throw new InvalidOperationException("플레이어는 Play 모드에서 생성하세요.");
-            if (plan == null || roomRoot == null || settings == null) throw new ArgumentNullException("플레이어 정의·방·표현 설정이 필요합니다.");
+            if (!Application.isPlaying)
+                throw new InvalidOperationException("플레이어는 Play 모드에서 생성하세요.");
+            if (plan == null || roomRoot == null || settings == null)
+                throw new ArgumentNullException("플레이어 정의·방·표현 설정이 필요합니다.");
             settings.Validate();
             var anchors = roomRoot.GetComponentsInChildren<Transform>(true).Where(item => item.name == plan.Anchor.AnchorId).ToArray();
-            if (anchors.Length != 1) throw new InvalidOperationException($"스폰 앵커 {plan.Anchor.AnchorId}는 정확히 하나여야 합니다. 현재 {anchors.Length}개입니다.");
+            if (anchors.Length != 1)
+                throw new InvalidOperationException($"스폰 앵커 {plan.Anchor.AnchorId}는 정확히 하나여야 합니다. 현재 {anchors.Length}개입니다.");
             var scene = roomRoot.gameObject.scene;
             if (!scene.IsValid() || !scene.isLoaded || !roomRoot.gameObject.activeInHierarchy)
                 throw new InvalidOperationException("플레이어를 생성할 방이 활성화되지 않았습니다.");
@@ -55,16 +58,23 @@ namespace EscapeGame.Player
                 if (prefab == null)
                 {
                     var size = (Vector3)settings.ModelSizeMm / 1000f;
-                    if (plan.UsesCylinder) size.y /= 2; // Unity의 기본 Cylinder 높이는 2입니다.
+                    if (plan.UsesCylinder)
+                        size.y /= 2; // Unity의 기본 Cylinder 높이는 2입니다.
                     model.transform.localScale = size;
                 }
-                foreach (var animator in model.GetComponentsInChildren<Animator>(true)) animator.applyRootMotion = false;
+                foreach (var animator in model.GetComponentsInChildren<Animator>(true))
+                    animator.applyRootMotion = false;
                 foreach (var collider in model.GetComponentsInChildren<Collider>(true))
-                { collider.enabled = false; Object.Destroy(collider); }
+                {
+                    collider.enabled = false;
+                    Object.Destroy(collider);
+                }
                 foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
                 {
-                    renderer.shadowCastingMode = ShadowCastingMode.Off; renderer.receiveShadows = false;
-                    if (prefab == null) renderer.sharedMaterial = settings.PlaceholderMaterial;
+                    renderer.shadowCastingMode = ShadowCastingMode.Off;
+                    renderer.receiveShadows = false;
+                    if (prefab == null)
+                        renderer.sharedMaterial = settings.PlaceholderMaterial;
                 }
                 var rig = root.AddComponent<FirstPersonPlayerRig>();
                 rig.Initialize(plan.Role, camera, visual);
@@ -76,19 +86,37 @@ namespace EscapeGame.Player
                     movement.Initialize(plan.Character, input, new EscapeGame.Timing.StopwatchMillisecondClock(),
                         settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
                 }
-                catch { input.Dispose(); throw; }
+                catch
+                {
+                    input.Dispose();
+                    throw;
+                }
                 var pointerDriver = root.AddComponent<PlayerPointerDriver>();
                 var look = root.AddComponent<PlayerLookDriver>();
                 var pointer = new InputSystemPointerInput(settings.InputActions);
-                try { pointerDriver.Initialize(pointer, controls); look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver); }
-                catch { pointer.Dispose(); throw; }
+                try
+                {
+                    pointerDriver.Initialize(pointer, controls);
+                    look.Initialize(camera.transform, plan.Character, settings.LookMilliDegreesPerPixelAtUnitSensitivity, pointerDriver);
+                }
+                catch
+                {
+                    pointer.Dispose();
+                    throw;
+                }
                 root.AddComponent<ViewModelObstructionDriver>().Initialize(camera, visual, settings.ModelCollisionMarginMm);
                 var feedback = Resources.Load<EscapeGame.Data.GameFeedbackAssets>("GameFeedback");
-                if (feedback != null) root.AddComponent<PlayerGaitDriver>().Initialize(camera.transform, movement, pointerDriver, plan.Character, feedback);
+                if (feedback != null)
+                    root.AddComponent<PlayerGaitDriver>().Initialize(camera.transform, movement, pointerDriver, plan.Character, feedback);
                 root.SetActive(true);
                 return rig;
             }
-            catch { root.SetActive(false); Object.Destroy(root); throw; }
+            catch
+            {
+                root.SetActive(false);
+                Object.Destroy(root);
+                throw;
+            }
         }
     }
 }

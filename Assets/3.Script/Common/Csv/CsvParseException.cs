@@ -10,14 +10,29 @@ namespace EscapeGame.Data.Csv
 
     public sealed class CsvParseException : FormatException
     {
-        public CsvErrorCode Code { get; }
-        public string SourceName { get; }
-        public int LineNumber { get; }
-        public int FieldNumber { get; }
+        public CsvErrorCode Code
+        {
+            get;
+        }
+        public string SourceName
+        {
+            get;
+        }
+        public int LineNumber
+        {
+            get;
+        }
+        public int FieldNumber
+        {
+            get;
+        }
         public CsvParseException(CsvErrorCode code, string sourceName, int lineNumber, int fieldNumber)
             : base($"CSV {code}: {sourceName}, {lineNumber}행 {fieldNumber}열")
         {
-            Code = code; SourceName = sourceName; LineNumber = lineNumber; FieldNumber = fieldNumber;
+            Code = code;
+            SourceName = sourceName;
+            LineNumber = lineNumber;
+            FieldNumber = fieldNumber;
         }
     }
 }

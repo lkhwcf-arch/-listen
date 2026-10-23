@@ -4,7 +4,10 @@ using EscapeGame.Data.Tables;
 
 namespace EscapeGame.World
 {
-    public enum RoomPlacementMode { Authored = 0, ConnectionPoints = 1 }
+    public enum RoomPlacementMode
+    {
+        Authored = 0, ConnectionPoints = 1
+    }
 
     // 실제 게임·로컬·에디터가 같은 배치 정책과 오브젝트 조립 경로를 사용합니다.
     public static class RoomSceneAssembler
@@ -14,7 +17,8 @@ namespace EscapeGame.World
         {
             if (assets.PlacementMode == RoomPlacementMode.ConnectionPoints && row.Id != plan.First.Id)
             {
-                if (previous == null) throw new InvalidOperationException("연결점 배치에는 이전 방이 먼저 준비되어야 합니다.");
+                if (previous == null)
+                    throw new InvalidOperationException("연결점 배치에는 이전 방이 먼저 준비되어야 합니다.");
                 RoomConnectionAlignment.Align(view.transform, RoomConnectionAlignment.FindEntry(view.transform, row.RoomNo),
                     RoomConnectionAlignment.FindExit(previous.transform, previous.RoomNo));
             }

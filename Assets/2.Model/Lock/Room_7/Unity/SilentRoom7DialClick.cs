@@ -11,6 +11,7 @@ public class SilentRoom7DialClick : MonoBehaviour
 
     public void Interact(int direction)
     {
-        if (colorLock != null) colorLock.NudgeDial(dialIndex, direction);
+        if (colorLock != null)
+            colorLock.NudgeDial(dialIndex, direction);
     }
 }

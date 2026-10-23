@@ -8,12 +8,27 @@ namespace EscapeGame.Data.Tables
     {
         private readonly int? integerValue;
         private readonly float? numberValue;
-        public static CsvTableMapping<GameConfigData> Table { get; } = new CsvTableMapping<GameConfigData>
+        public static CsvTableMapping<GameConfigData> Table
+        {
+            get;
+        } = new CsvTableMapping<GameConfigData>
             ("GAME_CONFIG", row => new GameConfigData(row));
-        public int Id { get; }
-        public string Value { get; }
-        public string Type { get; }
-        public string Unit { get; }
+        public int Id
+        {
+            get;
+        }
+        public string Value
+        {
+            get;
+        }
+        public string Type
+        {
+            get;
+        }
+        public string Unit
+        {
+            get;
+        }
 
         public GameConfigData(CsvRow row)
         {
@@ -22,8 +37,10 @@ namespace EscapeGame.Data.Tables
             Value = value.Text("Value");
             Type = value.Text("Type");
             Unit = value.Text("Unit");
-            if (Type == "int") integerValue = value.Integer("Value", allowSign: true);
-            if (Type == "float") numberValue = value.Number("Value");
+            if (Type == "int")
+                integerValue = value.Integer("Value", allowSign: true);
+            if (Type == "float")
+                numberValue = value.Number("Value");
         }
 
         // Type에 맞는 값만 반환하며 문자열·색상·기호를 임의로 숫자로 해석하지 않습니다.

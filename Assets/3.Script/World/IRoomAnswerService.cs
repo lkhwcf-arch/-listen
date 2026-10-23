@@ -13,13 +13,24 @@ namespace EscapeGame.World
     public sealed class RoomAnswerResult
     {
         public bool IsSuccess => Failure == SessionFailureCode.None;
-        public bool Correct { get; }
-        public SessionFailureCode Failure { get; }
-        private RoomAnswerResult(bool correct, SessionFailureCode failure) { Correct = correct; Failure = failure; }
+        public bool Correct
+        {
+            get;
+        }
+        public SessionFailureCode Failure
+        {
+            get;
+        }
+        private RoomAnswerResult(bool correct, SessionFailureCode failure)
+        {
+            Correct = correct;
+            Failure = failure;
+        }
         public static RoomAnswerResult Decision(bool correct) => new RoomAnswerResult(correct, SessionFailureCode.None);
         public static RoomAnswerResult Failed(SessionFailureCode failure)
         {
-            if (failure == SessionFailureCode.None) throw new ArgumentOutOfRangeException(nameof(failure));
+            if (failure == SessionFailureCode.None)
+                throw new ArgumentOutOfRangeException(nameof(failure));
             return new RoomAnswerResult(false, failure);
         }
     }

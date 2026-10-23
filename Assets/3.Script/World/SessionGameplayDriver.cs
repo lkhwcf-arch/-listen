@@ -16,31 +16,50 @@ namespace EscapeGame.World
         private bool subscribed;
         public void Initialize(SessionStartGate gate, PlayerPointerDriver pointer, PlayerInteractionDriver interaction, TMP_FontAsset font)
         {
-            if (this.gate != null) throw new InvalidOperationException("게임 시작 연결은 한 번만 초기화합니다.");
+            if (this.gate != null)
+                throw new InvalidOperationException("게임 시작 연결은 한 번만 초기화합니다.");
             this.gate = gate ?? throw new ArgumentNullException(nameof(gate));
             this.pointer = pointer ?? throw new ArgumentNullException(nameof(pointer));
             this.interaction = interaction ?? throw new ArgumentNullException(nameof(interaction));
             view = new SessionWaitingView(gameObject.scene, font);
-            if (isActiveAndEnabled) StartObserving();
+            if (isActiveAndEnabled)
+                StartObserving();
         }
-        private void OnEnable() { if (gate != null) StartObserving(); }
+        private void OnEnable()
+        {
+            if (gate != null)
+                StartObserving();
+        }
         private void StartObserving()
         {
-            if (subscribed) return;
-            gate.Changed += Apply; subscribed = true; Apply();
+            if (subscribed)
+                return;
+            gate.Changed += Apply;
+            subscribed = true;
+            Apply();
         }
         private void Apply()
         {
-            if (pointer == null) return;
+            if (pointer == null)
+                return;
             pointer.Controls.SetGameplayAllowed(gate.CanPlay);
-            if (!gate.CanPlay && interaction != null) interaction.Closeup?.Close();
+            if (!gate.CanPlay && interaction != null)
+                interaction.Closeup?.Close();
             view.Render(gate.CanPlay, gate.Message);
         }
         private void OnDisable()
         {
-            if (subscribed) { gate.Changed -= Apply; subscribed = false; }
-            if (pointer != null) pointer.Controls.SetGameplayAllowed(false);
+            if (subscribed)
+            {
+                gate.Changed -= Apply;
+                subscribed = false;
+            }
+            if (pointer != null)
+                pointer.Controls.SetGameplayAllowed(false);
         }
-        private void OnDestroy() { view?.Dispose(); }
+        private void OnDestroy()
+        {
+            view?.Dispose();
+        }
     }
 }

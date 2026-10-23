@@ -23,11 +23,16 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     while (next != "0" && table.Find(next) != null)
                     {
                         context.Token.ThrowIfCancellationRequested();
-                        if (!visited.Add(next)) { context.Add(CsvValidationCode.RoomCycle, table.Name, row.SourceLine, "Next"); break; }
+                        if (!visited.Add(next))
+                        {
+                            context.Add(CsvValidationCode.RoomCycle, table.Name, row.SourceLine, "Next");
+                            break;
+                        }
                         next = table.Find(next).Get("Next");
                     }
                 }
-            foreach (var table in rooms) CheckActiveChain(context, table);
+            foreach (var table in rooms)
+                CheckActiveChain(context, table);
             var names = new HashSet<string>(StringComparer.Ordinal);
             foreach (var table in context.Tagged(CsvTableTags.Anchor))
                 foreach (var row in table.Rows)
@@ -37,7 +42,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                         if (!room.Rows.Any(x => x.Get("RoomNo") == row.Get("RoomNo")))
                             context.Add(CsvValidationCode.RoomMissing, table.Name, row.SourceLine, "RoomNo", room.Name, row.Get("RoomNo"));
                     string key = string.Join("\u001f", row.Get("RoomNo"), row.Get("PlayerType"), row.Get("AnchorID"));
-                    if (!names.Add(key)) context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, "AnchorID", key);
+                    if (!names.Add(key))
+                        context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, "AnchorID", key);
                 }
             CheckPlacement(context, CsvTableTags.Arrow, "Order");
             CheckPlacement(context, CsvTableTags.Wire, "Port");
@@ -47,7 +53,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
             var active = table.Rows.Where(row => row.Get("Active") == "Y").ToArray();
             var byId = new Dictionary<string, CsvRow>(StringComparer.Ordinal);
             foreach (var row in active)
-                if (!byId.ContainsKey(row.Get(table.Key))) byId.Add(row.Get(table.Key), row);
+                if (!byId.ContainsKey(row.Get(table.Key)))
+                    byId.Add(row.Get(table.Key), row);
             var incoming = new HashSet<string>(active.Select(row => row.Get("Next")), StringComparer.Ordinal);
             var starts = active.Where(row => !incoming.Contains(row.Get(table.Key))).ToArray();
             int line = active.FirstOrDefault()?.SourceLine ?? table.Rows.FirstOrDefault()?.SourceLine ?? 1;
@@ -75,9 +82,11 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 {
                     var anchor = context.Tagged(CsvTableTags.Anchor).Where(x => x.Definition.Kind == "NonInteract")
                         .Select(x => x.Find(row.Get("AnchorRef"))).FirstOrDefault(x => x != null);
-                    if (anchor == null) continue;
+                    if (anchor == null)
+                        continue;
                     string key = string.Join("\u001f", anchor.Get("RoomNo"), anchor.Get("PlayerType"), row.Get(column));
-                    if (!values.Add(key)) context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, column, key);
+                    if (!values.Add(key))
+                        context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, column, key);
                 }
         }
     }
@@ -93,10 +102,12 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 foreach (var puzzle in table.Rows)
                 {
                     context.Token.ThrowIfCancellationRequested();
-                    if (!int.TryParse(puzzle.Get("SlotCount"), out int count) || count < 1) continue;
+                    if (!int.TryParse(puzzle.Get("SlotCount"), out int count) || count < 1)
+                        continue;
                     var slots = context.Tagged(CsvTableTags.Slot).SelectMany(x => x.Rows.Select(row => (Table: x, Row: row)))
                         .Where(x => x.Row.Get("PuzzleID") == puzzle.Get("ID")).ToArray();
-                    if (slots.Length != count) context.Add(CsvValidationCode.SlotCount, table.Name, puzzle.SourceLine, "SlotCount", count.ToString(), slots.Length.ToString());
+                    if (slots.Length != count)
+                        context.Add(CsvValidationCode.SlotCount, table.Name, puzzle.SourceLine, "SlotCount", count.ToString(), slots.Length.ToString());
                     foreach (var slot in slots)
                         if (int.TryParse(slot.Row.Get("Slot"), out int position) && (position < 1 || position > count))
                             context.Add(CsvValidationCode.SlotRange, slot.Table.Name, slot.Row.SourceLine, "Slot", count.ToString());
@@ -113,7 +124,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     }
                     foreach (var console in context.Tagged(CsvTableTags.Console))
                         foreach (var row in console.Rows.Where(x => x.Get("AnchorRef") == puzzle.Get("InputAnchor")))
-                            if (row.Get("SlotCount") != puzzle.Get("SlotCount")) context.Add(CsvValidationCode.ConsoleSlots, console.Name, row.SourceLine, "SlotCount");
+                            if (row.Get("SlotCount") != puzzle.Get("SlotCount"))
+                                context.Add(CsvValidationCode.ConsoleSlots, console.Name, row.SourceLine, "SlotCount");
                 }
         }
         private static CsvValidationTable FindRoom(CsvValidationContext context, string id)
@@ -138,7 +150,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 {
                     string type = row.Get("Type"), value = row.Get("Value");
                     bool valid = type == "int" ? int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out _) : type != "float" || CsvValidationContext.Number(value, out _);
-                    if (!valid) context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, "Value", value, type);
+                    if (!valid)
+                        context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, "Value", value, type);
                 }
             foreach (var table in context.Tagged(CsvTableTags.Sound))
                 foreach (var row in table.Rows)
@@ -157,13 +170,15 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     string target = row.Get("TargetSheet");
                     if (target == "Global")
                     {
-                        if (row.Get("TargetID") != "0") context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, "TargetID", row.Get("TargetID"), "Global=0");
+                        if (row.Get("TargetID") != "0")
+                            context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, "TargetID", row.Get("TargetID"), "Global=0");
                         continue;
                     }
                     var definition = context.Catalog.Find(target);
                     if (definition == null || !new[] { CsvTableTags.Room, CsvTableTags.Prefab, CsvTableTags.Anchor, CsvTableTags.Puzzle }.Contains(definition.Tag))
                         context.Add(CsvValidationCode.UnknownSheet, table.Name, row.SourceLine, "TargetSheet", target);
-                    else context.Reference(table, row, "TargetID", context.Tables.Where(x => x.IsUsable && x.Name == target));
+                    else
+                        context.Reference(table, row, "TargetID", context.Tables.Where(x => x.IsUsable && x.Name == target));
                 }
         }
     }

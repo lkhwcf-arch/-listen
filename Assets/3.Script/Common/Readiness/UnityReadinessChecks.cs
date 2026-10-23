@@ -9,7 +9,8 @@ namespace EscapeGame.Readiness
         private readonly Scene scene;
         public LoadedSceneReadinessCheck(Scene scene)
         {
-            if (!scene.IsValid()) throw new ArgumentException("유효한 씬이 필요합니다.", nameof(scene));
+            if (!scene.IsValid())
+                throw new ArgumentException("유효한 씬이 필요합니다.", nameof(scene));
             this.scene = scene;
         }
         public bool IsReady => scene.IsValid() && scene.isLoaded;
@@ -25,14 +26,16 @@ namespace EscapeGame.Readiness
                 throw new ArgumentException("필수 컴포넌트를 지정하세요.", nameof(components));
             this.components = (Behaviour[])components.Clone();
             foreach (var component in this.components)
-                if (component == null) throw new ArgumentException("필수 컴포넌트 참조가 비어 있습니다.", nameof(components));
+                if (component == null)
+                    throw new ArgumentException("필수 컴포넌트 참조가 비어 있습니다.", nameof(components));
         }
         public bool IsReady
         {
             get
             {
                 foreach (var component in components)
-                    if (component == null || !component.isActiveAndEnabled) return false;
+                    if (component == null || !component.isActiveAndEnabled)
+                        return false;
                 return true;
             }
         }

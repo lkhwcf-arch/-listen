@@ -7,7 +7,10 @@ using EscapeGame.Timing;
 
 namespace EscapeGame.Session
 {
-    public enum SceneLoadedReportPhase { WaitingForPreparation, WaitingToReport, Reporting, RetryPending, Completed, Failed }
+    public enum SceneLoadedReportPhase
+    {
+        WaitingForPreparation, WaitingToReport, Reporting, RetryPending, Completed, Failed
+    }
 
     public sealed class SessionSceneLoadedController
     {
@@ -17,7 +20,11 @@ namespace EscapeGame.Session
         private string playerId;
         private bool prepared;
         private bool transportFailed;
-        public SceneLoadedReportPhase Phase { get; private set; }
+        public SceneLoadedReportPhase Phase
+        {
+            get;
+            private set;
+        }
         public event Action Prepared;
         public event Action ReportConfirmed;
         public event Action<SessionFailureCode> ConnectionFailed;
@@ -32,7 +39,8 @@ namespace EscapeGame.Session
         }
         public void Tick(CancellationToken token)
         {
-            if (token.IsCancellationRequested || !service.State.IsJoined) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined)
+                return;
             if (playerId != service.State.PlayerId)
             {
                 playerId = service.State.PlayerId;
@@ -42,15 +50,21 @@ namespace EscapeGame.Session
             }
             if (
                 Phase == SceneLoadedReportPhase.Completed || Phase == SceneLoadedReportPhase.Failed ||
-                Phase == SceneLoadedReportPhase.Reporting || !readiness.IsReady) return;
+                Phase == SceneLoadedReportPhase.Reporting || !readiness.IsReady)
+                return;
             if (!prepared)
             {
                 prepared = true;
                 Phase = SceneLoadedReportPhase.WaitingToReport;
                 Prepared?.Invoke();
             }
-            if (service.State.IsSceneLoaded) { Complete(); return; }
-            if (!retryInterval.TryConsume()) return;
+            if (service.State.IsSceneLoaded)
+            {
+                Complete();
+                return;
+            }
+            if (!retryInterval.TryConsume())
+                return;
             Phase = SceneLoadedReportPhase.Reporting;
             _ = ReportAsync(token);
         }
@@ -59,8 +73,13 @@ namespace EscapeGame.Session
             // 요청 대기 정책은 서비스 내부에 있습니다. 자동화는 Busy 결과만 이해합니다.
             string requestedPlayer = service.State.PlayerId;
             var result = await service.ReportSceneLoadedAsync(token);
-            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer) return;
-            if (result.Outcome == SessionCommandOutcome.Completed) { Complete(); return; }
+            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer)
+                return;
+            if (result.Outcome == SessionCommandOutcome.Completed)
+            {
+                Complete();
+                return;
+            }
             if (result.Outcome == SessionCommandOutcome.Cancelled || result.Code == SessionFailureCode.Busy)
             {
                 Phase = SceneLoadedReportPhase.WaitingToReport;

@@ -13,7 +13,8 @@ CsvGameData Load(Dictionary<string, string> raw)
 {
     var set = new CsvDataSet(raw.ToDictionary(x => x.Key, x => new CsvParser().Read(x.Value, x.Key)));
     var store = new CsvDataStore();
-    if (!store.TryRegister(set, new CsvValidator(schema), out var report)) throw new InvalidOperationException("CSV validation failed");
+    if (!store.TryRegister(set, new CsvValidator(schema), out var report))
+        throw new InvalidOperationException("CSV validation failed");
     return new CsvGameData(store);
 }
 Dictionary<string, string> Cell(string sheet, string id, string column, string value)
@@ -26,11 +27,27 @@ Dictionary<string, string> Cell(string sheet, string id, string column, string v
     return copy;
 }
 int checks = 0;
-void Check(bool ok, string label) { if (!ok) throw new Exception(label); checks++; }
+void Check(bool ok, string label)
+{
+    if (!ok)
+        throw new Exception(label);
+    checks++;
+}
 void Reject(Action action, string label)
 {
     bool rejected = false;
-    try { action(); } catch (ArgumentException) { rejected = true; } catch (InvalidOperationException) { rejected = true; }
+    try
+    {
+        action();
+    }
+    catch (ArgumentException)
+    {
+        rejected = true;
+    }
+    catch (InvalidOperationException)
+    {
+        rejected = true;
+    }
     Check(rejected, label);
 }
 var data = Load(source);
@@ -67,7 +84,13 @@ var characterDoc = new CsvParser().Read(source["CHARACTER_STAT"], "CHARACTER_STA
 string QuoteProfile(string value) => "\"" + value.Replace("\"", "\"\"") + "\"";
 var originalProfile = characterDoc.Rows.First();
 fastSource["CHARACTER_STAT"] += "\n" + string.Join(",", characterDoc.Headers.Select(header => QuoteProfile(header switch
-{ "ID" => "17002", "WalkSpeed" => "4.5", "Acceleration" => "14", "Deceleration" => "16", _ => originalProfile.Get(header) })));
+{
+    "ID" => "17002",
+    "WalkSpeed" => "4.5",
+    "Acceleration" => "14",
+    "Deceleration" => "16",
+    _ => originalProfile.Get(header)
+})));
 var fast = PlayerCharacterSettings.Select(Load(fastSource), 16010);
 Check(fast.WalkSpeedMmPerSecond == 4500 && fast.AccelerationMmPerSecondSquared == 14000 && fast.DecelerationMmPerSecondSquared == 16000, "QA profile selection changes all movement values");
 Reject(() => PlayerCharacterSettings.Select(Load(Cell("CHARACTER_STAT", "17001", "Acceleration", "0")), 16010), "nonfunctional zero acceleration fails early");
@@ -75,7 +98,14 @@ Reject(() => PlayerCharacterSettings.Select(Load(Cell("CHARACTER_STAT", "17001",
 Reject(() => new PlayerMoveCommand(1001, 0), "invalid input axis rejected");
 PlayerMovementMotor Motor() => new PlayerMovementMotor(profile, -9810, 50000);
 void Advance(PlayerMovementMotor m, PlayerMoveCommand command, int totalMs)
-{ while (totalMs > 0) { int step = Math.Min(totalMs, 100); m.Tick(command, step); totalMs -= step; } }
+{
+    while (totalMs > 0)
+    {
+        int step = Math.Min(totalMs, 100);
+        m.Tick(command, step);
+        totalMs -= step;
+    }
+}
 var forward = new PlayerMoveCommand(0, 1000);
 var diagonal = new PlayerMoveCommand(1000, 1000);
 var motor = Motor();
@@ -87,15 +117,29 @@ Check(motor.Tick(forward, 100).ForwardMm == 300, "cruise 3m/s travels 300mm in 1
 Advance(motor, default, 250);
 Check(motor.ForwardVelocityUmPerSecond == 0, "release uses 12m/s2 and stops in 250ms");
 Check(motor.Tick(default, 100).ForwardMm == 0, "idle remains stopped");
-motor = Motor(); Advance(motor, diagonal, 1000);
+motor = Motor();
+Advance(motor, diagonal, 1000);
 long vx = motor.RightVelocityUmPerSecond, vz = motor.ForwardVelocityUmPerSecond;
 Check(vx == vz && vx * vx + vz * vz <= 3000000L * 3000000, "diagonal velocity never exceeds walk speed");
 Advance(motor, new PlayerMoveCommand(0, -1000), 1000);
 Check(motor.ForwardVelocityUmPerSecond == -3000000 && motor.RightVelocityUmPerSecond == 0, "reversal reaches new target without drift");
-var split = Motor(); var full = Motor();
+var split = Motor();
+var full = Motor();
 int splitX = 0, splitY = 0, splitZ = 0, fullX = 0, fullY = 0, fullZ = 0;
-for (int i = 0; i < 1000; i++) { var s = split.Tick(diagonal, 1); splitX += s.RightMm; splitY += s.UpMm; splitZ += s.ForwardMm; }
-for (int i = 0; i < 10; i++) { var s = full.Tick(diagonal, 100); fullX += s.RightMm; fullY += s.UpMm; fullZ += s.ForwardMm; }
+for (int i = 0; i < 1000; i++)
+{
+    var s = split.Tick(diagonal, 1);
+    splitX += s.RightMm;
+    splitY += s.UpMm;
+    splitZ += s.ForwardMm;
+}
+for (int i = 0; i < 10; i++)
+{
+    var s = full.Tick(diagonal, 100);
+    fullX += s.RightMm;
+    fullY += s.UpMm;
+    fullZ += s.ForwardMm;
+}
 Check(splitX == fullX && splitZ == fullZ && splitY == fullY, "remainders survive frame splitting including gravity");
 Check(split.RightVelocityUmPerSecond == full.RightVelocityUmPerSecond, "same integer-ms input ordering yields same velocity");
 motor = Motor();
@@ -107,13 +151,15 @@ Advance(motor, default, 10000);
 Check(motor.UpVelocityUmPerSecond == -50000000, "terminal fall speed bounded");
 motor.Reset();
 Check(motor.UpVelocityUmPerSecond == 0 && motor.RightVelocityUmPerSecond == 0 && motor.ForwardVelocityUmPerSecond == 0, "pause/disable reset clears all movement state");
-var clean = Motor().Tick(forward, 100); var reset = motor.Tick(forward, 100);
+var clean = Motor().Tick(forward, 100);
+var reset = motor.Tick(forward, 100);
 Check(reset.ForwardMm == clean.ForwardMm && reset.UpMm == clean.UpMm, "reset clears sub-mm residue too");
 Reject(() => motor.Tick(default, 101), "oversized frame cannot bypass driver clamp");
 Reject(() => motor.Tick(default, -1), "negative time rejected");
 Reject(() => new PlayerMovementMotor(profile, 0, 50000), "non-downward gravity rejected");
 Check(motor.Tick(default, 0).ForwardMm == 0, "zero elapsed time creates no movement");
-var qa = new PlayerMovementMotor(fast, -9810, 50000); Advance(qa, forward, 1000);
+var qa = new PlayerMovementMotor(fast, -9810, 50000);
+Advance(qa, forward, 1000);
 Check(qa.Tick(forward, 100).ForwardMm == 450, "QA profile cruises at 4.5m/s");
 Check(profile.MouseSensitivityMilli == 1000 && profile.PitchLimitMilliDegrees == 80000, "mouse multiplier and pitch come from selected CSV profile");
 Reject(() => Load(Cell("CHARACTER_STAT", "17001", "PitchLimit", "90")), "pitch cannot flip camera at 90 degrees");
@@ -148,41 +194,63 @@ var maximumLook = new PlayerLookMotor(maximumSensitivity, 1000, 359999);
 maximumLook.Apply(new PlayerLookCommand(10000000, -10000000));
 Check(maximumLook.YawMilliDegrees >= 0 && maximumLook.YawMilliDegrees < 360000 && maximumLook.PitchMilliDegrees == 80000, "maximum supported input uses int64 intermediates without overflow");
 Reject(() => new PlayerLookCommand(int.MinValue, 0), "delta overflow rejected before arithmetic");
-smallLook.Apply(new PlayerLookCommand(9999, 0)); smallLook.ClearPendingInput();
+smallLook.Apply(new PlayerLookCommand(9999, 0));
+smallLook.ClearPendingInput();
 smallLook.Apply(new PlayerLookCommand(1, 0));
 Check(smallLook.YawMilliDegrees == 1, "focus release clears pending residue while keeping facing");
 var flatSettings = PlayerCharacterSettings.Select(Load(Cell("CHARACTER_STAT", "17001", "PitchLimit", "0")), 16010);
-var flatLook = new PlayerLookMotor(flatSettings, 100, -1000); flatLook.Apply(new PlayerLookCommand(1000, 10000000));
+var flatLook = new PlayerLookMotor(flatSettings, 100, -1000);
+flatLook.Apply(new PlayerLookCommand(1000, 10000000));
 Check(flatLook.PitchMilliDegrees == 0 && flatLook.YawMilliDegrees == 359100, "zero pitch limit permits horizontal look only and preserves spawn yaw");
-var controls = new PlayerControlState(); int changes = 0;
+var controls = new PlayerControlState();
+int changes = 0;
 controls.Changed += () => changes++;
 Check(!controls.GameplayEnabled && !controls.CanCapture, "inactive owner cannot control input");
-controls.SetActive(true); controls.CapturePointer();
+controls.SetActive(true);
+controls.CapturePointer();
 Check(controls.GameplayEnabled, "active focused captured owner enables move and look together");
-int beforeRepeat = changes; controls.CapturePointer(); controls.SetActive(true);
+int beforeRepeat = changes;
+controls.CapturePointer();
+controls.SetActive(true);
 Check(changes == beforeRepeat, "same state does not duplicate completed change event");
-controls.ReleasePointer(); Check(!controls.GameplayEnabled, "ESC stops gameplay while cursor is released");
-controls.CapturePointer(); controls.SetFocused(false);
+controls.ReleasePointer();
+Check(!controls.GameplayEnabled, "ESC stops gameplay while cursor is released");
+controls.CapturePointer();
+controls.SetFocused(false);
 Check(!controls.GameplayEnabled && !controls.PointerCaptured, "focus loss releases controls");
-controls.SetFocused(true); Check(!controls.GameplayEnabled, "focus return waits for explicit click");
-controls.CapturePointer(); controls.SetPaused(true);
+controls.SetFocused(true);
+Check(!controls.GameplayEnabled, "focus return waits for explicit click");
+controls.CapturePointer();
+controls.SetPaused(true);
 Check(!controls.GameplayEnabled && !controls.PointerCaptured, "pause releases controls");
-controls.SetPaused(false); controls.CapturePointer();
-var outerUi = controls.BlockForUi(); var innerUi = controls.BlockForUi();
-controls.CapturePointer(); Check(!controls.GameplayEnabled && !controls.CanCapture, "nested UI locks reject capture");
-innerUi.Dispose(); innerUi.Dispose(); Check(!controls.CanCapture, "disposing one UI lease twice cannot clear another UI lock");
-outerUi.Dispose(); Check(controls.CanCapture && !controls.PointerCaptured, "last UI release restores capture capability without unsolicited recapture");
-controls.CapturePointer(); controls.SetGameplayAllowed(false);
+controls.SetPaused(false);
+controls.CapturePointer();
+var outerUi = controls.BlockForUi();
+var innerUi = controls.BlockForUi();
+controls.CapturePointer();
+Check(!controls.GameplayEnabled && !controls.CanCapture, "nested UI locks reject capture");
+innerUi.Dispose();
+innerUi.Dispose();
+Check(!controls.CanCapture, "disposing one UI lease twice cannot clear another UI lock");
+outerUi.Dispose();
+Check(controls.CanCapture && !controls.PointerCaptured, "last UI release restores capture capability without unsolicited recapture");
+controls.CapturePointer();
+controls.SetGameplayAllowed(false);
 Check(!controls.GameplayEnabled && !controls.CanCapture && !controls.PointerCaptured, "시작 대기는 이동·시점·상호작용과 커서 획득을 함께 잠급니다.");
-controls.SetPaused(false); controls.CapturePointer();
+controls.SetPaused(false);
+controls.CapturePointer();
 Check(!controls.GameplayEnabled, "매 프레임 일시정지 해제가 서버 대기를 우회하지 않습니다.");
 controls.SetGameplayAllowed(true);
 Check(controls.CanCapture && !controls.GameplayEnabled, "시작 허용 후 명시적 클릭으로 커서를 다시 잡습니다.");
 var sessionUi = controls.BlockForUi();
-controls.SetGameplayAllowed(false); controls.SetGameplayAllowed(true); controls.CapturePointer();
+controls.SetGameplayAllowed(false);
+controls.SetGameplayAllowed(true);
+controls.CapturePointer();
 Check(!controls.GameplayEnabled, "서버 허용이 별도의 UI 잠금을 해제하지 않습니다.");
-sessionUi.Dispose(); controls.CapturePointer();
+sessionUi.Dispose();
+controls.CapturePointer();
 Check(controls.GameplayEnabled, "공통 잠금이 모두 해제되면 조작을 재개합니다.");
-controls.CapturePointer(); controls.SetActive(false);
+controls.CapturePointer();
+controls.SetActive(false);
 Check(!controls.GameplayEnabled && !controls.PointerCaptured, "disable releases shared owner state");
 Console.WriteLine($"{checks} player spawn, movement, look and control checks passed.");

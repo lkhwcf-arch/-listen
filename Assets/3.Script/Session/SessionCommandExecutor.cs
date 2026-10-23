@@ -10,7 +10,8 @@ namespace EscapeGame.Session
         internal static async Task<SessionCommandResult> ExecuteAsync(
             Func<CancellationToken, Task> command, CancellationToken token, Action<Exception> diagnostic = null)
         {
-            if (command == null) throw new ArgumentNullException(nameof(command));
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
             try
             {
                 token.ThrowIfCancellationRequested();
@@ -18,7 +19,10 @@ namespace EscapeGame.Session
                 token.ThrowIfCancellationRequested();
                 return SessionCommandResult.Completed();
             }
-            catch (OperationCanceledException) { return SessionCommandResult.Cancelled(); }
+            catch (OperationCanceledException)
+            {
+                return SessionCommandResult.Cancelled();
+            }
             catch (Exception exception)
             {
                 diagnostic?.Invoke(exception);

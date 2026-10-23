@@ -31,15 +31,19 @@ namespace EscapeGame.Editor
         }
         private static void QueueRebuild()
         {
-            if (queued) return;
-            queued = true; EditorApplication.delayCall += Rebuild;
+            if (queued)
+                return;
+            queued = true;
+            EditorApplication.delayCall += Rebuild;
         }
         [MenuItem("Tools/Game/Rebuild Content References")]
         public static void Rebuild()
         {
             queued = false;
-            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
-            if (!AssetDatabase.IsValidFolder("Assets/Resources")) AssetDatabase.CreateFolder("Assets", "Resources");
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                return;
+            if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+                AssetDatabase.CreateFolder("Assets", "Resources");
             var asset = AssetDatabase.LoadAssetAtPath<GameContentAssets>(AssetPath);
             if (asset == null)
             {
@@ -54,7 +58,8 @@ namespace EscapeGame.Editor
             var rulesPath = "Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml";
             var validator = new CsvValidator(CsvValidationCatalog.Read(File.ReadAllText(rulesPath)));
             var store = new CsvDataStore();
-            if (!store.TryRegister(source, validator, out var validation)) throw new BuildFailedException("콘텐츠 검증 실패: " + string.Join("\n", validation.Issues.Where(issue => issue.Severity == EscapeGame.Data.CsvValidation.Contracts.CsvValidationSeverity.Error)));
+            if (!store.TryRegister(source, validator, out var validation))
+                throw new BuildFailedException("콘텐츠 검증 실패: " + string.Join("\n", validation.Issues.Where(issue => issue.Severity == EscapeGame.Data.CsvValidation.Contracts.CsvValidationSeverity.Error)));
             var data = new CsvGameData(store);
             var published = new System.Collections.Generic.HashSet<string>(data.Registry.Where(row => row.Active).Select(row => row.Sheet), StringComparer.Ordinal);
             csv = csv.Where(path => published.Contains(Path.GetFileNameWithoutExtension(path))).ToArray();
@@ -63,10 +68,12 @@ namespace EscapeGame.Editor
                 .Select(row => row.Path.Replace('\\', '/')).Select(path => path.EndsWith(".prefab", StringComparison.Ordinal) ? path : path + ".prefab")
                 .Distinct(StringComparer.Ordinal).OrderBy(path => path, StringComparer.Ordinal).ToArray();
             foreach (var path in paths)
-                if (AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(path) == null) throw new BuildFailedException("등록 프리팹이 없습니다: " + path);
+                if (AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(path) == null)
+                    throw new BuildFailedException("등록 프리팹이 없습니다: " + path);
             var files = serialized.FindProperty("csvFiles");
             files.arraySize = csv.Length;
-            for (int i = 0; i < csv.Length; i++) files.GetArrayElementAtIndex(i).objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset>(csv[i]);
+            for (int i = 0; i < csv.Length; i++)
+                files.GetArrayElementAtIndex(i).objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset>(csv[i]);
             serialized.FindProperty("validationRules").objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset>(rulesPath);
             var prefabs = serialized.FindProperty("prefabs");
             prefabs.arraySize = paths.Length;
@@ -77,7 +84,10 @@ namespace EscapeGame.Editor
                 entry.FindPropertyRelative("prefab").objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(paths[i]);
             }
             if (serialized.ApplyModifiedPropertiesWithoutUndo())
-            { EditorUtility.SetDirty(asset); AssetDatabase.SaveAssetIfDirty(asset); }
+            {
+                EditorUtility.SetDirty(asset);
+                AssetDatabase.SaveAssetIfDirty(asset);
+            }
         }
     }
 }

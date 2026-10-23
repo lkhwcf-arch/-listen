@@ -6,10 +6,19 @@ namespace EscapeGame.Session
 {
     internal sealed class SessionRoomDecisionData
     {
-        internal SessionSnapshotData Snapshot { get; }
-        internal RoomDecision Decision { get; }
+        internal SessionSnapshotData Snapshot
+        {
+            get;
+        }
+        internal RoomDecision Decision
+        {
+            get;
+        }
         internal SessionRoomDecisionData(SessionSnapshotData snapshot, RoomDecision decision)
-        { Snapshot = snapshot; Decision = decision; }
+        {
+            Snapshot = snapshot;
+            Decision = decision;
+        }
     }
     internal interface ISessionRoomGateway
     {

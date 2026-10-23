@@ -14,7 +14,14 @@ namespace EscapeGame.Editor
         public int callbackOrder => 1;
         public void OnPreprocessBuild(BuildReport report)
         {
-            try { Validate(); } catch (Exception error) { throw new BuildFailedException(error.Message); }
+            try
+            {
+                Validate();
+            }
+            catch (Exception error)
+            {
+                throw new BuildFailedException(error.Message);
+            }
         }
         [MenuItem("Tools/Game/사운드·결과 UI 설정 검사")]
         public static void Validate()

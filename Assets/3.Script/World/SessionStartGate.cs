@@ -13,11 +13,27 @@ namespace EscapeGame.World
         private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
         private SessionInfo state;
         private bool disposed;
-        public bool IsLocal { get; private set; }
-        public bool CanEnterScene { get; private set; }
-        public bool CanPlay { get; private set; }
+        public bool IsLocal
+        {
+            get;
+            private set;
+        }
+        public bool CanEnterScene
+        {
+            get;
+            private set;
+        }
+        public bool CanPlay
+        {
+            get;
+            private set;
+        }
         public int ParticipantCount => state?.ParticipantCount ?? 0;
-        public string Message { get; private set; }
+        public string Message
+        {
+            get;
+            private set;
+        }
         public event Action Changed;
 
         public SessionStartGate(ISessionConnectionService session)
@@ -28,7 +44,8 @@ namespace EscapeGame.World
         }
         public void SetLocalMode(bool local)
         {
-            if (disposed) throw new ObjectDisposedException(nameof(SessionStartGate));
+            if (disposed)
+                throw new ObjectDisposedException(nameof(SessionStartGate));
             IsLocal = local;
             Refresh(session.State);
         }
@@ -43,22 +60,28 @@ namespace EscapeGame.World
             bool changed = state == null || state.SessionId != current.SessionId || state.IsJoined != current.IsJoined ||
                 CanEnterScene != enter || CanPlay != play || Message != message;
             state = current;
-            CanEnterScene = enter; CanPlay = play; Message = message;
-            if (changed) Changed?.Invoke();
+            CanEnterScene = enter;
+            CanPlay = play;
+            Message = message;
+            if (changed)
+                Changed?.Invoke();
         }
         public async Task WaitForParticipantsAsync(CancellationToken token)
         {
-            if (disposed) throw new ObjectDisposedException(nameof(SessionStartGate));
+            if (disposed)
+                throw new ObjectDisposedException(nameof(SessionStartGate));
             token.ThrowIfCancellationRequested();
             Refresh(session.State);
-            if (IsLocal) return;
+            if (IsLocal)
+                return;
             string sessionId = state.SessionId;
             var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             Action check = () =>
             {
                 if (!state.IsJoined || state.SessionId != sessionId)
                     completion.TrySetException(new InvalidOperationException("상대방 대기 중 서버 연결이 종료되거나 세션이 변경되었습니다."));
-                else if (CanEnterScene) completion.TrySetResult(true);
+                else if (CanEnterScene)
+                    completion.TrySetResult(true);
             };
             using var request = CancellationTokenSource.CreateLinkedTokenSource(token, lifetime.Token);
             using var cancellation = request.Token.Register(() => completion.TrySetCanceled());
@@ -72,14 +95,19 @@ namespace EscapeGame.World
                 if (!CanEnterScene || !state.IsJoined || state.SessionId != sessionId)
                     throw new InvalidOperationException("참가자 구성이 변경되었습니다. 다시 입장해 주세요.");
             }
-            finally { Changed -= check; }
+            finally
+            {
+                Changed -= check;
+            }
         }
         public void Dispose()
         {
-            if (disposed) return;
+            if (disposed)
+                return;
             disposed = true;
             session.StateChanged -= Refresh;
-            lifetime.Cancel(); lifetime.Dispose();
+            lifetime.Cancel();
+            lifetime.Dispose();
             Changed = null;
         }
     }

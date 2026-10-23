@@ -20,7 +20,8 @@ namespace EscapeGame.Session
 
         internal Task JoinAsync(CancellationToken token) => runner.RunAsync(async ct =>
         {
-            if (session.IsJoined) throw new InvalidOperationException("이미 세션에 입장했습니다.");
+            if (session.IsJoined)
+                throw new InvalidOperationException("이미 세션에 입장했습니다.");
             var response = await gateway.JoinAsync(ct);
             ct.ThrowIfCancellationRequested();
             ApplyReceived(() => session.ApplyJoin(response));
@@ -32,7 +33,8 @@ namespace EscapeGame.Session
             var response = await gateway.ReportSceneLoadedAsync(session.SessionId, session.ParticipantToken, ct);
             ct.ThrowIfCancellationRequested();
             ApplyReceived(() => session.ApplySnapshot(response));
-            if (!session.IsSceneLoaded) throw new SessionResultException(SessionFailureCode.InvalidResponse);
+            if (!session.IsSceneLoaded)
+                throw new SessionResultException(SessionFailureCode.InvalidResponse);
         }, token);
 
         internal Task QueryAsync(CancellationToken token) => runner.RunAsync(async ct =>
@@ -91,7 +93,8 @@ namespace EscapeGame.Session
 
         private void EnsureJoined()
         {
-            if (!session.IsJoined) throw new InvalidOperationException("먼저 서버 세션에 입장하세요.");
+            if (!session.IsJoined)
+                throw new InvalidOperationException("먼저 서버 세션에 입장하세요.");
         }
 
         internal async Task<RoomDecision> DecideRoomAsync(int roomNo, string[] answers, CancellationToken token)
@@ -102,7 +105,8 @@ namespace EscapeGame.Session
                 EnsureJoined();
                 var response = await ((ISessionRoomGateway)gateway).DecideRoomAsync(session.SessionId, session.ParticipantToken, roomNo, answers, ct);
                 ct.ThrowIfCancellationRequested();
-                if (response?.Decision == null || response.Decision.RoomNo != roomNo) throw new SessionResultException(SessionFailureCode.InvalidResponse);
+                if (response?.Decision == null || response.Decision.RoomNo != roomNo)
+                    throw new SessionResultException(SessionFailureCode.InvalidResponse);
                 ApplyReceived(() => session.ApplySnapshot(response.Snapshot));
                 decision = response.Decision;
             }, token);
@@ -111,8 +115,14 @@ namespace EscapeGame.Session
 
         private static void ApplyReceived(Action apply)
         {
-            try { apply(); }
-            catch (ArgumentException exception) { throw new SessionResultException(SessionFailureCode.InvalidResponse, exception); }
+            try
+            {
+                apply();
+            }
+            catch (ArgumentException exception)
+            {
+                throw new SessionResultException(SessionFailureCode.InvalidResponse, exception);
+            }
         }
     }
 }

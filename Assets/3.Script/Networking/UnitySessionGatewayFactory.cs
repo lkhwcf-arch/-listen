@@ -7,7 +7,9 @@ namespace EscapeGame.Networking
     {
         private readonly int heartbeatRequestTimeoutMs;
         internal HttpSessionGatewayFactory(int heartbeatRequestTimeoutMs = 2000)
-        { this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs; }
+        {
+            this.heartbeatRequestTimeoutMs = heartbeatRequestTimeoutMs;
+        }
         public ISessionGateway Create(string address) => new HttpSessionGateway(
             new SessionApiClient(new ProtobufGameApiClient(address, heartbeatRequestTimeoutMs)));
     }

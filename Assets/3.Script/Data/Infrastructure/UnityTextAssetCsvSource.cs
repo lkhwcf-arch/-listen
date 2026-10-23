@@ -12,12 +12,15 @@ namespace EscapeGame.Data.Infrastructure
     {
         private readonly TextAsset asset;
         public UnityTextAssetCsvSource(TextAsset asset)
-        { this.asset = asset != null ? asset : throw new ArgumentNullException(nameof(asset)); }
+        {
+            this.asset = asset != null ? asset : throw new ArgumentNullException(nameof(asset));
+        }
 
         public Task<string> ReadTextAsync(string sourceName, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
-            if (asset == null) throw new InvalidOperationException("CSV TextAsset이 제거되었습니다.");
+            if (asset == null)
+                throw new InvalidOperationException("CSV TextAsset이 제거되었습니다.");
             return Task.FromResult(new UTF8Encoding(false, true).GetString(asset.bytes));
         }
     }

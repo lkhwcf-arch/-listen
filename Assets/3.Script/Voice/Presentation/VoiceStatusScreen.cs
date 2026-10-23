@@ -10,10 +10,22 @@ namespace EscapeGame.Voice.Presentation
         private VoiceStatusPresenter presenter;
         private void OnEnable()
         {
-            if (bootstrapper == null || statusText == null) { Debug.LogError("음성 Bootstrapper와 상태 텍스트를 연결하세요."); return; }
+            if (bootstrapper == null || statusText == null)
+            {
+                Debug.LogError("음성 Bootstrapper와 상태 텍스트를 연결하세요.");
+                return;
+            }
             presenter = new VoiceStatusPresenter(bootstrapper.Service, this);
         }
-        public void Render(string status) { if (statusText != null) statusText.text = status; }
-        private void OnDisable() { presenter?.Dispose(); presenter = null; }
+        public void Render(string status)
+        {
+            if (statusText != null)
+                statusText.text = status;
+        }
+        private void OnDisable()
+        {
+            presenter?.Dispose();
+            presenter = null;
+        }
     }
 }

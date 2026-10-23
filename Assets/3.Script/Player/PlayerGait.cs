@@ -7,13 +7,20 @@ namespace EscapeGame.Player
     {
         private readonly double stepMeters, amplitudeMeters, returnSeconds;
         private double distance, phase;
-        public double OffsetMeters { get; private set; }
+        public double OffsetMeters
+        {
+            get;
+            private set;
+        }
         public event Action Stepped;
         public PlayerGait(double stepMeters, double amplitudeMeters, double returnSeconds)
         {
             if (!Finite(stepMeters) || stepMeters <= 0 || !Finite(amplitudeMeters) || amplitudeMeters < 0 ||
-                !Finite(returnSeconds) || returnSeconds <= 0) throw new ArgumentOutOfRangeException(nameof(stepMeters));
-            this.stepMeters = stepMeters; this.amplitudeMeters = amplitudeMeters; this.returnSeconds = returnSeconds;
+                !Finite(returnSeconds) || returnSeconds <= 0)
+                throw new ArgumentOutOfRangeException(nameof(stepMeters));
+            this.stepMeters = stepMeters;
+            this.amplitudeMeters = amplitudeMeters;
+            this.returnSeconds = returnSeconds;
         }
         public void Tick(double horizontalMeters, bool grounded, bool allowed, double seconds)
         {
@@ -21,18 +28,27 @@ namespace EscapeGame.Player
                 throw new ArgumentOutOfRangeException(nameof(horizontalMeters));
             if (allowed && grounded && horizontalMeters > .0001)
             {
-                distance += horizontalMeters; phase = (phase + horizontalMeters / stepMeters * Math.PI * 2) % (Math.PI * 2);
+                distance += horizontalMeters;
+                phase = (phase + horizontalMeters / stepMeters * Math.PI * 2) % (Math.PI * 2);
                 OffsetMeters = Math.Sin(phase) * amplitudeMeters;
-                while (distance >= stepMeters) { distance -= stepMeters; Stepped?.Invoke(); }
+                while (distance >= stepMeters)
+                {
+                    distance -= stepMeters;
+                    Stepped?.Invoke();
+                }
             }
             else
             {
                 distance = phase = 0;
                 OffsetMeters *= Math.Exp(-seconds / returnSeconds);
-                if (Math.Abs(OffsetMeters) < .00001) OffsetMeters = 0;
+                if (Math.Abs(OffsetMeters) < .00001)
+                    OffsetMeters = 0;
             }
         }
-        public void Reset() { distance = phase = OffsetMeters = 0; }
+        public void Reset()
+        {
+            distance = phase = OffsetMeters = 0;
+        }
         private static bool Finite(double x) => !double.IsNaN(x) && !double.IsInfinity(x);
     }
 }

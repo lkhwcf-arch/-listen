@@ -20,21 +20,32 @@ namespace EscapeGame.Session
         public SessionHeartbeatSettings Settings => new SessionHeartbeatSettings(heartbeatIntervalMs, connectionTimeoutMs, requestTimeoutMs);
         public void Initialize(ISessionConnectionService service, IMillisecondClock clock, CancellationToken ownerLifetime)
         {
-            if (this.service != null) throw new InvalidOperationException("이미 초기화되었습니다.");
+            if (this.service != null)
+                throw new InvalidOperationException("이미 초기화되었습니다.");
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
             this.ownerLifetime = ownerLifetime;
             _ = Settings;
-            if (isActiveAndEnabled) StartHeartbeat();
+            if (isActiveAndEnabled)
+                StartHeartbeat();
         }
-        private void OnEnable() { if (service != null) StartHeartbeat(); }
+        private void OnEnable()
+        {
+            if (service != null)
+                StartHeartbeat();
+        }
         private void StartHeartbeat()
         {
-            if (lifetime != null) return;
+            if (lifetime != null)
+                return;
             lifetime = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, ownerLifetime);
             heartbeat = new SessionHeartbeatController(service, clock, Settings);
         }
-        private void Update() { if (lifetime != null) heartbeat.Tick(lifetime.Token); }
+        private void Update()
+        {
+            if (lifetime != null)
+                heartbeat.Tick(lifetime.Token);
+        }
         private void OnDisable()
         {
             lifetime?.Cancel();

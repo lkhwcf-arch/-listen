@@ -11,13 +11,22 @@ namespace EscapeGame.Tests
     {
         [SerializeField] private TextAsset csvAsset;
         private bool loading;
-        public CsvDocument Document { get; private set; }
+        public CsvDocument Document
+        {
+            get;
+            private set;
+        }
 
         [ContextMenu("Load CSV")]
         private async void LoadCsv()
         {
-            if (loading) return;
-            if (csvAsset == null) { Debug.LogError("[CSV] Csv Asset에 CSV 파일을 연결하세요."); return; }
+            if (loading)
+                return;
+            if (csvAsset == null)
+            {
+                Debug.LogError("[CSV] Csv Asset에 CSV 파일을 연결하세요.");
+                return;
+            }
             loading = true;
             Document = null;
             var token = Application.isPlaying ? destroyCancellationToken : CancellationToken.None;
@@ -31,8 +40,14 @@ namespace EscapeGame.Tests
                 Debug.Log("[CSV] 헤더: " + string.Join(", ", loaded.Headers));
             }
             catch (OperationCanceledException) { }
-            catch (Exception exception) { Debug.LogError("[CSV] " + exception.Message); }
-            finally { loading = false; }
+            catch (Exception exception)
+            {
+                Debug.LogError("[CSV] " + exception.Message);
+            }
+            finally
+            {
+                loading = false;
+            }
         }
     }
 }

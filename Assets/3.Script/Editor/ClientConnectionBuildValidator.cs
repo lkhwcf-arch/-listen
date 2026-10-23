@@ -19,7 +19,10 @@ namespace EscapeGame.Editor
                 var settings = UnityClientConnectionConfig.Read(UnityClientConnectionConfig.FilePath, environment);
                 Debug.Log($"클라이언트 접속 설정: {environment}, {settings.ServerBaseUrl}. Join은 탈출하기 버튼으로 입장합니다. 호환 테스트 화면 autoConnect={settings.AutoConnect}");
             }
-            catch (System.Exception error) { throw new BuildFailedException(error.Message); }
+            catch (System.Exception error)
+            {
+                throw new BuildFailedException(error.Message);
+            }
         }
     }
 }

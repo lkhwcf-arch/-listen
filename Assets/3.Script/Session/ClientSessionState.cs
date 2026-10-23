@@ -7,14 +7,42 @@ namespace EscapeGame.Session
 {
     internal sealed class ClientSessionState
     {
-        public string SessionId { get; private set; }
-        public string PlayerId { get; private set; }
-        public string Role { get; private set; }
-        public string ParticipantToken { get; private set; }
+        public string SessionId
+        {
+            get;
+            private set;
+        }
+        public string PlayerId
+        {
+            get;
+            private set;
+        }
+        public string Role
+        {
+            get;
+            private set;
+        }
+        public string ParticipantToken
+        {
+            get;
+            private set;
+        }
         public bool IsJoined => !string.IsNullOrEmpty(SessionId);
-        public ClientSessionPhase? Phase { get; private set; }
-        public bool IsSceneLoaded { get; private set; }
-        public int ParticipantCount { get; private set; }
+        public ClientSessionPhase? Phase
+        {
+            get;
+            private set;
+        }
+        public bool IsSceneLoaded
+        {
+            get;
+            private set;
+        }
+        public int ParticipantCount
+        {
+            get;
+            private set;
+        }
         private int[] lastUnlockedRooms;
         public event Action<System.Collections.Generic.IReadOnlyList<int>> RoomsChanged;
         public event Action SnapshotApplied;
@@ -25,7 +53,8 @@ namespace EscapeGame.Session
         public void Clear()
         {
             SessionId = PlayerId = Role = ParticipantToken = null;
-            Phase = null; lastUnlockedRooms = null;
+            Phase = null;
+            lastUnlockedRooms = null;
             IsSceneLoaded = false;
             ParticipantCount = 0;
         }
@@ -109,7 +138,8 @@ namespace EscapeGame.Session
             {
                 var ids = new HashSet<int>();
                 foreach (int id in snapshot.UnlockedRoomIds)
-                    if (id <= 0 || !ids.Add(id)) throw new ArgumentException("잘못된 방 해금 목록입니다.");
+                    if (id <= 0 || !ids.Add(id))
+                        throw new ArgumentException("잘못된 방 해금 목록입니다.");
             }
             var prevPhase = Phase;
             Phase = nextPhase;
@@ -123,7 +153,7 @@ namespace EscapeGame.Session
                 RoomsChanged?.Invoke(Array.AsReadOnly(lastUnlockedRooms));
             }
 
-            if(prevPhase != nextPhase)
+            if (prevPhase != nextPhase)
             {
                 PhaseChanged?.Invoke(prevPhase, nextPhase);
             }

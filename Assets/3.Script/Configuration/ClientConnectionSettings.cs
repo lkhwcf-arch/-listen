@@ -3,7 +3,10 @@ using EscapeGame.Networking;
 
 namespace EscapeGame.Configuration
 {
-    public enum ClientExecutionEnvironment { Editor = 0, TestBuild = 1, StableBuild = 2 }
+    public enum ClientExecutionEnvironment
+    {
+        Editor = 0, TestBuild = 1, StableBuild = 2
+    }
 
     [Serializable]
     public sealed class ClientConnectionProfile
@@ -24,9 +27,18 @@ namespace EscapeGame.Configuration
     // 변경 가능한 JSON 필드와 실제 소비자가 사용하는 불변 설정을 분리합니다.
     public sealed class ClientConnectionSettings
     {
-        public ClientExecutionEnvironment Environment { get; }
-        public string ServerBaseUrl { get; }
-        public bool AutoConnect { get; }
+        public ClientExecutionEnvironment Environment
+        {
+            get;
+        }
+        public string ServerBaseUrl
+        {
+            get;
+        }
+        public bool AutoConnect
+        {
+            get;
+        }
         private ClientConnectionSettings(ClientExecutionEnvironment environment, ClientConnectionProfile profile)
         {
             Environment = environment;
@@ -45,10 +57,16 @@ namespace EscapeGame.Configuration
                 ClientExecutionEnvironment.StableBuild => document.stableBuild,
                 _ => throw new ArgumentOutOfRangeException(nameof(environment))
             };
-            if (profile == null) throw new InvalidOperationException($"접속 config에 {environment} 설정이 없습니다.");
-            try { return new ClientConnectionSettings(environment, profile); }
+            if (profile == null)
+                throw new InvalidOperationException($"접속 config에 {environment} 설정이 없습니다.");
+            try
+            {
+                return new ClientConnectionSettings(environment, profile);
+            }
             catch (ArgumentException error)
-            { throw new InvalidOperationException($"{environment} 서버 주소를 config에 등록하세요. {error.Message}", error); }
+            {
+                throw new InvalidOperationException($"{environment} 서버 주소를 config에 등록하세요. {error.Message}", error);
+            }
         }
     }
 }

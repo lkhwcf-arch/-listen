@@ -19,17 +19,25 @@ namespace EscapeGame.Configuration
         }
         public Task StartAsync(CancellationToken token)
         {
-            if (started) return Task.CompletedTask;
+            if (started)
+                return Task.CompletedTask;
             started = true;
             return settings.AutoConnect ? ConnectAsync(token) : Task.CompletedTask;
         }
         public async Task ConnectAsync(CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
-            if (running) return;
+            if (running)
+                return;
             running = true;
-            try { await connect(settings.ServerBaseUrl, token); }
-            finally { running = false; }
+            try
+            {
+                await connect(settings.ServerBaseUrl, token);
+            }
+            finally
+            {
+                running = false;
+            }
         }
     }
 }

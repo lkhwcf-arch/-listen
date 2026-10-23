@@ -29,7 +29,8 @@ namespace EscapeGame.Session
         }
         public void Tick(CancellationToken token)
         {
-            if (token.IsCancellationRequested || !service.State.IsJoined) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined)
+                return;
             bool playerChanged = playerId != service.State.PlayerId;
             if (playerChanged)
             {
@@ -43,15 +44,19 @@ namespace EscapeGame.Session
                 activeInterval = selected;
                 activeInterval.Restart(false);
             }
-            if (playerChanged) activeInterval.Restart();
-            if (stopped || service.IsBusy) return;
-            if (activeInterval.TryConsume()) _ = PollAsync(token);
+            if (playerChanged)
+                activeInterval.Restart();
+            if (stopped || service.IsBusy)
+                return;
+            if (activeInterval.TryConsume())
+                _ = PollAsync(token);
         }
         private async Task PollAsync(CancellationToken token)
         {
             string requestedPlayer = service.State.PlayerId;
             var result = await service.QueryAsync(token);
-            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer) return;
+            if (token.IsCancellationRequested || !service.State.IsJoined || service.State.PlayerId != requestedPlayer)
+                return;
             if (result.Outcome != SessionCommandOutcome.Completed)
             {
                 switch (SessionPollingFailurePolicy.Resolve(result))
@@ -67,7 +72,8 @@ namespace EscapeGame.Session
                         stopped = true;
                         Stopped?.Invoke(result.Code);
                         return;
-                    default: return;
+                    default:
+                        return;
                 }
             }
             if (connectionFailed)

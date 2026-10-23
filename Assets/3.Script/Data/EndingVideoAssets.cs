@@ -23,7 +23,8 @@ namespace EscapeGame.Data
         }
         public VideoClip Resolve(string configPath)
         {
-            if (clip == null) throw new InvalidOperationException("Resources/EndingVideo에 엔딩 영상이 연결되지 않았습니다.");
+            if (clip == null)
+                throw new InvalidOperationException("Resources/EndingVideo에 엔딩 영상이 연결되지 않았습니다.");
             var key = Normalize(configPath);
             if (key != Normalize(path))
                 throw new InvalidOperationException("GAME_CONFIG 16011과 등록된 엔딩 영상 키가 다릅니다: " + configPath);
@@ -33,7 +34,8 @@ namespace EscapeGame.Data
         private static string Normalize(string value)
         {
             value = (value ?? "").Trim().Replace('\\', '/');
-            if (value.StartsWith("Assets/", StringComparison.Ordinal)) value = value.Substring("Assets/".Length);
+            if (value.StartsWith("Assets/", StringComparison.Ordinal))
+                value = value.Substring("Assets/".Length);
             int dot = value.LastIndexOf('.');
             return dot > value.LastIndexOf('/') ? value.Substring(0, dot) : value;
         }

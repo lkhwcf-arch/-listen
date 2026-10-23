@@ -7,7 +7,10 @@ using UnityEngine.Events;
 // The six source colors occur twice on each 12-panel wheel, 30 degrees apart.
 public class SilentRoom7ColorLock : MonoBehaviour
 {
-    public enum DialColor { Red, Purple, Green, Burgundy, Pink, Yellow }
+    public enum DialColor
+    {
+        Red, Purple, Green, Burgundy, Pink, Yellow
+    }
 
     [Header("Imported FBX parts")]
     [SerializeField] Transform[] wheels = new Transform[6];
@@ -28,7 +31,8 @@ public class SilentRoom7ColorLock : MonoBehaviour
     // server/round manager. This sequence is not a canonical puzzle solution.
     [Header("Editor demonstration only")]
     [SerializeField] bool useEditorTestCombination = true;
-    [SerializeField] DialColor[] editorTestCombination = {
+    [SerializeField]
+    DialColor[] editorTestCombination = {
         DialColor.Purple, DialColor.Green, DialColor.Burgundy,
         DialColor.Pink, DialColor.Yellow, DialColor.Red
     };
@@ -96,16 +100,19 @@ public class SilentRoom7ColorLock : MonoBehaviour
 
     public DialColor GetColor(int index)
     {
-        if (index < 0 || index >= 6) throw new ArgumentOutOfRangeException(nameof(index));
+        if (index < 0 || index >= 6)
+            throw new ArgumentOutOfRangeException(nameof(index));
         return (DialColor)PositiveModulo(stepCounts[index], 6);
     }
 
     // Use from existing UI, raycast, or the supplied SilentRoom7DialClick helper.
     public void NudgeDial(int index, int direction)
     {
-        if (!enabled || IsLocked || index < 0 || index >= 6 || direction == 0) return;
+        if (!enabled || IsLocked || index < 0 || index >= 6 || direction == 0)
+            return;
         stepCounts[index] += direction > 0 ? 1 : -1;
-        if (rotations[index] == null) rotations[index] = StartCoroutine(AnimateWheel(index));
+        if (rotations[index] == null)
+            rotations[index] = StartCoroutine(AnimateWheel(index));
     }
 
     IEnumerator AnimateWheel(int index)
@@ -126,14 +133,17 @@ public class SilentRoom7ColorLock : MonoBehaviour
 
     public void Submit()
     {
-        if (!enabled || IsLocked) return;
+        if (!enabled || IsLocked)
+            return;
         if (!hasCombination)
         {
             Debug.LogWarning("Room 7: SetCombination must be called before Submit.", this);
             return;
         }
         // Avoid judging a color while its wheel is still turning.
-        foreach (Coroutine running in rotations) if (running != null) return;
+        foreach (Coroutine running in rotations)
+            if (running != null)
+                return;
         for (int i = 0; i < 6; i++)
             if (GetColor(i) != target[i])
             {

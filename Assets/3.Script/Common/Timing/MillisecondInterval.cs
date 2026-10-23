@@ -23,7 +23,8 @@ namespace EscapeGame.Timing
         public void Restart(bool runImmediately = true)
         {
             long nowMs = clock.ElapsedMilliseconds;
-            if (nowMs < 0) throw new InvalidOperationException("경과 시간은 음수일 수 없습니다.");
+            if (nowMs < 0)
+                throw new InvalidOperationException("경과 시간은 음수일 수 없습니다.");
             lastRunMs = lastObservedMs = nowMs;
             immediate = runImmediately;
         }

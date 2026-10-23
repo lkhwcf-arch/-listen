@@ -6,12 +6,27 @@ namespace EscapeGame.Data.Tables
     // LOCK.csv의 한 행을 나타내는 읽기 전용 정의입니다.
     public sealed class LockData
     {
-        public static CsvTableMapping<LockData> Table { get; } = new CsvTableMapping<LockData>
+        public static CsvTableMapping<LockData> Table
+        {
+            get;
+        } = new CsvTableMapping<LockData>
             ("LOCK", row => new LockData(row));
-        public int AnchorRef { get; }
-        public string DialFace { get; }
-        public IReadOnlyList<string> DialLetters { get; }
-        public string DisplayFace { get; }
+        public int AnchorRef
+        {
+            get;
+        }
+        public string DialFace
+        {
+            get;
+        }
+        public IReadOnlyList<string> DialLetters
+        {
+            get;
+        }
+        public string DisplayFace
+        {
+            get;
+        }
 
         public LockData(CsvRow row)
         {

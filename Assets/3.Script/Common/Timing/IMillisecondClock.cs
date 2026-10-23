@@ -2,6 +2,9 @@ namespace EscapeGame.Timing
 {
     public interface IMillisecondClock
     {
-        long ElapsedMilliseconds { get; }
+        long ElapsedMilliseconds
+        {
+            get;
+        }
     }
 }

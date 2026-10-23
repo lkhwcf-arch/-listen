@@ -23,13 +23,19 @@ namespace EscapeGame.Editor
         [MenuItem("Tools/Game/방 스폰 미리보기 자동 검사")]
         public static void PickData()
         {
-            if (!Application.isPlaying) { Debug.LogWarning("Ingame 씬에서 직접 Play한 뒤 검사하세요."); return; }
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("Ingame 씬에서 직접 Play한 뒤 검사하세요.");
+                return;
+            }
             var directory = EditorUtility.OpenFolderPanel("검사할 CSV 폴더 선택", Application.dataPath + "/11.CSV", "");
-            if (!string.IsNullOrEmpty(directory)) RunFromDirectory(directory);
+            if (!string.IsNullOrEmpty(directory))
+                RunFromDirectory(directory);
         }
         public static int RunFromDirectory(string directory)
         {
-            if (!Application.isPlaying) throw new InvalidOperationException("Play 모드에서 실행하세요.");
+            if (!Application.isPlaying)
+                throw new InvalidOperationException("Play 모드에서 실행하세요.");
             var content = Resources.Load<GameContentAssets>("GameContent");
             var source = new CsvDataSet(Directory.GetFiles(directory, "*.csv").ToDictionary(Path.GetFileNameWithoutExtension,
                 file => new CsvParser().Read(File.ReadAllText(file), Path.GetFileNameWithoutExtension(file)), StringComparer.Ordinal));
@@ -38,16 +44,23 @@ namespace EscapeGame.Editor
                 throw new InvalidOperationException("검사 CSV 오류: " + string.Join("\n", report.Issues));
             var data = new CsvGameData(store);
             int checks = 0;
-            foreach (string role in new[] { "A", "B" }) checks += RunRole(data, role);
+            foreach (string role in new[] { "A", "B" })
+                checks += RunRole(data, role);
             Debug.Log($"[방 스폰 미리보기] Unity 검사 {checks}개 통과. 임시 큐브 검사이며 실제 방 모델 배치는 별도 확인하세요.");
             return checks;
         }
         private static int RunRole(CsvGameData data, string role)
         {
             int checks = 0;
-            void Check(bool value, string label) { if (!value) throw new InvalidOperationException(role + ": " + label); checks++; }
+            void Check(bool value, string label)
+            {
+                if (!value)
+                    throw new InvalidOperationException(role + ": " + label);
+                checks++;
+            }
             var scene = SceneManager.CreateScene("RoomPreviewChecks_" + role + Guid.NewGuid().ToString("N"));
-            var fixture = new GameObject("검사용 원본"); SceneManager.MoveGameObjectToScene(fixture, scene);
+            var fixture = new GameObject("검사용 원본");
+            SceneManager.MoveGameObjectToScene(fixture, scene);
             fixture.SetActive(false);
             var assets = ScriptableObject.CreateInstance<GameContentAssets>();
             typeof(GameContentAssets).GetField("placementMode", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(assets, RoomPlacementMode.ConnectionPoints);
@@ -61,19 +74,28 @@ namespace EscapeGame.Editor
                 var bindings = new Dictionary<string, GameObject>(StringComparer.Ordinal);
                 GameObject Make(string name)
                 {
-                    var go = new GameObject(name); go.transform.SetParent(fixture.transform, false); return go;
+                    var go = new GameObject(name);
+                    go.transform.SetParent(fixture.transform, false);
+                    return go;
                 }
                 GameObject Room(RoomData row, bool sceneTemplate)
                 {
                     var go = Make("원본_" + row.RoomNo);
-                    if (sceneTemplate) go.AddComponent<RoomSceneView>().Configure(row.RoomNo);
+                    if (sceneTemplate)
+                        go.AddComponent<RoomSceneView>().Configure(row.RoomNo);
                     foreach (string name in plan.Anchors(row).Select(anchor => anchor.AnchorId).Distinct())
-                    { var anchor = new GameObject(name); anchor.transform.SetParent(go.transform, false); anchor.transform.localPosition = new Vector3(1, 0, 1); }
+                    {
+                        var anchor = new GameObject(name);
+                        anchor.transform.SetParent(go.transform, false);
+                        anchor.transform.localPosition = new Vector3(1, 0, 1);
+                    }
                     string entryName = $"R{row.RoomNo:00}_EntryPoint";
-                    var entry = go.transform.Find(entryName)?.gameObject ?? new GameObject(entryName); entry.transform.SetParent(go.transform, false);
+                    var entry = go.transform.Find(entryName)?.gameObject ?? new GameObject(entryName);
+                    entry.transform.SetParent(go.transform, false);
                     entry.transform.localRotation = Quaternion.Euler(0, 180, 0);
                     string exitName = $"R{row.RoomNo:00}_DoorPoint";
-                    var exit = go.transform.Find(exitName)?.gameObject ?? new GameObject(exitName); exit.transform.SetParent(go.transform, false);
+                    var exit = go.transform.Find(exitName)?.gameObject ?? new GameObject(exitName);
+                    exit.transform.SetParent(go.transform, false);
                     exit.transform.localPosition = new Vector3(0, 0, 5);
                     return go;
                 }
@@ -84,14 +106,16 @@ namespace EscapeGame.Editor
                 foreach (var anchor in plan.Anchors(first).Concat(plan.Anchors(next)).Where(anchor => anchor.PrefabId != spawnPrefab))
                 {
                     string path = plan.PrefabPath(anchor.PrefabId);
-                    if (bindings.ContainsKey(path)) continue;
+                    if (bindings.ContainsKey(path))
+                        continue;
                     var prop = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     prop.name = "검사용_소품_" + anchor.PrefabId;
                     prop.transform.SetParent(fixture.transform, false);
                     if (new PrefabFeaturePlan(data, anchor.PrefabId).Has(FeatureScripts.Door))
                     {
                         var hinge = new GameObject(EscapeGame.Interaction.WorldDoorView.HingeName).transform;
-                        hinge.SetParent(prop.transform, false); hinge.localPosition = new Vector3(-.5f, 0, 0);
+                        hinge.SetParent(prop.transform, false);
+                        hinge.localPosition = new Vector3(-.5f, 0, 0);
                     }
                     bindings.Add(path, prop);
                 }
@@ -112,7 +136,10 @@ namespace EscapeGame.Editor
                 Check(player.GetComponent<PlayerMovementDriver>().IsReady && player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>().IsReady, "공통 플레이어 조립 경로 재사용");
                 checks += CheckGameplayGate(player, scene);
                 var pointer = player.GetComponent<PlayerPointerDriver>();
-                pointer.Controls.SetGameplayAllowed(true); pointer.Controls.SetActive(true); pointer.Controls.SetFocused(true); pointer.Controls.CapturePointer();
+                pointer.Controls.SetGameplayAllowed(true);
+                pointer.Controls.SetActive(true);
+                pointer.Controls.SetFocused(true);
+                pointer.Controls.CapturePointer();
                 var interaction = player.GetComponent<EscapeGame.Interaction.PlayerInteractionDriver>();
                 var door = preview.GetComponentsInChildren<EscapeGame.Interaction.WorldDoorView>(true).Single();
                 var doorTarget = door.GetComponent<EscapeGame.Interaction.WorldInteractionTarget>();
@@ -128,14 +155,28 @@ namespace EscapeGame.Editor
                 var entryPoint = nextTemplate.transform.Find($"R{next.RoomNo:00}_EntryPoint");
                 entryPoint.name = "누락_입구";
                 bool rejected = false;
-                try { session.Clear(first.RoomNo); } catch (InvalidOperationException) { rejected = true; }
+                try
+                {
+                    session.Clear(first.RoomNo);
+                }
+                catch (InvalidOperationException)
+                {
+                    rejected = true;
+                }
                 Check(rejected && session.FindPreview(next) == null && !session.Progression.IsCleared(first), "연결점 누락 시 소품 포함 후보 방 제거 및 클리어 미확정");
                 entryPoint.name = $"R{next.RoomNo:00}_EntryPoint";
                 var required = plan.Anchors(next).First(anchor => anchor.PrefabId != spawnPrefab);
                 var missing = nextTemplate.transform.Find(required.AnchorId);
                 missing.name = "누락_앵커";
                 rejected = false;
-                try { session.Clear(first.RoomNo); } catch (InvalidOperationException) { rejected = true; }
+                try
+                {
+                    session.Clear(first.RoomNo);
+                }
+                catch (InvalidOperationException)
+                {
+                    rejected = true;
+                }
                 Check(rejected && session.FindPreview(next) == null && !session.Progression.IsCleared(first), "CSV 앵커 누락도 클리어 확정을 차단");
                 missing.name = required.AnchorId;
                 Check(session.Clear(first.RoomNo), "수정 후 재시도 성공");
@@ -148,14 +189,16 @@ namespace EscapeGame.Editor
                 Check(session.FindPreview(first) == preview && !session.Clear(first.RoomNo), "이전 방 유지와 중복 클리어 방지");
                 Check(Vector3.Distance(RoomConnectionAlignment.FindExit(preview.transform, first.RoomNo).position,
                     RoomConnectionAlignment.FindEntry(nextPreview.transform, next.RoomNo).position) < .0001f, "소품을 포함한 다음 방 전체의 연결점 정렬");
-                session.Dispose(); session = null;
+                session.Dispose();
+                session = null;
                 Check(firstTemplate.activeSelf && preview == null && nextPreview == null, "종료 시 원본 활성 상태 복원 및 생성물 제거");
             }
             finally
             {
                 session?.Dispose();
                 Object.DestroyImmediate(assets);
-                foreach (var root in scene.GetRootGameObjects()) Object.DestroyImmediate(root);
+                foreach (var root in scene.GetRootGameObjects())
+                    Object.DestroyImmediate(root);
                 SceneManager.UnloadSceneAsync(scene);
             }
             return checks;
@@ -163,10 +206,16 @@ namespace EscapeGame.Editor
         private static int CheckGameplayGate(FirstPersonPlayerRig player, Scene scene)
         {
             int checks = 0;
-            void Check(bool value, string label) { if (!value) throw new InvalidOperationException(label); checks++; }
+            void Check(bool value, string label)
+            {
+                if (!value)
+                    throw new InvalidOperationException(label);
+                checks++;
+            }
             var connection = new PreviewConnection();
             using var gate = new SessionStartGate(connection);
-            var host = new GameObject("시작 조건 검사"); SceneManager.MoveGameObjectToScene(host, scene);
+            var host = new GameObject("시작 조건 검사");
+            SceneManager.MoveGameObjectToScene(host, scene);
             try
             {
                 var pointer = player.GetComponent<PlayerPointerDriver>();
@@ -187,12 +236,20 @@ namespace EscapeGame.Editor
                 Object.DestroyImmediate(host);
                 Check(!canvas.activeSelf, "시작 어댑터 종료 시 대기 UI 비활성 및 정리 예약");
             }
-            finally { if (host != null) Object.DestroyImmediate(host); }
+            finally
+            {
+                if (host != null)
+                    Object.DestroyImmediate(host);
+            }
             return checks;
         }
         private sealed class PreviewConnection : ISessionConnectionService
         {
-            public SessionInfo State { get; private set; } = new SessionInfo(null, null, null, null, 0, false);
+            public SessionInfo State
+            {
+                get;
+                private set;
+            } = new SessionInfo(null, null, null, null, 0, false);
             public bool IsBusy => false;
             public string ServerBaseUrl => "http://preview";
             public event Action<SessionInfo> StateChanged;
@@ -200,9 +257,15 @@ namespace EscapeGame.Editor
             public event Action<SessionFailureCode> BackgroundFailed { add { } remove { } }
             public event Action<SessionFailureCode> Disconnected { add { } remove { } }
             public void Publish(ClientSessionPhase phase, int count)
-            { State = new SessionInfo("preview", "p", "A", phase, count, phase == ClientSessionPhase.Playing); StateChanged?.Invoke(State); }
+            {
+                State = new SessionInfo("preview", "p", "A", phase, count, phase == ClientSessionPhase.Playing);
+                StateChanged?.Invoke(State);
+            }
             public void Disconnect(SessionFailureCode reason)
-            { State = new SessionInfo("preview", "p", "A", null, 0, false, SessionConnectionStatus.Disconnected, reason); StateChanged?.Invoke(State); }
+            {
+                State = new SessionInfo("preview", "p", "A", null, 0, false, SessionConnectionStatus.Disconnected, reason);
+                StateChanged?.Invoke(State);
+            }
             public System.Threading.Tasks.Task<SessionCommandResult> LeaveAsync(System.Threading.CancellationToken token) => throw new NotSupportedException();
             public System.Threading.Tasks.Task<SessionCommandResult> HeartbeatAsync(System.Threading.CancellationToken token) => throw new NotSupportedException();
             public System.Threading.Tasks.Task<SessionCommandResult> JoinAsync(string address, System.Threading.CancellationToken token) => throw new NotSupportedException();

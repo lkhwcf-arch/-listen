@@ -13,15 +13,21 @@ namespace EscapeGame.Interaction
         {
             foreach (var renderer in target.GetComponentsInChildren<Renderer>())
             {
-                var saved = new MaterialPropertyBlock(); renderer.GetPropertyBlock(saved);
-                var tinted = new MaterialPropertyBlock(); renderer.GetPropertyBlock(tinted);
-                tinted.SetColor(BaseColor, target.HighlightColor); tinted.SetColor(Color, target.HighlightColor);
-                entries.Add((renderer, saved)); renderer.SetPropertyBlock(tinted);
+                var saved = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(saved);
+                var tinted = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(tinted);
+                tinted.SetColor(BaseColor, target.HighlightColor);
+                tinted.SetColor(Color, target.HighlightColor);
+                entries.Add((renderer, saved));
+                renderer.SetPropertyBlock(tinted);
             }
         }
         public void Dispose()
         {
-            foreach (var entry in entries) if (entry.renderer != null) entry.renderer.SetPropertyBlock(entry.saved);
+            foreach (var entry in entries)
+                if (entry.renderer != null)
+                    entry.renderer.SetPropertyBlock(entry.saved);
             entries.Clear();
         }
     }
@@ -29,8 +35,12 @@ namespace EscapeGame.Interaction
     {
         internal static void Destroy(UnityEngine.Object value)
         {
-            if (value == null) return;
-            if (Application.isPlaying) UnityEngine.Object.Destroy(value); else UnityEngine.Object.DestroyImmediate(value);
+            if (value == null)
+                return;
+            if (Application.isPlaying)
+                UnityEngine.Object.Destroy(value);
+            else
+                UnityEngine.Object.DestroyImmediate(value);
         }
     }
 }

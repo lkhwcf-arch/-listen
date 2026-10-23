@@ -12,8 +12,10 @@ namespace EscapeGame.World
 
         private static Transform FindPoint(Transform root, int roomNo, string suffix)
         {
-            if (root == null) throw new ArgumentNullException(nameof(root));
-            if (roomNo < 1) throw new ArgumentOutOfRangeException(nameof(roomNo));
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            if (roomNo < 1)
+                throw new ArgumentOutOfRangeException(nameof(roomNo));
             string name = $"R{roomNo:00}_{suffix}";
             var matches = root.GetComponentsInChildren<Transform>(true).Where(item => item.name == name).ToArray();
             if (matches.Length != 1)

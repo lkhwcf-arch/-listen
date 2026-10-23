@@ -12,15 +12,22 @@ namespace EscapeGame.Editor
         private readonly DeveloperRoomProgression progression;
         private bool disposed;
         public DeveloperRoomDoorService(DeveloperRoomProgression progression)
-        { this.progression = progression ?? throw new ArgumentNullException(nameof(progression)); }
+        {
+            this.progression = progression ?? throw new ArgumentNullException(nameof(progression));
+        }
         public Task<bool> CheckRoomDoorAsync(int roomNo, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
-            if (disposed) throw new ObjectDisposedException(nameof(DeveloperRoomDoorService));
-            if (roomNo < 1) throw new ArgumentOutOfRangeException(nameof(roomNo));
+            if (disposed)
+                throw new ObjectDisposedException(nameof(DeveloperRoomDoorService));
+            if (roomNo < 1)
+                throw new ArgumentOutOfRangeException(nameof(roomNo));
             return Task.FromResult(progression.IsUnlocked(progression.FindRoom(roomNo)));
         }
-        public void Dispose() { disposed = true; }
+        public void Dispose()
+        {
+            disposed = true;
+        }
     }
 }
 #endif

@@ -34,72 +34,115 @@ namespace EscapeGame.Audio
         public event Action<int> RoomEntered;
         public void Initialize(FirstPersonPlayerRig rig, CsvGameData data, string role, GameFeedbackAssets settings, RoomSceneView first)
         {
-            if (plan != null) throw new InvalidOperationException("게임 효과는 한 번만 초기화합니다.");
-            settings.Validate(); this.settings = settings; this.rig = rig;
+            if (plan != null)
+                throw new InvalidOperationException("게임 효과는 한 번만 초기화합니다.");
+            settings.Validate();
+            this.settings = settings;
+            this.rig = rig;
             plan = new RoomLoadPlan(data, role);
-            outputRoot = new GameObject("게임 사운드 출력"); SceneManager.MoveGameObjectToScene(outputRoot, gameObject.scene);
-            loops = new AudioSource[settings.Ambient.Count]; fade = new AmbientCrossfade(Math.Max(1, loops.Length), settings.AmbientFadeSeconds);
+            outputRoot = new GameObject("게임 사운드 출력");
+            SceneManager.MoveGameObjectToScene(outputRoot, gameObject.scene);
+            loops = new AudioSource[settings.Ambient.Count];
+            fade = new AmbientCrossfade(Math.Max(1, loops.Length), settings.AmbientFadeSeconds);
             voices = new AudioSource[settings.EffectVoices];
-            for (int i = 0; i < voices.Length; i++) voices[i] = MakeSource("효과음_" + i);
-            interaction = rig.GetComponent<PlayerInteractionDriver>(); interaction.FeedbackEmitted += OnFeedback;
-            gait = rig.GetComponent<PlayerGaitDriver>(); if (gait != null) gait.Stepped += OnStep;
+            for (int i = 0; i < voices.Length; i++)
+                voices[i] = MakeSource("효과음_" + i);
+            interaction = rig.GetComponent<PlayerInteractionDriver>();
+            interaction.FeedbackEmitted += OnFeedback;
+            gait = rig.GetComponent<PlayerGaitDriver>();
+            if (gait != null)
+                gait.Stepped += OnStep;
             previous = rig.PlayerCamera.transform.position;
-            RegisterRoom(first); EnterRoom(plan.First.Id, true);
+            RegisterRoom(first);
+            EnterRoom(plan.First.Id, true);
         }
         public void BindWorld(IngameWorldDriver world)
         {
-            if (world == null) throw new ArgumentNullException(nameof(world));
-            if (ReferenceEquals(this.world, world)) return;
-            if (!ReferenceEquals(this.world, null)) throw new InvalidOperationException("게임 효과의 월드 소유자는 한 번만 연결합니다. 다른 입장에는 새 플레이어를 생성해 주세요.");
+            if (world == null)
+                throw new ArgumentNullException(nameof(world));
+            if (ReferenceEquals(this.world, world))
+                return;
+            if (!ReferenceEquals(this.world, null))
+                throw new InvalidOperationException("게임 효과의 월드 소유자는 한 번만 연결합니다. 다른 입장에는 새 플레이어를 생성해 주세요.");
             this.world = world;
             world.RoomLoaded += OnRoomLoaded;
-            foreach (var room in world.LoadedRooms.Values) RegisterRoom(room);
+            foreach (var room in world.LoadedRooms.Values)
+                RegisterRoom(room);
         }
         private void OnRoomLoaded(RoomData row, RoomSceneView view) => RegisterRoom(view);
         public void RegisterRoom(RoomSceneView view)
         {
-            if (this == null || view == null || plan == null) return;
+            if (this == null || view == null || plan == null)
+                return;
             var row = plan.Rooms.SingleOrDefault(item => item.RoomNo == view.RoomNo);
-            if (row == null || !loaded.Add(row.Id)) return;
+            if (row == null || !loaded.Add(row.Id))
+                return;
             foreach (var anchor in view.GetComponentsInChildren<AnchorInstance>(true))
             {
-                if (anchor.Definition == null) continue;
+                if (anchor.Definition == null)
+                    continue;
                 anchors[anchor.Definition.Id] = anchor.transform;
                 var door = anchor.GetComponent<WorldDoorView>();
-                if (door != null && row.Next != 0) boundaries.Add(new RoomDoorwayAudio(door, row.Id, row.Next, settings.DoorwayMarginMeters));
+                if (door != null && row.Next != 0)
+                    boundaries.Add(new RoomDoorwayAudio(door, row.Id, row.Next, settings.DoorwayMarginMeters));
             }
         }
         private void OnFeedback(GameAudioCue cue, AnchorData anchor) => PlayCue(cue, anchor);
         private void OnStep() => PlayCue(GameAudioCue.Footstep);
         private void PlayCue(GameAudioCue cue, AnchorData anchor = null)
         {
-            if (plan == null || suspended || !isActiveAndEnabled) return;
-            var sound = settings.Find(cue); if (sound == null) return;
+            if (plan == null || suspended || !isActiveAndEnabled)
+                return;
+            var sound = settings.Find(cue);
+            if (sound == null)
+                return;
             // 닫기 피드백은 실제 Closeup 종료 이벤트의 마지막 프레임에 한해 허용합니다.
             bool closing = cue == GameAudioCue.CloseupClose || cue == GameAudioCue.ClickClose;
             long nowMs = (long)(Time.realtimeSinceStartupAsDouble * 1000);
             if (!playbackState.TryTake(cue, sound.clips.Length, sound.cooldownMs, sound.closeupOnly,
-                interaction.Closeup.IsOpen, closing, nowMs, out int cursor)) return;
+                interaction.Closeup.IsOpen, closing, nowMs, out int cursor))
+                return;
             var clip = sound.clips[cursor];
             var source = voices[voiceCursor];
-            for (int i = 0; i < voices.Length; i++) if (!voices[i].isPlaying) { source = voices[i]; break; }
-            voiceCursor = (voiceCursor + 1) % voices.Length; source.Stop();
+            for (int i = 0; i < voices.Length; i++)
+                if (!voices[i].isPlaying)
+                {
+                    source = voices[i];
+                    break;
+                }
+            voiceCursor = (voiceCursor + 1) % voices.Length;
+            source.Stop();
             source.transform.position = anchor != null && anchors.TryGetValue(anchor.Id, out var origin) && origin != null ? origin.position : rig.transform.position;
-            source.volume = sound.volume; source.spatialBlend = sound.spatial ? 1 : 0;
-            source.rolloffMode = AudioRolloffMode.Linear; source.minDistance = sound.minDistance; source.maxDistance = sound.maxDistance;
-            source.clip = clip; source.loop = false; source.Play();
+            source.volume = sound.volume;
+            source.spatialBlend = sound.spatial ? 1 : 0;
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.minDistance = sound.minDistance;
+            source.maxDistance = sound.maxDistance;
+            source.clip = clip;
+            source.loop = false;
+            source.Play();
         }
         private void EnterRoom(int roomId, bool immediate = false)
         {
-            if (!immediate && currentRoom == roomId) return;
-            currentRoom = roomId; int index = -1;
-            for (int i = 0; i < settings.Ambient.Count; i++) if (settings.Ambient[i].roomNo == CurrentRoomNo) { index = i; break; }
-            fade.Select(index, immediate); ambientDirty = true; RoomEntered?.Invoke(CurrentRoomNo);
+            if (!immediate && currentRoom == roomId)
+                return;
+            currentRoom = roomId;
+            int index = -1;
+            for (int i = 0; i < settings.Ambient.Count; i++)
+                if (settings.Ambient[i].roomNo == CurrentRoomNo)
+                {
+                    index = i;
+                    break;
+                }
+            fade.Select(index, immediate);
+            ambientDirty = true;
+            RoomEntered?.Invoke(CurrentRoomNo);
             Debug.Log($"[방 배경음] {CurrentRoomNo}번 방 / 전환 {settings.AmbientFadeSeconds:0.##}초");
         }
         private void LateUpdate()
         {
-            if (plan == null || rig == null) return;
+            if (plan == null || rig == null)
+                return;
             var current = rig.PlayerCamera.transform.position;
             if (!suspended)
             {
@@ -107,15 +150,22 @@ namespace EscapeGame.Audio
                 {
                     foreach (var boundary in boundaries)
                     {
-                        if (currentRoom != boundary.FromId && currentRoom != boundary.ToId) continue;
+                        if (currentRoom != boundary.FromId && currentRoom != boundary.ToId)
+                            continue;
                         bool crossed = boundary.Crossed(previous, current);
                         if (crossed && loaded.Contains(boundary.FromId) && loaded.Contains(boundary.ToId))
-                        { EnterRoom(currentRoom == boundary.FromId ? boundary.ToId : boundary.FromId); break; }
+                        {
+                            EnterRoom(currentRoom == boundary.FromId ? boundary.ToId : boundary.FromId);
+                            break;
+                        }
                     }
                 }
-                else foreach (var boundary in boundaries) boundary.Reset();
+                else
+                    foreach (var boundary in boundaries)
+                        boundary.Reset();
                 bool gainsChanged = fade.Tick(Time.unscaledDeltaTime);
-                if (gainsChanged || ambientDirty) ApplyAmbient();
+                if (gainsChanged || ambientDirty)
+                    ApplyAmbient();
             }
             previous = current;
         }
@@ -125,31 +175,58 @@ namespace EscapeGame.Audio
             for (int i = 0; i < loops.Length; i++)
             {
                 float gain = fade.Gain(i);
-                if (gain <= 0) { if (loops[i] != null && loops[i].isPlaying) loops[i].Stop(); continue; }
-                if (loops[i] == null) { loops[i] = MakeSource("방 배경음_" + settings.Ambient[i].roomNo); loops[i].clip = settings.Ambient[i].clip; loops[i].loop = true; }
+                if (gain <= 0)
+                {
+                    if (loops[i] != null && loops[i].isPlaying)
+                        loops[i].Stop();
+                    continue;
+                }
+                if (loops[i] == null)
+                {
+                    loops[i] = MakeSource("방 배경음_" + settings.Ambient[i].roomNo);
+                    loops[i].clip = settings.Ambient[i].clip;
+                    loops[i].loop = true;
+                }
                 loops[i].volume = settings.Ambient[i].volume * gain;
-                if (!loops[i].isPlaying) loops[i].Play();
+                if (!loops[i].isPlaying)
+                    loops[i].Play();
             }
         }
         private void OnEnable() => ambientDirty = true;
         public void SuspendForEnding()
         {
             suspended = true;
-            if (outputRoot != null) foreach (var source in outputRoot.GetComponentsInChildren<AudioSource>(true)) source.Stop();
+            if (outputRoot != null)
+                foreach (var source in outputRoot.GetComponentsInChildren<AudioSource>(true))
+                    source.Stop();
         }
         private AudioSource MakeSource(string label)
         {
-            var go = new GameObject(label); go.transform.SetParent(outputRoot.transform, false);
-            var source = go.AddComponent<AudioSource>(); source.playOnAwake = false; source.spatialBlend = 0; source.dopplerLevel = 0; return source;
+            var go = new GameObject(label);
+            go.transform.SetParent(outputRoot.transform, false);
+            var source = go.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            source.spatialBlend = 0;
+            source.dopplerLevel = 0;
+            return source;
         }
         private void OnDisable()
-        { if (outputRoot != null) foreach (var source in outputRoot.GetComponentsInChildren<AudioSource>(true)) source.Stop(); }
+        {
+            if (outputRoot != null)
+                foreach (var source in outputRoot.GetComponentsInChildren<AudioSource>(true))
+                    source.Stop();
+        }
         private void OnDestroy()
         {
-            if (interaction != null) interaction.FeedbackEmitted -= OnFeedback;
-            if (gait != null) gait.Stepped -= OnStep;
-            if (world != null) world.RoomLoaded -= OnRoomLoaded;
-            if (outputRoot != null) Destroy(outputRoot); RoomEntered = null;
+            if (interaction != null)
+                interaction.FeedbackEmitted -= OnFeedback;
+            if (gait != null)
+                gait.Stepped -= OnStep;
+            if (world != null)
+                world.RoomLoaded -= OnRoomLoaded;
+            if (outputRoot != null)
+                Destroy(outputRoot);
+            RoomEntered = null;
         }
     }
 }

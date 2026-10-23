@@ -73,6 +73,7 @@ try {
     Get-Content (Join-Path $verificationRoot 'verification.txt')
 }
 finally {
-    if ($serverProcess -and !$serverProcess.HasExited) { $serverProcess.Kill(); $serverProcess.WaitForExit() }
+    if ($serverProcess -and !$serverProcess.HasExited) { $serverProcess.Kill();
+        $serverProcess.WaitForExit() }
     $env:WORLD_VERIFICATION_SERVER = $previousFlag
 }

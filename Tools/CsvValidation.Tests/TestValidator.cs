@@ -6,7 +6,10 @@ using EscapeGame.Data.CsvValidation.Schema;
 
 internal sealed class TestValidator
 {
-    public CsvValidationCatalog Catalog { get; }
+    public CsvValidationCatalog Catalog
+    {
+        get;
+    }
     public TestValidator(string xml) => Catalog = CsvValidationCatalog.Read(xml);
     public CsvDataSet Input(IReadOnlyDictionary<string, string> sources)
     {
@@ -14,7 +17,10 @@ internal sealed class TestValidator
         var issues = new List<CsvValidationIssue>();
         foreach (var source in sources)
         {
-            try { documents.Add(source.Key, new CsvParser().Read(source.Value, source.Key)); }
+            try
+            {
+                documents.Add(source.Key, new CsvParser().Read(source.Value, source.Key));
+            }
             catch (CsvParseException error)
             {
                 issues.Add(new CsvValidationIssue(CsvValidationCode.ParseError, source.Key, error.LineNumber,

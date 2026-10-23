@@ -17,22 +17,31 @@ namespace EscapeGame.Data.CsvValidation.Rules
             {
                 context.Token.ThrowIfCancellationRequested();
                 var schema = table.Definition;
-                if (schema == null) context.Warn(CsvValidationCode.UnknownSchema, table.Name, 1, "");
+                if (schema == null)
+                    context.Warn(CsvValidationCode.UnknownSchema, table.Name, 1, "");
                 else
                 {
                     var expected = schema.Columns.Select(x => x.Name).ToArray();
-                    foreach (string column in expected.Except(table.Document.Headers)) context.Add(CsvValidationCode.MissingColumn, table.Name, 1, column);
-                    foreach (string column in table.Document.Headers.Except(expected)) context.Warn(CsvValidationCode.UnknownColumn, table.Name, 1, column);
+                    foreach (string column in expected.Except(table.Document.Headers))
+                        context.Add(CsvValidationCode.MissingColumn, table.Name, 1, column);
+                    foreach (string column in table.Document.Headers.Except(expected))
+                        context.Warn(CsvValidationCode.UnknownColumn, table.Name, 1, column);
                 }
-                if (!table.IsUsable) continue;
-                if (table.Document.Rows.Count == 0) context.Warn(CsvValidationCode.EmptyTable, table.Name, 1, "");
-                if (table.Key != null) Unique(context, table, new[] { table.Key });
-                if (schema == null) continue; // 스키마가 없어도 문법·일반 ID 중복 검사는 수행합니다.
-                foreach (var key in schema.UniqueKeys) Unique(context, table, key);
+                if (!table.IsUsable)
+                    continue;
+                if (table.Document.Rows.Count == 0)
+                    context.Warn(CsvValidationCode.EmptyTable, table.Name, 1, "");
+                if (table.Key != null)
+                    Unique(context, table, new[] { table.Key });
+                if (schema == null)
+                    continue; // 스키마가 없어도 문법·일반 ID 중복 검사는 수행합니다.
+                foreach (var key in schema.UniqueKeys)
+                    Unique(context, table, key);
                 foreach (var row in table.Rows)
                 {
                     context.Token.ThrowIfCancellationRequested();
-                    foreach (var column in schema.Columns) CheckCell(context, table, row, column);
+                    foreach (var column in schema.Columns)
+                        CheckCell(context, table, row, column);
                 }
             }
             foreach (var group in context.Tables.Where(x => x.IsUsable && !string.IsNullOrEmpty(x.Definition?.KeyGroup)).GroupBy(x => x.Definition.KeyGroup))
@@ -40,7 +49,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 var keys = new HashSet<string>(StringComparer.Ordinal);
                 foreach (var table in group)
                     foreach (var row in table.Rows)
-                        if (!keys.Add(row.Get(table.Key))) context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, table.Key, row.Get(table.Key), group.Key);
+                        if (!keys.Add(row.Get(table.Key)))
+                            context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, table.Key, row.Get(table.Key), group.Key);
             }
         }
         internal static void Unique(CsvValidationContext context, CsvValidationTable table, IReadOnlyList<string> columns)
@@ -50,7 +60,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
             foreach (var row in table.Rows)
             {
                 string key = string.Concat(columns.Select(column => row.Get(column).Length + ":" + row.Get(column)));
-                if (!keys.Add(key)) context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, string.Join(",", columns), key);
+                if (!keys.Add(key))
+                    context.Add(CsvValidationCode.DuplicateKey, table.Name, row.SourceLine, string.Join(",", columns), key);
             }
         }
         private static void CheckCell(CsvValidationContext context, CsvValidationTable table, CsvRow row, CsvColumnDefinition column)
@@ -58,10 +69,12 @@ namespace EscapeGame.Data.CsvValidation.Rules
             string value = row.Get(column.Name);
             if (value.Length == 0)
             {
-                if (!column.Optional) context.Add(CsvValidationCode.EmptyValue, table.Name, row.SourceLine, column.Name);
+                if (!column.Optional)
+                    context.Add(CsvValidationCode.EmptyValue, table.Name, row.SourceLine, column.Name);
                 return;
             }
-            if (value != value.Trim()) context.Warn(CsvValidationCode.Whitespace, table.Name, row.SourceLine, column.Name);
+            if (value != value.Trim())
+                context.Warn(CsvValidationCode.Whitespace, table.Name, row.SourceLine, column.Name);
             double number = 0;
             bool valid = column.Kind switch
             {
@@ -69,9 +82,12 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 CsvValueKind.Number => CsvValidationContext.Number(value, out number),
                 _ => true
             };
-            if (column.Kind != CsvValueKind.Text && (column.Minimum.HasValue && number < column.Minimum || column.Maximum.HasValue && number > column.Maximum)) valid = false;
-            if (column.Values.Count > 0 && !column.Values.Contains(value)) valid = false;
-            if (!valid) context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, column.Name, value, column.Kind.ToString(),
+            if (column.Kind != CsvValueKind.Text && (column.Minimum.HasValue && number < column.Minimum || column.Maximum.HasValue && number > column.Maximum))
+                valid = false;
+            if (column.Values.Count > 0 && !column.Values.Contains(value))
+                valid = false;
+            if (!valid)
+                context.Add(CsvValidationCode.InvalidValue, table.Name, row.SourceLine, column.Name, value, column.Kind.ToString(),
                 column.Minimum?.ToString(CultureInfo.InvariantCulture) ?? "", column.Maximum?.ToString(CultureInfo.InvariantCulture) ?? "", string.Join(",", column.Values));
         }
     }
@@ -89,7 +105,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
                     {
                         context.Token.ThrowIfCancellationRequested();
                         var targets = reference.SameTable ? new[] { table } : context.Tagged(reference.Target);
-                        if (reference.TargetKind.Length > 0) targets = targets.Where(x => x.Definition.Kind == reference.TargetKind);
+                        if (reference.TargetKind.Length > 0)
+                            targets = targets.Where(x => x.Definition.Kind == reference.TargetKind);
                         context.Reference(table, row, reference.Column, targets, reference.Sentinel);
                     }
             CheckRegistry(context);
@@ -110,24 +127,33 @@ namespace EscapeGame.Data.CsvValidation.Rules
                 context.Token.ThrowIfCancellationRequested();
                 string name = row.Get("Sheet");
                 var table = context.Find(name);
-                if (CsvValidationContext.Active(row) && table != null && table.Definition == null) context.Add(CsvValidationCode.UnknownSchema, registry.Name, row.SourceLine, "Sheet", name);
+                if (CsvValidationContext.Active(row) && table != null && table.Definition == null)
+                    context.Add(CsvValidationCode.UnknownSchema, registry.Name, row.SourceLine, "Sheet", name);
                 if (CsvValidationContext.Active(row) && table == null)
                 {
-                    if (row.Get("Required") == "Y") context.Add(CsvValidationCode.MissingTable, registry.Name, row.SourceLine, "Sheet", name);
-                    else context.Warn(CsvValidationCode.MissingTable, registry.Name, row.SourceLine, "Sheet", name);
+                    if (row.Get("Required") == "Y")
+                        context.Add(CsvValidationCode.MissingTable, registry.Name, row.SourceLine, "Sheet", name);
+                    else
+                        context.Warn(CsvValidationCode.MissingTable, registry.Name, row.SourceLine, "Sheet", name);
                 }
                 foreach (string target in CsvValidationContext.List(row.Get("Parent")).Concat(CsvValidationContext.List(row.Get("Uses"))))
-                    if (!names.Contains(target)) context.Add(CsvValidationCode.UnknownSheet, registry.Name, row.SourceLine, "Parent/Uses", target);
-                if (table == null) continue;
+                    if (!names.Contains(target))
+                        context.Add(CsvValidationCode.UnknownSheet, registry.Name, row.SourceLine, "Parent/Uses", target);
+                if (table == null)
+                    continue;
                 string[] keys = CsvValidationContext.List(row.Get("ParentKey"));
                 foreach (string key in keys)
-                    if (!table.Document.Headers.Contains(key)) context.Add(CsvValidationCode.MissingColumn, registry.Name, row.SourceLine, "ParentKey", name, key);
-                if (keys.Length != 1 || !table.Document.Headers.Contains(keys[0])) continue;
+                    if (!table.Document.Headers.Contains(key))
+                        context.Add(CsvValidationCode.MissingColumn, registry.Name, row.SourceLine, "ParentKey", name, key);
+                if (keys.Length != 1 || !table.Document.Headers.Contains(keys[0]))
+                    continue;
                 var parents = CsvValidationContext.List(row.Get("Parent")).Select(context.Find).Where(x => x != null).ToArray();
-                foreach (var child in table.Rows) context.Reference(table, child, keys[0], parents);
+                foreach (var child in table.Rows)
+                    context.Reference(table, child, keys[0], parents);
             }
             foreach (var table in context.Tables)
-                if (!names.Contains(table.Name)) context.Warn(CsvValidationCode.UnregisteredTable, table.Name, 1, "");
+                if (!names.Contains(table.Name))
+                    context.Warn(CsvValidationCode.UnregisteredTable, table.Name, 1, "");
         }
     }
 }
@@ -142,7 +168,8 @@ namespace EscapeGame.Data.CsvValidation.Rules
         {
             foreach (var table in context.Tables)
             {
-                if (!table.IsUsable || table.Definition == null || table.Definition.Resource == CsvResourceKind.None) continue;
+                if (!table.IsUsable || table.Definition == null || table.Definition.Resource == CsvResourceKind.None)
+                    continue;
                 foreach (var row in table.Rows)
                 {
                     context.Token.ThrowIfCancellationRequested();

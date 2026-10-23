@@ -15,19 +15,27 @@ namespace EscapeGame.World
         private readonly Dictionary<int, IReadOnlyList<AnchorData>> anchorsByRoomNo = new Dictionary<int, IReadOnlyList<AnchorData>>();
         private readonly Dictionary<int, string> prefabPaths;
         private RoomData first;
-        public string Role { get; }
+        public string Role
+        {
+            get;
+        }
         public IReadOnlyList<RoomData> Rooms => roomView;
         private IReadOnlyList<RoomData> ordered;
         public IReadOnlyList<RoomData> OrderedRooms
         {
             get
             {
-                if (ordered != null) return ordered;
-                var list = new List<RoomData>(); var seen = new HashSet<int>(); var row = First;
+                if (ordered != null)
+                    return ordered;
+                var list = new List<RoomData>();
+                var seen = new HashSet<int>();
+                var row = First;
                 while (row != null)
                 {
-                    if (!seen.Add(row.Id)) throw new InvalidOperationException("방 연결에 순환이 있습니다.");
-                    list.Add(row); row = row.Next == 0 ? null : Find(row.Next) ?? throw new InvalidOperationException("다음 방이 없습니다.");
+                    if (!seen.Add(row.Id))
+                        throw new InvalidOperationException("방 연결에 순환이 있습니다.");
+                    list.Add(row);
+                    row = row.Next == 0 ? null : Find(row.Next) ?? throw new InvalidOperationException("다음 방이 없습니다.");
                 }
                 return ordered = list.AsReadOnly();
             }
@@ -35,7 +43,8 @@ namespace EscapeGame.World
         public RoomLoadPlan(CsvGameData data, string role)
         {
             this.data = data ?? throw new ArgumentNullException(nameof(data));
-            if (role != "A" && role != "B") throw new ArgumentException("역할은 A 또는 B입니다.", nameof(role));
+            if (role != "A" && role != "B")
+                throw new ArgumentException("역할은 A 또는 B입니다.", nameof(role));
             Role = role;
             rooms = (role == "A" ? data.RoomsA.Cast<RoomData>() : data.RoomsB.Cast<RoomData>()).Where(room => room.Active).ToArray();
             roomView = Array.AsReadOnly(rooms);
@@ -46,13 +55,16 @@ namespace EscapeGame.World
         {
             get
             {
-                if (first != null) return first;
+                if (first != null)
+                    return first;
                 var destinations = new HashSet<int>(rooms.Select(room => room.Next));
                 RoomData start = null;
                 foreach (var room in rooms)
                 {
-                    if (destinations.Contains(room.Id)) continue;
-                    if (start != null) throw new InvalidOperationException("활성 ROOM 시작 행은 정확히 하나여야 합니다.");
+                    if (destinations.Contains(room.Id))
+                        continue;
+                    if (start != null)
+                        throw new InvalidOperationException("활성 ROOM 시작 행은 정확히 하나여야 합니다.");
                     start = room;
                 }
                 return first = start ?? throw new InvalidOperationException("활성 ROOM 시작 행은 정확히 하나여야 합니다.");
@@ -61,8 +73,10 @@ namespace EscapeGame.World
         public RoomData Find(int id) => roomsById.TryGetValue(id, out var room) ? room : null;
         public IReadOnlyList<AnchorData> Anchors(RoomData room)
         {
-            if (room == null) throw new ArgumentNullException(nameof(room));
-            if (anchorsByRoomNo.TryGetValue(room.RoomNo, out var anchors)) return anchors;
+            if (room == null)
+                throw new ArgumentNullException(nameof(room));
+            if (anchorsByRoomNo.TryGetValue(room.RoomNo, out var anchors))
+                return anchors;
             anchors = BuildAnchors(room.RoomNo);
             anchorsByRoomNo.Add(room.RoomNo, anchors);
             return anchors;

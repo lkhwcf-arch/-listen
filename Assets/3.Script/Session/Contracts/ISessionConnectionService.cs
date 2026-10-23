@@ -6,9 +6,18 @@ namespace EscapeGame.Session.Contracts
 {
     public interface ISessionConnectionService
     {
-        SessionInfo State { get; }
-        bool IsBusy { get; }
-        string ServerBaseUrl { get; }
+        SessionInfo State
+        {
+            get;
+        }
+        bool IsBusy
+        {
+            get;
+        }
+        string ServerBaseUrl
+        {
+            get;
+        }
         event Action<SessionInfo> StateChanged;
         event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged;
         event Action<SessionFailureCode> BackgroundFailed;

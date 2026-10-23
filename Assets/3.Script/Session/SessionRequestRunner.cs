@@ -65,7 +65,8 @@ namespace EscapeGame.Session
         public async Task RunHeartbeatAsync(Func<CancellationToken, Task> action, CancellationToken cancellationToken)
         {
             ValidateAction(action, cancellationToken);
-            if (heartbeatRunning || exclusivePending) throw new SessionResultException(SessionFailureCode.Busy);
+            if (heartbeatRunning || exclusivePending)
+                throw new SessionResultException(SessionFailureCode.Busy);
             await ExecuteAsync(action, cancellationToken, true);
         }
 
@@ -73,7 +74,8 @@ namespace EscapeGame.Session
         public async Task RunExclusiveAsync(Func<CancellationToken, Task> action, CancellationToken cancellationToken)
         {
             ValidateAction(action, cancellationToken);
-            if (exclusivePending) throw new SessionResultException(SessionFailureCode.Busy);
+            if (exclusivePending)
+                throw new SessionResultException(SessionFailureCode.Busy);
             exclusivePending = true;
             try
             {
@@ -84,12 +86,18 @@ namespace EscapeGame.Session
                 }
                 await ExecuteAsync(action, cancellationToken);
             }
-            finally { exclusivePending = false; }
+            finally
+            {
+                exclusivePending = false;
+            }
         }
 
         private async Task ExecuteAsync(Func<CancellationToken, Task> action, CancellationToken cancellationToken, bool heartbeat = false)
         {
-            if (heartbeat) heartbeatRunning = true; else running = true;
+            if (heartbeat)
+                heartbeatRunning = true;
+            else
+                running = true;
 
             try
             {
@@ -98,7 +106,10 @@ namespace EscapeGame.Session
             }
             finally
             {
-                if (heartbeat) heartbeatRunning = false; else running = false;
+                if (heartbeat)
+                    heartbeatRunning = false;
+                else
+                    running = false;
             }
         }
 

@@ -4,13 +4,20 @@ namespace EscapeGame.Player
 {
     public readonly struct PlayerLookCommand
     {
-        public int RightMilliPixels { get; }
-        public int UpMilliPixels { get; }
+        public int RightMilliPixels
+        {
+            get;
+        }
+        public int UpMilliPixels
+        {
+            get;
+        }
         public PlayerLookCommand(int rightMilliPixels, int upMilliPixels)
         {
             if (Math.Abs((long)rightMilliPixels) > 10000000 || Math.Abs((long)upMilliPixels) > 10000000)
                 throw new ArgumentOutOfRangeException("마우스 델타는 프레임당 ±10000 픽셀 범위입니다.");
-            RightMilliPixels = rightMilliPixels; UpMilliPixels = upMilliPixels;
+            RightMilliPixels = rightMilliPixels;
+            UpMilliPixels = upMilliPixels;
         }
     }
 
@@ -19,12 +26,22 @@ namespace EscapeGame.Player
     {
         private readonly int sensitivityMilli, unitMilliDegreesPerPixel, pitchLimit;
         private long yawRemainder, pitchRemainder;
-        public int YawMilliDegrees { get; private set; }
-        public int PitchMilliDegrees { get; private set; }
+        public int YawMilliDegrees
+        {
+            get;
+            private set;
+        }
+        public int PitchMilliDegrees
+        {
+            get;
+            private set;
+        }
         public PlayerLookMotor(PlayerCharacterSettings settings, int unitMilliDegreesPerPixel, int initialYawMilliDegrees)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
-            if (unitMilliDegreesPerPixel < 1 || unitMilliDegreesPerPixel > 1000) throw new ArgumentOutOfRangeException(nameof(unitMilliDegreesPerPixel));
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+            if (unitMilliDegreesPerPixel < 1 || unitMilliDegreesPerPixel > 1000)
+                throw new ArgumentOutOfRangeException(nameof(unitMilliDegreesPerPixel));
             sensitivityMilli = settings.MouseSensitivityMilli;
             pitchLimit = settings.PitchLimitMilliDegrees;
             this.unitMilliDegreesPerPixel = unitMilliDegreesPerPixel;
@@ -38,9 +55,14 @@ namespace EscapeGame.Player
             long pitch = PitchMilliDegrees - up;
             PitchMilliDegrees = (int)Math.Max(-pitchLimit, Math.Min(pitchLimit, pitch));
             if (pitch != PitchMilliDegrees || (PitchMilliDegrees == pitchLimit && command.UpMilliPixels < 0) ||
-                (PitchMilliDegrees == -pitchLimit && command.UpMilliPixels > 0)) pitchRemainder = 0;
+                (PitchMilliDegrees == -pitchLimit && command.UpMilliPixels > 0))
+                pitchRemainder = 0;
         }
-        public void ClearPendingInput() { yawRemainder = 0; pitchRemainder = 0; }
+        public void ClearPendingInput()
+        {
+            yawRemainder = 0;
+            pitchRemainder = 0;
+        }
         private long Integrate(int delta, ref long remainder)
         {
             long numerator = (long)delta * sensitivityMilli * unitMilliDegreesPerPixel + remainder;

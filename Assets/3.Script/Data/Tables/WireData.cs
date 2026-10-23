@@ -5,13 +5,31 @@ namespace EscapeGame.Data.Tables
     // WIRE.csv의 한 행을 나타내는 읽기 전용 정의입니다.
     public sealed class WireData
     {
-        public static CsvTableMapping<WireData> Table { get; } = new CsvTableMapping<WireData>
+        public static CsvTableMapping<WireData> Table
+        {
+            get;
+        } = new CsvTableMapping<WireData>
             ("WIRE", row => new WireData(row));
-        public int AnchorRef { get; }
-        public string Color { get; }
-        public float LengthM { get; }
-        public bool IsAnswer { get; }
-        public int Port { get; }
+        public int AnchorRef
+        {
+            get;
+        }
+        public string Color
+        {
+            get;
+        }
+        public float LengthM
+        {
+            get;
+        }
+        public bool IsAnswer
+        {
+            get;
+        }
+        public int Port
+        {
+            get;
+        }
 
         public WireData(CsvRow row)
         {

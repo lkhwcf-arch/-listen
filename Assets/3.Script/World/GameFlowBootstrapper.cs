@@ -14,9 +14,17 @@ namespace EscapeGame.World
     {
         [SerializeField] private GameContentAssets assets;
         [SerializeField] private string ingameScene = "Ingame";
-        public GameEntryService Service { get; private set; }
+        public GameEntryService Service
+        {
+            get;
+            private set;
+        }
         public GameContentAssets Assets => assets;
-        public bool WorldReady { get; set; }
+        public bool WorldReady
+        {
+            get;
+            set;
+        }
         private EscapeGame.Player.PlayerSpawnDriver playerSpawn;
         public bool PlayerReady => playerSpawn != null && playerSpawn.Player != null &&
             playerSpawn.Player.gameObject.activeInHierarchy && playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerMovementDriver>()?.IsReady == true &&
@@ -30,33 +38,47 @@ namespace EscapeGame.World
             if (owners.Length > 1)
             {
                 foreach (var owner in owners)
-                    if (owner != this && owner.Service != null) { Destroy(gameObject); return; }
+                    if (owner != this && owner.Service != null)
+                    {
+                        Destroy(gameObject);
+                        return;
+                    }
             }
-            if (transform.parent != null) throw new InvalidOperationException("게임 수명 객체는 씬 루트에 배치하세요.");
-            if (assets == null) assets = Resources.Load<GameContentAssets>("GameContent");
-            if (assets == null) throw new InvalidOperationException("GameContent 에셋이 필요합니다.");
+            if (transform.parent != null)
+                throw new InvalidOperationException("게임 수명 객체는 씬 루트에 배치하세요.");
+            if (assets == null)
+                assets = Resources.Load<GameContentAssets>("GameContent");
+            if (assets == null)
+                throw new InvalidOperationException("GameContent 에셋이 필요합니다.");
             var session = GetComponent<SessionBootstrapper>().Service;
             Service = new GameEntryService(session, (ISessionContentService)session, assets.ReadLocalData,
                 assets.CreateValidator(), EnterSceneAsync, destroyCancellationToken);
             Service.Changed += OnEntryChanged;
             DontDestroyOnLoad(gameObject);
         }
-        private void OnEntryChanged() { if (Service.IsBusy) WorldReady = false; }
+        private void OnEntryChanged()
+        {
+            if (Service.IsBusy)
+                WorldReady = false;
+        }
         private async Task EnterSceneAsync(CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
             WorldReady = false;
             var operation = SceneManager.LoadSceneAsync(ingameScene);
-            if (operation == null) throw new InvalidOperationException("Ingame 씬이 빌드 목록에 없습니다.");
+            if (operation == null)
+                throw new InvalidOperationException("Ingame 씬이 빌드 목록에 없습니다.");
             // Unity 씬 로드는 시작 후 취소할 수 없습니다. 서비스 수명은 씬 전환 뒤에도 유지됩니다.
-            while (!operation.isDone) await Task.Yield();
+            while (!operation.isDone)
+                await Task.Yield();
             token.ThrowIfCancellationRequested();
             // 실제 씬 로더를 명시적으로 조립합니다. Start 실행 순서에 기대지 않습니다.
             var scene = SceneManager.GetActiveScene();
             long enteredAtMs = (long)(Time.realtimeSinceStartupAsDouble * 1000);
             var worlds = Array.FindAll(FindObjectsByType<IngameWorldDriver>(FindObjectsInactive.Exclude, FindObjectsSortMode.None),
                 world => world.gameObject.scene == scene);
-            if (worlds.Length != 1) throw new InvalidOperationException("Ingame 씬에 활성 IngameWorldDriver가 정확히 하나 필요합니다.");
+            if (worlds.Length != 1)
+                throw new InvalidOperationException("Ingame 씬에 활성 IngameWorldDriver가 정확히 하나 필요합니다.");
             var spawnHost = new GameObject("LocalPlayerSpawn");
             SceneManager.MoveGameObjectToScene(spawnHost, scene);
             try
@@ -67,13 +89,17 @@ namespace EscapeGame.World
                 playerSpawn.Initialize(Service.Data, Service.Role, firstRoom, Service, enteredAtMs: enteredAtMs);
                 playerSpawn.Feedback?.BindWorld(worlds[0]);
                 playerSpawn.Lighting?.BindWorld(worlds[0]);
-                if (!PlayerReady) throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
+                if (!PlayerReady)
+                    throw new InvalidOperationException("플레이어 입력·충돌 준비가 완료되지 않았습니다.");
                 var interactionSettings = Resources.Load<EscapeGame.Interaction.InteractionPresentationSettings>("InteractionPresentation");
                 try
                 {
                     playerSpawn.Player.gameObject.AddComponent<EndingVideoDirector>().Initialize(playerSpawn.Player, Service.Data, Service.Role, Service, interactionSettings.Font, playerSpawn.RunClock);
                 }
-                catch (Exception endingError) { Debug.LogError("[엔딩 설정] " + endingError.Message + " 첫 방 플레이는 유지합니다."); }
+                catch (Exception endingError)
+                {
+                    Debug.LogError("[엔딩 설정] " + endingError.Message + " 첫 방 플레이는 유지합니다.");
+                }
 
                 spawnHost.AddComponent<SessionGameplayDriver>().Initialize(Service.StartGate,
                     playerSpawn.Player.GetComponent<EscapeGame.Player.PlayerPointerDriver>(),
@@ -89,8 +115,10 @@ namespace EscapeGame.World
         }
         private void OnDestroy()
         {
-            if (playerSpawn != null) Destroy(playerSpawn.gameObject);
-            if (Service == null) return;
+            if (playerSpawn != null)
+                Destroy(playerSpawn.gameObject);
+            if (Service == null)
+                return;
             Service.Changed -= OnEntryChanged;
             Service.Dispose();
         }

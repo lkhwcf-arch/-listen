@@ -16,7 +16,11 @@ namespace EscapeGame.Editor
         [MenuItem("Tools/Game/Verify Player Spawn")]
         public static void Run()
         {
-            if (!Application.isPlaying) { Debug.LogWarning("Play 모드에서 Verify Player Spawn을 실행하세요."); return; }
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("Play 모드에서 Verify Player Spawn을 실행하세요.");
+                return;
+            }
             var assets = Resources.Load<GameContentAssets>("GameContent");
             var store = new CsvDataStore();
             if (!store.TryRegister(assets.ReadLocalData(), assets.CreateValidator(), out var report))
@@ -33,7 +37,12 @@ namespace EscapeGame.Editor
             var listener = cameraObject.AddComponent<AudioListener>();
             FirstPersonPlayerRig rig = null;
             int checks = 0;
-            void Check(bool ok, string label) { if (!ok) throw new InvalidOperationException(label); checks++; }
+            void Check(bool ok, string label)
+            {
+                if (!ok)
+                    throw new InvalidOperationException(label);
+                checks++;
+            }
             try
             {
                 foreach (string role in new[] { "A", "B" })
@@ -56,9 +65,17 @@ namespace EscapeGame.Editor
                     Check(Mathf.Abs(rig.GetComponent<CharacterController>().skinWidth - settings.SkinWidthMm / 1000f) < 0.0001f, "body uses explicit shared skin configuration");
                     Check(!camera.enabled && !listener.enabled, "previous camera and listener relinquish ownership");
                     bool duplicate = false;
-                    try { LocalPlayerFactory.Spawn(plan, root.transform, settings); } catch (InvalidOperationException) { duplicate = true; }
+                    try
+                    {
+                        LocalPlayerFactory.Spawn(plan, root.transform, settings);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        duplicate = true;
+                    }
                     Check(duplicate, "duplicate player rejected");
-                    Object.DestroyImmediate(rig.gameObject); rig = null;
+                    Object.DestroyImmediate(rig.gameObject);
+                    rig = null;
                     Check(camera.enabled && listener.enabled, "camera and listener restored on removal");
                     Object.DestroyImmediate(anchor.gameObject);
                 }
@@ -66,7 +83,8 @@ namespace EscapeGame.Editor
             }
             finally
             {
-                if (rig != null) Object.DestroyImmediate(rig.gameObject);
+                if (rig != null)
+                    Object.DestroyImmediate(rig.gameObject);
                 Object.DestroyImmediate(cameraObject);
                 Object.DestroyImmediate(root);
                 SceneManager.UnloadSceneAsync(scene);

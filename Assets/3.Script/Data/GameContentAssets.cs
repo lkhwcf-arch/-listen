@@ -12,7 +12,12 @@ namespace EscapeGame.Data
     // 에디터가 원본 CSV와 프리팹 참조를 수집합니다. 플레이어 빌드는 AssetDatabase에 의존하지 않습니다.
     public sealed class GameContentAssets : ScriptableObject
     {
-        [Serializable] public sealed class PrefabBinding { public string path; public GameObject prefab; }
+        [Serializable]
+        public sealed class PrefabBinding
+        {
+            public string path;
+            public GameObject prefab;
+        }
         [SerializeField] private TextAsset[] csvFiles;
         [SerializeField] private TextAsset validationRules;
         [SerializeField] private PrefabBinding[] prefabs;
@@ -32,7 +37,8 @@ namespace EscapeGame.Data
         public GameObject ResolvePrefab(string path)
         {
             string normalized = Normalize(path);
-            if (prefabIndex == null) prefabIndex = prefabs.ToDictionary(entry => Normalize(entry.path), entry => entry.prefab, StringComparer.Ordinal);
+            if (prefabIndex == null)
+                prefabIndex = prefabs.ToDictionary(entry => Normalize(entry.path), entry => entry.prefab, StringComparer.Ordinal);
             return prefabIndex.TryGetValue(normalized, out var prefab) && prefab != null ? prefab
                 : throw new InvalidOperationException("빌드에 등록된 프리팹이 없습니다: " + path);
         }

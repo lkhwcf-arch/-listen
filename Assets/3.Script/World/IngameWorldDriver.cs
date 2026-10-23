@@ -23,17 +23,21 @@ namespace EscapeGame.World
 
         private void Start()
         {
-            if (owner != null) return;
+            if (owner != null)
+                return;
             var flow = FindFirstObjectByType<GameFlowBootstrapper>();
             // Ingame 단독 Play에서는 개발자 방 미리보기를 허용합니다. 정상 입장은 Bootstrapper가 초기화합니다.
-            if (flow != null && flow.Service.Data != null) Initialize(flow);
+            if (flow != null && flow.Service.Data != null)
+                Initialize(flow);
         }
         public void Initialize(GameFlowBootstrapper flow)
         {
-            if (flow == null || flow.Service.Data == null) throw new InvalidOperationException("방 로드에 등록된 게임 데이터가 필요합니다.");
+            if (flow == null || flow.Service.Data == null)
+                throw new InvalidOperationException("방 로드에 등록된 게임 데이터가 필요합니다.");
             if (owner != null)
             {
-                if (owner != flow) throw new InvalidOperationException("방 로더의 게임 소유자를 변경할 수 없습니다.");
+                if (owner != flow)
+                    throw new InvalidOperationException("방 로더의 게임 소유자를 변경할 수 없습니다.");
                 return;
             }
             var numbers = new HashSet<int>();
@@ -41,43 +45,57 @@ namespace EscapeGame.World
                 if (room != null && (room.gameObject.scene != gameObject.scene || !numbers.Add(room.RoomNo)))
                     throw new InvalidOperationException("씬 방 참조는 현재 씬에 속하며 방 번호가 중복되지 않아야 합니다.");
             owner = flow;
-            foreach (var room in sceneRooms) if (room != null) room.gameObject.SetActive(false);
+            foreach (var room in sceneRooms)
+                if (room != null)
+                    room.gameObject.SetActive(false);
             data = owner.Service.Data;
             var playerSettings = Resources.Load<EscapeGame.Player.PlayerPresentationSettings>("PlayerPresentation");
-            if (playerSettings != null) externallyManagedPrefabIds = new[] { playerSettings.SpawnPrefabId };
+            if (playerSettings != null)
+                externallyManagedPrefabIds = new[] { playerSettings.SpawnPrefabId };
             plan = new RoomLoadPlan(data, owner.Service.Role);
             owner.Service.RoomsChanged += ApplyRooms;
             ApplyRooms(owner.Service.UnlockedRoomIds);
         }
         public RoomSceneView RequireFirstRoom()
         {
-            if (plan == null) throw new InvalidOperationException("방 로더를 먼저 초기화하세요.");
-            if (loaded.TryGetValue(plan.First.Id, out var room)) return room;
+            if (plan == null)
+                throw new InvalidOperationException("방 로더를 먼저 초기화하세요.");
+            if (loaded.TryGetValue(plan.First.Id, out var room))
+                return room;
             throw new InvalidOperationException("첫 방 준비 실패: " +
                 (failures.TryGetValue(plan.First.Id, out var reason) ? reason : "해금된 첫 방이 없습니다."));
         }
         [ContextMenu("실패한 방 다시 불러오기")]
         public void RetryFailedRooms()
         {
-            if (owner == null) return;
-            failures.Clear(); ApplyRooms(owner.Service.UnlockedRoomIds);
+            if (owner == null)
+                return;
+            failures.Clear();
+            ApplyRooms(owner.Service.UnlockedRoomIds);
         }
         private void ApplyRooms(IReadOnlyList<int> ids)
         {
-            if (!ReferenceEquals(data, owner.Service.Data)) return;
+            if (!ReferenceEquals(data, owner.Service.Data))
+                return;
             var requested = new HashSet<int>(ids);
             foreach (var row in plan.OrderedRooms)
             {
                 int id = row.Id;
-                if (!requested.Contains(id)) continue;
-                if (row == null || loaded.ContainsKey(id) || failures.ContainsKey(id)) continue;
+                if (!requested.Contains(id))
+                    continue;
+                if (row == null || loaded.ContainsKey(id) || failures.ContainsKey(id))
+                    continue;
                 RoomSceneView view = null;
                 bool instantiated = false;
                 bool added = false;
                 try
                 {
                     foreach (var candidate in sceneRooms)
-                        if (candidate != null && candidate.RoomNo == row.RoomNo) { view = candidate; break; }
+                        if (candidate != null && candidate.RoomNo == row.RoomNo)
+                        {
+                            view = candidate;
+                            break;
+                        }
                     if (view == null)
                     {
                         var prefab = owner.Assets.ResolvePrefab(plan.PrefabPath(row.RoomPrefabId));
@@ -88,7 +106,8 @@ namespace EscapeGame.World
                     }
                     var previousRow = System.Linq.Enumerable.FirstOrDefault(plan.Rooms, candidate => candidate.Next == row.Id);
                     RoomSceneView previous = null;
-                    if (previousRow != null) loaded.TryGetValue(previousRow.Id, out previous);
+                    if (previousRow != null)
+                        loaded.TryGetValue(previousRow.Id, out previous);
                     RoomSceneAssembler.Prepare(view, row, plan, data, owner.Assets, externallyManagedPrefabIds, previous);
                     loaded.Add(id, view);
                     failures.Remove(id);
@@ -96,7 +115,8 @@ namespace EscapeGame.World
                 }
                 catch (Exception error)
                 {
-                    if (instantiated && view != null) Destroy(view.gameObject);
+                    if (instantiated && view != null)
+                        Destroy(view.gameObject);
                     if (!failures.TryGetValue(id, out string previous) || previous != error.Message)
                     {
                         failures[id] = error.Message;
@@ -104,14 +124,16 @@ namespace EscapeGame.World
                         RoomLoadFailed?.Invoke(id, error.Message);
                     }
                 }
-                if (added) RoomLoaded?.Invoke(row, view);
+                if (added)
+                    RoomLoaded?.Invoke(row, view);
             }
             // 후속 방이 아직 제작되지 않아도 이미 로드한 방은 유지합니다.
             owner.WorldReady = loaded.ContainsKey(plan.First.Id);
         }
         private void OnDestroy()
         {
-            if (owner == null) return;
+            if (owner == null)
+                return;
             owner.WorldReady = false;
             owner.Service.RoomsChanged -= ApplyRooms;
         }

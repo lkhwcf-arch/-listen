@@ -16,9 +16,20 @@ namespace EscapeGame.Interaction
         };
         public static string Value(string value) => value switch
         {
-            "Up" => "위", "Down" => "아래", "Left" => "왼쪽", "Right" => "오른쪽",
-            "Red" => "빨강", "Green" => "초록", "Blue" => "파랑", "Gray" => "회색", "Purple" => "보라",
-            "Crimson" => "진홍", "Yellow" => "노랑", "Pink" => "분홍", "" => "미입력", _ => value
+            "Up" => "위",
+            "Down" => "아래",
+            "Left" => "왼쪽",
+            "Right" => "오른쪽",
+            "Red" => "빨강",
+            "Green" => "초록",
+            "Blue" => "파랑",
+            "Gray" => "회색",
+            "Purple" => "보라",
+            "Crimson" => "진홍",
+            "Yellow" => "노랑",
+            "Pink" => "분홍",
+            "" => "미입력",
+            _ => value
         };
     }
 }

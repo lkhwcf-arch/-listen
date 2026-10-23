@@ -13,7 +13,8 @@ namespace EscapeGame.Readiness
                 throw new ArgumentException("준비 조건을 한 개 이상 지정하세요.", nameof(checks));
             this.checks = (IReadinessCheck[])checks.Clone();
             foreach (var check in this.checks)
-                if (check == null) throw new ArgumentException("준비 조건이 비어 있습니다.", nameof(checks));
+                if (check == null)
+                    throw new ArgumentException("준비 조건이 비어 있습니다.", nameof(checks));
         }
 
         public bool IsReady
@@ -21,7 +22,8 @@ namespace EscapeGame.Readiness
             get
             {
                 foreach (var check in checks)
-                    if (!check.IsReady) return false;
+                    if (!check.IsReady)
+                        return false;
                 return true;
             }
         }

@@ -16,7 +16,8 @@ namespace EscapeGame.Editor
             int count = 0;
             void Check(bool condition, string message)
             {
-                if (!condition) throw new InvalidOperationException(message);
+                if (!condition)
+                    throw new InvalidOperationException(message);
                 count++;
             }
             try
@@ -47,22 +48,46 @@ namespace EscapeGame.Editor
                     Object.DestroyImmediate(next.gameObject);
                 }
                 bool missing = false;
-                try { RoomConnectionAlignment.FindEntry(current, 2); } catch (InvalidOperationException) { missing = true; }
+                try
+                {
+                    RoomConnectionAlignment.FindEntry(current, 2);
+                }
+                catch (InvalidOperationException)
+                {
+                    missing = true;
+                }
                 Check(missing, "missing entry must be rejected");
                 New("R01_DoorPoint", current);
                 bool duplicate = false;
-                try { RoomConnectionAlignment.FindExit(current, 1); } catch (InvalidOperationException) { duplicate = true; }
+                try
+                {
+                    RoomConnectionAlignment.FindExit(current, 1);
+                }
+                catch (InvalidOperationException)
+                {
+                    duplicate = true;
+                }
                 Check(duplicate, "ambiguous exit must be rejected");
                 var invalid = New("Invalid next", owner.transform);
                 invalid.localScale = new Vector3(1, 2, 1);
                 var invalidEntry = New("R02_EntryPoint", invalid);
                 var before = new Pose(invalid.position, invalid.rotation);
                 bool invalidScale = false;
-                try { RoomConnectionAlignment.Align(invalid, invalidEntry, exit); } catch (InvalidOperationException) { invalidScale = true; }
+                try
+                {
+                    RoomConnectionAlignment.Align(invalid, invalidEntry, exit);
+                }
+                catch (InvalidOperationException)
+                {
+                    invalidScale = true;
+                }
                 Check(invalidScale && invalid.position == before.position && invalid.rotation == before.rotation, "invalid scale rejected before placement");
                 Debug.Log($"[Room Connection Checks] {count} checks passed.");
             }
-            finally { Object.DestroyImmediate(owner); }
+            finally
+            {
+                Object.DestroyImmediate(owner);
+            }
         }
 
         private static Transform New(string name, Transform parent)

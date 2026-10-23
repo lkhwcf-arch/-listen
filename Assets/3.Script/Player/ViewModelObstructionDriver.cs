@@ -14,11 +14,17 @@ namespace EscapeGame.Player
         private Vector3 restPosition, restCenterInParent;
         private float probeRadius;
         private int marginMm;
-        public bool IsObstructed { get; private set; }
+        public bool IsObstructed
+        {
+            get;
+            private set;
+        }
         public void Initialize(Camera view, Transform visual, int marginMm)
         {
-            if (this.view != null) throw new InvalidOperationException("모델 보정은 한 번만 초기화합니다.");
-            if (marginMm < 1 || marginMm > 100) throw new ArgumentOutOfRangeException(nameof(marginMm));
+            if (this.view != null)
+                throw new InvalidOperationException("모델 보정은 한 번만 초기화합니다.");
+            if (marginMm < 1 || marginMm > 100)
+                throw new ArgumentOutOfRangeException(nameof(marginMm));
             this.view = view != null ? view : throw new ArgumentNullException(nameof(view));
             this.visual = visual != null ? visual : throw new ArgumentNullException(nameof(visual));
             this.marginMm = marginMm;
@@ -31,9 +37,15 @@ namespace EscapeGame.Player
             for (int i = 0; i < renderers.Length; i++)
             {
                 originallyEnabled[i] = renderers[i].enabled;
-                if (!originallyEnabled[i]) continue;
-                if (!hasBounds) { bounds = renderers[i].bounds; hasBounds = true; }
-                else bounds.Encapsulate(renderers[i].bounds);
+                if (!originallyEnabled[i])
+                    continue;
+                if (!hasBounds)
+                {
+                    bounds = renderers[i].bounds;
+                    hasBounds = true;
+                }
+                else
+                    bounds.Encapsulate(renderers[i].bounds);
             }
             // 팔 전체를 원점 중심 구로 감싸면 눈까지 구에 포함되어 모델이 항상 숨겨집니다.
             // 모델 중심과 두께를 초기화 시 캐시합니다. 애니메이션별 정밀 충돌 대신 표현 보정용 근사값입니다.
@@ -42,10 +54,15 @@ namespace EscapeGame.Player
         }
         private void LateUpdate()
         {
-            if (view == null || visual == null) return;
+            if (view == null || visual == null)
+                return;
             var offset = visual.parent.TransformPoint(restCenterInParent) - view.transform.position;
             float distance = offset.magnitude;
-            if (distance < .001f) { SetVisible(false); return; }
+            if (distance < .001f)
+            {
+                SetVisible(false);
+                return;
+            }
             float radius = probeRadius + marginMm / 1000f;
             var direction = offset / distance;
             float allowed = surfaces.AllowedDistance(view.transform.position, radius, direction, distance, marginMm / 1000f);
@@ -56,8 +73,18 @@ namespace EscapeGame.Player
             SetVisible(visible);
         }
         private void SetVisible(bool visible)
-        { for (int i = 0; i < renderers.Length; i++) if (renderers[i] != null) renderers[i].enabled = originallyEnabled[i] && visible; }
+        {
+            for (int i = 0; i < renderers.Length; i++)
+                if (renderers[i] != null)
+                    renderers[i].enabled = originallyEnabled[i] && visible;
+        }
         private void OnDisable()
-        { if (visual != null) visual.localPosition = restPosition; if (renderers != null) SetVisible(true); IsObstructed = false; }
+        {
+            if (visual != null)
+                visual.localPosition = restPosition;
+            if (renderers != null)
+                SetVisible(true);
+            IsObstructed = false;
+        }
     }
 }

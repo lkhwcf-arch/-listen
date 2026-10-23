@@ -3,7 +3,7 @@
 using System;
 using Google.Protobuf;
 using UnityEngine;
-using ProtoMessages =  global::EscapeGame.Protocol.V1;
+using ProtoMessages = global::EscapeGame.Protocol.V1;
 
 namespace EscapeGame.Tests
 {

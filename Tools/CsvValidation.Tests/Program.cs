@@ -2,14 +2,23 @@ using EscapeGame.Data.Csv;
 using EscapeGame.Data.CsvValidation;
 using EscapeGame.Data.CsvValidation.Contracts;
 
-if (args.Length == 1 && args[0] == "--session-start") { await SessionStartChecks.Run(); return; }
-if (args.Length == 3 && args[0] == "--http") { await ProtocolHttpChecks.Run(args[1], args[2]); return; }
+if (args.Length == 1 && args[0] == "--session-start")
+{
+    await SessionStartChecks.Run();
+    return;
+}
+if (args.Length == 3 && args[0] == "--http")
+{
+    await ProtocolHttpChecks.Run(args[1], args[2]);
+    return;
+}
 if (args.Length == 3 && (args[0] == "--answers" || args[0] == "--entry"))
 {
     var sources = Directory.GetFiles(Path.GetFullPath(args[1]), "*.csv").ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText, StringComparer.Ordinal);
     string rules = File.ReadAllText(Path.Combine(Path.GetFullPath(args[2]), "Assets/3.Script/Data/CsvValidation/Configuration/CsvValidationRules.xml"));
     var errors = new TestValidator(rules).Validate(sources).Where(issue => issue.Severity == CsvValidationSeverity.Error).ToArray();
-    if (errors.Length != 0) throw new Exception(string.Join("\n", errors.Select(issue=>issue.ToString())));
+    if (errors.Length != 0)
+        throw new Exception(string.Join("\n", errors.Select(issue => issue.ToString())));
     Console.WriteLine("정답 입력 분리 검사 데이터: " + Path.GetFullPath(args[1]));
     if (args[0] == "--entry")
     {
@@ -17,7 +26,8 @@ if (args.Length == 3 && (args[0] == "--answers" || args[0] == "--entry"))
         await WorldChecks.Run(sources, rules);
         await ConnectionConfigurationChecks.Run(Path.GetFullPath(args[2]), sources, rules);
     }
-    else await PuzzleAnswerChecks.Run(sources, rules);
+    else
+        await PuzzleAnswerChecks.Run(sources, rules);
     return;
 }
 
@@ -41,7 +51,8 @@ void Check(string name, Action<Dictionary<string, string>> change, Func<CsvValid
     var input = new Dictionary<string, string>(original, StringComparer.Ordinal);
     change(input);
     var result = CreateValidator().Validate(input);
-    if (!result.Any(expected)) throw new Exception("FAIL: " + name);
+    if (!result.Any(expected))
+        throw new Exception("FAIL: " + name);
     passed++;
     Console.WriteLine("PASS: " + name);
 }

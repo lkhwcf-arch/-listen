@@ -32,7 +32,8 @@ namespace EscapeGame.Session
         private void OnStateChanged(SessionInfo state)
         {
             string current = state.IsJoined ? state.PlayerId : null;
-            if (current == playerId) return;
+            if (current == playerId)
+                return;
             playerId = current;
             lastConfirmedMs = clock.ElapsedMilliseconds;
             interval.Restart(false);
@@ -40,13 +41,15 @@ namespace EscapeGame.Session
 
         public void Tick(CancellationToken token)
         {
-            if (disposed || token.IsCancellationRequested || !service.State.IsJoined) return;
+            if (disposed || token.IsCancellationRequested || !service.State.IsJoined)
+                return;
             if (clock.ElapsedMilliseconds - lastConfirmedMs >= settings.ConnectionTimeoutMs)
             {
                 service.Disconnect(SessionFailureCode.ConnectionTimedOut);
                 return;
             }
-            if (sending || !interval.TryConsume()) return;
+            if (sending || !interval.TryConsume())
+                return;
             sending = true;
             _ = SendAsync(playerId, token);
         }
@@ -56,7 +59,8 @@ namespace EscapeGame.Session
             try
             {
                 var result = await service.HeartbeatAsync(token);
-                if (disposed || token.IsCancellationRequested || !service.State.IsJoined || requestedPlayer != playerId) return;
+                if (disposed || token.IsCancellationRequested || !service.State.IsJoined || requestedPlayer != playerId)
+                    return;
                 if (clock.ElapsedMilliseconds - lastConfirmedMs >= settings.ConnectionTimeoutMs)
                 {
                     service.Disconnect(SessionFailureCode.ConnectionTimedOut);
@@ -68,12 +72,16 @@ namespace EscapeGame.Session
                     result.Code != SessionFailureCode.ConnectionFailed && result.Code != SessionFailureCode.Busy)
                     service.Disconnect(result.Code);
             }
-            finally { sending = false; }
+            finally
+            {
+                sending = false;
+            }
         }
 
         public void Dispose()
         {
-            if (disposed) return;
+            if (disposed)
+                return;
             disposed = true;
             service.StateChanged -= OnStateChanged;
         }

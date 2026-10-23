@@ -15,12 +15,19 @@ namespace EscapeGame.World
     }
     public sealed class PrefabFeaturePlan
     {
-        public IReadOnlyList<ComponentData> Components { get; }
-        public int PrefabId { get; }
+        public IReadOnlyList<ComponentData> Components
+        {
+            get;
+        }
+        public int PrefabId
+        {
+            get;
+        }
         public bool Has(string script) => Components.Any(row => row.Script == script);
         public PrefabFeaturePlan(CsvGameData data, int prefabId)
         {
-            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             PrefabId = prefabId;
             var prefab = data.Prefabs.Single(row => row.Id == prefabId);
             var modules = prefab.Components.Select(id => data.Components.Single(row => row.Id == id)).ToArray();
@@ -30,26 +37,31 @@ namespace EscapeGame.World
                 throw new InvalidOperationException("같은 기능을 한 프리팹에 중복 선언할 수 없습니다: " + prefabId);
             Components = Array.AsReadOnly(modules);
             foreach (string dependent in new[] { FeatureScripts.Closeup, FeatureScripts.Door, FeatureScripts.Dial, FeatureScripts.Console })
-                if (Has(dependent) && !Has(FeatureScripts.Interactable)) throw new InvalidOperationException(dependent + "에는 Interactable이 필요합니다.");
+                if (Has(dependent) && !Has(FeatureScripts.Interactable))
+                    throw new InvalidOperationException(dependent + "에는 Interactable이 필요합니다.");
             if ((Has(FeatureScripts.Dial) || Has(FeatureScripts.Console)) && !Has(FeatureScripts.Closeup))
                 throw new InvalidOperationException("입력 기능에는 CloseUpUI가 필요합니다.");
         }
         public int[] CloseupCameraOffsetMm()
         {
             var component = Components.SingleOrDefault(row => row.Script == FeatureScripts.Closeup);
-            if (component == null) throw new InvalidOperationException("CloseUpUI 선언이 없습니다.");
+            if (component == null)
+                throw new InvalidOperationException("CloseUpUI 선언이 없습니다.");
             string raw = ComponentParameters.Read(component.Params, "CamOffset");
             string[] values = raw.Split(',');
-            if (values.Length != 3) throw new InvalidOperationException("CloseUpUI CamOffset은 x,y,z 미터 값 3개여야 합니다.");
+            if (values.Length != 3)
+                throw new InvalidOperationException("CloseUpUI CamOffset은 x,y,z 미터 값 3개여야 합니다.");
             var result = values.Select(value =>
             {
                 if (!double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out double number) || double.IsNaN(number) || double.IsInfinity(number))
                     throw new InvalidOperationException("CamOffset은 유한한 숫자여야 합니다.");
                 double mm = Math.Round(number * 1000, MidpointRounding.AwayFromZero);
-                if (Math.Abs(mm) > 100000) throw new InvalidOperationException("CamOffset은 ±100000mm 이하여야 합니다.");
+                if (Math.Abs(mm) > 100000)
+                    throw new InvalidOperationException("CamOffset은 ±100000mm 이하여야 합니다.");
                 return (int)mm;
             }).ToArray();
-            if (result.All(value => value == 0)) throw new InvalidOperationException("CamOffset을 0,0,0으로 지정할 수 없습니다.");
+            if (result.All(value => value == 0))
+                throw new InvalidOperationException("CamOffset을 0,0,0으로 지정할 수 없습니다.");
             return result;
         }
     }

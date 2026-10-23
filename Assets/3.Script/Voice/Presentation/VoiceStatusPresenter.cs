@@ -8,7 +8,8 @@ namespace EscapeGame.Voice.Presentation
         private readonly IVoiceStatusView view;
         public VoiceStatusPresenter(IVoiceChatService service, IVoiceStatusView view)
         {
-            this.service = service; this.view = view;
+            this.service = service;
+            this.view = view;
             service.StateChanged += OnChanged;
             OnChanged(service.State);
         }

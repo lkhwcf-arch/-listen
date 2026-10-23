@@ -9,18 +9,34 @@ namespace EscapeGame.World
 {
     public sealed class RoomSceneView : MonoBehaviour
     {
-        [Serializable] public sealed class EmbeddedBinding { public string anchorId; public string objectPath; public bool hideWhenUnused; }
+        [Serializable]
+        public sealed class EmbeddedBinding
+        {
+            public string anchorId;
+            public string objectPath;
+            public bool hideWhenUnused;
+        }
         [SerializeField, Min(1)] private int roomNo = 1;
         [SerializeField] private Transform anchorsRoot;
         [SerializeField] private EmbeddedBinding[] embedded = Array.Empty<EmbeddedBinding>();
         public int RoomNo => roomNo;
-        public bool IsLoaded { get; private set; }
-        public void Configure(int number) { roomNo = number; anchorsRoot = transform; }
+        public bool IsLoaded
+        {
+            get;
+            private set;
+        }
+        public void Configure(int number)
+        {
+            roomNo = number;
+            anchorsRoot = transform;
+        }
 
         public void Load(RoomData room, RoomLoadPlan plan, CsvGameData data, GameContentAssets assets, IReadOnlyCollection<int> externallyManagedPrefabIds = null)
         {
-            if (IsLoaded) return;
-            if (anchorsRoot == null) anchorsRoot = transform;
+            if (IsLoaded)
+                return;
+            if (anchorsRoot == null)
+                anchorsRoot = transform;
             var rows = plan.Anchors(room).Where(row => externallyManagedPrefabIds == null || !externallyManagedPrefabIds.Contains(row.PrefabId)).ToArray();
             var requiredNames = new HashSet<string>(rows.Select(row => row.AnchorId), StringComparer.Ordinal);
             var anchors = anchorsRoot.GetComponentsInChildren<Transform>(true)
@@ -33,7 +49,8 @@ namespace EscapeGame.World
                 if (binding != null)
                 {
                     var existing = string.IsNullOrEmpty(binding.objectPath) ? transform : transform.Find(binding.objectPath);
-                    if (existing == null) throw new InvalidOperationException($"R{roomNo:00}: 포함된 모델을 찾을 수 없습니다: {binding.objectPath}");
+                    if (existing == null)
+                        throw new InvalidOperationException($"R{roomNo:00}: 포함된 모델을 찾을 수 없습니다: {binding.objectPath}");
                     operations.Add((row, existing, null, existing.gameObject));
                 }
                 else
@@ -46,7 +63,8 @@ namespace EscapeGame.World
             var visibility = embedded.Where(item => item.hideWhenUnused).Select(item =>
             {
                 var target = string.IsNullOrEmpty(item.objectPath) ? transform : transform.Find(item.objectPath);
-                if (target == null || target == transform) throw new InvalidOperationException("역할별 포함 모델 경로를 확인하세요: " + item.objectPath);
+                if (target == null || target == transform)
+                    throw new InvalidOperationException("역할별 포함 모델 경로를 확인하세요: " + item.objectPath);
                 return (target: target.gameObject, wasActive: target.gameObject.activeSelf, selected: requiredNames.Contains(item.anchorId));
             }).ToArray();
             var created = new List<GameObject>();
@@ -69,14 +87,17 @@ namespace EscapeGame.World
                     var binding = instance.GetComponent<AnchorInstance>() ?? instance.AddComponent<AnchorInstance>();
                     binding.Initialize(operation.row, data);
                 }
-                foreach (var item in visibility) item.target.SetActive(item.selected);
+                foreach (var item in visibility)
+                    item.target.SetActive(item.selected);
                 IsLoaded = true;
                 gameObject.SetActive(true);
             }
             catch
             {
-                foreach (var instance in created) Destroy(instance);
-                foreach (var item in visibility) item.target.SetActive(item.wasActive);
+                foreach (var instance in created)
+                    Destroy(instance);
+                foreach (var item in visibility)
+                    item.target.SetActive(item.wasActive);
                 gameObject.SetActive(wasActive);
                 throw;
             }

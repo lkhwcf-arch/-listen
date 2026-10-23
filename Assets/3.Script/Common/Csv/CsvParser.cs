@@ -7,13 +7,18 @@ namespace EscapeGame.Data.Csv
     // TextAsset, Unity, 파일 시스템과 콘텐츠 컬럼을 모르는 CSV 파서입니다.
     public sealed class CsvParser
     {
-        private enum FieldState { Start, Unquoted, Quoted, AfterQuote }
+        private enum FieldState
+        {
+            Start, Unquoted, Quoted, AfterQuote
+        }
         private static readonly char[] TrimCharacters = { ' ', '\t', '\r', '\n' };
 
         public CsvDocument Read(string text, string sourceName = "(memory)")
         {
-            if (text == null) throw new ArgumentNullException(nameof(text));
-            if (text.Length > 0 && text[0] == '\uFEFF') text = text.Substring(1);
+            if (text == null)
+                throw new ArgumentNullException(nameof(text));
+            if (text.Length > 0 && text[0] == '\uFEFF')
+                text = text.Substring(1);
             var state = FieldState.Start;
             var field = new StringBuilder();
             var fields = new List<string>();
@@ -26,7 +31,9 @@ namespace EscapeGame.Data.Csv
                 => throw new CsvParseException(code, sourceName, errorLine, column);
             void EndField()
             {
-                fields.Add(field.ToString()); field.Clear(); state = FieldState.Start;
+                fields.Add(field.ToString());
+                field.Clear();
+                state = FieldState.Start;
             }
             void EndRecord()
             {
@@ -34,7 +41,11 @@ namespace EscapeGame.Data.Csv
                 bool blank = !hasSyntax;
                 if (blank)
                     foreach (string cell in fields)
-                        if (cell.Trim(TrimCharacters).Length != 0) { blank = false; break; }
+                        if (cell.Trim(TrimCharacters).Length != 0)
+                        {
+                            blank = false;
+                            break;
+                        }
                 if (!blank)
                 {
                     if (headers == null)
@@ -44,8 +55,10 @@ namespace EscapeGame.Data.Csv
                         for (int column = 0; column < fields.Count; column++)
                         {
                             string header = fields[column].Trim(TrimCharacters);
-                            if (header.Length == 0) Fail(CsvErrorCode.EmptyHeader, recordLine, column + 1);
-                            if (!names.Add(header)) Fail(CsvErrorCode.DuplicateHeader, recordLine, column + 1);
+                            if (header.Length == 0)
+                                Fail(CsvErrorCode.EmptyHeader, recordLine, column + 1);
+                            if (!names.Add(header))
+                                Fail(CsvErrorCode.DuplicateHeader, recordLine, column + 1);
                             headers.Add(header);
                         }
                     }
@@ -56,7 +69,8 @@ namespace EscapeGame.Data.Csv
                         rows.Add(new CsvRow(recordLine, headers, fields));
                     }
                 }
-                fields.Clear(); hasSyntax = false;
+                fields.Clear();
+                hasSyntax = false;
             }
 
             int index = 0;
@@ -66,28 +80,66 @@ namespace EscapeGame.Data.Csv
                 int newlineSize = character == '\r' ? (index + 1 < text.Length && text[index + 1] == '\n' ? 2 : 1) : character == '\n' ? 1 : 0;
                 if (state == FieldState.Quoted)
                 {
-                    if (character == '"') { state = FieldState.AfterQuote; index++; }
-                    else if (newlineSize != 0) { field.Append(text, index, newlineSize); index += newlineSize; line++; }
-                    else { field.Append(character); index++; }
+                    if (character == '"')
+                    {
+                        state = FieldState.AfterQuote;
+                        index++;
+                    }
+                    else if (newlineSize != 0)
+                    {
+                        field.Append(text, index, newlineSize);
+                        index += newlineSize;
+                        line++;
+                    }
+                    else
+                    {
+                        field.Append(character);
+                        index++;
+                    }
                     continue;
                 }
                 if (state == FieldState.AfterQuote && character == '"')
                 {
-                    field.Append('"'); state = FieldState.Quoted; index++; continue;
+                    field.Append('"');
+                    state = FieldState.Quoted;
+                    index++;
+                    continue;
                 }
-                if (character == ',') { EndField(); hasSyntax = true; index++; continue; }
-                if (newlineSize != 0) { EndRecord(); index += newlineSize; line++; recordLine = line; continue; }
-                if (state == FieldState.AfterQuote) Fail(CsvErrorCode.InvalidQuote, line, fields.Count + 1);
+                if (character == ',')
+                {
+                    EndField();
+                    hasSyntax = true;
+                    index++;
+                    continue;
+                }
+                if (newlineSize != 0)
+                {
+                    EndRecord();
+                    index += newlineSize;
+                    line++;
+                    recordLine = line;
+                    continue;
+                }
+                if (state == FieldState.AfterQuote)
+                    Fail(CsvErrorCode.InvalidQuote, line, fields.Count + 1);
                 if (character == '"')
                 {
-                    if (state != FieldState.Start) Fail(CsvErrorCode.InvalidQuote, line, fields.Count + 1);
-                    state = FieldState.Quoted; hasSyntax = true; index++; continue;
+                    if (state != FieldState.Start)
+                        Fail(CsvErrorCode.InvalidQuote, line, fields.Count + 1);
+                    state = FieldState.Quoted;
+                    hasSyntax = true;
+                    index++;
+                    continue;
                 }
-                field.Append(character); state = FieldState.Unquoted; index++;
+                field.Append(character);
+                state = FieldState.Unquoted;
+                index++;
             }
-            if (state == FieldState.Quoted) Fail(CsvErrorCode.UnclosedQuote, line, fields.Count + 1);
+            if (state == FieldState.Quoted)
+                Fail(CsvErrorCode.UnclosedQuote, line, fields.Count + 1);
             EndRecord();
-            if (headers == null) Fail(CsvErrorCode.MissingHeader, 1, 1);
+            if (headers == null)
+                Fail(CsvErrorCode.MissingHeader, 1, 1);
             return new CsvDocument(sourceName, headers, rows);
         }
     }

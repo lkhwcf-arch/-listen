@@ -19,16 +19,20 @@ namespace EscapeGame.Editor
         {
             foreach (string asset in AssetDatabase.GetAllAssetPaths())
             {
-                if (!Path.HasExtension(asset)) continue;
+                if (!Path.HasExtension(asset))
+                    continue;
                 CsvResourceKind kind = asset.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) ? CsvResourceKind.Prefab :
                     AssetDatabase.GetMainAssetTypeAtPath(asset) == typeof(AudioClip) ? CsvResourceKind.Audio : CsvResourceKind.None;
-                if (kind == CsvResourceKind.None) continue;
+                if (kind == CsvResourceKind.None)
+                    continue;
                 var set = paths[kind];
                 string withoutExtension = asset.Substring(0, asset.Length - Path.GetExtension(asset).Length);
-                set.Add(asset); set.Add(withoutExtension);
+                set.Add(asset);
+                set.Add(withoutExtension);
                 const string marker = "/Resources/";
                 int index = asset.LastIndexOf(marker, StringComparison.Ordinal);
-                if (index < 0) continue;
+                if (index < 0)
+                    continue;
                 set.Add(asset.Substring(index + marker.Length));
                 set.Add(withoutExtension.Substring(index + marker.Length));
             }

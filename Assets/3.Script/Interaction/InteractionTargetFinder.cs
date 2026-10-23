@@ -10,13 +10,19 @@ namespace EscapeGame.Interaction
         public InteractionTargetFinder(Transform player) => this.player = player;
         public WorldInteractionTarget Find(Ray ray, int distanceMm)
         {
-            if (distanceMm <= 0) return null;
+            if (distanceMm <= 0)
+                return null;
             int count = Physics.RaycastNonAlloc(ray, hits, distanceMm / 1000f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
-            if (count == hits.Length) return null;
-            Collider nearest = null; float distance = float.MaxValue;
+            if (count == hits.Length)
+                return null;
+            Collider nearest = null;
+            float distance = float.MaxValue;
             for (int i = 0; i < count; i++)
                 if (!hits[i].collider.transform.IsChildOf(player) && hits[i].distance < distance)
-                { nearest = hits[i].collider; distance = hits[i].distance; }
+                {
+                    nearest = hits[i].collider;
+                    distance = hits[i].distance;
+                }
             var target = nearest != null ? nearest.GetComponentInParent<WorldInteractionTarget>() : null;
             return target != null && target.IsAvailable ? target : null;
         }

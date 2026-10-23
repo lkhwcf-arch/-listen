@@ -8,7 +8,10 @@ using UnityEngine.Events;
 // The authoritative round sequence can be injected with SetSolution each round.
 public class SilentRoom3ArrowConsole : MonoBehaviour
 {
-    public enum Direction { Up, Down, Left, Right }
+    public enum Direction
+    {
+        Up, Down, Left, Right
+    }
 
     [Header("Imported console parts")]
     [SerializeField] Transform upButton;
@@ -45,7 +48,8 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
         get
         {
             char[] characters = new char[input.Count];
-            for (int i = 0; i < input.Count; i++) characters[i] = ToLetter(input[i]);
+            for (int i = 0; i < input.Count; i++)
+                characters[i] = ToLetter(input[i]);
             return new string(characters);
         }
     }
@@ -54,11 +58,13 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
     {
         foreach (Transform button in new[] { upButton, downButton, leftButton,
                      rightButton, eraseButton, enterButton })
-            if (button != null) buttonOrigins[button] = button.localPosition;
+            if (button != null)
+                buttonOrigins[button] = button.localPosition;
 
         for (int i = 0; i < displayArrows.Length && i < 10; i++)
         {
-            if (displayArrows[i] == null) continue;
+            if (displayArrows[i] == null)
+                continue;
             arrowOrigins[i] = displayArrows[i].localRotation;
             displayArrows[i].localScale = Vector3.zero;
         }
@@ -87,7 +93,8 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
 
     public void PressDirection(Direction direction)
     {
-        if (IsLocked || input.Count >= 10) return;
+        if (IsLocked || input.Count >= 10)
+            return;
         Transform button = direction == Direction.Up ? upButton :
             direction == Direction.Down ? downButton :
             direction == Direction.Left ? leftButton : rightButton;
@@ -95,7 +102,8 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
         int slot = input.Count;
         input.Add(direction);
         Transform arrow = GetArrow(slot);
-        if (arrow == null) return;
+        if (arrow == null)
+            return;
         // The imported arrow mesh faces the console; local Z rotates in the display plane.
         float angle = direction == Direction.Down ? 180f :
             direction == Direction.Left ? 90f :
@@ -107,20 +115,25 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
     // One Erase press removes the most recent direction, so a single mistake is editable.
     public void EraseLast()
     {
-        if (IsLocked) return;
+        if (IsLocked)
+            return;
         AnimatePress(eraseButton);
-        if (input.Count == 0) return;
+        if (input.Count == 0)
+            return;
         int last = input.Count - 1;
         Transform arrow = GetArrow(last);
-        if (arrow != null) arrow.localScale = Vector3.zero;
+        if (arrow != null)
+            arrow.localScale = Vector3.zero;
         input.RemoveAt(last);
     }
 
     public void Submit()
     {
-        if (IsLocked) return;
+        if (IsLocked)
+            return;
         AnimatePress(enterButton);
-        if (input.Count != 10) return;
+        if (input.Count != 10)
+            return;
         if (CurrentInput == solution)
         {
             solved = true;
@@ -137,7 +150,8 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
     {
         input.Clear();
         for (int i = 0; i < displayArrows.Length; i++)
-            if (displayArrows[i] != null) displayArrows[i].localScale = Vector3.zero;
+            if (displayArrows[i] != null)
+                displayArrows[i].localScale = Vector3.zero;
     }
 
     Transform GetArrow(int index) => index < displayArrows.Length ? displayArrows[index] : null;
@@ -147,7 +161,8 @@ public class SilentRoom3ArrowConsole : MonoBehaviour
 
     void AnimatePress(Transform button)
     {
-        if (button == null || !buttonOrigins.ContainsKey(button)) return;
+        if (button == null || !buttonOrigins.ContainsKey(button))
+            return;
         if (runningPresses.TryGetValue(button, out Coroutine current) && current != null)
             StopCoroutine(current);
         runningPresses[button] = StartCoroutine(PressRoutine(button, buttonOrigins[button]));

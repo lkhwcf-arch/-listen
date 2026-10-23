@@ -23,7 +23,9 @@ namespace EscapeGame.Configuration
             }
             catch (Exception error) when (error is IOException || error is UnauthorizedAccessException ||
                 error is ArgumentException || error is InvalidOperationException)
-            { throw new InvalidOperationException($"접속 설정 오류 ({path}): {error.Message}", error); }
+            {
+                throw new InvalidOperationException($"접속 설정 오류 ({path}): {error.Message}", error);
+            }
         }
     }
 }

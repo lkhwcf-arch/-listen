@@ -5,15 +5,42 @@ namespace EscapeGame.Data.Tables
     // 동일 구조의 CSV는 공통 필드와 변환을 재사용합니다.
     public abstract class RoomData
     {
-        public int Id { get; }
-        public int RoomNo { get; }
-        public string Role { get; }
-        public int RoomPrefabId { get; }
-        public int PuzzleId { get; }
-        public int TargetMs { get; }
-        public string ExitRule { get; }
-        public bool Active { get; }
-        public int Next { get; }
+        public int Id
+        {
+            get;
+        }
+        public int RoomNo
+        {
+            get;
+        }
+        public string Role
+        {
+            get;
+        }
+        public int RoomPrefabId
+        {
+            get;
+        }
+        public int PuzzleId
+        {
+            get;
+        }
+        public int TargetMs
+        {
+            get;
+        }
+        public string ExitRule
+        {
+            get;
+        }
+        public bool Active
+        {
+            get;
+        }
+        public int Next
+        {
+            get;
+        }
 
         protected RoomData(CsvRow row, string sheet)
         {

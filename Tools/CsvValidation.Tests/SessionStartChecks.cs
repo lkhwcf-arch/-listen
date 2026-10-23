@@ -6,10 +6,16 @@ static class SessionStartChecks
     internal static async Task Run()
     {
         int count = 0;
-        void Check(bool value, string message) { if (!value) throw new Exception(message); count++; }
+        void Check(bool value, string message)
+        {
+            if (!value)
+                throw new Exception(message);
+            count++;
+        }
         var session = new FakeSession();
         using var gate = new SessionStartGate(session);
-        int events = 0; gate.Changed += () => events++;
+        int events = 0;
+        gate.Changed += () => events++;
         session.Publish(ClientSessionPhase.Waiting, 1);
         var waiting = gate.WaitForParticipantsAsync(default);
         Check(!waiting.IsCompleted && !gate.CanEnterScene && !gate.CanPlay, "한 명이면 씬 진입과 조작을 대기합니다.");
@@ -29,11 +35,27 @@ static class SessionStartChecks
         {
             var cancelled = gate.WaitForParticipantsAsync(cancellation.Token);
             cancellation.Cancel();
-            try { await cancelled; throw new Exception("취소 실패"); } catch (OperationCanceledException) { count++; }
+            try
+            {
+                await cancelled;
+                throw new Exception("취소 실패");
+            }
+            catch (OperationCanceledException)
+            {
+                count++;
+            }
         }
         var disconnected = gate.WaitForParticipantsAsync(default);
         session.Disconnect(SessionFailureCode.ConnectionFailed);
-        try { await disconnected; throw new Exception("연결 종료 실패"); } catch (InvalidOperationException) { count++; }
+        try
+        {
+            await disconnected;
+            throw new Exception("연결 종료 실패");
+        }
+        catch (InvalidOperationException)
+        {
+            count++;
+        }
         Check(!gate.CanPlay && gate.Message.Contains("연결"), "연결 종료는 조작을 잠그고 원인을 알립니다.");
         gate.SetLocalMode(true);
         await gate.WaitForParticipantsAsync(default);
@@ -42,7 +64,15 @@ static class SessionStartChecks
         session.Publish(ClientSessionPhase.Waiting, 1);
         var abandoned = gate.WaitForParticipantsAsync(default);
         gate.Dispose();
-        try { await abandoned; throw new Exception("수명 종료 실패"); } catch (OperationCanceledException) { count++; }
+        try
+        {
+            await abandoned;
+            throw new Exception("수명 종료 실패");
+        }
+        catch (OperationCanceledException)
+        {
+            count++;
+        }
         Check(session.Subscribers == 0, "종료 시 상태 구독을 해제합니다.");
         Console.WriteLine($"게임 시작 조건 검사 {count}개 통과.");
     }
@@ -50,17 +80,37 @@ static class SessionStartChecks
     {
         private Action<SessionInfo> changed;
         public int Subscribers => changed?.GetInvocationList().Length ?? 0;
-        public SessionInfo State { get; private set; } = new SessionInfo(null, null, null, null, 0, false);
+        public SessionInfo State
+        {
+            get;
+            private set;
+        } = new SessionInfo(null, null, null, null, 0, false);
         public bool IsBusy => false;
         public string ServerBaseUrl => "http://test";
-        public event Action<SessionInfo> StateChanged { add { changed += value; } remove { changed -= value; } }
+        public event Action<SessionInfo> StateChanged
+        {
+            add
+            {
+                changed += value;
+            }
+            remove
+            {
+                changed -= value;
+            }
+        }
         public event Action<ClientSessionPhase?, ClientSessionPhase> PhaseChanged { add { } remove { } }
         public event Action<SessionFailureCode> BackgroundFailed { add { } remove { } }
         public event Action<SessionFailureCode> Disconnected { add { } remove { } }
         public void Publish(ClientSessionPhase phase, int count, bool ready = false)
-        { State = new SessionInfo("s", "p", "A", phase, count, ready); changed?.Invoke(State); }
+        {
+            State = new SessionInfo("s", "p", "A", phase, count, ready);
+            changed?.Invoke(State);
+        }
         public void Disconnect(SessionFailureCode reason)
-        { State = new SessionInfo("s", "p", "A", null, 0, false, SessionConnectionStatus.Disconnected, reason); changed?.Invoke(State); }
+        {
+            State = new SessionInfo("s", "p", "A", null, 0, false, SessionConnectionStatus.Disconnected, reason);
+            changed?.Invoke(State);
+        }
         public Task<SessionCommandResult> LeaveAsync(CancellationToken token) => throw new NotSupportedException();
         public Task<SessionCommandResult> HeartbeatAsync(CancellationToken token) => throw new NotSupportedException();
         public Task<SessionCommandResult> JoinAsync(string address, CancellationToken token) => throw new NotSupportedException();

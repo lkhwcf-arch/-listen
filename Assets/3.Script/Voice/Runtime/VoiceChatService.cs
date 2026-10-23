@@ -14,7 +14,11 @@ namespace EscapeGame.Voice
         private int generation;
         private bool shuttingDown;
         private VoiceFailureCode connectionFault;
-        public VoiceInfo State { get; private set; } = new VoiceInfo(VoiceConnectionStatus.Idle);
+        public VoiceInfo State
+        {
+            get;
+            private set;
+        } = new VoiceInfo(VoiceConnectionStatus.Idle);
         public event Action<VoiceInfo> StateChanged;
         public VoiceChatService(IVoiceGateway gateway, Action<Exception> diagnostic = null)
         {
@@ -26,16 +30,23 @@ namespace EscapeGame.Voice
         }
         public async Task ConnectAsync(VoiceConnectionRequest request, CancellationToken token)
         {
-            if (request == null) throw new ArgumentNullException(nameof(request));
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
             await gate.WaitAsync(token);
             try
             {
                 token.ThrowIfCancellationRequested();
-                if (shuttingDown) return;
-                if (State.Status == VoiceConnectionStatus.Connected && State.SessionId == request.SessionId && State.PlayerId == request.PlayerId) return;
+                if (shuttingDown)
+                    return;
+                if (State.Status == VoiceConnectionStatus.Connected && State.SessionId == request.SessionId && State.PlayerId == request.PlayerId)
+                    return;
                 generation++;
                 connectionFault = VoiceFailureCode.None;
-                if (!await CleanupAsync()) { Publish(VoiceConnectionStatus.Failed, VoiceFailureCode.CleanupFailed); return; }
+                if (!await CleanupAsync())
+                {
+                    Publish(VoiceConnectionStatus.Failed, VoiceFailureCode.CleanupFailed);
+                    return;
+                }
                 using var attempt = CancellationTokenSource.CreateLinkedTokenSource(token);
                 connecting = attempt;
                 string channel = VoiceChannelPolicy.ForSession(request.SessionId);
@@ -51,21 +62,39 @@ namespace EscapeGame.Voice
                 {
                     bool cancelled = attempt.IsCancellationRequested || exception is OperationCanceledException;
                     var code = exception is VoiceGatewayException failure ? failure.Code : VoiceFailureCode.UnexpectedFailure;
-                    if (!cancelled) diagnostic?.Invoke(exception);
+                    if (!cancelled)
+                        diagnostic?.Invoke(exception);
                     bool cleaned = await CleanupAsync();
-                    if (!cleaned) Publish(VoiceConnectionStatus.Failed, VoiceFailureCode.CleanupFailed);
-                    else if (connectionFault != VoiceFailureCode.None) Publish(VoiceConnectionStatus.Failed, connectionFault);
-                    else if (cancelled) Publish(new VoiceInfo(VoiceConnectionStatus.Idle));
-                    else Publish(VoiceConnectionStatus.Failed, code);
+                    if (!cleaned)
+                        Publish(VoiceConnectionStatus.Failed, VoiceFailureCode.CleanupFailed);
+                    else if (connectionFault != VoiceFailureCode.None)
+                        Publish(VoiceConnectionStatus.Failed, connectionFault);
+                    else if (cancelled)
+                        Publish(new VoiceInfo(VoiceConnectionStatus.Idle));
+                    else
+                        Publish(VoiceConnectionStatus.Failed, code);
                 }
-                finally { connecting = null; }
+                finally
+                {
+                    connecting = null;
+                }
             }
-            finally { gate.Release(); }
+            finally
+            {
+                gate.Release();
+            }
         }
         public void StopTransmission()
         {
             connecting?.Cancel();
-            try { gateway.Mute(); } catch (Exception exception) { diagnostic?.Invoke(exception); }
+            try
+            {
+                gateway.Mute();
+            }
+            catch (Exception exception)
+            {
+                diagnostic?.Invoke(exception);
+            }
         }
         public async Task DisconnectAsync(CancellationToken token)
         {
@@ -75,12 +104,16 @@ namespace EscapeGame.Voice
             try
             {
                 generation++;
-                if (State.Status != VoiceConnectionStatus.Idle) Publish(VoiceConnectionStatus.Disconnecting);
+                if (State.Status != VoiceConnectionStatus.Idle)
+                    Publish(VoiceConnectionStatus.Disconnecting);
                 bool cleaned = await CleanupAsync();
                 Publish(new VoiceInfo(cleaned ? VoiceConnectionStatus.Idle : VoiceConnectionStatus.Failed,
                     cleaned ? VoiceFailureCode.None : VoiceFailureCode.CleanupFailed));
             }
-            finally { gate.Release(); }
+            finally
+            {
+                gate.Release();
+            }
         }
         public async Task ShutdownAsync()
         {
@@ -92,12 +125,22 @@ namespace EscapeGame.Voice
         }
         private async Task<bool> CleanupAsync()
         {
-            try { gateway.Mute(); await gateway.DisconnectAsync(); return true; }
-            catch (Exception exception) { diagnostic?.Invoke(exception); return false; }
+            try
+            {
+                gateway.Mute();
+                await gateway.DisconnectAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                diagnostic?.Invoke(exception);
+                return false;
+            }
         }
         private void OnParticipantsChanged()
         {
-            if (State.Status == VoiceConnectionStatus.Connected || State.Status == VoiceConnectionStatus.Recovering) Publish(State.Status);
+            if (State.Status == VoiceConnectionStatus.Connected || State.Status == VoiceConnectionStatus.Recovering)
+                Publish(State.Status);
         }
         private void OnRecoveryChanged(bool recovering)
         {
@@ -119,10 +162,17 @@ namespace EscapeGame.Voice
                 if (failedGeneration == generation && !await CleanupAsync())
                     Publish(VoiceConnectionStatus.Failed, VoiceFailureCode.CleanupFailed);
             }
-            finally { gate.Release(); }
+            finally
+            {
+                gate.Release();
+            }
         }
         private void Publish(VoiceConnectionStatus status, VoiceFailureCode code = VoiceFailureCode.None)
             => Publish(new VoiceInfo(status, code, State.SessionId, State.PlayerId, State.ChannelName, gateway.ParticipantCount));
-        private void Publish(VoiceInfo state) { State = state; StateChanged?.Invoke(state); }
+        private void Publish(VoiceInfo state)
+        {
+            State = state;
+            StateChanged?.Invoke(state);
+        }
     }
 }

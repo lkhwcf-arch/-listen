@@ -7,8 +7,14 @@ namespace EscapeGame.Player
     public interface IPlayerPointerInput : IDisposable
     {
         PlayerLookCommand ReadLook();
-        bool CapturePressed { get; }
-        bool ReleasePressed { get; }
+        bool CapturePressed
+        {
+            get;
+        }
+        bool ReleasePressed
+        {
+            get;
+        }
         void SetEnabled(bool enabled);
         void SetLookEnabled(bool enabled);
     }
@@ -18,8 +24,10 @@ namespace EscapeGame.Player
         public InputSystemPointerInput(InputActionAsset asset)
         {
             // 먼저 전부 확인하여 부분 생성 실패로 액션 수명이 남지 않게 합니다.
-            if (asset == null) throw new ArgumentNullException(nameof(asset));
-            foreach (string path in new[] { "Player/Look", "Player/Attack", "UI/Cancel" }) asset.FindAction(path, true);
+            if (asset == null)
+                throw new ArgumentNullException(nameof(asset));
+            foreach (string path in new[] { "Player/Look", "Player/Attack", "UI/Cancel" })
+                asset.FindAction(path, true);
             look = new InputActionLease(asset, "Player/Look");
             capture = new InputActionLease(asset, "Player/Attack");
             release = new InputActionLease(asset, "UI/Cancel");
@@ -34,8 +42,18 @@ namespace EscapeGame.Player
             return new PlayerLookCommand(Normalize(delta.x), Normalize(delta.y));
         }
         public void SetEnabled(bool enabled)
-        { capture.SetEnabled(enabled); release.SetEnabled(enabled); if (!enabled) look.SetEnabled(false); }
+        {
+            capture.SetEnabled(enabled);
+            release.SetEnabled(enabled);
+            if (!enabled)
+                look.SetEnabled(false);
+        }
         public void SetLookEnabled(bool enabled) => look.SetEnabled(enabled);
-        public void Dispose() { look.Dispose(); capture.Dispose(); release.Dispose(); }
+        public void Dispose()
+        {
+            look.Dispose();
+            capture.Dispose();
+            release.Dispose();
+        }
     }
 }

@@ -14,11 +14,23 @@ var store = new CsvDataStore();
 if (!store.TryRegister(source, new CsvValidator(schema), out var report)) throw new Exception("CSV validation failed");
 var data = new CsvGameData(store);
 int passed = 0;
-void Check(bool ok, string label) { if (!ok) throw new Exception(label); passed++; }
+void Check(bool ok, string label)
+{
+    if (!ok)
+        throw new Exception(label);
+    passed++;
+}
 void Reject(Action command, string label)
 {
     bool rejected = false;
-    try { command(); } catch (InvalidOperationException) { rejected = true; }
+    try
+    {
+        command();
+    }
+    catch (InvalidOperationException)
+    {
+        rejected = true;
+    }
     Check(rejected, label);
 }
 foreach (string role in new[] { "A", "B" })

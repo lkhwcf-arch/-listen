@@ -38,8 +38,10 @@ namespace EscapeGame.Session.Presentation
         private void OnEnable()
         {
             // EditorOnly 태그로 빌드에서 제외하며, 동적 생성된 View도 에디터에서만 표시합니다.
-            if (localTestAButton != null) localTestAButton.gameObject.SetActive(Application.isEditor);
-            if (localTestBButton != null) localTestBButton.gameObject.SetActive(Application.isEditor);
+            if (localTestAButton != null)
+                localTestAButton.gameObject.SetActive(Application.isEditor);
+            if (localTestBButton != null)
+                localTestBButton.gameObject.SetActive(Application.isEditor);
             ValidateConfiguration();
             joinButton.onClick.AddListener(OnJoinClicked);
             localTestAButton?.onClick.AddListener(OnLocalA);
@@ -47,18 +49,26 @@ namespace EscapeGame.Session.Presentation
         }
         private void OnDisable()
         {
-            if (joinButton != null) joinButton.onClick.RemoveListener(OnJoinClicked);
+            if (joinButton != null)
+                joinButton.onClick.RemoveListener(OnJoinClicked);
             localTestAButton?.onClick.RemoveListener(OnLocalA);
             localTestBButton?.onClick.RemoveListener(OnLocalB);
         }
-        private void OnJoinClicked() { if (canLeave) LeaveRequested?.Invoke(); else JoinRequested?.Invoke(); }
+        private void OnJoinClicked()
+        {
+            if (canLeave)
+                LeaveRequested?.Invoke();
+            else
+                JoinRequested?.Invoke();
+        }
 
         public void ShowDisconnected(string message)
         {
             if (disconnectDialog == null)
             {
                 var canvas = GetComponentInParent<Canvas>();
-                if (canvas == null) throw new InvalidOperationException("알림창을 표시할 Canvas가 필요합니다.");
+                if (canvas == null)
+                    throw new InvalidOperationException("알림창을 표시할 Canvas가 필요합니다.");
                 disconnectDialog = SessionDisconnectDialog.Create(canvas.rootCanvas.transform, messageText.font);
             }
             disconnectDialog.Show(message);
@@ -73,9 +83,12 @@ namespace EscapeGame.Session.Presentation
             canLeave = presentation.CanLeave;
             joinButton.interactable = presentation.CanJoin || presentation.CanLeave;
             var buttonLabel = joinButton.GetComponentInChildren<TMP_Text>();
-            if (buttonLabel != null) buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
-            if (localTestAButton != null) localTestAButton.interactable = presentation.CanJoin;
-            if (localTestBButton != null) localTestBButton.interactable = presentation.CanJoin;
+            if (buttonLabel != null)
+                buttonLabel.text = presentation.IsLeaving ? "퇴장 중" : canLeave ? "나가기" : "입장";
+            if (localTestAButton != null)
+                localTestAButton.interactable = presentation.CanJoin;
+            if (localTestBButton != null)
+                localTestBButton.interactable = presentation.CanJoin;
         }
     }
 }

@@ -25,14 +25,18 @@ namespace EscapeGame.Session
         public void Initialize(ISessionConnectionService service,
             IMillisecondClock clock, CancellationToken ownerLifetime = default)
         {
-            if (this.service != null) throw new InvalidOperationException("이미 초기화되었습니다.");
-            if (service == null) throw new ArgumentNullException(nameof(service));
-            if (clock == null) throw new ArgumentNullException(nameof(clock));
+            if (this.service != null)
+                throw new InvalidOperationException("이미 초기화되었습니다.");
+            if (service == null)
+                throw new ArgumentNullException(nameof(service));
+            if (clock == null)
+                throw new ArgumentNullException(nameof(clock));
             ValidateConfiguration();
             this.service = service;
             this.clock = clock;
             this.ownerLifetime = ownerLifetime;
-            if (isActiveAndEnabled) StartPolling();
+            if (isActiveAndEnabled)
+                StartPolling();
         }
 
         public void ValidateConfiguration()
@@ -45,12 +49,14 @@ namespace EscapeGame.Session
 
         private void OnEnable()
         {
-            if (service != null) StartPolling();
+            if (service != null)
+                StartPolling();
         }
 
         private void StartPolling()
         {
-            if (lifetime != null) return;
+            if (lifetime != null)
+                return;
             polling = new SessionPollingController(service,
                 new MillisecondInterval(clock, pollingIntervalMs),
                 new MillisecondInterval(clock, playingPollingIntervalMs));
@@ -62,7 +68,8 @@ namespace EscapeGame.Session
 
         private void Update()
         {
-            if (lifetime != null) polling.Tick(lifetime.Token);
+            if (lifetime != null)
+                polling.Tick(lifetime.Token);
         }
 
         private void OnDisable()

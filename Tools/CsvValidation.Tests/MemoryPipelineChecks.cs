@@ -14,8 +14,10 @@ internal static class MemoryPipelineChecks
         int passed = 0;
         void Check(bool value, string name)
         {
-            if (!value) throw new Exception("FAIL: " + name);
-            passed++; Console.WriteLine("PASS: " + name);
+            if (!value)
+                throw new Exception("FAIL: " + name);
+            passed++;
+            Console.WriteLine("PASS: " + name);
         }
         var fixture = new TestValidator(xml);
         var data = fixture.Input(original);
@@ -27,19 +29,38 @@ internal static class MemoryPipelineChecks
         var store = new CsvDataStore();
         int loadCalls = 0, registered = 0;
         bool appliedBeforeEvent = true;
-        store.Registered += snapshot => { registered++; appliedBeforeEvent &= ReferenceEquals(store.Data, snapshot) && ReferenceEquals(store.Validation.Data, snapshot); };
-        Task<CsvDataSet> Load(CancellationToken token) { loadCalls++; return Task.FromResult(data); }
+        store.Registered += snapshot =>
+        {
+            registered++;
+            appliedBeforeEvent &= ReferenceEquals(store.Data, snapshot) && ReferenceEquals(store.Validation.Data, snapshot);
+        };
+        Task<CsvDataSet> Load(CancellationToken token)
+        {
+            loadCalls++;
+            return Task.FromResult(data);
+        }
         await store.InitializeAsync(Load, validator, CancellationToken.None);
         await store.InitializeAsync(Load, validator, CancellationToken.None);
         Check(loadCalls == 1 && registered == 1 && appliedBeforeEvent, "initialize loads/registers once and publishes applied state");
 
         int conversions = 0;
-        var puzzles = store.MapTable("PUZZLE", row => { conversions++; return new PuzzleData(row); });
+        var puzzles = store.MapTable("PUZZLE", row =>
+        {
+            conversions++;
+            return new PuzzleData(row);
+        });
         var consumer = new PuzzleConsumer(store.GetTable<PuzzleData>("PUZZLE"));
         Check(conversions == 8 && consumer.Puzzles[0].Id == 5001 && consumer.Puzzles[0].SlotCount == 4 && ReferenceEquals(puzzles, consumer.Puzzles), "real CSV rows map to data classes and inject into a consumer");
         Check(ReferenceEquals(puzzles, store.GetTable<PuzzleData>("PUZZLE")) && conversions == 8, "typed table is reused without re-reading or converting");
         bool rejected = false;
-        try { store.MapTable("PUZZLE", row => new PuzzleData(row)); } catch (InvalidOperationException) { rejected = true; }
+        try
+        {
+            store.MapTable("PUZZLE", row => new PuzzleData(row));
+        }
+        catch (InvalidOperationException)
+        {
+            rejected = true;
+        }
         Check(rejected, "duplicate mapping registration cannot silently replace a mapper");
         Check(puzzles is ReadOnlyCollection<PuzzleData>, "mapped table collection is read-only");
 
@@ -50,13 +71,27 @@ internal static class MemoryPipelineChecks
             "invalid registration preserves prior snapshot and typed cache");
         var emptyStore = new CsvDataStore();
         rejected = false;
-        try { emptyStore.MapTable("PUZZLE", row => new PuzzleData(row)); } catch (InvalidOperationException) { rejected = true; }
+        try
+        {
+            emptyStore.MapTable("PUZZLE", row => new PuzzleData(row));
+        }
+        catch (InvalidOperationException)
+        {
+            rejected = true;
+        }
         Check(rejected, "unvalidated data cannot be mapped through the store");
 
         var replacement = fixture.Input(original);
         Check(store.TryRegister(replacement, validator, out _) && ReferenceEquals(store.Data, replacement) && registered == 2, "valid replacement publishes a new snapshot");
         rejected = false;
-        try { store.GetTable<PuzzleData>("PUZZLE"); } catch (KeyNotFoundException) { rejected = true; }
+        try
+        {
+            store.GetTable<PuzzleData>("PUZZLE");
+        }
+        catch (KeyNotFoundException)
+        {
+            rejected = true;
+        }
         Check(rejected && consumer.Puzzles[0].Id == 5001, "replacement invalidates store cache while old injected snapshot stays stable");
         var newPuzzles = store.MapTable("PUZZLE", row => new PuzzleData(row));
         Check(!ReferenceEquals(newPuzzles, puzzles), "new registration can map fresh data for reinjection");
@@ -64,19 +99,40 @@ internal static class MemoryPipelineChecks
         Check(registered == 2 && ReferenceEquals(newPuzzles, store.GetTable<PuzzleData>("PUZZLE")), "same snapshot registration does not invalidate mappings or repeat event");
 
         rejected = false;
-        try { store.MapTable<string>("CARD", row => throw new FormatException("bad conversion")); } catch (FormatException) { rejected = true; }
+        try
+        {
+            store.MapTable<string>("CARD", row => throw new FormatException("bad conversion"));
+        }
+        catch (FormatException)
+        {
+            rejected = true;
+        }
         var cards = store.MapTable("CARD", row => row.Get("ID"));
         Check(rejected && cards.Count == 50, "failed conversion leaves no partial typed registration");
         var swapped = fixture.Input(original);
         rejected = false;
-        try { store.MapTable("TV", row => { store.TryRegister(swapped, validator, out _); return row.Get("Letter"); }); }
-        catch (InvalidOperationException) { rejected = true; }
+        try
+        {
+            store.MapTable("TV", row =>
+            {
+                store.TryRegister(swapped, validator, out _);
+                return row.Get("Letter");
+            });
+        }
+        catch (InvalidOperationException)
+        {
+            rejected = true;
+        }
         Check(rejected, "mapping cannot cache results after source replacement during conversion");
 
         var concurrentStore = new CsvDataStore();
         var completion = new TaskCompletionSource<CsvDataSet>(TaskCreationOptions.RunContinuationsAsynchronously);
         int concurrentLoads = 0;
-        Task<CsvDataSet> Deferred(CancellationToken token) { concurrentLoads++; return completion.Task; }
+        Task<CsvDataSet> Deferred(CancellationToken token)
+        {
+            concurrentLoads++;
+            return completion.Task;
+        }
         var pending1 = concurrentStore.InitializeAsync(Deferred, validator, CancellationToken.None);
         var pending2 = concurrentStore.InitializeAsync(Deferred, validator, CancellationToken.None);
         using (var cancellation = new CancellationTokenSource())
@@ -84,7 +140,14 @@ internal static class MemoryPipelineChecks
             var waiting = concurrentStore.InitializeAsync(Deferred, validator, cancellation.Token);
             cancellation.Cancel();
             rejected = false;
-            try { await waiting; } catch (OperationCanceledException) { rejected = true; }
+            try
+            {
+                await waiting;
+            }
+            catch (OperationCanceledException)
+            {
+                rejected = true;
+            }
             Check(rejected && !pending1.IsCompleted, "waiting caller cancellation does not cancel the active load");
         }
         completion.SetResult(data);
@@ -96,9 +159,17 @@ internal static class MemoryPipelineChecks
         {
             var result = new TaskCompletionSource<CsvDataSet>(TaskCreationOptions.RunContinuationsAsynchronously);
             var pending = cancelledStore.InitializeAsync(_ => result.Task, validator, cancellation.Token);
-            cancellation.Cancel(); result.SetResult(data);
+            cancellation.Cancel();
+            result.SetResult(data);
             rejected = false;
-            try { await pending; } catch (OperationCanceledException) { rejected = true; }
+            try
+            {
+                await pending;
+            }
+            catch (OperationCanceledException)
+            {
+                rejected = true;
+            }
             Check(rejected && !cancelledStore.HasData, "cancelled load cannot register a late snapshot");
         }
         await cancelledStore.InitializeAsync(Load, validator, CancellationToken.None);
@@ -112,7 +183,8 @@ internal static class MemoryPipelineChecks
         var loading = new TaskCompletionSource<CsvDataSet>(TaskCreationOptions.RunContinuationsAsynchronously);
         var stale = directStore.InitializeAsync(_ => loading.Task, validator, CancellationToken.None);
         directStore.TryRegister(replacement, validator, out _);
-        loading.SetResult(data); await stale;
+        loading.SetResult(data);
+        await stale;
         Check(ReferenceEquals(directStore.Data, replacement), "late initialization does not overwrite a direct registration");
 
         var renamed = original.ToDictionary(x => x.Key.Replace("PUZZLE", "RIDDLES"), x => x.Value.Replace("PUZZLE", "RIDDLES"));
@@ -130,12 +202,14 @@ internal static class MemoryPipelineChecks
         var diskStore = new CsvDataStore();
         Task<CsvDataSet> LoadFiles(CancellationToken token) => CsvDataSet.LoadAsync(paths, new CsvLoader(text, new CsvParser()), token);
         await diskStore.InitializeAsync(LoadFiles, validator, CancellationToken.None);
-        validator.Validate(diskStore.Data); validator.Validate(diskStore.Data);
+        validator.Validate(diskStore.Data);
+        validator.Validate(diskStore.Data);
         diskStore.MapTable("PUZZLE", row => new PuzzleData(row));
         await diskStore.InitializeAsync(LoadFiles, validator, CancellationToken.None);
         Check(text.Reads.Count == paths.Length && text.Reads.Values.All(x => x == 1), "actual files are read once across initialization, validation and mapping");
         var documents = data.Documents.ToDictionary(x => x.Key, x => x.Value);
-        var immutable = new CsvDataSet(documents); documents.Clear();
+        var immutable = new CsvDataSet(documents);
+        documents.Clear();
         Check(immutable.Documents.Count == original.Count, "snapshot owns a read-only copy of the document registry");
 
         string scratch = Path.Combine(root, "Temp/CsvValidationTests", Guid.NewGuid().ToString("N"));
@@ -151,23 +225,44 @@ internal static class MemoryPipelineChecks
     }
     private sealed class PuzzleData
     {
-        public int Id { get; }
-        public int SlotCount { get; }
-        public PuzzleData(CsvRow row) { Id = int.Parse(row.Get("ID"), CultureInfo.InvariantCulture); SlotCount = int.Parse(row.Get("SlotCount"), CultureInfo.InvariantCulture); }
+        public int Id
+        {
+            get;
+        }
+        public int SlotCount
+        {
+            get;
+        }
+        public PuzzleData(CsvRow row)
+        {
+            Id = int.Parse(row.Get("ID"), CultureInfo.InvariantCulture);
+            SlotCount = int.Parse(row.Get("SlotCount"), CultureInfo.InvariantCulture);
+        }
     }
     private sealed class PuzzleConsumer
     {
-        public IReadOnlyList<PuzzleData> Puzzles { get; }
+        public IReadOnlyList<PuzzleData> Puzzles
+        {
+            get;
+        }
         public PuzzleConsumer(IReadOnlyList<PuzzleData> puzzles) => Puzzles = puzzles;
     }
     private sealed class MarkerRule : ICsvValidationRule
-    { public void Validate(CsvValidationContext context) => context.Warn(CsvValidationCode.UnknownSchema, "TEST", 1, "", "injected"); }
+    {
+        public void Validate(CsvValidationContext context) => context.Warn(CsvValidationCode.UnknownSchema, "TEST", 1, "", "injected");
+    }
     private sealed class MissingResources : ICsvResourceResolver
-    { public bool Exists(string path, CsvResourceKind kind) => false; }
+    {
+        public bool Exists(string path, CsvResourceKind kind) => false;
+    }
     private sealed class CountingTextSource : ICsvTextSource
     {
         private readonly Utf8CsvFileSource source = new Utf8CsvFileSource();
         public readonly Dictionary<string, int> Reads = new Dictionary<string, int>();
-        public Task<string> ReadTextAsync(string name, CancellationToken token) { Reads[name] = Reads.GetValueOrDefault(name) + 1; return source.ReadTextAsync(name, token); }
+        public Task<string> ReadTextAsync(string name, CancellationToken token)
+        {
+            Reads[name] = Reads.GetValueOrDefault(name) + 1;
+            return source.ReadTextAsync(name, token);
+        }
     }
 }

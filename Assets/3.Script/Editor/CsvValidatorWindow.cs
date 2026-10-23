@@ -32,23 +32,30 @@ namespace EscapeGame.Editor
         }
         private void OnDisable()
         {
-            if (controller == null) return;
+            if (controller == null)
+                return;
             controller.Changed -= Repaint;
-            controller.Dispose(); controller = null;
+            controller.Dispose();
+            controller = null;
         }
 
         private void OnGUI()
         {
             EditorGUILayout.LabelField("Assets/11.CSV", EditorStyles.boldLabel);
-            if (controller == null) return;
+            if (controller == null)
+                return;
             using (new EditorGUI.DisabledScope(controller.IsBusy))
             {
                 checkResources = EditorGUILayout.ToggleLeft("프리팹·사운드 경로 확인 (미발견은 경고)", checkResources);
-                if (GUILayout.Button("메모리 데이터 검사", GUILayout.Height(28))) Run(false);
-                if (GUILayout.Button("CSV 다시 읽고 검사")) Run(true);
+                if (GUILayout.Button("메모리 데이터 검사", GUILayout.Height(28)))
+                    Run(false);
+                if (GUILayout.Button("CSV 다시 읽고 검사"))
+                    Run(true);
             }
-            if (controller.IsBusy) EditorGUILayout.HelpBox("CSV 검사 중입니다.", MessageType.Info);
-            if (controller.Failure != null) EditorGUILayout.HelpBox(controller.Failure, MessageType.Error);
+            if (controller.IsBusy)
+                EditorGUILayout.HelpBox("CSV 검사 중입니다.", MessageType.Info);
+            if (controller.Failure != null)
+                EditorGUILayout.HelpBox(controller.Failure, MessageType.Error);
             var report = controller.Report;
             if (report == null)
             {
@@ -59,16 +66,20 @@ namespace EscapeGame.Editor
                 report.IsValid ? MessageType.Info : MessageType.Error);
             showWarnings = EditorGUILayout.ToggleLeft("경고 표시", showWarnings);
             search = EditorGUILayout.TextField("검색", search);
-            if (GUILayout.Button("전체 결과 복사")) EditorGUIUtility.systemCopyBuffer = string.Join("\n", report.Issues.Select(CsvValidationMessages.Format));
+            if (GUILayout.Button("전체 결과 복사"))
+                EditorGUIUtility.systemCopyBuffer = string.Join("\n", report.Issues.Select(CsvValidationMessages.Format));
             scroll = EditorGUILayout.BeginScrollView(scroll);
             foreach (var issue in report.Issues)
             {
-                if (!showWarnings && issue.Severity == CsvValidationSeverity.Warning) continue;
-                if (search.Length > 0 && CsvValidationMessages.Format(issue).IndexOf(search, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                if (!showWarnings && issue.Severity == CsvValidationSeverity.Warning)
+                    continue;
+                if (search.Length > 0 && CsvValidationMessages.Format(issue).IndexOf(search, StringComparison.OrdinalIgnoreCase) < 0)
+                    continue;
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUILayout.LabelField($"{issue.Severity} · {issue.Sheet}.csv · {issue.Line}행 · {issue.Column}", EditorStyles.boldLabel);
                 EditorGUILayout.LabelField(CsvValidationMessages.Describe(issue), EditorStyles.wordWrappedLabel);
-                if (GUILayout.Button("CSV 열기", GUILayout.Width(90))) controller.Open(issue);
+                if (GUILayout.Button("CSV 열기", GUILayout.Width(90)))
+                    controller.Open(issue);
                 EditorGUILayout.EndVertical();
             }
             EditorGUILayout.EndScrollView();
@@ -90,9 +101,21 @@ namespace EscapeGame.Editor
         private CsvDataSet data;
         private CsvValidationCatalog catalog;
         private bool disposed;
-        public bool IsBusy { get; private set; }
-        public string Failure { get; private set; }
-        public CsvValidationReport Report { get; private set; }
+        public bool IsBusy
+        {
+            get;
+            private set;
+        }
+        public string Failure
+        {
+            get;
+            private set;
+        }
+        public CsvValidationReport Report
+        {
+            get;
+            private set;
+        }
         public event Action Changed;
 
         public CsvValidatorController(string root)
@@ -102,12 +125,16 @@ namespace EscapeGame.Editor
         }
         public async Task ValidateAsync(bool reload, bool checkResources)
         {
-            if (disposed || IsBusy) return;
-            IsBusy = true; Failure = null; Changed?.Invoke();
+            if (disposed || IsBusy)
+                return;
+            IsBusy = true;
+            Failure = null;
+            Changed?.Invoke();
             var token = lifetime.Token;
             try
             {
-                if (catalog == null || reload) catalog = CsvValidationCatalog.Read(await source.ReadTextAsync(rulesPath, token));
+                if (catalog == null || reload)
+                    catalog = CsvValidationCatalog.Read(await source.ReadTextAsync(rulesPath, token));
                 if (data == null || reload)
                 {
                     var files = Directory.GetFiles(folder).Where(path => string.Equals(Path.GetExtension(path), ".csv", StringComparison.OrdinalIgnoreCase))
@@ -122,20 +149,35 @@ namespace EscapeGame.Editor
             catch (OperationCanceledException) when (token.IsCancellationRequested) { }
             catch (Exception error)
             {
-                if (!disposed) { Failure = "CSV 검사를 실행하지 못했습니다: " + error.Message; Debug.LogWarning(error); }
+                if (!disposed)
+                {
+                    Failure = "CSV 검사를 실행하지 못했습니다: " + error.Message;
+                    Debug.LogWarning(error);
+                }
             }
-            finally { IsBusy = false; if (!disposed) Changed?.Invoke(); }
+            finally
+            {
+                IsBusy = false;
+                if (!disposed)
+                    Changed?.Invoke();
+            }
         }
         public void Open(CsvValidationIssue issue)
         {
-            if (disposed || Report == null || !Report.Issues.Contains(issue) || !Directory.Exists(folder)) return;
+            if (disposed || Report == null || !Report.Issues.Contains(issue) || !Directory.Exists(folder))
+                return;
             string file = Directory.GetFiles(folder).FirstOrDefault(path => string.Equals(Path.GetExtension(path), ".csv", StringComparison.OrdinalIgnoreCase) && Path.GetFileNameWithoutExtension(path) == issue.Sheet);
-            if (file != null) UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(file, Math.Max(1, issue.Line));
+            if (file != null)
+                UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(file, Math.Max(1, issue.Line));
         }
         public void Dispose()
         {
-            if (disposed) return;
-            disposed = true; lifetime.Cancel(); lifetime.Dispose(); Changed = null;
+            if (disposed)
+                return;
+            disposed = true;
+            lifetime.Cancel();
+            lifetime.Dispose();
+            Changed = null;
         }
     }
 }

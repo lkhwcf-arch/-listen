@@ -13,39 +13,58 @@ namespace EscapeGame.Interaction
         private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
         private readonly CancellationToken owner;
         private bool disposed, allowed;
-        public bool IsOpen { get; private set; }
-        public bool IsBusy { get; private set; }
+        public bool IsOpen
+        {
+            get;
+            private set;
+        }
+        public bool IsBusy
+        {
+            get;
+            private set;
+        }
         public event Action Changed;
         public DoorInteractionController(int roomNo, IRoomDoorService service)
         {
-            if (roomNo < 1) throw new ArgumentOutOfRangeException(nameof(roomNo));
+            if (roomNo < 1)
+                throw new ArgumentOutOfRangeException(nameof(roomNo));
             this.roomNo = roomNo;
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             owner = lifetime.Token;
         }
         public async Task<bool> ToggleAsync(CancellationToken token = default)
         {
-            if (disposed) throw new ObjectDisposedException(nameof(DoorInteractionController));
+            if (disposed)
+                throw new ObjectDisposedException(nameof(DoorInteractionController));
             token.ThrowIfCancellationRequested();
-            if (IsBusy) return false;
+            if (IsBusy)
+                return false;
             IsBusy = true;
             using var request = CancellationTokenSource.CreateLinkedTokenSource(owner, token);
             try
             {
                 bool decision = allowed || await service.CheckRoomDoorAsync(roomNo, request.Token);
                 request.Token.ThrowIfCancellationRequested();
-                if (!decision || disposed) return false;
+                if (!decision || disposed)
+                    return false;
                 allowed = true;
                 IsOpen = !IsOpen;
                 Changed?.Invoke();
                 return true;
             }
-            finally { IsBusy = false; }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         public void Dispose()
         {
-            if (disposed) return;
-            disposed = true; lifetime.Cancel(); lifetime.Dispose(); Changed = null;
+            if (disposed)
+                return;
+            disposed = true;
+            lifetime.Cancel();
+            lifetime.Dispose();
+            Changed = null;
         }
     }
 }

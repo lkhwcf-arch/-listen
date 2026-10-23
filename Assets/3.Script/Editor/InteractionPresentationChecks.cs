@@ -15,7 +15,12 @@ namespace EscapeGame.Editor
         public static int Run()
         {
             int count = 0;
-            void Check(bool valid, string message) { if (!valid) throw new InvalidOperationException(message); count++; }
+            void Check(bool valid, string message)
+            {
+                if (!valid)
+                    throw new InvalidOperationException(message);
+                count++;
+            }
             var closed = Quaternion.Euler(-90, -90, 0);
             foreach (var parent in new[] { Quaternion.identity, Quaternion.Euler(0, 71, 0), Quaternion.Euler(20, 42, -15) })
             {

@@ -9,7 +9,8 @@ namespace EscapeGame.Data
     [CreateAssetMenu(menuName = "EscapeGame/게임 사운드·결과 화면 설정")]
     public sealed class GameFeedbackAssets : ScriptableObject
     {
-        [Serializable] public sealed class Effect
+        [Serializable]
+        public sealed class Effect
         {
             public GameAudioCue cue;
             public AudioClip[] clips;
@@ -19,7 +20,8 @@ namespace EscapeGame.Data
             [Min(.01f)] public float minDistance = 1;
             [Min(.01f)] public float maxDistance = 15;
         }
-        [Serializable] public sealed class RoomAmbient
+        [Serializable]
+        public sealed class RoomAmbient
         {
             [Min(1)] public int roomNo;
             public AudioClip clip;
@@ -46,7 +48,8 @@ namespace EscapeGame.Data
             if (index == null)
             {
                 index = new Dictionary<GameAudioCue, Effect>();
-                foreach (var effect in effects) index.Add(effect.cue, effect);
+                foreach (var effect in effects)
+                    index.Add(effect.cue, effect);
             }
             return index.TryGetValue(cue, out var value) ? value : null;
         }
@@ -64,7 +67,9 @@ namespace EscapeGame.Data
                     effect.cooldownMs < 0 || effect.clips == null || effect.clips.Length == 0 ||
                     (effect.spatial && (!Positive(effect.minDistance) || !Positive(effect.maxDistance) || effect.maxDistance < effect.minDistance)))
                     throw new InvalidOperationException("효과음 키·볼륨·클립 목록·거리·중복을 확인하세요.");
-                foreach (var clip in effect.clips) if (clip == null) throw new InvalidOperationException("효과음 클립 참조가 비어 있습니다: " + effect.cue);
+                foreach (var clip in effect.clips)
+                    if (clip == null)
+                        throw new InvalidOperationException("효과음 클립 참조가 비어 있습니다: " + effect.cue);
             }
             var rooms = new HashSet<int>();
             foreach (var room in ambient)

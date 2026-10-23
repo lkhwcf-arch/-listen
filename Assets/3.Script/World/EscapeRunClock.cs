@@ -7,17 +7,28 @@ namespace EscapeGame.World
     public sealed class EscapeRunClock
     {
         private readonly long enteredAtMs;
-        public long? ElapsedMs { get; private set; }
+        public long? ElapsedMs
+        {
+            get;
+            private set;
+        }
         public EscapeRunClock(long enteredAtMs)
-        { if (enteredAtMs < 0) throw new ArgumentOutOfRangeException(nameof(enteredAtMs)); this.enteredAtMs = enteredAtMs; }
+        {
+            if (enteredAtMs < 0)
+                throw new ArgumentOutOfRangeException(nameof(enteredAtMs));
+            this.enteredAtMs = enteredAtMs;
+        }
         public void FreezeAtVideoStart(long nowMs)
         {
-            if (nowMs < enteredAtMs) throw new ArgumentOutOfRangeException(nameof(nowMs));
-            if (!ElapsedMs.HasValue) ElapsedMs = nowMs - enteredAtMs;
+            if (nowMs < enteredAtMs)
+                throw new ArgumentOutOfRangeException(nameof(nowMs));
+            if (!ElapsedMs.HasValue)
+                ElapsedMs = nowMs - enteredAtMs;
         }
         public static string Format(long milliseconds)
         {
-            if (milliseconds < 0) throw new ArgumentOutOfRangeException(nameof(milliseconds));
+            if (milliseconds < 0)
+                throw new ArgumentOutOfRangeException(nameof(milliseconds));
             long totalSeconds = milliseconds / 1000;
             return (totalSeconds / 3600).ToString("00", CultureInfo.InvariantCulture) + ":" +
                 (totalSeconds / 60 % 60).ToString("00", CultureInfo.InvariantCulture) + ":" +

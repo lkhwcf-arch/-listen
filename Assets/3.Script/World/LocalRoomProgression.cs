@@ -19,7 +19,8 @@ namespace EscapeGame.World
         public LocalRoomProgression(CsvGameData data)
         {
             this.data = data;
-            planA = new RoomLoadPlan(data, "A"); planB = new RoomLoadPlan(data, "B");
+            planA = new RoomLoadPlan(data, "A");
+            planB = new RoomLoadPlan(data, "B");
             unlocked.Add(planA.First.Id);
             unlocked.Add(planB.First.Id);
         }
@@ -40,13 +41,16 @@ namespace EscapeGame.World
         public RoomDecision DecideRoom(string role, int roomNo, string[] answers)
         {
             var room = Plan(role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
-            if (room == null) throw new EscapeGame.Session.SessionResultException(SessionFailureCode.RoomNotFound);
+            if (room == null)
+                throw new EscapeGame.Session.SessionResultException(SessionFailureCode.RoomNotFound);
             bool value;
-            if (answers == null) value = CheckDoor(role, roomNo);
+            if (answers == null)
+                value = CheckDoor(role, roomNo);
             else
             {
                 var result = Submit(role, room.PuzzleId, answers);
-                if (!result.Accepted) throw new EscapeGame.Session.SessionResultException(SessionFailureCode.SubmissionNotAllowed);
+                if (!result.Accepted)
+                    throw new EscapeGame.Session.SessionResultException(SessionFailureCode.SubmissionNotAllowed);
                 value = result.Correct;
             }
             return new RoomDecision(roomNo, value, permitted.Contains(room.Id));
@@ -54,13 +58,17 @@ namespace EscapeGame.World
         public bool CheckDoor(string role, int roomNo)
         {
             var room = Plan(role).Rooms.FirstOrDefault(row => row.RoomNo == roomNo);
-            if (room == null || !unlocked.Contains(room.Id)) return false;
-            if (permitted.Contains(room.Id)) return true;
+            if (room == null || !unlocked.Contains(room.Id))
+                return false;
+            if (permitted.Contains(room.Id))
+                return true;
             var rooms = data.RoomsA.Cast<RoomData>().Concat(data.RoomsB).Where(row => row.Active);
             var required = RoomExitRules.RequiresBothPuzzles(room.ExitRule) ? rooms.Where(other => other.RoomNo == room.RoomNo) : new[] { room };
-            if (!required.All(other => solved.Contains(other.PuzzleId))) return false;
+            if (!required.All(other => solved.Contains(other.PuzzleId)))
+                return false;
             permitted.Add(room.Id);
-            if (room.Next != 0) unlocked.Add(room.Next);
+            if (room.Next != 0)
+                unlocked.Add(room.Next);
             return true;
         }
         private RoomLoadPlan Plan(string role) => role == "A" ? planA : role == "B" ? planB
