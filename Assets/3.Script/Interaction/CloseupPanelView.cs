@@ -14,9 +14,11 @@ namespace EscapeGame.Interaction
         private readonly GameObject root, overlay, ownedEventSystem;
         private readonly TMP_Text title, hint, notice;
         private readonly Button back;
+        private bool disposed;
         public RawImage Preview { get; }
         public RectTransform ContentRoot { get; }
-        public bool IsVisible => overlay.activeSelf;
+        public bool IsAvailable => !disposed && root != null && overlay != null;
+        public bool IsVisible => IsAvailable && overlay.activeSelf;
         public event Action CloseRequested;
         public CloseupPanelView(Scene scene, InteractionPresentationSettings settings)
         {
@@ -44,16 +46,34 @@ namespace EscapeGame.Interaction
                 ownedEventSystem.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             }
         }
-        private void OnBack() => CloseRequested?.Invoke();
-        public void Show(int roomNo) { title.text = roomNo + "번 방 · 조작 화면"; hint.text = ""; overlay.SetActive(true); }
-        public void Hide() { Preview.texture = null; notice.text = ""; overlay.SetActive(false); }
-        public void SetNotice(string message) => notice.text = message;
+        private void OnBack() { if (IsAvailable) CloseRequested?.Invoke(); }
+        public void Show(int roomNo)
+        {
+            if (!IsAvailable) return;
+            if (title != null) title.text = roomNo + "번 방 · 조작 화면";
+            if (hint != null) hint.text = "";
+            overlay.SetActive(true);
+        }
+        public void Hide()
+        {
+            if (disposed) return;
+            if (Preview != null) Preview.texture = null;
+            if (notice != null) notice.text = "";
+            if (overlay != null) overlay.SetActive(false);
+        }
+        public void SetNotice(string message) { if (!disposed && notice != null) notice.text = message; }
         public void SetHint(bool available) => SetHint(available ? "좌클릭으로 살펴보기" : "");
-        public void SetHint(string message) => hint.text = message;
-        public void SetActive(bool active) => root.SetActive(active);
+        public void SetHint(string message) { if (!disposed && hint != null) hint.text = message; }
+        public void SetActive(bool active) { if (!disposed && root != null) root.SetActive(active); }
         public void Dispose()
         {
-            back.onClick.RemoveListener(OnBack); root.SetActive(false); InteractionObjectLifetime.Destroy(root);
+            if (disposed) return;
+            disposed = true;
+            CloseRequested = null;
+            // 씬 해제는 Canvas를 플레이어보다 먼저 파괴할 수 있습니다. Unity의 null 비교로 확인합니다.
+            if (back != null) back.onClick.RemoveListener(OnBack);
+            if (Preview != null) Preview.texture = null;
+            if (root != null) { root.SetActive(false); InteractionObjectLifetime.Destroy(root); }
             if (ownedEventSystem != null) { ownedEventSystem.SetActive(false); InteractionObjectLifetime.Destroy(ownedEventSystem); }
         }
     }

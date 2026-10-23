@@ -141,6 +141,16 @@ namespace EscapeGame.Editor
                 submit().onClick.Invoke();Check(status().text.Contains("정답입니다")&&entry.RoomPermissions.HasPermission(plan.RoomNo),"실제 로컬 Facade 판정과 문 허가 캐시");
                 Check(tracking.Answers.SequenceEqual(answers)&&!submit().interactable,"문자열 슬롯 순서 보존과 정답 후 재제출 차단");
                 driver.Closeup.Close();Check(!controls.CanCapture||!controls.GameplayEnabled,"닫은 뒤 커서 재획득 대기");
+                driver.Closeup.Open(target);
+                var lateAnswer = new TaskCompletionSource<RoomAnswerResult>(); tracking.Handler = (room, values, token) => lateAnswer.Task;
+                submit().onClick.Invoke();
+                Object.DestroyImmediate(canvas);
+                Check(!driver.IsReady, "Canvas 선파괴 시 상호작용 준비 해제");
+                lateAnswer.SetResult(RoomAnswerResult.Decision(false));
+                driver.enabled = false;
+                Check(!driver.Closeup.IsOpen && tracking.Token.IsCancellationRequested, "Canvas 선파괴 후 Disable에서 UI 잠금·정답 요청 정리");
+                Object.DestroyImmediate(player);
+                Check(driver == null && !scene.GetRootGameObjects().Any(item => item.name == "CloseupVisualPreview"), "Canvas 선파괴 후 플레이어 Destroy에서 미리보기 정리");
                 Debug.Log($"[정답 입력 검사] Unity UI·서비스 연결 {checks}개 통과. 데이터: {directory??"클라이언트 로컬"}. 실제 HTTP 검사는 별도입니다.");
             }
             finally

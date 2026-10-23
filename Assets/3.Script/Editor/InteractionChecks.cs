@@ -85,6 +85,21 @@ namespace EscapeGame.Editor
                 Check(camera.cullingMask == mask && !scene.GetRootGameObjects().Any(item => item.name == "CloseupVisualPreview"), "미리보기 해제와 카메라 복원");
                 using (var panel = new CloseupPanelView(scene, settings))
                 { Check(!panel.IsVisible, "패널 초기 비표시"); panel.Show(1); Check(panel.IsVisible, "패널 표시"); panel.Hide(); Check(!panel.IsVisible && panel.Preview.texture == null, "패널 닫기와 텍스처 해제"); }
+                using (var panel = new CloseupPanelView(scene, settings))
+                {
+                    panel.Show(1);
+                    Object.DestroyImmediate(panel.ContentRoot.transform.root.gameObject);
+                    Check(!panel.IsAvailable && !panel.IsVisible, "Canvas 선파괴 시 패널 사용 불가");
+                    panel.Hide(); panel.SetActive(false); panel.SetHint(""); panel.SetNotice(""); panel.Show(1);
+                    panel.Dispose(); panel.Dispose();
+                    Check(!panel.IsAvailable, "Canvas 선파괴 뒤 지연 호출·반복 해제 안전");
+                }
+                using (var panel = new CloseupPanelView(scene, settings))
+                {
+                    var oldRoot = panel.ContentRoot.transform.root.gameObject;
+                    panel.Dispose(); panel.Dispose(); panel.SetActive(true); panel.Show(1);
+                    Check(oldRoot == null && !panel.IsVisible, "정상·반복 해제 뒤 UI 재활성 금지");
+                }
                 var controls = new PlayerControlState(); controls.SetActive(true); controls.CapturePointer();
                 using (var closeup = new CloseupController(controls.BlockForUi))
                 {

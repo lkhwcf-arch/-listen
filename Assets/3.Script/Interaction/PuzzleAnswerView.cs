@@ -91,7 +91,7 @@ namespace EscapeGame.Interaction
         }
         private void Refresh()
         {
-            if (disposed) return;
+            if (disposed || root == null) return;
             for (int i = 0; i < values.Length; i++) values[i].text =
                 (controller.Plan.Kind == PuzzleInputKind.Sequence && controller.SelectedSlot == i ? "▶ " : "") + AnswerInputMessages.Value(controller.Values[i]);
             foreach (var binding in bindings) binding.button.interactable = binding.editOnly ? controller.CanEdit : controller.CanSubmit;
@@ -100,8 +100,9 @@ namespace EscapeGame.Interaction
         public void Dispose()
         {
             if (disposed) return; disposed = true; controller.Changed -= Refresh;
-            foreach (var binding in bindings) binding.button.onClick.RemoveListener(binding.click); bindings.Clear();
-            root.gameObject.SetActive(false); InteractionObjectLifetime.Destroy(root.gameObject);
+            foreach (var binding in bindings) if (binding.button != null) binding.button.onClick.RemoveListener(binding.click);
+            bindings.Clear();
+            if (root != null) { root.gameObject.SetActive(false); InteractionObjectLifetime.Destroy(root.gameObject); }
         }
     }
 }

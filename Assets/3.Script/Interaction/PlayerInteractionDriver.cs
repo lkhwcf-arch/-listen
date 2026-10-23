@@ -32,7 +32,7 @@ namespace EscapeGame.Interaction
         public event Action<GameAudioCue, EscapeGame.Data.Tables.AnchorData> FeedbackEmitted;
         public CloseupController Closeup { get; private set; }
         public WorldInteractionTarget Hovered { get; private set; }
-        public bool IsReady => panel != null && finder != null && pointer != null && pointer.IsReady && isActiveAndEnabled;
+        public bool IsReady => panel != null && panel.IsAvailable && finder != null && pointer != null && pointer.IsReady && isActiveAndEnabled;
         public void Initialize(Camera view, PlayerPointerDriver pointer, int distanceMm, InteractionPresentationSettings settings, IRoomAnswerService answers = null, string role = null, IRoomDoorService doors = null)
         {
             if (panel != null) throw new InvalidOperationException("상호작용은 한 번만 초기화합니다.");
