@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 1803436245592393210}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
-  m_LocalPosition: {x: -25.41, y: 1.56, z: 6.4}
+  m_LocalPosition: {x: -25.41, y: 3.35, z: 6.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 1887371361580113298}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
-  m_LocalPosition: {x: -35.276, y: 1.56, z: 6.399994}
+  m_LocalPosition: {x: -35.276, y: 3.349999, z: 6.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 3146818418450371455}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
-  m_LocalPosition: {x: -31.388, y: 1.56, z: 6.399994}
+  m_LocalPosition: {x: -31.388, y: 3.349999, z: 6.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,37 +404,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5323138302627811860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5156704255019937967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5946789126214234496}
-  m_Layer: 0
-  m_Name: Room3_LightPoint_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5946789126214234496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5156704255019937967}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
-  m_LocalPosition: {x: -28.088, y: 1.56, z: 639994}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8737909527035843183}
-  m_LocalEulerAnglesHint: {x: 1.203, y: -22.861, z: 0}
 --- !u!1 &5409417979839783219
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +440,37 @@ Transform:
   - {fileID: 796699411798549374}
   m_Father: {fileID: 4705712934912182961}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &6536957975611445569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3524377801805907674}
+  m_Layer: 0
+  m_Name: Room3_LightPoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3524377801805907674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536957975611445569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
+  m_LocalPosition: {x: -27.86, y: 3.349999, z: 6.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8737909527035843183}
+  m_LocalEulerAnglesHint: {x: 1.203, y: -22.861, z: 0}
 --- !u!1 &7521826830338466336
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 7875826732004448345}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010289768, y: -0.19816828, z: 0.0020804824, w: 0.98011184}
-  m_LocalPosition: {x: -37.964, y: 1.56, z: 6.399994}
+  m_LocalPosition: {x: -37.964, y: 3.349999, z: 6.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -563,7 +563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6911666403297411817}
-  - {fileID: 5946789126214234496}
+  - {fileID: 3524377801805907674}
   - {fileID: 4603174037166350248}
   - {fileID: 6915656400387422226}
   - {fileID: 4939363844988566164}
