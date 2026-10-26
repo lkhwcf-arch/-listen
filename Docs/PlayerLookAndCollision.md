@@ -83,4 +83,3 @@ Ingame의 `RoomSceneView.embedded`에서 삭제된 카드/서랍 모델 경로 2
 7. **Tools > Game > Verify Player Look And Collision**은 임시 큐브/벽으로 액션 수명·모델 당김/숨김/복원 9개를 검사합니다. **Verify Player Movement / Verify Player Spawn**도 사용할 수 있습니다. 메뉴 검사 실행 결과는 자동 참조 컴파일 통과와 구분합니다.
 
 현재 클라이언트 CSV는 원본·활성 14개입니다. 과거 23개·3151개 셀·4개 차이와 B LED 앵커 누락은 당시 기록이며 현재의 고정 실패 조건이 아닙니다. 온라인은 서버 번들, 서버 없는 검사는 로컬 CSV를 사용합니다. 이번 비교에서는 활성 14개 표가 문자열 행 기준으로 일치했습니다. 실제 프리팹 배치·충돌은 별도로 검사합니다.
-
