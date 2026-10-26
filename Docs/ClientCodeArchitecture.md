@@ -804,3 +804,5 @@ GameFeedbackAssets가 발소리·클로즈업 음·문 음·방 배경음·Resul
 EndingCompletionController는 자기 마지막 정답 이후에만 상대 완료를 확인합니다. 완료 전에는 조작을 잠그고, 허가가 확인되면 문 개폐·문턱 통과 없이 EndingVideoDirector가 영상을 시작합니다. 탈출 시간은 Ingame 진입부터 실제 영상 시작까지이며 완주 후 Result_UI를 만듭니다. 확인 버튼은 앱 종료이며 명시적 leave·Vivox 정리 완료 대기는 보장하지 않습니다. 결과 생성 성공 후 영상 포트·텍스처는 해제합니다.
 
 [GameFeedback](GameFeedback.md), [EndingVideo](EndingVideo.md), [세션 조회 간격](SessionPolling.md)이 각 설정·수명을 설명합니다.
+
+2026-10-26 손 초기화 검증 시점 보완: LocalPlayerFactory의 SetActive(true) 뒤 ValidateRuntimeBinding을 호출하고, 검증 전에는 Speed를 쓰지 않습니다. 파라미터 누락과 아직 초기화되지 않은 런타임 인스턴스를 구별합니다. [빌드 입장 중단 재현·수정](빌드_입장_중단_원인과_수정.md)을 참고합니다.

@@ -88,9 +88,12 @@ namespace EscapeGame.Player
                 movement.Initialize(plan.Character, pendingMoveInput, new EscapeGame.Timing.StopwatchMillisecondClock(),
                     settings.MaximumMovementFrameMs, settings.MaximumFallSpeedMmPerSecond, settings.GroundContactMm, controls);
                 var animatedHands = animators.Where(animator => animator.runtimeAnimatorController != null).ToArray();
+                PlayerHandAnimationDriver handAnimation = null;
                 if (animatedHands.Length != 0)
-                    root.AddComponent<PlayerHandAnimationDriver>().Initialize(animatedHands, movement, controls,
-                        settings.HandAnimationSpeedParameter);
+                {
+                    handAnimation = root.AddComponent<PlayerHandAnimationDriver>();
+                    handAnimation.Initialize(animatedHands, movement, controls, settings.HandAnimationSpeedParameter);
+                }
                 var pointerDriver = root.AddComponent<PlayerPointerDriver>();
                 var look = root.AddComponent<PlayerLookDriver>();
                 pendingPointerInput = new InputSystemPointerInput(settings.InputActions);
@@ -101,6 +104,7 @@ namespace EscapeGame.Player
                 if (feedback != null)
                     root.AddComponent<PlayerGaitDriver>().Initialize(camera.transform, movement, pointerDriver, plan.Character, feedback);
                 root.SetActive(true);
+                handAnimation?.ValidateRuntimeBinding();
                 // 정상 활성화 이후에는 각 입력 Driver가 수명을 소유합니다.
                 pendingMoveInput = null;
                 pendingPointerInput = null;
