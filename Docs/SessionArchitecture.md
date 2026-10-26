@@ -1,12 +1,14 @@
 # 세션 역할 경계
 
+> 문서 대조일: **2026-10-26**. 현재 코드·설정을 기준으로 설명을 점검했습니다. 본문의 과거 검사 수치·실행 기록은 해당 날짜의 결과입니다. [현재 상태·문서 검토 범위](문서_현행화_점검표.md)를 함께 확인합니다.
+
 2026-10-23 갱신. [종합 점검](ArchitectureReview.md)과 [최신 구현 규격](RefactorConventions.md)을 함께 봅니다. 게임 요청/응답은 HTTP+Protobuf이며 health/OpenAPI 등 운영 경로의 JSON과 구분합니다.
 
 현재는 같은 Unity 프로젝트에서 개발합니다. 별도 프로젝트/DLL 배포는 구성하지 않습니다.
 
 ## 공개 계약
 
-`Session/Contracts`의 `ISessionConnectionService`, `SessionInfo`, `SessionCommandResult`, `SessionFailureCode`, `ClientSessionPhase`만 소비자에게 제공합니다.
+세션 소비자는 `Session/Contracts`의 `ISessionConnectionService`, `ISessionContentService`, `ISessionRoomService`와 불변 상태·결과를 사용합니다. 상호작용·엔딩은 `IRoomAnswerService`, `IRoomDoorService`, `IRoomCompletionService`처럼 필요한 좁은 게임 계약을 받습니다.
 
 - `SessionInfo`는 변경할 수 없는 상태 값입니다. 토큰, Wire DTO, Apply 메서드가 없습니다.
 - `StateChanged`는 반영 완료된 새 상태 값을 전달합니다. 이전에 받은 값은 바뀌지 않습니다.

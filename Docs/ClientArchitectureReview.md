@@ -1,5 +1,7 @@
 # 클라이언트 구조 점검·수정 보고서
 
+> 문서 대조일: **2026-10-26**. 현재 코드·설정을 기준으로 설명을 점검했습니다. 본문의 과거 검사 수치·실행 기록은 해당 날짜의 결과입니다. [현재 상태·문서 검토 범위](문서_현행화_점검표.md)를 함께 확인합니다.
+
 2026-10-23 추가: Join은 [Start_UI·WaitingRoom_UI 메뉴](JoinMenu.md)로 연결했습니다. config 주소 선택과 두 ready 조건은 유지하며 탈출하기로 입장하고, 이미 두 명이면 Join 대기 UI 생성을 생략합니다. 이 문서의 이전 구조 점검 검사 수와 최신 메뉴 검사 수는 구분하며 최신 결과는 README/JoinMenu를 따릅니다.
 
 기준일: 2026-10-23. [종합 구조·검사 결과](ArchitectureReview.md), [앞으로의 구현 규격](RefactorConventions.md), [보행·사운드·결과 설정](GameFeedback.md)을 함께 봅니다.
@@ -158,3 +160,13 @@ GameFeedback 에셋은 enum을 숫자로 저장합니다. 기존처럼 암묵적
 5. 순수 상태는 Tick과 주입한 시간으로 검사합니다. Unity 표현 시간과 서버 생존 시간의 기준을 섞지 않습니다.
 6. 온라인은 서버가 정답/허가를 결정하고 문 회전·소리·카메라는 로컬에서 표현합니다. P2P/서버 권한 이전과 replay 결정성은 별도 작업입니다.
 7. 성능 주장은 측정 범위와 도구를 붙입니다. 컴파일·순수 모델 검사를 실제 Play/Profiler/청취 검사로 대체하지 않습니다.
+
+## 손·입력·조명 수명의 현재 연결
+
+실제 지면 수평 이동 결과 `MotionApplied`를 PlayerHandAnimationDriver가 관찰해 공통 Animator의 Speed를 갱신합니다. 벽에 막히거나 잠금·일시 정지·비활성화 상태에서는 0을 전달합니다. A/B 원본 제어기와 클립은 공유합니다.
+
+LocalPlayerFactory는 활성화 성공 전 입력 복제본을 소유하고 생성 실패 시 직접 해제합니다. 성공 후 Driver가 소유하며 InputActionLease는 중복 해제와 해제 후 재활성화를 막습니다. 손·이동 컴포넌트 선행 파괴를 보호합니다.
+
+RoomProbeLightingDriver는 역할별 원본을 복제해 전역 프로브를 연결하고 방 완료 이벤트로 수신 설정을 적용합니다. 파괴 시 현재 전역 소유자일 때만 복원합니다. MeshRenderer.receiveGI는 UNITY_EDITOR 안에서만 접근하고 플레이어는 lightProbeUsage를 사용합니다.
+
+[손 동작·31개 수명/동작 검사 기록](PlayerHandAnimation.md), [프로브 제작·빌드 경계](RoomProbeLighting.md), [설계 규격](RefactorConventions.md)을 함께 봅니다. 이 수치는 2026-10-23 기록이며 이번 문서 갱신의 신규 실기 결과가 아닙니다.

@@ -1,48 +1,49 @@
-# 1번 방 플레이어 생성: 첫 검토 단위
+# 플레이어 생성·손 모델·입력 수명
 
-> 2026-10-20 후속 변경: 최신 R01/CSV 재배치 기준의 마우스 시점·공통 조작 잠금·충돌 표현 및 검토 결과는 [PlayerLookAndCollision.md](PlayerLookAndCollision.md)를 우선합니다. 이 문서의 이전 개수·카드 포함 경로·CSV 일치 기록은 당시 기준입니다.
+> 문서 대조일: **2026-10-26**. 현재 코드·설정을 기준으로 설명을 점검했습니다. 본문의 과거 검사 수치·실행 기록은 해당 날짜의 결과입니다. [현재 상태·문서 검토 범위](문서_현행화_점검표.md)를 함께 확인합니다.
 
+## 1. 현재 동작
 
-2026-10-20. 공통 스폰 앵커·카메라·대체 모델의 첫 검토 단위를 설명합니다. 현재는 [WASD 이동](PlayerMovement.md)도 추가 연결되었습니다. 이후 클로즈업은 전용 UI 패널로 구성하며, 큐브/실린더는 몸체가 아니라 카메라 앞 손·무전기의 임시 모델입니다.
+`PlayerSpawnPlan`이 역할별 첫 방과 `GAME_CONFIG`가 선택한 캐릭터 정의를 찾습니다. 활성 스폰 행은 RoomNo·ALL/현재 역할·SpawnPrefabID 조건에 정확히 하나여야 합니다. 실제 AnchorID의 위치·회전을 사용하고 바닥으로 임의 보정하지 않습니다.
 
-## 사용과 검토
+현재 [PlayerPresentation](../Assets/Resources/PlayerPresentation.asset)에 A/B 손 프리팹이 직접 연결되어 있습니다. 기본 모델은 큐브·실린더가 아닙니다. 참조가 없는 경우의 기존 대체 도형 경로만 코드에 남아 있습니다.
 
-1. Unity의 컴파일·임포트가 끝나면 Ingame 씬을 다시 엽니다. 1번 방 참조를 현재 시트의 Room_01_Final로 맞췄으며 조명과 기존 카메라는 유지합니다.
-2. Play → Tools > Game > Room Clear Test → A 역할 → 미리보기 시작 → 플레이어 생성 버튼을 누릅니다.
-3. Game 뷰에서 큐브가 오른쪽 아래에 보이고, Hierarchy의 LocalPlayer_A가 시트의 공통 스폰 앵커 위치·방향을 따르는지 확인합니다. 카메라는 발 기준 높이 1600mm 위에 있습니다.
-4. 미리보기를 종료하면 생성한 플레이어를 제거하고 기존 카메라·오디오를 복원합니다. B로 다시 시작하면 같은 스폰 앵커에서 실린더가 표시됩니다.
-5. 플레이어 생성 버튼은 이미 생성한 경우 중복 생성하지 않습니다. 다른 정상 게임 플레이어가 있으면 Factory가 중복 생성을 거절합니다.
-6. 스폰 기능은 CharacterController·카메라·모델을 준비합니다. 후속 검토 단위인 [WASD 이동](PlayerMovement.md)이 현재 Factory에 연결되어 이동과 중력을 담당합니다. 앵커 높이를 바닥으로 재계산하거나 보정하지 않습니다. R01_Player는 플레이어 발 기준점으로 배치해야 합니다.
-
-정상 Join → Ingame 전환은 실제 방 로더가 선택한 첫 방을 Driver/Factory에 주입합니다. 현재 Git Pull 이후 서버/로컬 CSV 4개가 다르며 온라인은 서버 번들을 사용합니다. 씬 로드 후 화면 제거는 게임 진입을 취소하지 않으며 방과 플레이어가 모두 준비되어야 ready를 보고합니다. B의 R01_LEDPanelPoint는 아직 없어 정상 B 입장은 실패를 표시하고 이번 서버 자리를 정리합니다. 개발자 창의 B 기본 모델/이동 미리보기와 정상 B 게임 준비는 구분합니다. 자세한 수명·준비 조건은 [씬 진입 정합성 안내](EntryConsistency.md)를 참고하세요.
-
-## 데이터와 코드
-
-```text
-시트: RoomNo + Active + ALL/현재 역할 + 스폰 PrefabID
-  → PlayerSpawnPlan: 첫 방의 스폰 행 정확히 하나 선택
-  → 실제 AnchorID Transform의 월드 위치·회전
-  → LocalPlayerFactory
-     ├─ 공통 CharacterController
-     └─ FirstPersonCamera
-        └─ VisualRoot
-           └─ A 큐브 / B 실린더 / 추후 등록한 모델 프리팹
+```mermaid
+flowchart TD
+    DATA[캐릭터·방·스폰 정의] --> PLAN[PlayerSpawnPlan]
+    PLAN --> FACTORY[LocalPlayerFactory: 비활성 루트 생성]
+    FACTORY --> INPUT[이동·포인터 입력 복제·주입]
+    FACTORY --> HAND[A/B 손과 공통 대기·걷기 제어기]
+    INPUT --> ACTIVE[조립 성공 후 활성화]
+    ACTIVE --> DRIVER[각 Driver가 정상 수명 소유]
+    FACTORY -->|실패| CLEAN[입력 직접 해제·루트 비활성화·파괴]
 ```
 
-| 코드 | 기능과 의도 |
+## 2. 코드의 책임
+
+| 코드 | 책임 |
 |---|---|
-| PlayerSpawnPlan | Unity와 독립적인 시트 선택·캐릭터 설정 검증. 공통/전용 스폰이 동시에 선택되면 임의 우선순위 없이 거절합니다. |
-| PlayerPresentationSettings | 스폰 프리팹 ID, 캐릭터 설정 선택 ID, 클리핑, 모델 위치·회전·크기와 역할별 모델 프리팹을 보관합니다. |
-| LocalPlayerFactory | 앵커 유일성·중복 플레이어 검사 후 생성합니다. 임시 모델 충돌체는 꺼서 몸체 충돌 형태에 영향을 주지 않게 합니다. |
-| FirstPersonPlayerRig | 화면 모델과 카메라 소유권. 같은 씬의 화면 출력 Game 카메라/AudioListener를 기록·비활성화하고 플레이어 비활성화 시 복원합니다. 기존 카메라의 태그가 없어도 동작하며 RenderTexture 카메라는 제외합니다. |
-| PlayerSpawnDriver | Unity 수명·조립. 첫 방을 찾아 공통 Factory를 사용하고 스폰 완료 이벤트를 보냅니다. |
+| [PlayerSpawnPlan](../Assets/3.Script/Player/PlayerSpawnPlan.cs) | 첫 방·역할·스폰 행·캐릭터 정의 선택 |
+| [LocalPlayerFactory](../Assets/3.Script/Player/LocalPlayerFactory.cs) | 캡슐·카메라·손·이동·시점·표현 조립 |
+| [PlayerPresentationSettings](../Assets/3.Script/Player/PlayerPresentationSettings.cs) | 모델·입력·클리핑·표시 위치·애니메이션 파라미터 설정 |
+| [PlayerSpawnDriver](../Assets/3.Script/Player/PlayerSpawnDriver.cs) | 첫 방 주입·상호작용·조명·소리 연결과 플레이어 정리 |
+| [FirstPersonPlayerRig](../Assets/3.Script/Player/FirstPersonPlayerRig.cs) | 같은 씬의 기존 출력 카메라·오디오 상태 보관·복원 |
+| [InputActionLease](../Assets/3.Script/Player/InputActionLease.cs) | 원본을 건드리지 않는 입력 복제·반복 해제·해제 후 재활성화 방지 |
+| [PlayerHandAnimationDriver](../Assets/3.Script/Player/PlayerHandAnimationDriver.cs) | 충돌 후 이동 결과를 관찰해 손의 Speed 전달 |
 
-`Assets/Resources/PlayerPresentation.asset`의 Model A/B에 작업이 끝난 손·무전기 프리팹을 등록하면 생성 코드를 바꾸지 않고 교체할 수 있습니다. null이면 A Cube/B Cylinder를 사용합니다. 모델 프리팹은 별도 Camera·AudioListener·게임 입력 스크립트가 없는 시각 모델로 준비합니다. 프리팹 자체 크기는 유지하며 표시 위치는 VisualRoot의 정수 mm 설정으로 조정합니다. Model Size Mm은 기본 도형 크기만 지정합니다.
+ModelPositionMm·ModelEulerMilliDegrees는 카메라 기준 표현 위치·회전입니다. 프리팹 원본 크기는 유지합니다. ModelSizeMm은 대체 도형에만 사용합니다. 스폰 마커는 일반 오브젝트 생성에서 제외하여 중복 생성하지 않습니다.
 
-CHARACTER_STAT은 GAME_CONFIG의 설정 선택 행 16010이 가리키는 프로필을 사용합니다. A/B를 이유로 17001/17002를 각각 선택하지 않습니다. 시트의 소수 m 값을 한 번 정수 mm로 정규화하고 시야각은 정수 millidegree로 보관합니다. Unity 카메라·충돌체·Transform 적용 경계에서만 float로 변환합니다. 정수 단위 사용이 물리 결정성을 보장한다는 의미는 아닙니다.
+## 3. 정상 입장과 개발자 검사
 
-일반 방 오브젝트 로더에는 외부 생성기가 담당하는 PrefabID를 전달하여 플레이어 스폰 행을 제외합니다. 스폰 마커 13001을 일반 프리팹 경로로 Instantiate하지 않습니다. 내부 오브젝트와 플레이어가 같은 행을 중복 처리하지 않도록 분리한 것입니다.
+정상 흐름은 Join의 탈출하기 → 서버/로컬 데이터 검증 → 첫 방 구성 → 플레이어 생성 → 실제 준비 확인입니다. 온라인은 양쪽 ready 이후 조작을 허용합니다. 특정 과거 앵커 누락을 이유로 B 입장이 항상 실패한다고 설명하지 않습니다.
 
-## 실제 실행 확인 범위
+서버 없이 확인하려면 Join의 **클라이언트 테스트 A/B**를 사용합니다. 별도 방 검사는 Ingame Play → Tools → Game → Room Clear Test → 역할 선택 → 미리보기 시작 → 플레이어 생성입니다. 두 경로의 서비스·협동 진행 제한은 [로컬 테스트](LocalPlayTestGuide.md), [개발자 방 검사](DeveloperRoomClear.md)를 봅니다.
 
-순수 C# 정의 검사와 Unity 참조 컴파일을 수행합니다. Unity Play에서의 실제 렌더링·모델 가시성·카메라 전환은 사용자님 검토 대상입니다. 구현하지 않은 다음 기능을 이번 검토의 통과 항목으로 간주하지 않습니다.
+## 4. 수명 규격과 확인
+
+- 생성자는 정상 활성화 전 입력을 소유하며 실패 시 직접 해제합니다. 한 번도 활성화되지 않은 객체의 OnDestroy에 의존하지 않습니다.
+- 활성화 후 이동·포인터 Driver가 입력 수명을 소유합니다. 비활성화는 입력 차단·구독 해제, 파괴는 자원 해제입니다.
+- 손 어댑터는 모델을 직접 파괴하지 않고 플레이어 루트가 자식을 소유합니다. 이동·애니메이터 선행 파괴를 검사합니다.
+- 재활성화는 중복 구독 없이 초기 상태로 연결합니다. 같은 씬의 중복 로컬 플레이어는 거절합니다.
+
+[손 애니메이션과 당시 31개 유니티 검사](PlayerHandAnimation.md), [이동](PlayerMovement.md), [조작·충돌](PlayerLookAndCollision.md), [진입 수명](EntryConsistency.md)을 함께 봅니다. 이번 문서 검토가 새 유니티 실행 검사라는 뜻은 아닙니다.

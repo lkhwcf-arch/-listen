@@ -1,5 +1,7 @@
 # 환경별 서버 주소와 Join 입장
 
+> 문서 대조일: **2026-10-26**. 현재 코드·설정을 기준으로 설명을 점검했습니다. 본문의 과거 검사 수치·실행 기록은 해당 날짜의 결과입니다. [현재 상태·문서 검토 범위](문서_현행화_점검표.md)를 함께 확인합니다.
+
 2026-10-23 갱신. 환경별 접속 설정과 시작 메뉴 입장 안내입니다. 최신 메뉴 연결은 [Join 메뉴 가이드](JoinMenu.md)를 봅니다. 플레이어·Closeup·정답/문 API·HTTP Protobuf·협동 엔딩은 현재 코드에 연결되어 있습니다. 전체 구조와 이번 검사 결과는 [종합 점검](ArchitectureReview.md)을 봅니다.
 
 ## 설정 위치와 실행 환경
@@ -8,9 +10,9 @@
 
 | 환경 | 선택 조건 | 현재 주소 |
 |---|---|---|
-| Editor=0 | Unity Editor | http://127.0.0.1:3000 |
+| Editor=0 | Unity Editor | http://192.168.1.34:3001 |
 | TestBuild=1 | Development Build | http://192.168.1.34:3001 |
-| StableBuild=2 | 일반 빌드 | connection.json에 등록한 클라우드 주소 |
+| StableBuild=2 | 일반 빌드 | http://32.236.55.218:3000 |
 
 에디터는 Development Build 체크 여부와 관계없이 editor 설정을 선택합니다. 현재 stableBuild 주소는 등록되어 있습니다. 주소를 바꿀 때 stableBuild.serverBaseUrl을 갱신하고 재실행/새 빌드에 반영합니다. 빈 주소는 검증 오류이며 다른 환경으로 대체하지 않습니다. config에 토큰이나 비밀 키를 저장하지 않습니다.
 
@@ -42,8 +44,8 @@ flowchart TD
     ENV[Editor / Development / Stable] --> ADAPTER
     ADAPTER --> SETTINGS[ClientConnectionSettings 선택·검증]
     SETTINGS --> COMMAND[ConfiguredServerConnection]
-    AUTO[화면 활성화] --> COMMAND
-    BUTTON[입장 재시도 버튼] --> COMMAND
+    BUTTON[탈출하기 버튼] --> COMMAND
+    RETRY[실패 후 명시적 재시도] --> COMMAND
     COMMAND --> ENTRY[GameEntryService.EnterAsync]
     ENTRY --> JOIN[기존 서버 입장]
     JOIN --> CSV[서버 CSV와 최초 상태 수신]
@@ -53,16 +55,14 @@ flowchart TD
 
 ## 검사와 사용자님 확인 순서
 
-기존 123개와 신규 31개, 총 154개 순수 C# 검사를 통과했습니다. 설치된 .NET 10 SDK에서 같은 소스의 임시 프로젝트로 실행했으며 기존 검사 프로젝트의 net8 대상은 유지합니다. 실제 config JSON 값, 주소 검증, 환경 선택, 중복 요청, 취소, 실패 후 재시도, Presenter와 기존 입장/데이터/씬 전환 연결을 검사합니다.
+1. 서버 실행 또는 도커 공개 포트를 확인합니다. 현재 editor/testBuild는 `http://192.168.1.34:3001`입니다.
+2. Join을 Play하고 Start_UI의 **탈출하기**를 누릅니다. 누르기 전 서버 입장은 시작되지 않습니다.
+3. 첫 참가자는 WaitingRoom_UI, 이미 두 명을 확인한 참가자는 대기 UI 없이 Ingame 준비로 이동합니다. 양쪽 ready 전 조작은 차단됩니다.
+4. 서버 없는 검사는 에디터 전용 **클라이언트 테스트 A/B**를 사용합니다. autoConnect 값을 바꿀 필요가 없습니다.
+5. Development Build는 testBuild 주소, 일반 빌드는 stableBuild 주소를 선택합니다. 모든 빌드에서 로컬 테스트 버튼은 제외합니다.
+6. 설정 변경 후 앱을 재실행합니다. 기존 stable 출력 폴더에 빌드하고 결과 전체를 전달합니다.
 
-Unity 6000.2.8f1의 .NET Standard 2.1·UnityEngine·UnityEditor·uGUI·TMP 참조 컴파일도 통과했습니다. 실제 Unity Play와 Windows 빌드 실행 확인은 별도입니다.
-
-1. 로컬 개발 서버를 127.0.0.1:3000에 실행하고 Join을 Play합니다. 입력이나 버튼 클릭 없이 입장과 Ingame 전환을 확인합니다.
-2. 에디터 서버를 끈 뒤 Play하면 접속 오류가 표시되는지 확인합니다. 서버를 켜고 입장 버튼으로 재시도합니다.
-3. 로컬 A/B 검사는 Join Play 후 Start_UI의 해당 버튼을 선택합니다. 새 메뉴에서는 config의 autoConnect를 바꾸지 않아도 됩니다.
-4. Docker 테스트 서버가 호스트 3001 포트를 공개한 상태에서 Development Build를 체크해 Windows 테스트 빌드를 만듭니다.
-5. 새 빌드의 Join 화면에 주소 입력창과 로컬 테스트 버튼이 없는지 확인합니다. 두 PC에서 192.168.1.34:3001로 자동 입장하는지 확인합니다. 해당 IP와 포트의 접근 가능 여부는 LAN·방화벽 설정에 따릅니다.
-6. 등록된 stableBuild 주소를 확인한 뒤 Development Build를 해제해 기존 stable 폴더에 빌드합니다. 빈 주소 거부 검사는 별도 설정 사본으로 확인합니다.
+이전 154개 검사·참조 컴파일은 해당 기능 작성 당시 기록입니다. 현재 원본 핵심 검사에는 에디터 주소를 127.0.0.1:3000으로 고정 기대하는 항목이 있으므로 사용자 설정과의 차이를 구분합니다. 최신 문서 검토 범위는 [현행화 점검표](문서_현행화_점검표.md)를 봅니다.
 
 ## 현재 통신 상태
 
